@@ -93,7 +93,13 @@
 3. Сотрудник лыжного патруля
 4. Администратор
 
-![](imgs_for_readme/use_case/use-case1.pdf)
+![](imgs_for_readme/use_case/use-case1.png)
+
+![](imgs_for_readme/use_case/use-case2.png)
+
+![](imgs_for_readme/use_case/use-case3.png)
+
+![](imgs_for_readme/use_case/use-case4.png)
 
 
 ## ER-диаграмма сущностей (не путать с диаграммой БД – диаграмма сущность-связь не приземлена на конкретную СУБД и показывает сущности системы); 
