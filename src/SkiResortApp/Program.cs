@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using ProGaudi.Tarantool.Client;
 using ProGaudi.Tarantool.Client.Model;
 using ProGaudi.Tarantool.Client.Model.Enums;
+using System.IO;
 
 namespace SkiResortApp
 {
@@ -24,27 +25,45 @@ namespace SkiResortApp
 
         static async Task DoWork()
         {
-            Console.WriteLine("yy");
+
             using (var box = await Box.Connect(
                 "ski_admin:Tty454r293300@localhost:3301"))
             {
-                Console.WriteLine("pop");
+                Console.WriteLine("1\n");
                 var schema = box.GetSchema();
 
-                var space = await schema.GetSpace("users");
-                var primaryIndex = await space.GetIndex("primary_id");
+                var slope_space = await schema.GetSpace("slopes");
 
-                var data = await primaryIndex.Select<TarantoolTuple<string>,
-                    TarantoolTuple<string, string, string, string, long>>(
-                    TarantoolTuple.Create(String.Empty), new SelectOptions
-                    {
-                        Iterator = Iterator.All
-                    });
+                Console.WriteLine("1\n");
+                var slope_primary_index = await slope_space.GetIndex("primary");
+                Console.WriteLine("1\n");
 
-                foreach (var item in data.Data)
+
+                try
                 {
-                    Console.WriteLine(item);
+                    var data = await slope_primary_index.Select<ValueTuple<uint>, ValueTuple<uint, string, uint, bool>>(ValueTuple.Create(1u));
+                    /*
+                    var data = await slope_primary_index.Select<TarantoolTuple<int>,
+                        TarantoolTuple<int, string, int, bool>>(
+                        TarantoolTuple.Create(1), new SelectOptions
+                        {
+                            Iterator = Iterator.All
+                        });
+                    */
+                    Console.WriteLine("1\n");
+                    foreach (var item in data.Data)
+                    {
+                        Models.Slope slope = new Models.Slope(item.Item1, item.Item2, item.Item3, item.Item4);
+                        Console.WriteLine(item);
+                    }
                 }
+                catch (System.Exception e)
+                {
+                    TextWriter errorWriter = Console.Error;
+                    errorWriter.WriteLine(e.Message);
+                    return;
+                }
+
             }
         }
     }

@@ -104,14 +104,14 @@ local function init()
 	----- users_groups
 	--box.space.users_groups:drop()
 
-	users_groups = box.schema.space.create('users_groups', {id=1, field_count=3})
-	users_groups:format({
-		{name = 'group_id', type = 'unsigned'},
-		{name = 'group_name', type = 'string'},
-		{name = 'access_rights', type = 'string'} --может массив
-	})
-	users_groups:create_index('primary', {type = 'hash', parts = {'group_id'}})
-	print('users_groups created!')
+	--users_groups = box.schema.space.create('users_groups', {id=1, field_count=3})
+	--users_groups:format({
+	--	{name = 'group_id', type = 'unsigned'},
+	--	{name = 'group_name', type = 'string'},
+	--	{name = 'access_rights', type = 'string'} --может массив
+	--})
+	--users_groups:create_index('primary', {type = 'hash', parts = {'group_id'}})
+	--print('users_groups created!')
 
 
 
@@ -119,7 +119,6 @@ local function init()
 
 	--- slopes
 	--box.space.slopes:drop()
-
 	slopes = box.schema.space.create('slopes', {id=3, field_count=4})
 	slopes:format({
 		{name = 'slope_id', type = 'unsigned'},
@@ -135,7 +134,6 @@ local function init()
 
 	--- lifts
 	--box.space.lifts:drop()
-
 	lifts = box.schema.space.create('lifts', {id=4, field_count=5})
 	lifts:format({
 		{name = 'lift_id', type = 'unsigned'},
@@ -151,7 +149,6 @@ local function init()
 
 	--- lifts_slopes
 	--box.space.lifts_slopes:drop()
-
 	lifts_slopes = box.schema.space.create('lifts_slopes', {id=5, field_count=3})
 	lifts_slopes:format({
 		{name = 'record_id', type = 'unsigned'},
@@ -162,10 +159,8 @@ local function init()
 	print('lifts_slopes created!')
 
 
-
 	--- turnstiles
 	--box.space.turnstiles:drop()
-
 	turnstiles = box.schema.space.create('turnstiles', {id=6, field_count=2})
 	turnstiles:format({
 		{name = 'turnstile_id', type = 'unsigned'},
@@ -178,7 +173,6 @@ local function init()
 
 	--- cards
 	--box.space.cards:drop()
-
 	cards = box.schema.space.create('cards', {id=7, field_count=3})
 	cards:format({
 		{name = 'card_id', type = 'unsigned'},
