@@ -118,11 +118,12 @@ local function init()
 	slopes = box.schema.space.create('slopes', {id=3, field_count=4})
 	slopes:format({
 		{name = 'slope_id', type = 'unsigned'},
-		{name = 'slope_name', type = 'string'},
-		{name = 'difficulty_level', type = 'unsigned'},
-		{name = 'is_open', type = 'boolean'}
+		{name = 'name', type = 'string'},
+		{name = 'is_open', type = 'boolean'},
+		{name = 'difficulty_level', type = 'unsigned'}
 	})
-	slopes:create_index('primary', {type = 'hash', parts = {'slope_id'}})
+	slopes:create_index('primary')
+	slopes:create_index('index_name', {unique = true, parts = {{field = 2, type = 'string'}}})
 	print('slopes created!')
 
 
