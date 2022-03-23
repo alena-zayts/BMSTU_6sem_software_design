@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using ProGaudi.Tarantool.Client;
 using ProGaudi.Tarantool.Client.Model;
 using System.IO;
-
+/*
 namespace SkiResortApp.AppContexts
 {
     public class LiftsContext
@@ -29,3 +29,4 @@ namespace SkiResortApp.AppContexts
         public bool ShowRequestId => !string.IsNullOrEmpty(RequestId);
     }
 }
+*/

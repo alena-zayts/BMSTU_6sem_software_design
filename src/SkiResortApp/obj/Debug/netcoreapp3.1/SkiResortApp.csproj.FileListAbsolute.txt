@@ -39,3 +39,7 @@ C:\BMSTU_6sem_software_design\src\SkiResortApp\obj\Debug\netcoreapp3.1\SkiResort
 C:\BMSTU_6sem_software_design\src\SkiResortApp\obj\Debug\netcoreapp3.1\SkiResortApp.dll
 C:\BMSTU_6sem_software_design\src\SkiResortApp\obj\Debug\netcoreapp3.1\SkiResortApp.pdb
 C:\BMSTU_6sem_software_design\src\SkiResortApp\obj\Debug\netcoreapp3.1\SkiResortApp.genruntimeconfig.cache
+C:\BMSTU_6sem_software_design\src\SkiResortApp\bin\Debug\netcoreapp3.1\xunit.abstractions.dll
+C:\BMSTU_6sem_software_design\src\SkiResortApp\bin\Debug\netcoreapp3.1\xunit.assert.dll
+C:\BMSTU_6sem_software_design\src\SkiResortApp\bin\Debug\netcoreapp3.1\xunit.core.dll
+C:\BMSTU_6sem_software_design\src\SkiResortApp\bin\Debug\netcoreapp3.1\xunit.execution.dotnet.dll
