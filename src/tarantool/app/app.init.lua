@@ -85,18 +85,14 @@ local function init()
 
 	print('in init!')
 	--
-	box.schema.user.create('ski_admin', {if_not_exists = true}, {password = 'Tty454r293300'})
-	box.schema.user.passwd('ski_admin', 'Tty454r293300')
-	box.schema.user.grant('ski_admin', 'read,write,execute,create,alter,drop', 'universe')
+	--box.schema.user.create('ski_admin', {if_not_exists = true}, {password = 'Tty454r293300'})
+	--box.schema.user.passwd('ski_admin', 'Tty454r293300')
+	--box.schema.user.grant('ski_admin', 'read,write,execute,create,alter,drop', 'universe')
 
 	-- lsof -i :3301
 	-- удаление
 	-- connection.call('box.space.tester:drop', ())
 	-- connection.flush_schema()
-
-
-	--box.once("bootstrap", function()
-
 
 
 
@@ -118,7 +114,7 @@ local function init()
 
 
 	--- slopes
-	--box.space.slopes:drop()
+	box.space.slopes:drop()
 	slopes = box.schema.space.create('slopes', {id=3, field_count=4})
 	slopes:format({
 		{name = 'slope_id', type = 'unsigned'},
@@ -133,22 +129,25 @@ local function init()
 
 
 	--- lifts
-	--box.space.lifts:drop()
-	lifts = box.schema.space.create('lifts', {id=4, field_count=5})
+	box.space.lifts:drop()
+	lifts = box.schema.space.create('lifts', {id=4, field_count=6})
 	lifts:format({
 		{name = 'lift_id', type = 'unsigned'},
 		{name = 'lift_name', type = 'string'},
 		{name = 'is_open', type = 'boolean'},
-		{name = 'lifting_time', type = 'unsigned'},  --sec
-		{name = 'queue_time', type = 'unsigned'},  --sec
+		{name = 'seats_amount', type = 'unsigned'},
+		{name = 'lifting_time', type = 'unsigned'},
+		{name = 'queue_time', type = 'unsigned'},
 	})
-	lifts:create_index('primary', {type = 'hash', parts = {'lift_id'}})
+	print("imhere")
+	lifts:create_index('primary')
+	lifts:create_index('index_name', {unique = true, parts = {{field = 2, type = 'string'}}})
 	print('lifts created!')
 
 
 
 	--- lifts_slopes
-	--box.space.lifts_slopes:drop()
+	box.space.lifts_slopes:drop()
 	lifts_slopes = box.schema.space.create('lifts_slopes', {id=5, field_count=3})
 	lifts_slopes:format({
 		{name = 'record_id', type = 'unsigned'},
@@ -160,7 +159,7 @@ local function init()
 
 
 	--- turnstiles
-	--box.space.turnstiles:drop()
+	box.space.turnstiles:drop()
 	turnstiles = box.schema.space.create('turnstiles', {id=6, field_count=2})
 	turnstiles:format({
 		{name = 'turnstile_id', type = 'unsigned'},
@@ -172,7 +171,7 @@ local function init()
 
 
 	--- cards
-	--box.space.cards:drop()
+	box.space.cards:drop()
 	cards = box.schema.space.create('cards', {id=7, field_count=3})
 	cards:format({
 		{name = 'card_id', type = 'unsigned'},

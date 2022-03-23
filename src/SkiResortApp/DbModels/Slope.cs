@@ -1,6 +1,6 @@
 using System;
 
-namespace SkiResortApp.Models
+namespace SkiResortApp.DbModels
 {
     public class Slope
     {

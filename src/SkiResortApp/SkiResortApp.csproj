@@ -7,6 +7,7 @@
   <ItemGroup>
     <PackageReference Include="progaudi.tarantool" Version="0.15.0" />
     <PackageReference Include="Tarantool.CSharp" Version="0.6.1" />
+    <PackageReference Include="xunit" Version="2.4.1" />
   </ItemGroup>
 
 </Project>

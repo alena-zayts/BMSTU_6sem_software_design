@@ -51,6 +51,10 @@
             "progaudi.tarantool": {
               "target": "Package",
               "version": "[0.15.0, )"
+            },
+            "xunit": {
+              "target": "Package",
+              "version": "[2.4.1, )"
             }
           },
           "imports": [
