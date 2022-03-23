@@ -24,7 +24,7 @@ namespace SkiResortApp.TarantoolRepositories
         {
             var _space = await schema.GetSpace("lifts");
             var _index_primary = await _space.GetIndex("primary");
-            var _index_name = await _space.GetIndex("some_secondary_index");
+            var _index_name = await _space.GetIndex("index_name");
 
             return (_space, _index_primary, _index_name);
         }
@@ -75,11 +75,11 @@ namespace SkiResortApp.TarantoolRepositories
         {
             var updatedData = _space.Update<ValueTuple<uint>, ValueTuple<uint, string, bool, uint, uint, uint>>(
                 ValueTuple.Create(lift.lift_id), new UpdateOperation[] {
-                    UpdateOperation.CreateAssign<string>(2, lift.lift_name), 
-                    UpdateOperation.CreateAssign<bool>(3, lift.is_open),
-                    UpdateOperation.CreateAssign<uint>(4, lift.seats_amount),
-                    UpdateOperation.CreateAssign<uint>(5, lift.lifting_time),
-                    UpdateOperation.CreateAssign<uint>(6, lift.queue_time)
+                    UpdateOperation.CreateAssign<string>(1, lift.lift_name), // ñ 1!!!
+                    UpdateOperation.CreateAssign<bool>(2, lift.is_open),
+                    UpdateOperation.CreateAssign<uint>(3, lift.seats_amount),
+                    UpdateOperation.CreateAssign<uint>(4, lift.lifting_time),
+                    UpdateOperation.CreateAssign<uint>(5, lift.queue_time)
                 });
         }
         public void Delete(Lift lift)
