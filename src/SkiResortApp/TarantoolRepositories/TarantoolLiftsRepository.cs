@@ -42,7 +42,6 @@ namespace SkiResortApp.TarantoolRepositories
             {
                 Lift lift = new Lift(item);
                 result.Add(lift);
-                Console.WriteLine(item);
             }
 
             return result;

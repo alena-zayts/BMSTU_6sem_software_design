@@ -118,7 +118,7 @@ local function init()
 	slopes = box.schema.space.create('slopes', {id=3, field_count=4})
 	slopes:format({
 		{name = 'slope_id', type = 'unsigned'},
-		{name = 'name', type = 'string'},
+		{name = 'slope_name', type = 'string'},
 		{name = 'is_open', type = 'boolean'},
 		{name = 'difficulty_level', type = 'unsigned'}
 	})
@@ -161,12 +161,14 @@ local function init()
 
 	--- turnstiles
 	box.space.turnstiles:drop()
-	turnstiles = box.schema.space.create('turnstiles', {id=6, field_count=2})
+	turnstiles = box.schema.space.create('turnstiles', {id=6, field_count=3})
 	turnstiles:format({
 		{name = 'turnstile_id', type = 'unsigned'},
 		{name = 'lift_id', type = 'unsigned'},
+		{name = 'is_open', type = 'boolean'}
 	})
-	turnstiles:create_index('primary', {type = 'hash', parts = {'turnstile_id'}})
+	turnstiles:create_index('primary')
+	turnstiles:create_index('index_lift_id', {parts = {{field = 'lift_id', type = 'unsigned'}}})
 	print('turnstiles created!')
 
 
@@ -193,5 +195,3 @@ init()
 --box.once('init', init)
 
 
-box.space.slopes:insert{1, 'S1', 1, true}
-box.space.slopes:insert{2, 'S2', 2, false}
