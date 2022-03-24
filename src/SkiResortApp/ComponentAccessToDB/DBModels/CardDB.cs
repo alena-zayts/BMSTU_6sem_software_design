@@ -26,6 +26,14 @@ namespace SkiResortApp.ComponentAccessToDB.DBModels
         {
             return ValueTuple.Create(card_id, activation_time, type);
         }
+
+        public override bool Equals(object obj)
+        {
+            return obj is CardDB dB &&
+                   card_id == dB.card_id &&
+                   activation_time == dB.activation_time &&
+                   type == dB.type;
+        }
     }
 }
 

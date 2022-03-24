@@ -39,9 +39,7 @@ namespace Tests
 			TurnstileDB got_turnstile = rep.GetById(added_turnstile.turnstile_id);
 			
 
-			Assert.Equal(added_turnstile.turnstile_id, got_turnstile.turnstile_id);
-			Assert.Equal(added_turnstile.lift_id, got_turnstile.lift_id);
-			Assert.Equal(added_turnstile.is_open, got_turnstile.is_open);
+			Assert.Equal(added_turnstile, got_turnstile);
 
 
 			rep.Delete(added_turnstile);
@@ -55,27 +53,23 @@ namespace Tests
 
 			ITurnstilesRepository rep = new TarantoolTurnstilesRepository(_schema);
 
-			TurnstileDB added_turnstile1 = new TurnstileDB(100000, 1, true);
+			TurnstileDB added_turnstile1 = new TurnstileDB(100000, 3, true);
 			rep.Add(added_turnstile1);
-			TurnstileDB added_turnstile2 = new TurnstileDB(200000, 1, false);
+			TurnstileDB added_turnstile2 = new TurnstileDB(200000, 3, false);
 			rep.Add(added_turnstile2);
 
 
-			List<TurnstileDB> got_turnstiles = rep.GetByLiftId(1);
-			//got_turnstiles = rep.GetList();
+			List<TurnstileDB> got_turnstiles = rep.GetByLiftId(3);
+			got_turnstiles = rep.GetList();
 			Assert.Equal(2, got_turnstiles.Count());
 
 			TurnstileDB got_turnstile1 = got_turnstiles[0];
 			TurnstileDB got_turnstile2 = got_turnstiles[1];
 
 			
-			Assert.Equal(added_turnstile1.turnstile_id, got_turnstile1.turnstile_id);
-			Assert.Equal(added_turnstile1.lift_id, got_turnstile1.lift_id);
-			Assert.Equal(added_turnstile1.is_open, got_turnstile1.is_open);
-			
-			Assert.Equal(added_turnstile2.turnstile_id, got_turnstile2.turnstile_id);
-			Assert.Equal(added_turnstile2.lift_id, got_turnstile2.lift_id);
-			Assert.Equal(added_turnstile2.is_open, got_turnstile2.is_open);
+			Assert.Equal(added_turnstile1, got_turnstile1);
+			Assert.Equal(added_turnstile2, got_turnstile2);
+
 			
 
 			rep.Delete(added_turnstile1);
@@ -109,9 +103,7 @@ namespace Tests
 			TurnstileDB got_turnstile2 = rep.GetList()[1];
 
 
-			Assert.Equal(added_turnstile2.turnstile_id, got_turnstile2.turnstile_id);
-			Assert.Equal(added_turnstile2.lift_id, got_turnstile2.lift_id);
-			Assert.Equal(added_turnstile2.is_open, got_turnstile2.is_open);
+			Assert.Equal(added_turnstile2, got_turnstile2);
 
 			rep.Delete(added_turnstile1);
 			rep.Delete(added_turnstile2);

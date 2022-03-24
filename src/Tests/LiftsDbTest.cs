@@ -37,13 +37,7 @@ namespace Tests
 
 			LiftDB got_lift = rep.GetById(added_lift.lift_id);
 			
-
-			Assert.Equal(added_lift.lift_id, got_lift.lift_id);
-			Assert.Equal(added_lift.lift_name, got_lift.lift_name);
-			Assert.Equal(added_lift.is_open, got_lift.is_open);
-			Assert.Equal(added_lift.seats_amount, got_lift.seats_amount);
-			Assert.Equal(added_lift.queue_time, got_lift.queue_time);
-			Assert.Equal(added_lift.lifting_time, got_lift.lifting_time);
+			Assert.Equal(added_lift, got_lift);
 
 			rep.Delete(added_lift);
 
@@ -63,12 +57,7 @@ namespace Tests
 			LiftDB got_lift = rep.GetByName(added_lift.lift_name);
 
 
-			Assert.Equal(added_lift.lift_id, got_lift.lift_id);
-			Assert.Equal(added_lift.lift_name, got_lift.lift_name);
-			Assert.Equal(added_lift.is_open, got_lift.is_open);
-			Assert.Equal(added_lift.seats_amount, got_lift.seats_amount);
-			Assert.Equal(added_lift.queue_time, got_lift.queue_time);
-			Assert.Equal(added_lift.lifting_time, got_lift.lifting_time);
+			Assert.Equal(added_lift, got_lift);
 
 			rep.Delete(added_lift);
 
@@ -99,12 +88,7 @@ namespace Tests
 			LiftDB got_lift2 = rep.GetList()[1];
 
 
-			Assert.Equal(added_lift2.lift_id, got_lift2.lift_id);
-			Assert.Equal(added_lift2.lift_name, got_lift2.lift_name);
-			Assert.Equal(added_lift2.is_open, got_lift2.is_open);
-			Assert.Equal(added_lift2.seats_amount, got_lift2.seats_amount);
-			Assert.Equal(added_lift2.queue_time, got_lift2.queue_time);
-			Assert.Equal(added_lift2.lifting_time, got_lift2.lifting_time);
+			Assert.Equal(added_lift2, got_lift2);
 
 			rep.Delete(added_lift1);
 			rep.Delete(added_lift2);

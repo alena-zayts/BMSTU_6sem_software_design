@@ -21,16 +21,19 @@ namespace SkiResortApp.ComponentAccessToDB.RepositoriesTarantool
         private ISlopesRepository _slope_rep;
         private ILiftsRepository _lift_rep;
 
-        public TarantoolLiftsSlopesRepository(ISchema schema) => (_space, _index_primary, _index_lift_id, _index_slope_id) = Initialize(schema).GetAwaiter().GetResult();
+        public TarantoolLiftsSlopesRepository(ISchema schema) => (_space, _index_primary, _index_lift_id, _index_slope_id, _slope_rep, _lift_rep) = 
+            Initialize(schema).GetAwaiter().GetResult();
 
-        private static async Task<(ISpace, IIndex, IIndex, IIndex)> Initialize(ISchema schema)
+        private static async Task<(ISpace, IIndex, IIndex, IIndex, ISlopesRepository, ILiftsRepository)> Initialize(ISchema schema)
         {
             var _space = await schema.GetSpace("lifts_slopes");
             var _index_primary = await _space.GetIndex("primary");
             var _index_lift_id = await _space.GetIndex("_index_lift_id");
             var _index_slope_id = await _space.GetIndex("_index_slope_id");
+            var _slope_rep = new TarantoolSlopesRepository(schema);
+            var _lift_rep = new TarantoolLiftsRepository(schema);
 
-            return (_space, _index_primary, _index_lift_id, _index_slope_id);
+            return (_space, _index_primary, _index_lift_id, _index_slope_id, _slope_rep, _lift_rep);
         }
 
         public List<LiftSlopeDB> GetList()

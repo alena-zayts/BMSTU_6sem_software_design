@@ -15,10 +15,10 @@ namespace SkiResortApp.ComponentAccessToDB.RepositoriesTarantool
     public class TarantoolTurnstilesRepository : ITurnstilesRepository
     {
         private IIndex _index_primary;
-        private IIndex index_lift_id;
+        private IIndex _index_lift_id;
         private ISpace _space;
 
-        public TarantoolTurnstilesRepository(ISchema schema) => (_space, _index_primary, index_lift_id) = Initialize(schema).GetAwaiter().GetResult();
+        public TarantoolTurnstilesRepository(ISchema schema) => (_space, _index_primary, _index_lift_id) = Initialize(schema).GetAwaiter().GetResult();
 
         private static async Task<(ISpace, IIndex, IIndex)> Initialize(ISchema schema)
         {
@@ -60,7 +60,7 @@ namespace SkiResortApp.ComponentAccessToDB.RepositoriesTarantool
         {
             List<TurnstileDB> result = new List<TurnstileDB>();
 
-            var data = index_lift_id.Select<
+            var data = _index_lift_id.Select<
                 ValueTuple<uint>,
                 ValueTuple<uint, uint, bool>
                 >

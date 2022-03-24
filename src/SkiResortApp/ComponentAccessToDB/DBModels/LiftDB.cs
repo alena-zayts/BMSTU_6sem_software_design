@@ -35,6 +35,17 @@ namespace SkiResortApp.ComponentAccessToDB.DBModels
         {
             return ValueTuple.Create(lift_id, lift_name, is_open, seats_amount, lifting_time, queue_time);
         }
+
+        public override bool Equals(object obj)
+        {
+            return obj is LiftDB dB &&
+                   lift_id == dB.lift_id &&
+                   lift_name == dB.lift_name &&
+                   is_open == dB.is_open &&
+                   seats_amount == dB.seats_amount &&
+                   lifting_time == dB.lifting_time &&
+                   queue_time == dB.queue_time;
+        }
     }
 }
 

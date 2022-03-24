@@ -25,6 +25,14 @@ namespace SkiResortApp.ComponentAccessToDB.DBModels
         {
             return ValueTuple.Create(turnstile_id, lift_id, is_open);
         }
+
+        public override bool Equals(object obj)
+        {
+            return obj is TurnstileDB dB &&
+                   turnstile_id == dB.turnstile_id &&
+                   lift_id == dB.lift_id &&
+                   is_open == dB.is_open;
+        }
     }
 }
 

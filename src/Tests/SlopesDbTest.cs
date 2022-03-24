@@ -38,10 +38,7 @@ namespace Tests
 			SlopeDB got_slope = rep.GetById(added_slope.slope_id);
 			
 
-			Assert.Equal(added_slope.slope_id, got_slope.slope_id);
-			Assert.Equal(added_slope.slope_name, got_slope.slope_name);
-			Assert.Equal(added_slope.is_open, got_slope.is_open);
-			Assert.Equal(added_slope.difficulty_level, got_slope.difficulty_level);
+			Assert.Equal(added_slope, got_slope);
 
 
 			rep.Delete(added_slope);
@@ -62,10 +59,7 @@ namespace Tests
 			SlopeDB got_slope = rep.GetByName(added_slope.slope_name);
 
 
-			Assert.Equal(added_slope.slope_id, got_slope.slope_id);
-			Assert.Equal(added_slope.slope_name, got_slope.slope_name);
-			Assert.Equal(added_slope.is_open, got_slope.is_open);
-			Assert.Equal(added_slope.difficulty_level, got_slope.difficulty_level);
+			Assert.Equal(added_slope, got_slope);
 
 
 			rep.Delete(added_slope);
@@ -97,10 +91,8 @@ namespace Tests
 			SlopeDB got_slope2 = rep.GetList()[1];
 
 
-			Assert.Equal(added_slope2.slope_id, got_slope2.slope_id);
-			Assert.Equal(added_slope2.slope_name, got_slope2.slope_name);
-			Assert.Equal(added_slope2.is_open, got_slope2.is_open);
-			Assert.Equal(added_slope2.difficulty_level, got_slope2.difficulty_level);
+			Assert.Equal(added_slope2, got_slope2);
+
 
 			rep.Delete(added_slope1);
 			rep.Delete(added_slope2);

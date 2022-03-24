@@ -32,6 +32,16 @@ namespace SkiResortApp.ComponentAccessToDB.DBModels
         {
             return ValueTuple.Create(user_id, card_id, user_email, password, permissions);
         }
+
+        public override bool Equals(object obj)
+        {
+            return obj is UserDB dB &&
+                   user_id == dB.user_id &&
+                   card_id == dB.card_id &&
+                   user_email == dB.user_email &&
+                   password == dB.password &&
+                   permissions == dB.permissions;
+        }
     }
 }
 

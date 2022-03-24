@@ -15,21 +15,21 @@ namespace SkiResortApp.ComponentAccessToDB.RepositoriesTarantool
     public class TarantoolCardReadingsRepository : ICardReadingsRepository
     {
         private IIndex _index_primary;
-        private IIndex _index_date_turnstile;
+        private IIndex _index_turnstile;
         private ISpace _space;
         private ITurnstilesRepository _turnstile_rep;
 
-        public TarantoolCardReadingsRepository(ISchema schema) => (_space, _index_primary, _index_date_turnstile, _turnstile_rep) = 
+        public TarantoolCardReadingsRepository(ISchema schema) => (_space, _index_primary, _index_turnstile, _turnstile_rep) = 
             Initialize(schema).GetAwaiter().GetResult();
 
         private static async Task<(ISpace, IIndex, IIndex, ITurnstilesRepository)> Initialize(ISchema schema)
         {
             var _space = await schema.GetSpace("card_readings");
             var _index_primary = await _space.GetIndex("primary");
-            var _index_date_turnstile = await _space.GetIndex("_index_date_turnstile");
+            var _index_turnstile = await _space.GetIndex("index_date_turnstile");
             var _turnstile_rep = new TarantoolTurnstilesRepository(schema);
 
-            return (_space, _index_primary, _index_date_turnstile, _turnstile_rep);
+            return (_space, _index_primary, _index_turnstile, _turnstile_rep);
         }
 
         public List<CardReadingDB> GetList()
@@ -66,7 +66,7 @@ namespace SkiResortApp.ComponentAccessToDB.RepositoriesTarantool
 
             foreach (var turnstile in turnstiles)
             {
-                var card_readings_for_turnstile = _index_date_turnstile.Select<
+                var card_readings_for_turnstile = _index_turnstile.Select<
                     ValueTuple<uint>, 
                     ValueTuple<uint, uint, uint, DateTime>>
                     (ValueTuple.Create(turnstile.turnstile_id),

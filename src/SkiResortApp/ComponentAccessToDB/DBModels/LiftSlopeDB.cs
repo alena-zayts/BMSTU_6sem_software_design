@@ -26,6 +26,14 @@ namespace SkiResortApp.ComponentAccessToDB.DBModels
         {
             return ValueTuple.Create(record_id, lift_id, slope_id);
         }
+
+        public override bool Equals(object obj)
+        {
+            return obj is LiftSlopeDB dB &&
+                   record_id == dB.record_id &&
+                   lift_id == dB.lift_id &&
+                   slope_id == dB.slope_id;
+        }
     }
 
 }
