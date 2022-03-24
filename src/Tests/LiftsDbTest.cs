@@ -1,8 +1,8 @@
 using System;
 using System.Linq;
 using Xunit;
-using SkiResortApp.DbModels;
-using SkiResortApp.IRepositories;
+using SkiResortApp.ComponentAccessToDB.DBModels;
+using SkiResortApp.ComponentAccessToDB.RepositoryInterfaces;
 using SkiResortApp.TarantoolRepositories;
 using System.Threading.Tasks;
 using ProGaudi.Tarantool.Client;
@@ -31,11 +31,11 @@ namespace Tests
 		{
 			ILiftsRepository rep = new TarantoolLiftsRepository(_schema);
 
-			Lift added_lift = new Lift(100000, "A1", true, 100, 60, 360);
+			LiftDB added_lift = new LiftDB(100000, "A1", true, 100, 60, 360);
 			rep.Add(added_lift);
 
 
-			Lift got_lift = rep.GetById(added_lift.lift_id);
+			LiftDB got_lift = rep.GetById(added_lift.lift_id);
 			
 
 			Assert.Equal(added_lift.lift_id, got_lift.lift_id);
@@ -56,11 +56,11 @@ namespace Tests
 
 			ILiftsRepository rep = new TarantoolLiftsRepository(_schema);
 
-			Lift added_lift = new Lift(200000, "A2", false, 20, 10, 30);
+			LiftDB added_lift = new LiftDB(200000, "A2", false, 20, 10, 30);
 			rep.Add(added_lift);
 
 
-			Lift got_lift = rep.GetByName(added_lift.lift_name);
+			LiftDB got_lift = rep.GetByName(added_lift.lift_name);
 
 
 			Assert.Equal(added_lift.lift_id, got_lift.lift_id);
@@ -82,10 +82,10 @@ namespace Tests
 
 			ILiftsRepository rep = new TarantoolLiftsRepository(_schema);
 
-			Lift added_lift1 = new Lift(100000, "A1", true, 100, 60, 360);
+			LiftDB added_lift1 = new LiftDB(100000, "A1", true, 100, 60, 360);
 			rep.Add(added_lift1);
 
-			Lift added_lift2 = new Lift(200000, "A2", false, 20, 10, 30);
+			LiftDB added_lift2 = new LiftDB(200000, "A2", false, 20, 10, 30);
 			rep.Add(added_lift2);
 
 			added_lift2.is_open = true;
@@ -95,8 +95,8 @@ namespace Tests
 
 			Assert.Equal(2, rep.GetList().Count());
 
-			Lift got_lift1 = rep.GetList()[0];
-			Lift got_lift2 = rep.GetList()[1];
+			LiftDB got_lift1 = rep.GetList()[0];
+			LiftDB got_lift2 = rep.GetList()[1];
 
 
 			Assert.Equal(added_lift2.lift_id, got_lift2.lift_id);

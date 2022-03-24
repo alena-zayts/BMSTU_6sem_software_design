@@ -1,8 +1,8 @@
 using System;
 using System.Linq;
 using Xunit;
-using SkiResortApp.DbModels;
-using SkiResortApp.IRepositories;
+using SkiResortApp.ComponentAccessToDB.DBModels;
+using SkiResortApp.ComponentAccessToDB.RepositoryInterfaces;
 using SkiResortApp.TarantoolRepositories;
 using System.Threading.Tasks;
 using ProGaudi.Tarantool.Client;
@@ -31,11 +31,11 @@ namespace Tests
 		{
 			ISlopesRepository rep = new TarantoolSlopesRepository(_schema);
 
-			Slope added_slope = new Slope(100000, "A1", true, 1);
+			SlopeDB added_slope = new SlopeDB(100000, "A1", true, 1);
 			rep.Add(added_slope);
 
 
-			Slope got_slope = rep.GetById(added_slope.slope_id);
+			SlopeDB got_slope = rep.GetById(added_slope.slope_id);
 			
 
 			Assert.Equal(added_slope.slope_id, got_slope.slope_id);
@@ -55,11 +55,11 @@ namespace Tests
 
 			ISlopesRepository rep = new TarantoolSlopesRepository(_schema);
 
-			Slope added_slope = new Slope(200000, "A2", false, 20);
+			SlopeDB added_slope = new SlopeDB(200000, "A2", false, 20);
 			rep.Add(added_slope);
 
 
-			Slope got_slope = rep.GetByName(added_slope.slope_name);
+			SlopeDB got_slope = rep.GetByName(added_slope.slope_name);
 
 
 			Assert.Equal(added_slope.slope_id, got_slope.slope_id);
@@ -80,10 +80,10 @@ namespace Tests
 
 			ISlopesRepository rep = new TarantoolSlopesRepository(_schema);
 
-			Slope added_slope1 = new Slope(100000, "A1", true, 1);
+			SlopeDB added_slope1 = new SlopeDB(100000, "A1", true, 1);
 			rep.Add(added_slope1);
 
-			Slope added_slope2 = new Slope(200000, "A2", false, 20);
+			SlopeDB added_slope2 = new SlopeDB(200000, "A2", false, 20);
 			rep.Add(added_slope2);
 
 			added_slope2.is_open = true;
@@ -93,8 +93,8 @@ namespace Tests
 
 			Assert.Equal(2, rep.GetList().Count());
 
-			Slope got_slope1 = rep.GetList()[0];
-			Slope got_slope2 = rep.GetList()[1];
+			SlopeDB got_slope1 = rep.GetList()[0];
+			SlopeDB got_slope2 = rep.GetList()[1];
 
 
 			Assert.Equal(added_slope2.slope_id, got_slope2.slope_id);

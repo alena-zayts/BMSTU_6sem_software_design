@@ -53,7 +53,7 @@ namespace SkiResortApp
                     Console.WriteLine("1\n");
                     foreach (var item in data.Data)
                     {
-                        //Models.Slope slope = new Models.Slope(item.Item1, item.Item2, item.Item3, item.Item4);
+                        //Models.SlopeDB slope = new Models.SlopeDB(item.Item1, item.Item2, item.Item3, item.Item4);
                         Console.WriteLine(item);
                     }
                 }

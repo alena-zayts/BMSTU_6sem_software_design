@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using SkiResortApp.Models;
+using SkiResortApp.ComponentAccessToDB.DBModels;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;

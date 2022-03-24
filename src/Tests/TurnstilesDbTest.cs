@@ -1,8 +1,8 @@
 using System;
 using System.Linq;
 using Xunit;
-using SkiResortApp.DbModels;
-using SkiResortApp.IRepositories;
+using SkiResortApp.ComponentAccessToDB.DBModels;
+using SkiResortApp.ComponentAccessToDB.RepositoryInterfaces;
 using SkiResortApp.TarantoolRepositories;
 using System.Threading.Tasks;
 using ProGaudi.Tarantool.Client;
@@ -32,11 +32,11 @@ namespace Tests
 		{
 			ITurnstilesRepository rep = new TarantoolTurnstilesRepository(_schema);
 
-			Turnstile added_turnstile = new Turnstile(100000, 1, true);
+			TurnstileDB added_turnstile = new TurnstileDB(100000, 1, true);
 			rep.Add(added_turnstile);
 
 
-			Turnstile got_turnstile = rep.GetById(added_turnstile.turnstile_id);
+			TurnstileDB got_turnstile = rep.GetById(added_turnstile.turnstile_id);
 			
 
 			Assert.Equal(added_turnstile.turnstile_id, got_turnstile.turnstile_id);
@@ -55,18 +55,18 @@ namespace Tests
 
 			ITurnstilesRepository rep = new TarantoolTurnstilesRepository(_schema);
 
-			Turnstile added_turnstile1 = new Turnstile(100000, 1, true);
+			TurnstileDB added_turnstile1 = new TurnstileDB(100000, 1, true);
 			rep.Add(added_turnstile1);
-			Turnstile added_turnstile2 = new Turnstile(200000, 1, false);
+			TurnstileDB added_turnstile2 = new TurnstileDB(200000, 1, false);
 			rep.Add(added_turnstile2);
 
 
-			List<Turnstile> got_turnstiles = rep.GetByLiftId(1);
+			List<TurnstileDB> got_turnstiles = rep.GetByLiftId(1);
 			//got_turnstiles = rep.GetList();
 			Assert.Equal(2, got_turnstiles.Count());
 
-			Turnstile got_turnstile1 = got_turnstiles[0];
-			Turnstile got_turnstile2 = got_turnstiles[1];
+			TurnstileDB got_turnstile1 = got_turnstiles[0];
+			TurnstileDB got_turnstile2 = got_turnstiles[1];
 
 			
 			Assert.Equal(added_turnstile1.turnstile_id, got_turnstile1.turnstile_id);
@@ -93,9 +93,9 @@ namespace Tests
 
 			ITurnstilesRepository rep = new TarantoolTurnstilesRepository(_schema);
 
-			Turnstile added_turnstile1 = new Turnstile(100000, 1, true);
+			TurnstileDB added_turnstile1 = new TurnstileDB(100000, 1, true);
 			rep.Add(added_turnstile1);
-			Turnstile added_turnstile2 = new Turnstile(200000, 2, false);
+			TurnstileDB added_turnstile2 = new TurnstileDB(200000, 2, false);
 			rep.Add(added_turnstile2);
 
 			added_turnstile2.is_open = true;
@@ -105,8 +105,8 @@ namespace Tests
 
 			Assert.Equal(2, rep.GetList().Count());
 
-			Turnstile got_turnstile1 = rep.GetList()[0];
-			Turnstile got_turnstile2 = rep.GetList()[1];
+			TurnstileDB got_turnstile1 = rep.GetList()[0];
+			TurnstileDB got_turnstile2 = rep.GetList()[1];
 
 
 			Assert.Equal(added_turnstile2.turnstile_id, got_turnstile2.turnstile_id);
