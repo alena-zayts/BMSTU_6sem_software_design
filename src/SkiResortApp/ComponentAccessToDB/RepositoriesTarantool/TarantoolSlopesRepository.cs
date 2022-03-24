@@ -10,7 +10,7 @@ using System.Collections.Generic;
 using ProGaudi.Tarantool.Client.Model.UpdateOperations;
 
 
-namespace SkiResortApp.TarantoolRepositories
+namespace SkiResortApp.ComponentAccessToDB.RepositoriesTarantool
 {
     public class TarantoolSlopesRepository : ISlopesRepository
     {

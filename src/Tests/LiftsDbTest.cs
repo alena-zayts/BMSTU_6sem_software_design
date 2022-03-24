@@ -3,7 +3,7 @@ using System.Linq;
 using Xunit;
 using SkiResortApp.ComponentAccessToDB.DBModels;
 using SkiResortApp.ComponentAccessToDB.RepositoryInterfaces;
-using SkiResortApp.TarantoolRepositories;
+using SkiResortApp.ComponentAccessToDB.RepositoriesTarantool;
 using System.Threading.Tasks;
 using ProGaudi.Tarantool.Client;
 using ProGaudi.Tarantool.Client.Model;

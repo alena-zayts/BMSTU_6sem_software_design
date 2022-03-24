@@ -10,7 +10,7 @@ using System.Collections.Generic;
 using ProGaudi.Tarantool.Client.Model.UpdateOperations;
 
 
-namespace SkiResortApp.TarantoolRepositories
+namespace SkiResortApp.ComponentAccessToDB.RepositoriesTarantool
 {
     public class TarantoolTurnstilesRepository : ITurnstilesRepository
     {
@@ -67,7 +67,7 @@ namespace SkiResortApp.TarantoolRepositories
                 (ValueTuple.Create(lift_id), 
                 new SelectOptions
                 {
-                    Iterator = Iterator.All
+                    Iterator = Iterator.Eq
                 });
 
             foreach (var item in data.GetAwaiter().GetResult().Data)
