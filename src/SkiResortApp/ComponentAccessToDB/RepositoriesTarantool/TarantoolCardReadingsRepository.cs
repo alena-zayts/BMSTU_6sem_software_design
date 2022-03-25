@@ -26,7 +26,7 @@ namespace SkiResortApp.ComponentAccessToDB.RepositoriesTarantool
         {
             var _space = await schema.GetSpace("card_readings");
             var _index_primary = await _space.GetIndex("primary");
-            var _index_turnstile = await _space.GetIndex("index_date_turnstile");
+            var _index_turnstile = await _space.GetIndex("_index_turnstile");
             var _turnstile_rep = new TarantoolTurnstilesRepository(schema);
 
             return (_space, _index_primary, _index_turnstile, _turnstile_rep);
