@@ -1,4 +1,3 @@
-C:\BMSTU_6sem_software_design\src\SkiResortApp\obj\Release\netcoreapp3.1\SkiResortApp.csprojAssemblyReference.cache
 C:\BMSTU_6sem_software_design\src\SkiResortApp\obj\Release\netcoreapp3.1\SkiResortApp.AssemblyInfoInputs.cache
 C:\BMSTU_6sem_software_design\src\SkiResortApp\obj\Release\netcoreapp3.1\SkiResortApp.AssemblyInfo.cs
 C:\BMSTU_6sem_software_design\src\SkiResortApp\obj\Release\netcoreapp3.1\SkiResortApp.csproj.CoreCompileInputs.cache

@@ -68,7 +68,7 @@ namespace SkiResortApp.ComponentAccessToDB.RepositoriesTarantool
         }
         public void Add(SlopeDB slope)
         {
-            _space.Insert(slope.to_value_tuple());
+            var tmp =_space.Insert(slope.to_value_tuple()).Result;
         }
         public void Update(SlopeDB slope)
         {
@@ -81,8 +81,8 @@ namespace SkiResortApp.ComponentAccessToDB.RepositoriesTarantool
         }
         public void Delete(SlopeDB slope)
         {
-            _index_primary.Delete<ValueTuple<uint>,
-                ValueTuple<uint, string, bool, uint>>(ValueTuple.Create(slope.slope_id));
+            var tmp = _index_primary.Delete<ValueTuple<uint>,
+                ValueTuple<uint, string, bool, uint>>(ValueTuple.Create(slope.slope_id)).Result;
         }
     }
 }

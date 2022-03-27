@@ -32,6 +32,11 @@ namespace Tests
 		{
 			ITurnstilesRepository rep = new TarantoolTurnstilesRepository(_schema);
 
+
+			List<TurnstileDB> got_turnstiles = rep.GetList();
+			Assert.Empty(got_turnstiles);
+
+
 			TurnstileDB added_turnstile = new TurnstileDB(100000, 1, true);
 			rep.Add(added_turnstile);
 
@@ -47,66 +52,66 @@ namespace Tests
 			Assert.Throws<IndexOutOfRangeException>(() => rep.GetById(added_turnstile.turnstile_id));
 		}
 
-		[Fact]
-		public void Test_Add_GetByLiftId_Delete()
-		{
+        [Fact]
+        public void Test_Add_GetByLiftId_Delete()
+        {
 
-			ITurnstilesRepository rep = new TarantoolTurnstilesRepository(_schema);
+            ITurnstilesRepository rep = new TarantoolTurnstilesRepository(_schema);
 
-			TurnstileDB added_turnstile1 = new TurnstileDB(100000, 3, true);
-			rep.Add(added_turnstile1);
-			TurnstileDB added_turnstile2 = new TurnstileDB(200000, 3, false);
-			rep.Add(added_turnstile2);
-
-
-			List<TurnstileDB> got_turnstiles = rep.GetByLiftId(3);
-			got_turnstiles = rep.GetList();
-			Assert.Equal(2, got_turnstiles.Count());
-
-			TurnstileDB got_turnstile1 = got_turnstiles[0];
-			TurnstileDB got_turnstile2 = got_turnstiles[1];
-
-			
-			Assert.Equal(added_turnstile1, got_turnstile1);
-			Assert.Equal(added_turnstile2, got_turnstile2);
-
-			
-
-			rep.Delete(added_turnstile1);
-			rep.Delete(added_turnstile2);
-
-			got_turnstiles = rep.GetByLiftId(1);
-			Assert.Empty(got_turnstiles);
-
-		}
+            TurnstileDB added_turnstile1 = new TurnstileDB(1000, 3, true);
+            rep.Add(added_turnstile1);
+            TurnstileDB added_turnstile2 = new TurnstileDB(2000, 3, false);
+            rep.Add(added_turnstile2);
 
 
-		[Fact]
-		public void Test_Update_GetList()
-		{
+            List<TurnstileDB> got_turnstiles = rep.GetByLiftId(3);
+            Assert.Equal(2, got_turnstiles.Count());
 
-			ITurnstilesRepository rep = new TarantoolTurnstilesRepository(_schema);
-
-			TurnstileDB added_turnstile1 = new TurnstileDB(100000, 1, true);
-			rep.Add(added_turnstile1);
-			TurnstileDB added_turnstile2 = new TurnstileDB(200000, 2, false);
-			rep.Add(added_turnstile2);
-
-			added_turnstile2.is_open = true;
-			added_turnstile2.lift_id = 1;
-			rep.Update(added_turnstile2);
+            TurnstileDB got_turnstile1 = got_turnstiles[0];
+            TurnstileDB got_turnstile2 = got_turnstiles[1];
 
 
-			Assert.Equal(2, rep.GetList().Count());
-
-			TurnstileDB got_turnstile1 = rep.GetList()[0];
-			TurnstileDB got_turnstile2 = rep.GetList()[1];
+            Assert.Equal(added_turnstile1, got_turnstile1);
+            Assert.Equal(added_turnstile2, got_turnstile2);
 
 
-			Assert.Equal(added_turnstile2, got_turnstile2);
 
-			rep.Delete(added_turnstile1);
-			rep.Delete(added_turnstile2);
-		}
-	}
+            rep.Delete(added_turnstile1);
+            rep.Delete(added_turnstile2);
+
+            got_turnstiles = rep.GetByLiftId(1);
+            Assert.Empty(got_turnstiles);
+
+        }
+
+
+        [Fact]
+        public void Test_Update_GetList()
+        {
+
+            ITurnstilesRepository rep = new TarantoolTurnstilesRepository(_schema);
+
+            TurnstileDB added_turnstile1 = new TurnstileDB(100000, 1, true);
+            rep.Add(added_turnstile1);
+            TurnstileDB added_turnstile2 = new TurnstileDB(200000, 2, false);
+            rep.Add(added_turnstile2);
+
+            added_turnstile2.is_open = true;
+            added_turnstile2.lift_id = 1;
+            rep.Update(added_turnstile2);
+
+
+            Assert.Equal(2, rep.GetList().Count());
+
+            TurnstileDB got_turnstile1 = rep.GetList()[0];
+            TurnstileDB got_turnstile2 = rep.GetList()[1];
+
+
+            Assert.Equal(added_turnstile2, got_turnstile2);
+
+            rep.Delete(added_turnstile1);
+            rep.Delete(added_turnstile2);
+            Assert.Empty(rep.GetList());
+        }
+    }
 }

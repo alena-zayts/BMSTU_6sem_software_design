@@ -64,7 +64,7 @@ namespace Tests
 
 			rep.Delete(added_slope);
 
-			Assert.Throws<IndexOutOfRangeException>(() => rep.GetByName(added_slope.slope_name));
+			Assert.Throws<IndexOutOfRangeException>(() => rep.GetById(added_slope.slope_id));
 		}
 
 
@@ -96,6 +96,7 @@ namespace Tests
 
 			rep.Delete(added_slope1);
 			rep.Delete(added_slope2);
+			Assert.Empty(rep.GetList());
 		}
 	}
 }

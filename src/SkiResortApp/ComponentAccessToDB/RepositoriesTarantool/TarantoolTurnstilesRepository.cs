@@ -24,9 +24,9 @@ namespace SkiResortApp.ComponentAccessToDB.RepositoriesTarantool
         {
             var _space = await schema.GetSpace("turnstiles");
             var _index_primary = await _space.GetIndex("primary");
-            var index_lift_id = await _space.GetIndex("index_lift_id");
+            var _index_lift_id = await _space.GetIndex("index_lift_id");
 
-            return (_space, _index_primary, index_lift_id);
+            return (_space, _index_primary, _index_lift_id);
         }
 
         public List<TurnstileDB> GetList()

@@ -28,8 +28,8 @@ namespace SkiResortApp.ComponentAccessToDB.RepositoriesTarantool
         {
             var _space = await schema.GetSpace("lifts_slopes");
             var _index_primary = await _space.GetIndex("primary");
-            var _index_lift_id = await _space.GetIndex("_index_lift_id");
-            var _index_slope_id = await _space.GetIndex("_index_slope_id");
+            var _index_lift_id = await _space.GetIndex("index_lift_id");
+            var _index_slope_id = await _space.GetIndex("index_slope_id");
             var _slope_rep = new TarantoolSlopesRepository(schema);
             var _lift_rep = new TarantoolLiftsRepository(schema);
 
@@ -53,13 +53,13 @@ namespace SkiResortApp.ComponentAccessToDB.RepositoriesTarantool
 
             return result;
         }
-        public LiftSlopeDB GetById(uint slope_id)
+        public LiftSlopeDB GetById(uint record_id)
         {
             var data = _index_primary.Select<
                 ValueTuple<uint>,
                 ValueTuple<uint, uint, uint>
                 >
-                (ValueTuple.Create(slope_id));
+                (ValueTuple.Create(record_id));
 
             return new LiftSlopeDB(data.GetAwaiter().GetResult().Data[0]);
         }
@@ -112,7 +112,7 @@ namespace SkiResortApp.ComponentAccessToDB.RepositoriesTarantool
         public List<SlopeDB> GetSlopesByLiftId(uint lift_id)
         {
             List<SlopeDB> result = new List<SlopeDB>();
-            List<uint> slope_ids = this.GetLiftIdsBySlopeId(lift_id);
+            List<uint> slope_ids = this.GetSlopeIdsByLiftId(lift_id);
 
             foreach (var slope_id in slope_ids)
             {

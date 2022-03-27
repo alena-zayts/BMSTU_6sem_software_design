@@ -12,7 +12,6 @@ C:\BMSTU_6sem_software_design\src\SkiResortApp\bin\Debug\netcoreapp3.1\JetBrains
 C:\BMSTU_6sem_software_design\src\SkiResortApp\bin\Debug\netcoreapp3.1\msgpack.light.dll
 C:\BMSTU_6sem_software_design\src\SkiResortApp\bin\Debug\netcoreapp3.1\progaudi.tarantool.dll
 C:\BMSTU_6sem_software_design\src\SkiResortApp\bin\Debug\netcoreapp3.1\Tarantool.CSharp.dll
-C:\BMSTU_6sem_software_design\src\SkiResortApp\obj\Debug\netcoreapp3.1\SkiResortApp.csprojAssemblyReference.cache
 C:\BMSTU_6sem_software_design\src\SkiResortApp\obj\Debug\netcoreapp3.1\SkiResortApp.AssemblyInfoInputs.cache
 C:\BMSTU_6sem_software_design\src\SkiResortApp\obj\Debug\netcoreapp3.1\SkiResortApp.AssemblyInfo.cs
 C:\BMSTU_6sem_software_design\src\SkiResortApp\obj\Debug\netcoreapp3.1\SkiResortApp.csproj.CoreCompileInputs.cache

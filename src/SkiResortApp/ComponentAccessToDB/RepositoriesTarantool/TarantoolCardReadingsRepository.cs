@@ -26,7 +26,7 @@ namespace SkiResortApp.ComponentAccessToDB.RepositoriesTarantool
         {
             var _space = await schema.GetSpace("card_readings");
             var _index_primary = await _space.GetIndex("primary");
-            var _index_turnstile = await _space.GetIndex("_index_turnstile");
+            var _index_turnstile = await _space.GetIndex("index_turnstile");
             var _turnstile_rep = new TarantoolTurnstilesRepository(schema);
 
             return (_space, _index_primary, _index_turnstile, _turnstile_rep);
@@ -37,7 +37,7 @@ namespace SkiResortApp.ComponentAccessToDB.RepositoriesTarantool
             List<CardReadingDB> result = new List<CardReadingDB>();
             var data = _index_primary.Select<
                 ValueTuple<uint>,
-                ValueTuple<uint, uint, uint, DateTime>
+                ValueTuple<uint, uint, uint, uint>
                 >
                 (ValueTuple.Create(0u), new SelectOptions { Iterator = Iterator.Ge });
 
@@ -53,13 +53,13 @@ namespace SkiResortApp.ComponentAccessToDB.RepositoriesTarantool
         {
             var data = _index_primary.Select<
                 ValueTuple<uint>,
-                ValueTuple<uint, uint, uint, DateTime>
+                ValueTuple<uint, uint, uint, uint>
                 >
                 (ValueTuple.Create(card_reading_id));
 
             return new CardReadingDB(data.GetAwaiter().GetResult().Data[0]);
         }
-        public List<CardReadingDB> GetByLiftIdFromDate(uint lift_id, DateTime date_from)
+        public List<CardReadingDB> GetByLiftIdFromDate(uint lift_id, uint date_from)
         {
             List<CardReadingDB> result = new List<CardReadingDB>();
             List<TurnstileDB> turnstiles = _turnstile_rep.GetByLiftId(lift_id);
@@ -68,7 +68,7 @@ namespace SkiResortApp.ComponentAccessToDB.RepositoriesTarantool
             {
                 var card_readings_for_turnstile = _index_turnstile.Select<
                     ValueTuple<uint>, 
-                    ValueTuple<uint, uint, uint, DateTime>>
+                    ValueTuple<uint, uint, uint, uint>>
                     (ValueTuple.Create(turnstile.turnstile_id),
                     new SelectOptions
                     {
@@ -94,7 +94,7 @@ namespace SkiResortApp.ComponentAccessToDB.RepositoriesTarantool
                 ValueTuple.Create(card_reading.record_id), new UpdateOperation[] {
                     UpdateOperation.CreateAssign<uint>(1, card_reading.turnstile_id),
                     UpdateOperation.CreateAssign<uint>(2, card_reading.card_id),
-                    UpdateOperation.CreateAssign<DateTime>(3, card_reading.reading_time),
+                    UpdateOperation.CreateAssign<uint>(3, card_reading.reading_time),
                 });
         }
         public void Delete(CardReadingDB card_reading)

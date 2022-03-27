@@ -1,0 +1,16 @@
+C:\BMSTU_6sem_software_design\src\BotSkiResort\obj\Release\netcoreapp3.1\BotSkiResort.csprojAssemblyReference.cache
+C:\BMSTU_6sem_software_design\src\BotSkiResort\obj\Release\netcoreapp3.1\BotSkiResort.AssemblyInfoInputs.cache
+C:\BMSTU_6sem_software_design\src\BotSkiResort\obj\Release\netcoreapp3.1\BotSkiResort.AssemblyInfo.cs
+C:\BMSTU_6sem_software_design\src\BotSkiResort\obj\Release\netcoreapp3.1\BotSkiResort.csproj.CoreCompileInputs.cache
+C:\BMSTU_6sem_software_design\src\BotSkiResort\bin\Release\netcoreapp3.1\BotSkiResort.exe
+C:\BMSTU_6sem_software_design\src\BotSkiResort\bin\Release\netcoreapp3.1\BotSkiResort.deps.json
+C:\BMSTU_6sem_software_design\src\BotSkiResort\bin\Release\netcoreapp3.1\BotSkiResort.runtimeconfig.json
+C:\BMSTU_6sem_software_design\src\BotSkiResort\bin\Release\netcoreapp3.1\BotSkiResort.runtimeconfig.dev.json
+C:\BMSTU_6sem_software_design\src\BotSkiResort\bin\Release\netcoreapp3.1\BotSkiResort.dll
+C:\BMSTU_6sem_software_design\src\BotSkiResort\bin\Release\netcoreapp3.1\BotSkiResort.pdb
+C:\BMSTU_6sem_software_design\src\BotSkiResort\bin\Release\netcoreapp3.1\Newtonsoft.Json.dll
+C:\BMSTU_6sem_software_design\src\BotSkiResort\bin\Release\netcoreapp3.1\Telegram.Bot.dll
+C:\BMSTU_6sem_software_design\src\BotSkiResort\obj\Release\netcoreapp3.1\BotSkiResort.csproj.CopyComplete
+C:\BMSTU_6sem_software_design\src\BotSkiResort\obj\Release\netcoreapp3.1\BotSkiResort.dll
+C:\BMSTU_6sem_software_design\src\BotSkiResort\obj\Release\netcoreapp3.1\BotSkiResort.pdb
+C:\BMSTU_6sem_software_design\src\BotSkiResort\obj\Release\netcoreapp3.1\BotSkiResort.genruntimeconfig.cache

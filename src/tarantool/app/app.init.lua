@@ -134,7 +134,7 @@ local function init()
 		{name = 'reading_time', type = 'unsigned'},
 	})
 	card_readings:create_index('primary')
-	card_readings:create_index('index_turnstile', {parts = {'turnstile_id'}})
+	card_readings:create_index('index_turnstile', {unique = false, parts = {'turnstile_id'}})
 	print('card_readings created!')
 	
 	--- turnstiles
@@ -145,7 +145,7 @@ local function init()
 		{name = 'is_open', type = 'boolean'}
 	})
 	turnstiles:create_index('primary')
-	turnstiles:create_index('index_lift_id', {parts = {'lift_id'}})
+	turnstiles:create_index('index_lift_id', {unique = false, parts = {'lift_id'}})
 	print('turnstiles created!')
 	
 	--- lifts
@@ -159,7 +159,7 @@ local function init()
 		{name = 'queue_time', type = 'unsigned'},
 	})
 	lifts:create_index('primary')
-	lifts:create_index('index_name', {unique = true, parts = {'lift_name'}})
+	lifts:create_index('index_name', {parts = {'lift_name'}})
 	print('lifts created!')
 
 
@@ -172,7 +172,7 @@ local function init()
 		{name = 'difficulty_level', type = 'unsigned'}
 	})
 	slopes:create_index('primary')
-	slopes:create_index('index_name', {unique = true, parts = {'slope_name'}})
+	slopes:create_index('index_name', {parts = {'slope_name'}})
 	print('slopes created!')
 
 
@@ -184,8 +184,8 @@ local function init()
 		{name = 'slope_id', type = 'unsigned'},
 	})
 	lifts_slopes:create_index('primary')
-	lifts_slopes:create_index('index_lift_id', {parts = {'lift_id'}})
-	lifts_slopes:create_index('index_slope_id', {parts = {'slope_id'}})
+	lifts_slopes:create_index('index_lift_id', {unique = false, parts = {'lift_id'}})
+	lifts_slopes:create_index('index_slope_id', {unique = false, parts = {'slope_id'}})
 	print('lifts_slopes created!')
 
 	
@@ -199,5 +199,4 @@ box.cfg {
 
 init()
 --box.once('init', init)
-
 

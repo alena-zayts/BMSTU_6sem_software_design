@@ -92,6 +92,10 @@ namespace Tests
 
 			rep.Delete(added_lift1);
 			rep.Delete(added_lift2);
+
+			Assert.Throws<IndexOutOfRangeException>(() => rep.GetById(added_lift1.lift_id));
+			Assert.Throws<IndexOutOfRangeException>(() => rep.GetById(added_lift2.lift_id));
+			Assert.Empty(rep.GetList());
 		}
 	}
 }

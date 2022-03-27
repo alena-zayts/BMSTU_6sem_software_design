@@ -83,7 +83,7 @@ namespace SkiResortApp.ComponentAccessToDB.RepositoriesTarantool
         }
         public void Delete(LiftDB lift)
         {
-            _index_primary.Delete<ValueTuple<uint>,
+            var tmp = _index_primary.Delete<ValueTuple<uint>,
                 ValueTuple<uint, string, bool, uint, uint, uint>>(ValueTuple.Create(lift.lift_id));
         }
     }

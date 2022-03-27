@@ -21,13 +21,13 @@ using SkiResortApp;
 #nullable disable
 #nullable restore
 #line 2 "C:\BMSTU_6sem_software_design\src\SkiResortApp\Views\_ViewImports.cshtml"
-using SkiResortApp.Models;
+using SkiResortApp.ComponentAccessToDB.DBModels;
 
 #line default
 #line hidden
 #nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"d6a5625cc8fb4476f348b0fe9041c550465d8bf9", @"/Views/Shared/Error.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"4bf78d5e0cdbd1229c187fd2c16479b9bf5ff5ef", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"214d159ff90fad8591740e766f2a1836c0cae89d", @"/Views/_ViewImports.cshtml")]
     public class Views_Shared_Error : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<ErrorViewModel>
     {
         #pragma warning disable 1998
