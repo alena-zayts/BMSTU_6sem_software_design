@@ -32,7 +32,7 @@ namespace SkiResortApp.ComponentAccessToDB.RepositoriesTarantool
             List<CardDB> result = new List<CardDB>();
             var data = _index_primary.Select<
                 ValueTuple<uint>,
-                ValueTuple<uint, DateTime, string>
+                ValueTuple<uint, uint, string>
                 >
                 (ValueTuple.Create(0u), new SelectOptions { Iterator = Iterator.Ge });
 
@@ -48,7 +48,7 @@ namespace SkiResortApp.ComponentAccessToDB.RepositoriesTarantool
         {
             var data = _index_primary.Select<
                 ValueTuple<uint>,
-                ValueTuple<uint, DateTime, string>
+                ValueTuple<uint, uint, string>
                 >
                 (ValueTuple.Create(card_id));
 
@@ -60,9 +60,9 @@ namespace SkiResortApp.ComponentAccessToDB.RepositoriesTarantool
         }
         public void Update(CardDB card)
         {
-            var updatedData = _space.Update<ValueTuple<uint>, ValueTuple<uint, DateTime, string>>(
+            var updatedData = _space.Update<ValueTuple<uint>, ValueTuple<uint, uint, string>>(
                 ValueTuple.Create(card.card_id), new UpdateOperation[] {
-                    UpdateOperation.CreateAssign<DateTime>(1, card.activation_time),
+                    UpdateOperation.CreateAssign<uint>(1, card.activation_time),
                     UpdateOperation.CreateAssign<string>(2, card.type),
                 });
         }
