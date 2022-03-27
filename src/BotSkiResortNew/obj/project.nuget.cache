@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "sDxWcJaNVYn3y8VKDD5PFyPgKlHgCjJB26hL05MSpqYC3Fr5s483ho1HZqSw5dt2y0y4034rwyYfSvv0cJM3WA==",
+  "dgSpecHash": "kcAeUwY3H+TSk/TF4ZfnCc1ymmnNr99mTKO4BzH0onV8Aj3CtngzDrL3Fc6dKlERgHqkDAgHhoXokxPKyXXbsQ==",
   "success": true,
-  "projectFilePath": "C:\\BMSTU_6sem_software_design\\src\\BotSkiResort\\BotSkiResort.csproj",
+  "projectFilePath": "C:\\BMSTU_6sem_software_design\\src\\BotSkiResortNew\\BotSkiResortNew.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\alena\\.nuget\\packages\\newtonsoft.json\\12.0.2\\newtonsoft.json.12.0.2.nupkg.sha512",
     "C:\\Users\\alena\\.nuget\\packages\\system.threading.channels\\6.0.0\\system.threading.channels.6.0.0.nupkg.sha512",

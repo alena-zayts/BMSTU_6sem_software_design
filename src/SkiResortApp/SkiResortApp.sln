@@ -10,7 +10,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tests", "..\Tests\Tests.csp
 		{F182D5C1-4CFE-4DF0-B896-71AF8984E871} = {F182D5C1-4CFE-4DF0-B896-71AF8984E871}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BotSkiResort", "..\BotSkiResort\BotSkiResort.csproj", "{B1E41AEF-CBD2-42BC-8BDF-902C88D0C33F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BotSkiResort", "..\BotSkiResort\BotSkiResort.csproj", "{B1E41AEF-CBD2-42BC-8BDF-902C88D0C33F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BotSkiResortNew", "..\BotSkiResortNew\BotSkiResortNew.csproj", "{7BA4AC91-4D08-4F92-847D-5865BC595ECA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -30,6 +32,10 @@ Global
 		{B1E41AEF-CBD2-42BC-8BDF-902C88D0C33F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B1E41AEF-CBD2-42BC-8BDF-902C88D0C33F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B1E41AEF-CBD2-42BC-8BDF-902C88D0C33F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7BA4AC91-4D08-4F92-847D-5865BC595ECA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7BA4AC91-4D08-4F92-847D-5865BC595ECA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7BA4AC91-4D08-4F92-847D-5865BC595ECA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7BA4AC91-4D08-4F92-847D-5865BC595ECA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

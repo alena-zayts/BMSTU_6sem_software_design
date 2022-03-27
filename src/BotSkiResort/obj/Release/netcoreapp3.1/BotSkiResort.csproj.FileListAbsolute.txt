@@ -14,3 +14,5 @@ C:\BMSTU_6sem_software_design\src\BotSkiResort\obj\Release\netcoreapp3.1\BotSkiR
 C:\BMSTU_6sem_software_design\src\BotSkiResort\obj\Release\netcoreapp3.1\BotSkiResort.dll
 C:\BMSTU_6sem_software_design\src\BotSkiResort\obj\Release\netcoreapp3.1\BotSkiResort.pdb
 C:\BMSTU_6sem_software_design\src\BotSkiResort\obj\Release\netcoreapp3.1\BotSkiResort.genruntimeconfig.cache
+C:\BMSTU_6sem_software_design\src\BotSkiResort\bin\Release\netcoreapp3.1\System.Threading.Channels.dll
+C:\BMSTU_6sem_software_design\src\BotSkiResort\bin\Release\netcoreapp3.1\Telegram.Bot.Extensions.Polling.dll

@@ -3,62 +3,89 @@ using System.Collections.Generic;
 using Telegram.Bot;
 using Telegram.Bot.Args;
 using Telegram.Bot.Types.ReplyMarkups;
+using Telegram.Bot.Extensions.Polling;
+using System.Threading.Tasks;
+using Telegram.Bot.Exceptions;
+using Telegram.Bot.Types;
+using Telegram.Bot.Types.Enums;
+using System.Threading;
 
 namespace Telegram_Bot
 {
     class Program
     {
         private static string Token { get; set; } = "5116348352:AAGc2737xTkAOiKg8oXuQeLAbKq5e0IdIVg";
-        private static TelegramBotClient client;
+        private static TelegramBotClient botClient;
 
         static void Main(string[] args)
         {
-            client = new TelegramBotClient(Token);
-            //client.StartReceiving();
-            //client.OnMessage += OnMessageHandler;
-            //Console.ReadLine();
-            //client.StopReceiving();
+            DoWork().Wait();
+
         }
 
-        //private static async void OnMessageHandler(object sender, MessageEventArgs e)
-        //{
-        //    var msg = e.Message;
-        //    if (msg.Text != null)
-        //    {
-        //        Console.WriteLine($"Пришло сообщение с текстом: {msg.Text}");
-        //        switch (msg.Text)
-        //        {
-        //            case "Стикер":
-        //                await client.SendStickerAsync(
-        //                    chatId: msg.Chat.Id,
-        //                    sticker: "Ссылка на стикер",
-        //                    replyToMessageId: msg.MessageId,
-        //                    replyMarkup: GetButtons());
-        //                break;
-        //            case "Картинка":
-        //                await client.SendPhotoAsync(
-        //                    chatId: msg.Chat.Id,
-        //                    photo: "Ссылка на картинку",
-        //                    replyMarkup: GetButtons());
-        //                break;
+        static async Task DoWork()
+        {
+            botClient = new TelegramBotClient(Token);
+            using var cts = new CancellationTokenSource();
 
-        //            default:
-        //                await client.SendTextMessageAsync(msg.Chat.Id, "Выберите команду: ", replyMarkup: GetButtons());
-        //                break;
-        //        }
-        //    }
-        //}
+            // StartReceiving does not block the caller thread. Receiving is done on the ThreadPool.
+            var receiverOptions = new ReceiverOptions
+            {
+                AllowedUpdates = { } // receive all update types
+            };
 
-        //private static IReplyMarkup GetButtons()
-        //{
-        //    return new ReplyKeyboardMarkup
-        //    {
-        //        Keyboard = new List<List<KeyboardButton>>
-        //        {
-        //            new List<KeyboardButton>{ new KeyboardButton { Text = "Стикер"}, new KeyboardButton { Text = "Картинка"} },
-        //            new List<KeyboardButton>{ new KeyboardButton { Text = "123"}, new KeyboardButton { Text = "456"} }
-        //        }
-        //    };
-        //}
+            var my_handler = new MyHandler();
+            botClient.StartReceiving(
+                my_handler.HandleUpdateAsync,
+                my_handler.HandleErrorAsync,
+                receiverOptions,
+                cancellationToken: cts.Token);
+
+            var me = await botClient.GetMeAsync();
+
+            Console.WriteLine($"Start listening for @{me.Username}");
+            Console.ReadLine();
+
+            // Send cancellation request to stop bot
+            cts.Cancel();
+        }
+
+
+    }
+    class MyHandler
+    {
+        public async Task HandleUpdateAsync(ITelegramBotClient botClient, Update update, CancellationToken cancellationToken)
+        {
+            // Only process Message updates: https://core.telegram.org/bots/api#message
+            if (update.Type != UpdateType.Message)
+                return;
+            // Only process text messages
+            if (update.Message!.Type != MessageType.Text)
+                return;
+
+            var chatId = update.Message.Chat.Id;
+            var messageText = update.Message.Text;
+
+            Console.WriteLine($"Received a '{messageText}' message in chat {chatId}.");
+
+            // Echo received message text
+            Message sentMessage = await botClient.SendTextMessageAsync(
+                chatId: chatId,
+                text: "You said:\n" + messageText,
+                cancellationToken: cancellationToken);
+        }
+
+        public Task HandleErrorAsync(ITelegramBotClient botClient, Exception exception, CancellationToken cancellationToken)
+        {
+            var ErrorMessage = exception switch
+            {
+                ApiRequestException apiRequestException
+                    => $"Telegram API Error:\n[{apiRequestException.ErrorCode}]\n{apiRequestException.Message}",
+                _ => exception.ToString()
+            };
+
+            Console.WriteLine(ErrorMessage);
+            return Task.CompletedTask;
+        }
     }
 }

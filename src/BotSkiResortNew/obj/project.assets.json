@@ -1,7 +1,7 @@
 {
   "version": 3,
   "targets": {
-    ".NETCoreApp,Version=v3.1": {
+    "net5.0": {
       "Newtonsoft.Json/12.0.2": {
         "type": "package",
         "compile": {
@@ -146,7 +146,7 @@
     }
   },
   "projectFileDependencyGroups": {
-    ".NETCoreApp,Version=v3.1": [
+    "net5.0": [
       "Telegram.Bot >= 17.0.0",
       "Telegram.Bot.Extensions.Polling >= 1.0.2"
     ]
@@ -158,11 +158,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\BMSTU_6sem_software_design\\src\\BotSkiResort\\BotSkiResort.csproj",
-      "projectName": "BotSkiResort",
-      "projectPath": "C:\\BMSTU_6sem_software_design\\src\\BotSkiResort\\BotSkiResort.csproj",
+      "projectUniqueName": "C:\\BMSTU_6sem_software_design\\src\\BotSkiResortNew\\BotSkiResortNew.csproj",
+      "projectName": "BotSkiResortNew",
+      "projectPath": "C:\\BMSTU_6sem_software_design\\src\\BotSkiResortNew\\BotSkiResortNew.csproj",
       "packagesPath": "C:\\Users\\alena\\.nuget\\packages\\",
-      "outputPath": "C:\\BMSTU_6sem_software_design\\src\\BotSkiResort\\obj\\",
+      "outputPath": "C:\\BMSTU_6sem_software_design\\src\\BotSkiResortNew\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -173,15 +173,15 @@
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
-        "netcoreapp3.1"
+        "net5.0"
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
-        "netcoreapp3.1": {
-          "targetAlias": "netcoreapp3.1",
+        "net5.0": {
+          "targetAlias": "net5.0",
           "projectReferences": {}
         }
       },
@@ -192,8 +192,8 @@
       }
     },
     "frameworks": {
-      "netcoreapp3.1": {
-        "targetAlias": "netcoreapp3.1",
+      "net5.0": {
+        "targetAlias": "net5.0",
         "dependencies": {
           "Telegram.Bot": {
             "target": "Package",
