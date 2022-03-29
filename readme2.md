@@ -31,6 +31,6 @@
 
 Компонент бизнес-логики
 
-![](docs/imgs/uml/buisiness_logic.png)
+![](docs/imgs/uml/buisiness_logic1.png)
 
 

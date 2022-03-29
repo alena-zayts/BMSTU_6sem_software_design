@@ -48,18 +48,11 @@ namespace SkiResortApp.ComponentAccessToDB.RepositoriesTarantool
         }
         public LiftDB GetById(uint lift_id)
         {
-            try
-            {
-                var data = _index_primary.Select<
-                    ValueTuple<uint>,
-                    ValueTuple<uint, string, bool, uint, uint, uint>
-                    >
-                    (ValueTuple.Create(lift_id));
-            }
-            catch
-            {
-                Console.WriteLine("dfd");
-            }
+            var data = _index_primary.Select<
+                ValueTuple<uint>,
+                ValueTuple<uint, string, bool, uint, uint, uint>
+                >
+                (ValueTuple.Create(lift_id));
 
             return new LiftDB(data.GetAwaiter().GetResult().Data[0]);
         }
