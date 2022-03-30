@@ -159,9 +159,10 @@ namespace Telegram.Bot.Examples.Polling
 
             static async Task<Message> Usage(ITelegramBotClient botClient, Message message)
             {
-                const string usage = "Usage:\n" +
-                                     "/inline   - send inline keyboard\n" +
-                                     "/keyboard - send custom keyboard\n" +
+                const string usage = "Вы не авторизованы.\n" +
+                    "Возможные действия:\n" + 
+                                     "/registration - регистрация\n" +
+                                     "/authorization - авторизация\n" +
                                      "/remove   - remove custom keyboard\n" +
                                      "/photo    - send a photo\n" +
                                      "/request  - request location or contact";
