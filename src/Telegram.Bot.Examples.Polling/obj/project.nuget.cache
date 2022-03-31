@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "rBxbH8I+aUVBYpzbbYlgP/lNeUoJeVnGzC7o3tyrVlLYMvVz8q/L00EanJYvEul7Hj2QOggKn41EHUSRoXYP0Q==",
+  "dgSpecHash": "sMe2s8xZIsrzqtBjzUUch1WuGXPmN/1UgFkI77Rg7D5AYTvHgq5SM5w4/IaZjSlKXf3kmjyY3LX4sND2OOxHrg==",
   "success": true,
-  "projectFilePath": "C:\\BMSTU_6sem_software_design\\src\\Telegram.Bot.Examples.Polling\\Bot.csproj",
+  "projectFilePath": "C:\\BMSTU_6sem_software_design\\src\\Telegram.Bot.Examples.Polling\\ComponentUI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\alena\\.nuget\\packages\\newtonsoft.json\\12.0.2\\newtonsoft.json.12.0.2.nupkg.sha512",
     "C:\\Users\\alena\\.nuget\\packages\\system.threading.channels\\6.0.0\\system.threading.channels.6.0.0.nupkg.sha512",

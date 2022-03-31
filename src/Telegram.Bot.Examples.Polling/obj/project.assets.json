@@ -158,9 +158,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\BMSTU_6sem_software_design\\src\\Telegram.Bot.Examples.Polling\\Bot.csproj",
-      "projectName": "Bot",
-      "projectPath": "C:\\BMSTU_6sem_software_design\\src\\Telegram.Bot.Examples.Polling\\Bot.csproj",
+      "projectUniqueName": "C:\\BMSTU_6sem_software_design\\src\\Telegram.Bot.Examples.Polling\\ComponentUI.csproj",
+      "projectName": "ComponentUI",
+      "projectPath": "C:\\BMSTU_6sem_software_design\\src\\Telegram.Bot.Examples.Polling\\ComponentUI.csproj",
       "packagesPath": "C:\\Users\\alena\\.nuget\\packages\\",
       "outputPath": "C:\\BMSTU_6sem_software_design\\src\\Telegram.Bot.Examples.Polling\\obj\\",
       "projectStyle": "PackageReference",

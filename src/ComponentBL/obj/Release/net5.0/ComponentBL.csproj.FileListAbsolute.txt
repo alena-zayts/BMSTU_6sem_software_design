@@ -1,0 +1,5 @@
+C:\BMSTU_6sem_software_design\src\ComponentBL\obj\Release\net5.0\ComponentBL.csproj.AssemblyReference.cache
+C:\BMSTU_6sem_software_design\src\ComponentBL\obj\Release\net5.0\ComponentBL.GeneratedMSBuildEditorConfig.editorconfig
+C:\BMSTU_6sem_software_design\src\ComponentBL\obj\Release\net5.0\ComponentBL.AssemblyInfoInputs.cache
+C:\BMSTU_6sem_software_design\src\ComponentBL\obj\Release\net5.0\ComponentBL.AssemblyInfo.cs
+C:\BMSTU_6sem_software_design\src\ComponentBL\obj\Release\net5.0\ComponentBL.csproj.CoreCompileInputs.cache

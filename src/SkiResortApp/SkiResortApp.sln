@@ -10,7 +10,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tests", "..\Tests\Tests.csp
 		{F182D5C1-4CFE-4DF0-B896-71AF8984E871} = {F182D5C1-4CFE-4DF0-B896-71AF8984E871}
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bot", "..\Telegram.Bot.Examples.Polling\Bot.csproj", "{38FF7CB7-DDF8-44C7-8556-7CF1F4427233}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ComponentUI", "..\Telegram.Bot.Examples.Polling\ComponentUI.csproj", "{38FF7CB7-DDF8-44C7-8556-7CF1F4427233}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ComponentBL", "..\ComponentBL\ComponentBL.csproj", "{F72EC2F5-76CE-42EC-B711-C2264F96EE92}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -30,6 +32,10 @@ Global
 		{38FF7CB7-DDF8-44C7-8556-7CF1F4427233}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{38FF7CB7-DDF8-44C7-8556-7CF1F4427233}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{38FF7CB7-DDF8-44C7-8556-7CF1F4427233}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F72EC2F5-76CE-42EC-B711-C2264F96EE92}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F72EC2F5-76CE-42EC-B711-C2264F96EE92}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F72EC2F5-76CE-42EC-B711-C2264F96EE92}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F72EC2F5-76CE-42EC-B711-C2264F96EE92}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

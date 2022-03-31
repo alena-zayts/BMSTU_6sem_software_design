@@ -70,10 +70,8 @@ box.once('load_data', load_data)
 
 
 
---- индексы
---- ограничения
---- внешние поля
---- дата в карте
+
+--- роли
 
 
 
@@ -102,6 +100,8 @@ local function init()
 	box.space.card_readings:drop()
 	box.space.cards:drop()
 	box.space.users:drop()
+	--box.space.ui_users:drop()
+	--box.space.messages:drop()
 
 	--- users
 	users = box.schema.space.create('users', {field_count=5})
@@ -187,6 +187,25 @@ local function init()
 	lifts_slopes:create_index('index_lift_id', {unique = false, parts = {'lift_id'}})
 	lifts_slopes:create_index('index_slope_id', {unique = false, parts = {'slope_id'}})
 	print('lifts_slopes created!')
+	
+	
+	--- ui_users
+	ui_users = box.schema.space.create('ui_users', {field_count=2})
+	ui_users:format({
+		{name = 'ui_user_id', type = 'unsigned'},
+		{name = 'system_user_id', type = 'unsigned'},
+	})
+	ui_users:create_index('primary')
+	print('ui_users created!')
+	
+	--- messages
+	messages = box.schema.space.create('messages', {field_count=3})
+	messages:format({
+		{name = 'message_id', type = 'unsigned'},
+		{name = 'path_to_message', type = 'string'},
+	})
+	messages:create_index('primary')
+	print('messages created!')
 
 	
 end
