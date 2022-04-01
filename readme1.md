@@ -117,11 +117,11 @@
 
 ## Архитектурные характеристики, важные для проекта.
 
-Интерфейс представляет собой telegram-бота (https://github.com/MrRoundRobin/telegram.bot).
+Интерфейс представляет собой telegram-бота (https://github.com/MrRoundRobin/telegram.bot)
 
 Приложение должно выдерживать высокую нагрузку и обеспечивать быстрый отклик. 
 
-Все данные хранятся в in-memory базе данных (tarantool)
+Все данные хранятся в in-memory базе данных (tarantool) (https://github.com/progaudi/progaudi.tarantool)
 
 Язык - C#. 
 

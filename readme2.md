@@ -4,9 +4,9 @@
 
 ## 1. Описание типа приложения и выбранного технологического стека 
 
-Интерфейс представляет собой telegram-бота (https://github.com/MrRoundRobin/telegram.bot).
+Интерфейс представляет собой telegram-бота (https://github.com/MrRoundRobin/telegram.bot)
 
-База данных - tarantool. 
+База данных - tarantool (https://github.com/progaudi/progaudi.tarantool)
 
 Язык - C#. 
 
