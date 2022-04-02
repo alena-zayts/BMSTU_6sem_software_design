@@ -8,9 +8,9 @@ namespace SkiResort.ComponentAccessToDB.RepositoriesInterfaces
     {
         List<CardReadingBL> GetList();
         CardReadingBL GetById(uint record_id);
-        List<CardReadingBL> GetByLiftIdFromDate(uint lift_id, uint date_from);
         void Add(CardReadingBL card_reading);
         void Update(CardReadingBL card_reading); 
-        void Delete(CardReadingBL card_reading); 
+        void Delete(CardReadingBL card_reading);
+        List<CardReadingBL> GetByLiftIdFromDate(uint lift_id, uint date_from);
     }
 }
