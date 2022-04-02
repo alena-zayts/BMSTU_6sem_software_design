@@ -25,7 +25,7 @@
 
 ## 3. UML диаграммы классов компонентов доступа к данным и бизнес-логики (модельных и компонент)
 
-
+(покрупнее https://github.com/alena-zayts/BMSTU_6sem_software_design/blob/main/docs/imgs/uml/bl_da.png)
 
 ![](docs/imgs/uml/bl_da.png)
 
