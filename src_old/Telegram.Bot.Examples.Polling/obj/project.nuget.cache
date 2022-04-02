@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "dgSpecHash": "dyiUl177leaE4Gv0gRIQx8aB84Q4pzlJf1Q8ZOTTg/TDCaFg6LVUdGlMp3LPxcygNcZ9uTJPu8EQ+eyMGDd5xQ==",
+  "success": true,
+  "projectFilePath": "C:\\BMSTU_6sem_software_design\\src_old\\Telegram.Bot.Examples.Polling\\ComponentUI.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\alena\\.nuget\\packages\\newtonsoft.json\\12.0.2\\newtonsoft.json.12.0.2.nupkg.sha512",
+    "C:\\Users\\alena\\.nuget\\packages\\system.threading.channels\\6.0.0\\system.threading.channels.6.0.0.nupkg.sha512",
+    "C:\\Users\\alena\\.nuget\\packages\\telegram.bot\\17.0.0\\telegram.bot.17.0.0.nupkg.sha512",
+    "C:\\Users\\alena\\.nuget\\packages\\telegram.bot.extensions.polling\\1.0.2\\telegram.bot.extensions.polling.1.0.2.nupkg.sha512"
+  ],
+  "logs": []
+}

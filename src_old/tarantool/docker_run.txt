@@ -1,0 +1,10 @@
+docker-compose -f C:/BMSTU_6sem_software_design/src/tarantool/docker-compose.yml up -d
+docker-compose -f C:/BMSTU_6sem_software_design/src/tarantool/docker-compose.yml down
+
+
+docker-compose -f C:/BMSTU_6sem_software_design/src/tarantool/docker-compose.yml down && docker-compose -f C:/BMSTU_6sem_software_design/src/tarantool/docker-compose.yml up -d
+
+//docker run --name tarantool_ski_resort -d tarantool/tarantool:1.7
+1266b9e029bf0dbed92e6b99db11e2bb3e51544ebbb48380d30154ad1fc4b50c
+
+docker run --name tarantool_ski_resort -d -p 3301:3301 -v c:/BMSTU_6sem_software_design/src/tarantool/data:/var/lib/tarantool tarantool/tarantool:1.7
