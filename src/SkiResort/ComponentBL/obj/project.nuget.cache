@@ -1,8 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "SLc/wJDsryCwxisAvqX88DRlxIksDrJAOPnkoc1SlD2TH9Nba5Iz5Mv2SaEpUvhUkcGdqJljeUSQfuGB8Ej1dw==",
+  "dgSpecHash": "AqUiLLl+vcOGnfam3z8y76i3hwyvJe+z0UdHCYHsvGzmgXbw7ys9yMMBQyZXpfdCKRKXJu+nnyi8HcAG2nhcmQ==",
   "success": true,
   "projectFilePath": "C:\\BMSTU_6sem_software_design\\src\\SkiResort\\ComponentBL\\ComponentBL.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\alena\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\5.0.15\\microsoft.netcore.app.host.win-x64.5.0.15.nupkg.sha512",
+    "C:\\Users\\alena\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\5.0.0\\microsoft.aspnetcore.app.ref.5.0.0.nupkg.sha512",
+    "C:\\Users\\alena\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\5.0.0\\microsoft.windowsdesktop.app.ref.5.0.0.nupkg.sha512",
+    "C:\\Users\\alena\\.nuget\\packages\\microsoft.netcore.app.ref\\5.0.0\\microsoft.netcore.app.ref.5.0.0.nupkg.sha512"
+  ],
   "logs": []
 }

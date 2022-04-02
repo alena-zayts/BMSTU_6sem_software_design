@@ -9,9 +9,10 @@ using ProGaudi.Tarantool.Client.Model.UpdateOperations;
 using SkiResort.ComponentAccessToDB.RepositoriesInterfaces;
 using SkiResort.ComponentBL.ModelsBL;
 
-
 namespace SkiResort.ComponentAccessToDB.RepositoriesTarantool
 {
+    
+
     public class TarantoolCardReadingsRepository : ICardReadingsRepository
     {
         private IIndex _index_primary;
@@ -67,7 +68,7 @@ namespace SkiResort.ComponentAccessToDB.RepositoriesTarantool
             foreach (var turnstile in turnstiles)
             {
                 var card_readings_for_turnstile = _index_turnstile.Select<
-                    ValueTuple<uint>, 
+                    ValueTuple<uint>,
                     ValueTuple<uint, uint, uint, uint>>
                     (ValueTuple.Create(turnstile.turnstile_id),
                     new SelectOptions
@@ -92,15 +93,14 @@ namespace SkiResort.ComponentAccessToDB.RepositoriesTarantool
         {
             var updatedData = _space.Update<ValueTuple<uint>, ValueTuple<uint, uint, uint, DateTime>>(
                 ValueTuple.Create(card_reading.record_id), new UpdateOperation[] {
-                    UpdateOperation.CreateAssign<uint>(1, card_reading.turnstile_id),
-                    UpdateOperation.CreateAssign<uint>(2, card_reading.card_id),
-                    UpdateOperation.CreateAssign<uint>(3, card_reading.reading_time),
+                    UpdateOperation.CreateAssign(1, card_reading.turnstile_id),
+                    UpdateOperation.CreateAssign(2, card_reading.card_id),
+                    UpdateOperation.CreateAssign(3, card_reading.reading_time),
                 });
         }
         public void Delete(CardReadingBL card_reading)
         {
-            _index_primary.Delete<ValueTuple<uint>,
-                ValueTuple<uint, uint, uint, DateTime>>(ValueTuple.Create(card_reading.record_id));
+            _index_primary.Delete<ValueTuple<uint>, ValueTuple<uint, uint, uint, uint>>(ValueTuple.Create(card_reading.record_id));
         }
     }
 }

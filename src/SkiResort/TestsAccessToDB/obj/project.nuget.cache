@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "7iJS3uw82M8vNfp3RAPUWhRXqrAWUBcoVxjxHDjH2xzMMVbFex/RAo7F1QhqESojN9crDmDXX4XMZv4T1+ruPA==",
+  "dgSpecHash": "hgAoIIXyo7LYCsc1rPWDZd7ZzmEO4kCuGmx3SLyiINUXkQ3nk+S4IPK0GbEoO3kYXp1FKZCkhIm3WXbBg9TlVQ==",
   "success": true,
   "projectFilePath": "C:\\BMSTU_6sem_software_design\\src\\SkiResort\\TestsAccessToDB\\TestsAccessToDB.csproj",
   "expectedPackageFiles": [
@@ -105,7 +105,10 @@
     "C:\\Users\\alena\\.nuget\\packages\\xunit.core\\2.4.1\\xunit.core.2.4.1.nupkg.sha512",
     "C:\\Users\\alena\\.nuget\\packages\\xunit.extensibility.core\\2.4.1\\xunit.extensibility.core.2.4.1.nupkg.sha512",
     "C:\\Users\\alena\\.nuget\\packages\\xunit.extensibility.execution\\2.4.1\\xunit.extensibility.execution.2.4.1.nupkg.sha512",
-    "C:\\Users\\alena\\.nuget\\packages\\xunit.runner.visualstudio\\2.4.3\\xunit.runner.visualstudio.2.4.3.nupkg.sha512"
+    "C:\\Users\\alena\\.nuget\\packages\\xunit.runner.visualstudio\\2.4.3\\xunit.runner.visualstudio.2.4.3.nupkg.sha512",
+    "C:\\Users\\alena\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\5.0.0\\microsoft.aspnetcore.app.ref.5.0.0.nupkg.sha512",
+    "C:\\Users\\alena\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\5.0.0\\microsoft.windowsdesktop.app.ref.5.0.0.nupkg.sha512",
+    "C:\\Users\\alena\\.nuget\\packages\\microsoft.netcore.app.ref\\5.0.0\\microsoft.netcore.app.ref.5.0.0.nupkg.sha512"
   ],
   "logs": []
 }
