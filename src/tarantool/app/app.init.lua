@@ -326,13 +326,23 @@ end
 function count_card_readings(lift_id, date_from)
 	-- select turnstiles
 	connected_turnstiles = turnstiles.index.index_lift_id:select({lift_id})
-	--for turnstile in 
-	return connected_turnstiles
 	
+	counter = 0
+	
+	for k,v in pairs(connected_turnstiles) do
+		cur_turnstile_id = v["turnstile_id"]
+		
+		card_readings_on_turnstile = card_readings.index.index_turnstile:select({cur_turnstile_id})
+		
+		for k,v in pairs(card_readings_on_turnstile) do
+			if v["reading_time"] >= date_from then
+				counter = counter + 1
+			end
+		end 
+	end
+	
+	return counter
 end
-
-
-
 
 
 
@@ -345,4 +355,5 @@ box.cfg {
 
 init()
 load__data()
-print(dump(count_card_readings(2, 0)))
+print(count_card_readings(2, 0))
+--print(dump(count_card_readings(2, 0)))
