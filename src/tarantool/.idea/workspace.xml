@@ -1,60 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="37e3b93f-dec6-4655-8fd4-69c45ec7c196" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../SkiResort/.vs/SkiResort/DesignTimeBuild/.dtbcache.v2" beforeDir="false" afterPath="$PROJECT_DIR$/../SkiResort/.vs/SkiResort/DesignTimeBuild/.dtbcache.v2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/.vs/SkiResort/v17/.suo" beforeDir="false" afterPath="$PROJECT_DIR$/../SkiResort/.vs/SkiResort/v17/.suo" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/.vs/SkiResort/v17/TestStore/0/000.testlog" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/ComponentAccessToDB/ContextTarantool.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../SkiResort/ComponentAccessToDB/ContextTarantool.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/ComponentAccessToDB/Exceptions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../SkiResort/ComponentAccessToDB/Exceptions.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/ComponentAccessToDB/ModelsTarantool.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../SkiResort/ComponentAccessToDB/ModelsTarantool.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/ComponentAccessToDB/RepositoriesTarantool/TarantoolCardReadingsRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../SkiResort/ComponentAccessToDB/RepositoriesTarantool/TarantoolCardReadingsRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/ComponentAccessToDB/RepositoriesTarantool/TarantoolLiftsRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../SkiResort/ComponentAccessToDB/RepositoriesTarantool/TarantoolLiftsRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/ComponentAccessToDB/RepositoriesTarantool/TarantoolLiftsSlopesRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../SkiResort/ComponentAccessToDB/RepositoriesTarantool/TarantoolLiftsSlopesRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/ComponentAccessToDB/RepositoriesTarantool/TarantoolMessagesRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../SkiResort/ComponentAccessToDB/RepositoriesTarantool/TarantoolMessagesRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/ComponentAccessToDB/RepositoriesTarantool/TarantoolSlopesRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../SkiResort/ComponentAccessToDB/RepositoriesTarantool/TarantoolSlopesRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/ComponentAccessToDB/RepositoriesTarantool/TarantoolTurnstilesRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../SkiResort/ComponentAccessToDB/RepositoriesTarantool/TarantoolTurnstilesRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/ComponentAccessToDB/RepositoriesTarantool/TarantoolUsersRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../SkiResort/ComponentAccessToDB/RepositoriesTarantool/TarantoolUsersRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/ComponentAccessToDB/bin/Debug/net6.0/ComponentAccessToDB.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/../SkiResort/ComponentAccessToDB/bin/Debug/net6.0/ComponentAccessToDB.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/ComponentAccessToDB/bin/Debug/net6.0/ComponentBL.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/../SkiResort/ComponentAccessToDB/bin/Debug/net6.0/ComponentBL.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/ComponentAccessToDB/obj/Debug/net6.0/ComponentAccessToDB.csproj.AssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/../SkiResort/ComponentAccessToDB/obj/Debug/net6.0/ComponentAccessToDB.csproj.AssemblyReference.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/ComponentAccessToDB/obj/Debug/net6.0/ComponentAccessToDB.csproj.CoreCompileInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/../SkiResort/ComponentAccessToDB/obj/Debug/net6.0/ComponentAccessToDB.csproj.CoreCompileInputs.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/ComponentAccessToDB/obj/Debug/net6.0/ComponentAccessToDB.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/../SkiResort/ComponentAccessToDB/obj/Debug/net6.0/ComponentAccessToDB.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/ComponentBL/ModelsBL/CardBL.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../SkiResort/ComponentBL/ModelsBL/CardBL.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/ComponentBL/ModelsBL/CardReadingBL.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../SkiResort/ComponentBL/ModelsBL/CardReadingBL.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/ComponentBL/ModelsBL/LiftBL.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../SkiResort/ComponentBL/ModelsBL/LiftBL.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/ComponentBL/ModelsBL/LiftSlopeBL.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../SkiResort/ComponentBL/ModelsBL/LiftSlopeBL.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/ComponentBL/ModelsBL/MessageBL.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../SkiResort/ComponentBL/ModelsBL/MessageBL.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/ComponentBL/ModelsBL/SlopeBL.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../SkiResort/ComponentBL/ModelsBL/SlopeBL.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/ComponentBL/ModelsBL/TurnstileBL.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../SkiResort/ComponentBL/ModelsBL/TurnstileBL.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/ComponentBL/RepositoriesInterfaces/ILiftsSlopesRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../SkiResort/ComponentBL/RepositoriesInterfaces/ILiftsSlopesRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/ComponentBL/bin/Debug/net6.0/ComponentBL.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/../SkiResort/ComponentBL/bin/Debug/net6.0/ComponentBL.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/ComponentBL/obj/Debug/net6.0/ComponentBL.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/../SkiResort/ComponentBL/obj/Debug/net6.0/ComponentBL.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/TestsAccessToDB/CardsDbTest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../SkiResort/TestsAccessToDB/CardsDbTest.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/TestsAccessToDB/LiftsDbTest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../SkiResort/TestsAccessToDB/LiftsDbTest.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/TestsAccessToDB/LiftsSlopesDbTest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../SkiResort/TestsAccessToDB/LiftsSlopesDbTest.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/TestsAccessToDB/SlopesDbTest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../SkiResort/TestsAccessToDB/SlopesDbTest.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/TestsAccessToDB/TurnstilesDbTest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../SkiResort/TestsAccessToDB/TurnstilesDbTest.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/TestsAccessToDB/UsersDbTest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../SkiResort/TestsAccessToDB/UsersDbTest.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/TestsAccessToDB/bin/Debug/net6.0/ComponentAccessToDB.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/../SkiResort/TestsAccessToDB/bin/Debug/net6.0/ComponentAccessToDB.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/TestsAccessToDB/bin/Debug/net6.0/ComponentBL.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/../SkiResort/TestsAccessToDB/bin/Debug/net6.0/ComponentBL.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/TestsAccessToDB/bin/Debug/net6.0/TestsAccessToDB.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/../SkiResort/TestsAccessToDB/bin/Debug/net6.0/TestsAccessToDB.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/TestsAccessToDB/obj/Debug/net6.0/TestsAccessToDB.csproj.AssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/../SkiResort/TestsAccessToDB/obj/Debug/net6.0/TestsAccessToDB.csproj.AssemblyReference.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/TestsAccessToDB/obj/Debug/net6.0/TestsAccessToDB.csproj.CoreCompileInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/../SkiResort/TestsAccessToDB/obj/Debug/net6.0/TestsAccessToDB.csproj.CoreCompileInputs.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/TestsAccessToDB/obj/Debug/net6.0/TestsAccessToDB.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/../SkiResort/TestsAccessToDB/obj/Debug/net6.0/TestsAccessToDB.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/app.init.lua" beforeDir="false" afterPath="$PROJECT_DIR$/app/app.init.lua" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/generate_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/generate_data.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/json_data/cards.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/json_data/cards.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/json_data/lifts.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/json_data/lifts.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/json_data/lifts_slopes.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/json_data/lifts_slopes.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/json_data/slopes.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/json_data/slopes.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/json_data/turnstiles.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/json_data/turnstiles.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/json_data/users.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/json_data/users.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/00000000000000025974.snap" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/00000000000000025974.xlog" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/00000000000000026385.xlog" beforeDir="false" afterPath="$PROJECT_DIR$/data/00000000000000026385.xlog" afterDir="false" />
-    </list>
+    <list default="true" id="37e3b93f-dec6-4655-8fd4-69c45ec7c196" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />

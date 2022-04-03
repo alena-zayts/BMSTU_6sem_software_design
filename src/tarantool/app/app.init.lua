@@ -354,6 +354,6 @@ box.cfg {
 }
 
 init()
-load__data()
-print(count_card_readings(2, 0))
+--load__data()
+--print(count_card_readings(2, 0))
 --print(dump(count_card_readings(2, 0)))

@@ -12,79 +12,65 @@ using ComponentBL.RepositoriesInterfaces;
 
 namespace ComponentAccessToDB.RepositoriesTarantool
 {
-    public class TarantoolCardsRepository : ICardsRepository
+    public class TarantoolCardReadingsRepository : ICardReadingsRepository
     {
+        private IBox _box;
         private ISpace _space;
         private IIndex _index_primary;
+        private IIndex _index_turnstile;
 
-        public TarantoolCardsRepository(ContextTarantool context)
+        public TarantoolCardReadingsRepository(ContextTarantool context)
         {
-            _space = context.cards_space;
-            _index_primary = context.cards_index_primary;
-        }
+            _box = context.box;
+            _space = context.card_readings_space;
+            _index_primary = context.card_readings_index_primary;
+            _index_turnstile = context.card_readings_index_turnstile;
+    }
 
-        public async Task<List<CardBL>> GetList()
+        public async Task<List<CardReadingBL>> GetList()
         {
-            var data = await _index_primary.Select<ValueTuple<uint>, CardDB>
+            var data = await _index_primary.Select<ValueTuple<uint>, CardReadingDB>
                 (ValueTuple.Create(0u), new SelectOptions { Iterator = Iterator.Ge });
 
-            List<CardBL> result = new();
+            List<CardReadingBL> result = new();
 
             foreach (var item in data.Data)
             {
-                CardBL card = ModelsAdapter.CardDBToBL(item);
+                CardReadingBL card = ModelsAdapter.CardReadingDBToBL(item);
                 result.Add(card);
             }
 
             return result;
         }
 
-        public async Task<CardBL> GetById(uint card_id)
+        public async Task<uint> CountForLiftIdFromDate(uint lift_id, uint date_from)
         {
-            var data = await _index_primary.Select<ValueTuple<uint>, CardDB>
-                (ValueTuple.Create(card_id));
-
-            if (data.Data.Length != 1)
-            {
-                throw new CardDBException($"Error: couldn't find card with card_id={card_id}");
-            }
-
-            return ModelsAdapter.CardDBToBL(data.Data[0]);
+            var result = await _box.Call_1_6<ValueTuple<uint, uint>, uint>("count_card_readings", (ValueTuple.Create(lift_id, date_from)));
+            return result.Data[0];
         }
 
-        public async Task Add(CardBL card)
+
+        public async Task Add(CardReadingBL card)
         {
             try
             {
-                await _space.Insert(ModelsAdapter.CardBLToDB(card));
+                await _space.Insert(ModelsAdapter.CardReadingBLToDB(card));
             }
             catch (Exception ex)
             {
-                throw new CardDBException($"Error: adding card {card}");
+                throw new CardReadingDBException($"Error: adding card {card}");
             }
         }
-        public async Task Update(CardBL card)
-        {
-            var response = await _space.Update<ValueTuple<uint>, CardDB>(
-                ValueTuple.Create(card.card_id), new UpdateOperation[] {
-                    UpdateOperation.CreateAssign<uint>(1, card.activation_time),
-                    UpdateOperation.CreateAssign<string>(2, card.type),
-                });
+        
 
-            if (response.Data.Length != 1)
-            {
-                throw new CardDBException($"Error: updating card {card}");
-            }
-        }
-
-        public async Task Delete(CardBL card)
+        public async Task Delete(CardReadingBL card)
         {
-            var response = await _index_primary.Delete<ValueTuple<uint>, CardDB>
+            var response = await _index_primary.Delete<ValueTuple<uint>, CardReadingDB>
                 (ValueTuple.Create(card.card_id));
 
             if (response.Data.Length != 1)
             {
-                throw new CardDBException($"Error: deleting card {card}");
+                throw new CardReadingDBException($"Error: deleting card {card}");
             }
 
         }

@@ -17,7 +17,6 @@ namespace Tests
 {
     public class SlopesDbTest
     {
-        ISchema _schema;
         ContextTarantool _context;
         private readonly ITestOutputHelper output;
 
@@ -26,9 +25,7 @@ namespace Tests
             this.output = output;
 
             var box = Box.Connect("ski_admin:Tty454r293300@localhost:3301").GetAwaiter().GetResult();
-
-            _schema = box.GetSchema();
-            _context = new ContextTarantool(_schema);
+            _context = new ContextTarantool(box);
         }
 
         [Fact]

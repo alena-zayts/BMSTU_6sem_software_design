@@ -9,6 +9,7 @@ namespace ComponentAccessToDB
 {
     public class ContextTarantool: DBContext
     {
+        public IBox box;
         public ISpace lifts_space;
         public IIndex lifts_index_primary;
         public IIndex lifts_index_name;
@@ -42,7 +43,8 @@ namespace ComponentAccessToDB
         public IIndex messages_index_checked_by_id;
 
 
-        public ContextTarantool(ISchema schema) => (
+        public ContextTarantool(IBox box) => (
+            box,
             lifts_space, lifts_index_primary, lifts_index_name,
             slopes_space, slopes_index_primary, slopes_index_name,
             lifts_slopes_space, lifts_slopes_index_primary, lifts_slopes_index_lift_id, lifts_slopes_index_slope_id,
@@ -51,10 +53,11 @@ namespace ComponentAccessToDB
             cards_space, cards_index_primary,
             users_space, users_index_primary,
             messages_space, messages_index_primary, messages_index_sender_id, messages_index_checked_by_id
-            ) = Initialize(schema).GetAwaiter().GetResult();
+            ) = Initialize(box).GetAwaiter().GetResult();
 
 
         private static async Task<(
+        IBox,
         ISpace, IIndex, IIndex,
         ISpace, IIndex, IIndex,
         ISpace, IIndex, IIndex, IIndex,
@@ -63,8 +66,9 @@ namespace ComponentAccessToDB
         ISpace, IIndex,
         ISpace, IIndex,
         ISpace, IIndex, IIndex, IIndex)> 
-            Initialize(ISchema schema)
+            Initialize(IBox box)
         {
+            var schema = box.GetSchema();
             var lifts_space = await schema.GetSpace("lifts");
             var lifts_index_primary = await lifts_space.GetIndex("primary");
             var lifts_index_name = await lifts_space.GetIndex("index_name");
@@ -106,6 +110,7 @@ namespace ComponentAccessToDB
 
 
             return (
+                box,
                 lifts_space, lifts_index_primary, lifts_index_name,
                 slopes_space, slopes_index_primary, slopes_index_name,
                 lifts_slopes_space, lifts_slopes_index_primary, lifts_slopes_index_lift_id, lifts_slopes_index_slope_id,
