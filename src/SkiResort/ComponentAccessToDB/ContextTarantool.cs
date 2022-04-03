@@ -2,10 +2,10 @@
 using System.Threading.Tasks;
 using ProGaudi.Tarantool.Client;
 
-using SkiResort.ComponentBL.DBContexts;
+using ComponentBL.DBContexts;
 
 
-namespace SkiResort.ComponentAccessToDB.TarantoolContexts
+namespace ComponentAccessToDB
 {
     public class TarantoolContext: DBContext
     {
@@ -38,6 +38,9 @@ namespace SkiResort.ComponentAccessToDB.TarantoolContexts
 
         public ISpace messages_space;
         public IIndex messages_index_primary;
+        public IIndex messages_index_sender_id;
+        public IIndex messages_index_checked_by_id;
+
 
         public TarantoolContext(ISchema schema) => (
             lifts_space, lifts_index_primary, lifts_index_name,
@@ -47,7 +50,7 @@ namespace SkiResort.ComponentAccessToDB.TarantoolContexts
             card_readings_space, card_readings_index_primary, card_readings_index_turnstile,
             cards_space, cards_index_primary,
             users_space, users_index_primary,
-            messages_space, messages_index_primary
+            messages_space, messages_index_primary, messages_index_sender_id, messages_index_checked_by_id
             ) = Initialize(schema).GetAwaiter().GetResult();
 
 
@@ -59,7 +62,7 @@ namespace SkiResort.ComponentAccessToDB.TarantoolContexts
         ISpace, IIndex, IIndex,
         ISpace, IIndex,
         ISpace, IIndex,
-        ISpace, IIndex)> 
+        ISpace, IIndex, IIndex, IIndex)> 
             Initialize(ISchema schema)
         {
             var lifts_space = await schema.GetSpace("lifts");
@@ -96,6 +99,9 @@ namespace SkiResort.ComponentAccessToDB.TarantoolContexts
 
             var messages_space = await schema.GetSpace("messages");
             var messages_index_primary = await messages_space.GetIndex("primary");
+            var messages_index_sender_id = await messages_space.GetIndex("index_sender_id");
+            var messages_index_checked_by_id = await messages_space.GetIndex("index_checked_by_id");
+
 
 
 
@@ -107,7 +113,7 @@ namespace SkiResort.ComponentAccessToDB.TarantoolContexts
                 card_readings_space, card_readings_index_primary, card_readings_index_turnstile,
                 cards_space, cards_index_primary,
                 users_space, users_index_primary,
-                messages_space, messages_index_primary
+                messages_space, messages_index_primary, messages_index_sender_id, messages_index_checked_by_id
             );
         }
     }

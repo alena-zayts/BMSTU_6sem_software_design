@@ -1,16 +1,16 @@
-using System;
-using System.Linq;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using Xunit;
 using Xunit.Abstractions;
 
 using ProGaudi.Tarantool.Client;
 
-using SkiResort.ComponentBL.ModelsBL;
-using SkiResort.ComponentAccessToDB.RepositoriesInterfaces;
-using SkiResort.ComponentAccessToDB.RepositoriesTarantool;
-using SkiResort.ComponentAccessToDB.DBContexts;
+using ComponentBL.ModelsBL;
+using ComponentBL.RepositoriesInterfaces;
+
+
+using ComponentAccessToDB.RepositoriesTarantool;
+using ComponentAccessToDB;
+
 
 
 namespace Tests
@@ -30,61 +30,71 @@ namespace Tests
 			_schema = box.GetSchema();
 			_context = new TarantoolContext(_schema);
 		}
-		//[Fact]
-		//public void Test_Add_GetById_Delete()
-		//{
-		//	IUsersRepository rep = new TarantoolUsersRepository(_schema);
 
-		//	UserBL added_user = new UserBL(100000, 1, "qwe", "rty", 1);
-		//	rep.Add(added_user);
+        [Fact]
+        public async Task Test_Add_GetById_Delete()
+        {
+            IUsersRepository rep = new TarantoolUsersRepository(_context);
 
+            //start testing 
+            Assert.Empty(await rep.GetList());
 
-		//	UserBL got_user = rep.GetById(added_user.user_id);
-			
-		//	Assert.Equal(added_user, got_user);
+            // add correct
+            UserBL added_user = new UserBL(1, 1, "qwe", "rty", 1);
+            await rep.Add(added_user);
+            // add already existing
+            await Assert.ThrowsAsync<UserDBException>(() => rep.Add(added_user));
 
-		//	rep.Delete(added_user);
+			// get_by_id correct
+			UserBL got_user = await rep.GetById(added_user.user_id);
+            Assert.Equal(added_user, got_user);
 
-		//	Assert.Throws<IndexOutOfRangeException>(() => rep.GetById(added_user.user_id));
-		//}
+			// delete correct
+			await rep.Delete(added_user);
 
+			// get_by_id not existing
+			await Assert.ThrowsAsync<UserDBException>(() => rep.GetById(added_user.user_id));
 
-		[Fact]
-		public async Task Test_Update_GetList()
-		{
-
-			IUsersRepository rep = new TarantoolUsersRepository(_context);
-
-			UserBL added_user1 = new UserBL(100000, 1, "qwe", "rty", 1);
-			await rep.Add(added_user1);
-
-			UserBL added_user2 = new UserBL(200000, 9, "rt", "dfd", 5);
-			await rep.Add(added_user2);
-
-			added_user2.password = "dfd";
-			added_user1.card_id = 50;
-			await rep.Update(added_user1);
-			await rep.Update(added_user2);
-
-			var list = await rep.GetList();
+			// delete not existing
+			await Assert.ThrowsAsync<UserDBException>(() => rep.Delete(added_user));
+        }
 
 
-			Assert.Equal(2, list.Count);
+        [Fact]
+        public async Task Test_Update_GetList()
+        {
 
-			UserBL got_user1 = list[0];
-			UserBL got_user2 = list[1];
+            IUsersRepository rep = new TarantoolUsersRepository(_context);
+
+            UserBL added_user1 = new UserBL(1, 1, "qwe", "rty", 1);
+            await rep.Add(added_user1);
+
+            UserBL added_user2 = new UserBL(2, 9, "rt", "dfd", 2);
+            await rep.Add(added_user2);
+
+            added_user2.password = "dfd";
+            added_user1.user_email = "wow";
+
+            // updates correct
+            await rep.Update(added_user1);
+            await rep.Update(added_user2);
+
+            var list = await rep.GetList();
+            Assert.Equal(2, list.Count);
+            Assert.Equal(added_user1, list[0]);
+            Assert.Equal(added_user2, list[1]);
+
+            await rep.Delete(added_user1);
+            await rep.Delete(added_user2);
 
 
-			Assert.Equal(added_user2, got_user2);
+            // updates not existing
+            await Assert.ThrowsAsync<UserDBException>(() => rep.Update(added_user1));
+            await Assert.ThrowsAsync<UserDBException>(() => rep.Update(added_user2));
 
-			await rep.Delete(added_user1);
-			await rep.Delete(added_user2);
 
-            await Assert.ThrowsAsync<IndexOutOfRangeException>(() => rep.GetById(added_user1.user_id));
-            await Assert.ThrowsAsync<IndexOutOfRangeException>(() => rep.GetById(added_user2.user_id));
-			Assert.Empty(await rep.GetList());
-
-			await rep.GetById(88);
-		}
-	}
+            // end tests - empty getlist
+            Assert.Empty(await rep.GetList());
+        }
+    }
 }

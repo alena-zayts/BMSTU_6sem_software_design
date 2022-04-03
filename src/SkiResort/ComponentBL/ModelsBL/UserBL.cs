@@ -1,11 +1,25 @@
 using System;
+using ComponentAccessToDB;
 
-namespace SkiResort.ComponentBL.ModelsBL
+namespace ComponentBL.ModelsBL
 {
-    public class UserBL
+    public enum Permissions
+    {
+        UNAUTHORIZED,
+        AUTHORIZED,
+        SKI_PATROL,
+        ADMIN
+    }
+
+public class UserBL
     {
         public UserBL(uint user_id, uint card_id, string user_email, string password, uint permissions)
         {
+            if (Enum.GetName(typeof(Permissions), permissions) == null)
+            {
+                throw new UserBLException($"Прав доступа '{permissions}' не существует");
+            }
+
             this.user_id = user_id;
             this.card_id = card_id;
             this.user_email = user_email;
@@ -18,20 +32,6 @@ namespace SkiResort.ComponentBL.ModelsBL
         public string user_email { get; set; }
         public string password { get; set; }
         public uint permissions { get; set; }
-
-        public UserBL((uint, uint, string, string, uint) user_tuple)
-        {
-            this.user_id = user_tuple.Item1;
-            this.card_id = user_tuple.Item2;
-            this.user_email = user_tuple.Item3;
-            this.password = user_tuple.Item4;
-            this.permissions = user_tuple.Item5;
-        }
-
-        public ValueTuple<uint, uint, string, string, uint> to_value_tuple()
-        {
-            return ValueTuple.Create(user_id, card_id, user_email, password, permissions);
-        }
 
         public override bool Equals(object obj)
         {

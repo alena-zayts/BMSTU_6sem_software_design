@@ -126,6 +126,8 @@ local function init()
 		{name = 'text', type = 'string'},
 	})
 	messages:create_index('primary')
+	messages:create_index('index_sender_id', {unique = false, parts = {'sender_id'}})
+	messages:create_index('index_checked_by_id', {unique = false, parts = {'checked_by_id'}})
 	print('messages created!')
 
 	

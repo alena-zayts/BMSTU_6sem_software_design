@@ -1,10 +1,10 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-using SkiResort.ComponentBL.ModelsBL;
+using ComponentBL.ModelsBL;
 
 
-namespace SkiResort.ComponentBL.RepositoriesInterfaces
+namespace ComponentBL.RepositoriesInterfaces
 {
     public interface IMessagesRepository
     {

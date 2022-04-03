@@ -7,19 +7,19 @@ using ProGaudi.Tarantool.Client.Model;
 using ProGaudi.Tarantool.Client.Model.Enums;
 using ProGaudi.Tarantool.Client.Model.UpdateOperations;
 
-using SkiResort.ComponentBL.ModelsBL;
-using SkiResort.ComponentBL.RepositoriesInterfaces;
+using ComponentBL.ModelsBL;
+using ComponentBL.RepositoriesInterfaces;
 
-using SkiResort.ComponentAccessToDB.TarantoolContexts;
+using ComponentAccessToDB;
 
-namespace SkiResort.ComponentAccessToDB.RepositoriesTarantool
+namespace ComponentAccessToDB.RepositoriesTarantool
 {
     public class TarantoolUsersRepository : IUsersRepository
     {
         private ISpace _space;
         private IIndex _index_primary;
 
-        public TarantoolUsersRepository(TarantoolContext context)
+        public TarantoolUsersRepository(ContextTarantool context)
         {
             _space = context.users_space;
             _index_primary = context.users_index_primary;
@@ -34,7 +34,7 @@ namespace SkiResort.ComponentAccessToDB.RepositoriesTarantool
 
             foreach (var item in data.Data)
             {
-                UserBL user = new(item);
+                UserBL user = ModelsAdapter.UserDBToBL(item);
                 result.Add(user);
             }
 
@@ -46,28 +46,51 @@ namespace SkiResort.ComponentAccessToDB.RepositoriesTarantool
             var data = await _index_primary.Select<ValueTuple<uint>,UserDB>
                 (ValueTuple.Create(user_id));
 
-            return new UserBL(data.Data[0]);
+            if (data.Data.Length != 1)
+            {
+                throw new UserDBException($"Error: couldn't find user with user_id={user_id}");
+            }
+
+            return ModelsAdapter.UserDBToBL(data.Data[0]);
         }
 
         public async Task Add(UserBL user)
         {
-            await _space.Insert(user.to_value_tuple());
+            try
+            {
+                await _space.Insert(ModelsAdapter.UserBLToDB(user));
+            }
+            catch (Exception ex)
+            {
+                throw new UserDBException($"Error: adding user {user}");
+            }
         }
         public async Task Update(UserBL user)
         {
-            var updatedData = await _space.Update<ValueTuple<uint>, UserDB>(
+            var response = await _space.Update<ValueTuple<uint>, UserDB>(
                 ValueTuple.Create(user.user_id), new UpdateOperation[] {
                     UpdateOperation.CreateAssign<uint>(1, user.card_id),
                     UpdateOperation.CreateAssign<string>(2, user.user_email),
                     UpdateOperation.CreateAssign<string>(3, user.password),
                     UpdateOperation.CreateAssign<uint>(4, user.permissions),
                 });
+
+            if (response.Data.Length != 1)
+            {
+                throw new UserDBException($"Error: updating user {user}");
+            }
         }
 
         public async Task Delete(UserBL user)
         {
-            await _index_primary.Delete<ValueTuple<uint>,UserDB>
+            var response = await _index_primary.Delete<ValueTuple<uint>,UserDB>
                 (ValueTuple.Create(user.user_id));
+
+            if (response.Data.Length != 1)
+            {
+                throw new UserDBException($"Error: deleting user {user}");
+            }
+
         }
     }
 }

@@ -1,6 +1,6 @@
 using System;
 
-namespace SkiResort.ComponentBL.ModelsBL
+namespace ComponentBL.ModelsBL
 {
     public class LiftSlopeBL
     {

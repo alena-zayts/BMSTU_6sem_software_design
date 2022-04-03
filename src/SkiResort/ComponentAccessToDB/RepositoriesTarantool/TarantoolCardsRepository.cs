@@ -1,75 +1,90 @@
-using System;
-using System.Threading.Tasks;
-using System.Collections.Generic;
-using ProGaudi.Tarantool.Client;
-using ProGaudi.Tarantool.Client.Model;
-using ProGaudi.Tarantool.Client.Model.Enums;
-using ProGaudi.Tarantool.Client.Model.UpdateOperations;
+//using System;
+//using System.Threading.Tasks;
+//using System.Collections.Generic;
 
-using SkiResort.ComponentAccessToDB.RepositoriesInterfaces;
-using SkiResort.ComponentBL.ModelsBL;
+//using ProGaudi.Tarantool.Client;
+//using ProGaudi.Tarantool.Client.Model;
+//using ProGaudi.Tarantool.Client.Model.Enums;
+//using ProGaudi.Tarantool.Client.Model.UpdateOperations;
 
+//using ComponentBL.ModelsBL;
+//using ComponentBL.RepositoriesInterfaces;
 
-namespace SkiResort.ComponentAccessToDB.RepositoriesTarantool
-{
-    public class TarantoolCardsRepository : ICardsRepository
-    {
-        private IIndex _index_primary;
-        private ISpace _space;
+//using ComponentAccessToDB.TarantoolContexts;
 
-        public TarantoolCardsRepository(ISchema schema) => (_space, _index_primary) = Initialize(schema).GetAwaiter().GetResult();
+//namespace ComponentAccessToDB.RepositoriesTarantool
+//{
+//    public class TarantoolCardsRepository : ICardsRepository
+//    {
+//        private IIndex _index_primary;
+//        private ISpace _space;
 
-        private static async Task<(ISpace, IIndex)> Initialize(ISchema schema)
-        {
-            var _space = await schema.GetSpace("cards");
-            var _index_primary = await _space.GetIndex("primary");
+//        public TarantoolCardsRepository(TarantoolContext context)
+//        {
+//            _space = context.cards_space;
+//            _index_primary = context.cards_index_primary;
+//        }
 
-            return (_space, _index_primary);
-        }
+//        public async Task<List<CardBL>> GetList()
+//        {
+//            var data = await _index_primary.Select<ValueTuple<uint>, CardDB>
+//                (ValueTuple.Create(0u), new SelectOptions { Iterator = Iterator.Ge });
 
-        public List<CardBL> GetList()
-        {
-            List<CardBL> result = new List<CardBL>();
-            var data = _index_primary.Select<
-                ValueTuple<uint>,
-                ValueTuple<uint, uint, string>
-                >
-                (ValueTuple.Create(0u), new SelectOptions { Iterator = Iterator.Ge });
+//            List<CardBL> result = new();
 
-            foreach (var item in data.GetAwaiter().GetResult().Data)
-            {
-                CardBL card = new CardBL(item);
-                result.Add(card);
-            }
+//            foreach (var item in data.Data)
+//            {
+//                CardBL card = new(item);
+//                result.Add(card);
+//            }
 
-            return result;
-        }
-        public CardBL GetById(uint card_id)
-        {
-            var data = _index_primary.Select<
-                ValueTuple<uint>,
-                ValueTuple<uint, uint, string>
-                >
-                (ValueTuple.Create(card_id));
+//            return result;
+//        }
+//        public async Task<CardBL> GetById(uint card_id)
+//        {
+//            var data = await _index_primary.Select<ValueTuple<uint>, CardDB>
+//                (ValueTuple.Create(card_id));
 
-            return new CardBL(data.GetAwaiter().GetResult().Data[0]);
-        }
-        public void Add(CardBL card)
-        {
-            _space.Insert(card.to_value_tuple());
-        }
-        public void Update(CardBL card)
-        {
-            var updatedData = _space.Update<ValueTuple<uint>, ValueTuple<uint, uint, string>>(
-                ValueTuple.Create(card.card_id), new UpdateOperation[] {
-                    UpdateOperation.CreateAssign<uint>(1, card.activation_time),
-                    UpdateOperation.CreateAssign<string>(2, card.type),
-                });
-        }
-        public void Delete(CardBL card)
-        {
-            _index_primary.Delete<ValueTuple<uint>,
-                ValueTuple<uint, DateTime, string>>(ValueTuple.Create(card.card_id));
-        }
-    }
-}
+//            if (data.Data.Length != 1)
+//            {
+//                throw new CardDBException($"Error: couldn't find card with card_id={card_id}");
+//            }
+
+//            return new CardBL(data.Data[0]);
+//        }
+//        public async Task Add(CardBL card)
+//        {
+//            try
+//            {
+//                await _space.Insert(card.to_value_tuple());
+//            }
+//            catch (Exception ex)
+//            {
+//                throw new CardDBException($"Error: adding card {card}");
+//            }
+//        }
+//        public async Task Update(CardBL card)
+//        {
+//            var response = await _space.Update<ValueTuple<uint>, CardDB>(
+//                ValueTuple.Create(card.card_id), new UpdateOperation[] {
+//                    UpdateOperation.CreateAssign<uint>(1, card.activation_time),
+//                    UpdateOperation.CreateAssign<string>(2, card.type),
+//                });
+
+//            if (response.Data.Length != 1)
+//            {
+//                throw new CardDBException($"Error: updating card {card}");
+//            }
+//        }
+//        public async Task Delete(CardBL card)
+//        {
+//            var response = await _index_primary.Delete<ValueTuple<uint>, CardDB>
+//                (ValueTuple.Create(card.card_id));
+
+//            if (response.Data.Length != 1)
+//            {
+//                throw new CardDBException($"Error: deleting card {card}");
+//            }
+//        }
+//    }
+//}
