@@ -18,7 +18,7 @@ namespace Tests
 	public class UsersDbTest
 	{
 		ISchema _schema;
-		TarantoolContext _context;
+		ContextTarantool _context;
 		private readonly ITestOutputHelper output;
 
 		public UsersDbTest(ITestOutputHelper output)
@@ -28,7 +28,7 @@ namespace Tests
 			var box = Box.Connect("ski_admin:Tty454r293300@localhost:3301").GetAwaiter().GetResult();
 
 			_schema = box.GetSchema();
-			_context = new TarantoolContext(_schema);
+			_context = new ContextTarantool(_schema);
 		}
 
         [Fact]
@@ -57,6 +57,9 @@ namespace Tests
 
 			// delete not existing
 			await Assert.ThrowsAsync<UserDBException>(() => rep.Delete(added_user));
+
+            // end tests - empty getlist
+            Assert.Empty(await rep.GetList());
         }
 
 
@@ -65,6 +68,9 @@ namespace Tests
         {
 
             IUsersRepository rep = new TarantoolUsersRepository(_context);
+
+            //start testing 
+            Assert.Empty(await rep.GetList());
 
             UserBL added_user1 = new UserBL(1, 1, "qwe", "rty", 1);
             await rep.Add(added_user1);

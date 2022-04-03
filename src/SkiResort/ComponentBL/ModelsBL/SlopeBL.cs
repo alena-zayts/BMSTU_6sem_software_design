@@ -18,19 +18,6 @@ namespace ComponentBL.ModelsBL
             this.difficulty_level = difficulty_level;
         }
 
-        public SlopeBL((uint, string, bool, uint) slope_tuple)
-        {
-            this.slope_id = slope_tuple.Item1;
-            this.slope_name = slope_tuple.Item2;
-            this.is_open = slope_tuple.Item3;
-            this.difficulty_level = slope_tuple.Item4;
-        }
-
-        public ValueTuple<uint, string, bool, uint> to_value_tuple()
-        {
-            return ValueTuple.Create(slope_id, slope_name, is_open, difficulty_level);
-        }
-
         public override bool Equals(object obj)
         {
             return obj is SlopeBL dB &&

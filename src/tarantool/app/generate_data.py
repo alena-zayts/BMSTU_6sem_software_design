@@ -35,34 +35,11 @@ class Table:
         return []
 
 
-# class UsersGroup(Table):
-#     json_filename = "json_data/users_groups.json"
-#     space_name = 'users_groups'
-#
-#     unauthorized_user_group_id = 1
-#     authorized_user_group_id = 2
-#     ski_patrol_group_id = 3
-#     admin_group_id = 4
-#
-#     def __init__(self, group_id, group_name, access_rights):
-#         self.group_id = group_id
-#         self.group_name = group_name
-#         self.access_rights = access_rights
-#
-#     @classmethod
-#     def generate_data(cls):
-#         data = [
-#             UsersGroup(cls.unauthorized_user_group_id, 'unauthorized_user', 'smth1').to_json(),
-#             UsersGroup(cls.authorized_user_group_id, 'authorized_user', 'smth2').to_json(),
-#             UsersGroup(cls.ski_patrol_group_id, 'ski_patrol', 'smth3').to_json(),
-#             UsersGroup(cls.admin_group_id, 'admin', 'smth4').to_json(),
-#         ]
-#         return data
 
-PERMISSIONS = {'admin': 0,
-               'ski_patrol': 1,
-               'authorized_user': 2,
-               'unauthorized_user': 3
+PERMISSIONS = {'admin': 3,
+               'ski_patrol': 2,
+               'authorized_user': 1,
+               'unauthorized_user': 0
                }
 
 
@@ -70,7 +47,7 @@ class User(Table):
     json_filename = "json_data/users.json"
     space_name = 'users'
 
-    def __init__(self, user_id, user_email, password, permissions, card_id=None):
+    def __init__(self, user_id, card_id, user_email, password, permissions):
         self.user_id = user_id
         self.card_id = card_id if card_id else 0
         self.user_email = user_email
@@ -81,19 +58,19 @@ class User(Table):
     def generate_data(cls, n_unauthorized=1000, n_authorized=500, n_ski_patrol=10):
         data = []
 
-        data.append(User(1, 'admin_email', 'admin_password',
+        data.append(User(1, 0, 'admin_email', 'admin_password',
                          PERMISSIONS['admin']).to_json())
 
         for cur_id in range(n_unauthorized):
-            data.append(User(cur_id + 2, "", "", PERMISSIONS['unauthorized_user']).to_json())
+            data.append(User(cur_id + 2, 0, "", "", PERMISSIONS['unauthorized_user']).to_json())
 
         for cur_id in range(n_authorized):
-            data.append(User(cur_id + 2 + n_unauthorized,
+            data.append(User(cur_id + 2 + n_unauthorized, 0,
                              f'authorized_email{cur_id}', f'authorized_password{cur_id}',
                              PERMISSIONS['authorized_user']).to_json())
 
         for cur_id in range(n_ski_patrol):
-            data.append(User(cur_id + 2 + n_unauthorized + n_authorized,
+            data.append(User(cur_id + 2 + n_unauthorized + n_authorized, 0,
                              f'ski_patrol_email{cur_id}',
                              f'ski_patrol_password{cur_id}',
                              PERMISSIONS['ski_patrol']).to_json())
@@ -116,7 +93,7 @@ class Slope(Table):
         data = []
         alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
-        slope_id = 0
+        slope_id = 1
         for letter in alphabet[:n_slopes_bunches]:
             for i in range(randint(*slopes_per_bunch)):
                 data.append(Slope(slope_id, f'{letter}{i}',
@@ -144,7 +121,7 @@ class Lift(Table):
         data = []
         alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
-        slope_id = 0
+        slope_id = 1
         for letter in alphabet[:n_lifts_bunches]:
             for i in range(randint(*lifts_per_bunch)):
                 data.append(Lift(slope_id, f'{letter}{i}', choice([True, False]),
@@ -166,8 +143,6 @@ class LiftSlope(Table):
     @classmethod
     def generate_data(cls):
         with open(Lift.json_filename, 'r') as f:
-            # for lift_dict in json.load(f):
-            #     print(lift_dict)
             lifts = [Lift(*(list(lift_dict.values())[:-1])) for lift_dict in json.load(f)]
 
         grouped_lifts = defaultdict(list)
@@ -183,7 +158,7 @@ class LiftSlope(Table):
 
         data = []
 
-        i = 0
+        i = 1
         for lift_letter, lifts in grouped_lifts.items():
             first_lift = lifts[0]
             slopes_for_letter = grouped_slopes[lift_letter]
@@ -225,7 +200,7 @@ class Turnstile(Table):
         for lift in lifts:
             n_turnstiles = randint(*turnstiles_per_lift)
             for _ in range(n_turnstiles):
-                data.append(Turnstile(i, lift.lift_id, choice([True, False])).to_json())
+                data.append(Turnstile(i + 1, lift.lift_id, choice([True, False])).to_json())
                 i += 1
 
         return data
@@ -246,7 +221,7 @@ class Card(Table):
         data = []
 
         for i in range(n_cards):
-            data.append(Card(i, randint(*date_limits), choice(types)).to_json())
+            data.append(Card(i + 1, randint(*date_limits), choice(types)).to_json())
 
         return data
 
@@ -260,6 +235,52 @@ class CardReading(Table):
         self.turnstile_id = turnstile_id
         self.card_id = card_id
         self.reading_time = reading_time
+
+    @classmethod
+    def generate_data(cls, n_readings=10000, date_limits=(1585575897, 1648647930),  # 30.03.20-30.03.2022
+                      ):
+        with open(Turnstile.json_filename, 'r') as f:
+            turnstiles = [Turnstile(*(list(turnstile_dict.values()))) for turnstile_dict in json.load(f)]
+        turnstile_ids = [turnstile.turnstile_id for turnstile in turnstiles]
+
+        with open(Card.json_filename, 'r') as f:
+            cards = [Card(*(list(card_dict.values()))) for card_dict in json.load(f)]
+        card_ids = [card.card_id for card in cards]
+
+        data = []
+
+        for i in range(n_readings):
+            data.append(CardReading(i + 1, choice(turnstile_ids), choice(card_ids), randint(*date_limits)).to_json())
+
+        return data
+
+
+class Message(Table):
+    json_filename = "json_data/messages.json"
+    space_name = 'messages'
+
+    def __init__(self, message_id, sender_id, checked_by_id, text):
+        self.message_id = message_id
+        self.sender_id = sender_id
+        self.checked_by_id = checked_by_id
+        self.text = text
+
+    @classmethod
+    def generate_data(cls, n=100):
+        with open(User.json_filename, 'r') as f:
+            users = [User(*(list(user_dict.values()))) for user_dict in json.load(f)]
+
+        sender_ids = [user.user_id for user in users if user.permissions == PERMISSIONS['unauthorized_user']]
+        checked_by_ids = [user.user_id for user in users if user.permissions == PERMISSIONS['ski_patrol']]
+        checked_by_ids.append(0)
+
+
+        data = []
+
+        for i in range(n):
+            data.append(Message(i + 1, choice(sender_ids), choice(checked_by_ids), f"text{i+1}").to_json())
+
+        return data
 
 
 def generate_table_data_to_json_file(table: Table):
@@ -286,17 +307,8 @@ def generate_all_data_to_json_file():
     generate_table_data_to_json_file(LiftSlope)
     generate_table_data_to_json_file(Turnstile)
     generate_table_data_to_json_file(Card)
-
-
-# def fill_all_tarantool_with_data(connection):
-#     # fill_tarantool_table_with_data(connection, UsersGroup)
-#     # fill_tarantool_table_with_data(connection, User)
-#     fill_tarantool_table_with_data(connection, Slope)
-#     fill_tarantool_table_with_data(connection, Lift)
-#     fill_tarantool_table_with_data(connection, LiftSlope)
-#     fill_tarantool_table_with_data(connection, Turnstile)
-#     fill_tarantool_table_with_data(connection, Card)
-#     # fill_tarantool_table_with_data(connection, CardReading)
+    generate_table_data_to_json_file(CardReading)
+    generate_table_data_to_json_file(Message)
 
 
 if __name__ == "__main__":
@@ -313,7 +325,6 @@ if __name__ == "__main__":
     #     print(e)
     #
     # connection.close()
-
 
 # card_columns  = ['card_id']
 # users_group_columns = ['group_id', 'group_name', 'access_rights']

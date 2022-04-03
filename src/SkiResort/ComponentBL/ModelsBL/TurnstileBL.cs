@@ -14,17 +14,6 @@ namespace ComponentBL.ModelsBL
         public uint turnstile_id { get; }
         public uint lift_id { get; set; }
         public bool is_open { get; set; }
-        public TurnstileBL((uint, uint, bool) turnstile_tuple)
-        {
-            this.turnstile_id = turnstile_tuple.Item1;
-            this.lift_id = turnstile_tuple.Item2;
-            this.is_open = turnstile_tuple.Item3;
-        }
-
-        public ValueTuple<uint, uint, bool> to_value_tuple()
-        {
-            return ValueTuple.Create(turnstile_id, lift_id, is_open);
-        }
 
         public override bool Equals(object obj)
         {

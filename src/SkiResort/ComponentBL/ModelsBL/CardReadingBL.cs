@@ -17,19 +17,6 @@ namespace ComponentBL.ModelsBL
         public uint card_id { get; set; }
         public uint reading_time { get; set; }
 
-        public CardReadingBL((uint, uint, uint, uint) card_reading_tuple)
-        {
-            this.record_id = card_reading_tuple.Item1;
-            this.turnstile_id = card_reading_tuple.Item2;
-            this.card_id = card_reading_tuple.Item3;
-            this.reading_time = card_reading_tuple.Item4;
-        }
-
-        public ValueTuple<uint, uint, uint, uint> to_value_tuple()
-        {
-            return ValueTuple.Create(record_id, turnstile_id, card_id, reading_time);
-        }
-
         public override bool Equals(object obj)
         {
             return obj is CardReadingBL dB &&

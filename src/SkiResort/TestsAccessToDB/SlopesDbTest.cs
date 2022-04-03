@@ -1,100 +1,113 @@
-//using System;
-//using System.Linq;
-//using System.Collections.Generic;
-//using Xunit;
-//using Xunit.Abstractions;
+using System.Threading.Tasks;
+using Xunit;
+using Xunit.Abstractions;
 
-//using ProGaudi.Tarantool.Client;
+using ProGaudi.Tarantool.Client;
 
-//using ComponentBL.ModelsBL;
-//using ComponentAccessToDB.RepositoriesInterfaces;
-//using ComponentAccessToDB.RepositoriesTarantool;
-
-//namespace Tests
-//{
-//	public class SlopesDbTest
-//	{
-//		ISchema _schema;
-//		private readonly ITestOutputHelper output;
-//		public SlopesDbTest(ITestOutputHelper output)
-//		{
-//			this.output = output;
-
-//			var box = Box.Connect("ski_admin:Tty454r293300@localhost:3301").GetAwaiter().GetResult();
-
-//			_schema = box.GetSchema();
-//		}
-//		[Fact]
-//		public void Test_Add_GetById_Delete()
-//		{
-//			ISlopesRepository rep = new TarantoolSlopesRepository(_schema);
-
-//			SlopeBL added_slope = new SlopeBL(100000, "A1", true, 1);
-//			rep.Add(added_slope);
+using ComponentBL.ModelsBL;
+using ComponentBL.RepositoriesInterfaces;
 
 
-//			SlopeBL got_slope = rep.GetById(added_slope.slope_id);
-			
-
-//			Assert.Equal(added_slope, got_slope);
+using ComponentAccessToDB.RepositoriesTarantool;
+using ComponentAccessToDB;
 
 
-//			rep.Delete(added_slope);
 
-//			Assert.Throws<IndexOutOfRangeException>(() => rep.GetById(added_slope.slope_id));
-//		}
+namespace Tests
+{
+    public class SlopesDbTest
+    {
+        ISchema _schema;
+        ContextTarantool _context;
+        private readonly ITestOutputHelper output;
 
-//		[Fact]
-//		public void Test_Add_GetByName_Delete()
-//		{
+        public SlopesDbTest(ITestOutputHelper output)
+        {
+            this.output = output;
 
-//			ISlopesRepository rep = new TarantoolSlopesRepository(_schema);
+            var box = Box.Connect("ski_admin:Tty454r293300@localhost:3301").GetAwaiter().GetResult();
 
-//			SlopeBL added_slope = new SlopeBL(200000, "A2", false, 20);
-//			rep.Add(added_slope);
+            _schema = box.GetSchema();
+            _context = new ContextTarantool(_schema);
+        }
+
+        [Fact]
+        public async Task Test_Add_GetById_Delete()
+        {
+            ISlopesRepository rep = new TarantoolSlopesRepository(_context);
+
+            //start testing 
+            Assert.Empty(await rep.GetList());
+
+            // add correct
+            SlopeBL added_slope = new SlopeBL(1, "A1", true, 10);
+            await rep.Add(added_slope);
+            // add already existing
+            await Assert.ThrowsAsync<SlopeDBException>(() => rep.Add(added_slope));
+
+            // get_by_id correct
+            SlopeBL got_slope = await rep.GetById(added_slope.slope_id);
+            Assert.Equal(added_slope, got_slope);
+            // get_by_name correct
+            got_slope = await rep.GetByName(added_slope.slope_name);
+            Assert.Equal(added_slope, got_slope);
+
+            // delete correct
+            await rep.Delete(added_slope);
+
+            // get_by_id not existing
+            await Assert.ThrowsAsync<SlopeDBException>(() => rep.GetById(added_slope.slope_id));
+            // get_by_id incorrect
+            await Assert.ThrowsAsync<SlopeDBException>(() => rep.GetByName(added_slope.slope_name));
+
+            // delete not existing
+            await Assert.ThrowsAsync<SlopeDBException>(() => rep.Delete(added_slope));
+
+            // end tests - empty getlist
+            Assert.Empty(await rep.GetList());
+        }
 
 
-//			SlopeBL got_slope = rep.GetByName(added_slope.slope_name);
+        [Fact]
+        public async Task Test_Update_GetList()
+        {
+
+            ISlopesRepository rep = new TarantoolSlopesRepository(_context);
+
+            //start testing 
+            Assert.Empty(await rep.GetList());
+
+            SlopeBL added_slope1 = new SlopeBL(1, "A1", true, 10);
+            await rep.Add(added_slope1);
+
+            SlopeBL added_slope2 = new SlopeBL(2, "B2", false, 20);
+            await rep.Add(added_slope2);
+
+            added_slope2.slope_name = "dfd";
+            added_slope1.is_open = !added_slope1.is_open;
+
+            // updates correct
+            await rep.Update(added_slope1);
+            await rep.Update(added_slope2);
+
+            var list = await rep.GetList();
+            Assert.Equal(2, list.Count);
+            Assert.Equal(added_slope1, list[0]);
+            Assert.Equal(added_slope2, list[1]);
+
+            await rep.Delete(added_slope1);
+            await rep.Delete(added_slope2);
 
 
-//			Assert.Equal(added_slope, got_slope);
+            // updates not existing
+            await Assert.ThrowsAsync<SlopeDBException>(() => rep.Update(added_slope1));
+            await Assert.ThrowsAsync<SlopeDBException>(() => rep.Update(added_slope2));
 
 
-//			rep.Delete(added_slope);
-
-//			Assert.Throws<IndexOutOfRangeException>(() => rep.GetById(added_slope.slope_id));
-//		}
-
-
-//		[Fact]
-//		public void Test_Update_GetList()
-//		{
-
-//			ISlopesRepository rep = new TarantoolSlopesRepository(_schema);
-
-//			SlopeBL added_slope1 = new SlopeBL(100000, "A1", true, 1);
-//			rep.Add(added_slope1);
-
-//			SlopeBL added_slope2 = new SlopeBL(200000, "A2", false, 20);
-//			rep.Add(added_slope2);
-
-//			added_slope2.is_open = true;
-//			added_slope2.difficulty_level = 50;
-//			rep.Update(added_slope2);
+            // end tests - empty getlist
+            Assert.Empty(await rep.GetList());
+        }
+    }
+}
 
 
-//			Assert.Equal(2, rep.GetList().Count());
-
-//			SlopeBL got_slope1 = rep.GetList()[0];
-//			SlopeBL got_slope2 = rep.GetList()[1];
-
-
-//			Assert.Equal(added_slope2, got_slope2);
-
-
-//			rep.Delete(added_slope1);
-//			rep.Delete(added_slope2);
-//			Assert.Empty(rep.GetList());
-//		}
-//	}
-//}

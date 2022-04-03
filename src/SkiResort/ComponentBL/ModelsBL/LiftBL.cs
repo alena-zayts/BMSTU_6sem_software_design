@@ -21,21 +21,6 @@ namespace ComponentBL.ModelsBL
             this.queue_time = queue_time;
         }
 
-        public LiftBL((uint, string, bool, uint, uint, uint) lift_tuple)
-        {
-            this.lift_id = lift_tuple.Item1;
-            this.lift_name = lift_tuple.Item2;
-            this.is_open = lift_tuple.Item3;
-            this.seats_amount = lift_tuple.Item4;
-            this.lifting_time = lift_tuple.Item5;
-            this.queue_time = lift_tuple.Item6;
-        }
-
-        public ValueTuple<uint, string, bool, uint, uint, uint> to_value_tuple()
-        {
-            return ValueTuple.Create(lift_id, lift_name, is_open, seats_amount, lifting_time, queue_time);
-        }
-
         public override bool Equals(object obj)
         {
             return obj is LiftBL dB &&

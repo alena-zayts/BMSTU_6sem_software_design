@@ -63,6 +63,7 @@ local function init()
 	})
 	card_readings:create_index('primary')
 	card_readings:create_index('index_turnstile', {unique = false, parts = {'turnstile_id'}})
+	card_readings:create_index('index_time', {unique = false, parts = {'reading_time'}})
 	print('card_readings created!')
 	
 	--- turnstiles
@@ -292,6 +293,22 @@ local function load_messages_data()
 end
 
 
+local function load_card_readings_data()
+    local cur_space = box.space.card_readings
+	local cur_filename = "card_readings.json"
+	
+	local file = io.open(json_data_dir .. cur_filename, "r")
+	a = file:read("*a")
+	file:close()
+
+	cur_table = json.decode(a)
+	
+	for k,v in pairs(cur_table) do
+		cur_space:insert{v["record_id"], v["turnstile_id"], v["card_id"], v["reading_time"]}
+    end
+end
+
+
 local function load__data()
 	load_users_data()
 	load_cards_data()
@@ -299,11 +316,20 @@ local function load__data()
 	load_lifts_data()
 	load_slopes_data()
 	load_lifts_slopes_data()
+	load_messages_data()
+	load_card_readings_data()
 end
 
 --------------------------------------------------------------------------------
 
 
+function count_card_readings(lift_id, date_from)
+	-- select turnstiles
+	connected_turnstiles = turnstiles.index.index_lift_id:select({lift_id})
+	--for turnstile in 
+	return connected_turnstiles
+	
+end
 
 
 
@@ -318,5 +344,5 @@ box.cfg {
 }
 
 init()
---load__data()
-
+load__data()
+print(dump(count_card_readings(2, 0)))

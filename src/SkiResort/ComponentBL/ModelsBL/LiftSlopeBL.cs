@@ -15,18 +15,6 @@ namespace ComponentBL.ModelsBL
         public uint lift_id { get; set; }
         public uint slope_id { get; set; }
 
-        public LiftSlopeBL((uint, uint, uint) slope_tuple)
-        {
-            this.record_id = slope_tuple.Item1;
-            this.lift_id = slope_tuple.Item2;
-            this.slope_id = slope_tuple.Item3;
-        }
-
-        public ValueTuple<uint, uint, uint> to_value_tuple()
-        {
-            return ValueTuple.Create(record_id, lift_id, slope_id);
-        }
-
         public override bool Equals(object obj)
         {
             return obj is LiftSlopeBL dB &&

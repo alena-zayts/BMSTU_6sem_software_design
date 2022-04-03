@@ -10,8 +10,6 @@ using ProGaudi.Tarantool.Client.Model.UpdateOperations;
 using ComponentBL.ModelsBL;
 using ComponentBL.RepositoriesInterfaces;
 
-using ComponentAccessToDB;
-
 namespace ComponentAccessToDB.RepositoriesTarantool
 {
     public class TarantoolUsersRepository : IUsersRepository

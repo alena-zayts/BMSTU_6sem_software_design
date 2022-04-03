@@ -17,18 +17,6 @@ namespace ComponentBL.ModelsBL
         public uint checked_by_id { get; set; }
         public string text { get; set; }
 
-        public MessageBL((uint, uint, uint, string) user_tuple)
-        {
-            this.message_id = user_tuple.Item1;
-            this.sender_id = user_tuple.Item2;
-            this.checked_by_id = user_tuple.Item3;
-            this.text = user_tuple.Item4;
-        }
-
-        public ValueTuple<uint, uint, uint, string> to_value_tuple()
-        {
-            return ValueTuple.Create(message_id, sender_id, checked_by_id, text);
-        }
 
         public override bool Equals(object obj)
         {

@@ -47,9 +47,9 @@ namespace ComponentAccessToDB
         {
         }
     }
-    public class LiftSLopeException : ModelDBException
+    public class LiftSlopeDBException : ModelDBException
     {
-        public LiftSLopeException(string exception_message) : base(exception_message)
+        public LiftSlopeDBException(string exception_message) : base(exception_message)
         {
         }
     }

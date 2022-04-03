@@ -7,7 +7,7 @@ using ComponentBL.DBContexts;
 
 namespace ComponentAccessToDB
 {
-    public class TarantoolContext: DBContext
+    public class ContextTarantool: DBContext
     {
         public ISpace lifts_space;
         public IIndex lifts_index_primary;
@@ -42,7 +42,7 @@ namespace ComponentAccessToDB
         public IIndex messages_index_checked_by_id;
 
 
-        public TarantoolContext(ISchema schema) => (
+        public ContextTarantool(ISchema schema) => (
             lifts_space, lifts_index_primary, lifts_index_name,
             slopes_space, slopes_index_primary, slopes_index_name,
             lifts_slopes_space, lifts_slopes_index_primary, lifts_slopes_index_lift_id, lifts_slopes_index_slope_id,

@@ -1,99 +1,112 @@
-//using System;
-//using System.Linq;
-//using System.Collections.Generic;
-//using Xunit;
-//using Xunit.Abstractions;
+using System.Threading.Tasks;
+using Xunit;
+using Xunit.Abstractions;
 
-//using ProGaudi.Tarantool.Client;
+using ProGaudi.Tarantool.Client;
 
-//using ComponentBL.ModelsBL;
-//using ComponentAccessToDB.RepositoriesInterfaces;
-//using ComponentAccessToDB.RepositoriesTarantool;
-
-//namespace Tests
-//{
-//	public class LiftsDbTest
-//	{
-//		ISchema _schema;
-//		private readonly ITestOutputHelper output;
-//		public LiftsDbTest(ITestOutputHelper output)
-//		{
-//			this.output = output;
-
-//			var box = Box.Connect("ski_admin:Tty454r293300@localhost:3301").GetAwaiter().GetResult();
-
-//			_schema = box.GetSchema();
-//		}
-//		[Fact]
-//		public void Test_Add_GetById_Delete()
-//		{
-//			ILiftsRepository rep = new TarantoolLiftsRepository(_schema);
-
-//			LiftBL added_lift = new LiftBL(100000, "A1", true, 100, 60, 360);
-//			rep.Add(added_lift);
+using ComponentBL.ModelsBL;
+using ComponentBL.RepositoriesInterfaces;
 
 
-//			LiftBL got_lift = rep.GetById(added_lift.lift_id);
-			
-//			Assert.Equal(added_lift, got_lift);
-
-//			rep.Delete(added_lift);
-
-//			Assert.Throws<IndexOutOfRangeException>(() => rep.GetById(added_lift.lift_id));
-//		}
-
-//		[Fact]
-//		public void Test_Add_GetByName_Delete()
-//		{
-
-//			ILiftsRepository rep = new TarantoolLiftsRepository(_schema);
-
-//			LiftBL added_lift = new LiftBL(200000, "A2", false, 20, 10, 30);
-//			rep.Add(added_lift);
+using ComponentAccessToDB.RepositoriesTarantool;
+using ComponentAccessToDB;
 
 
-//			LiftBL got_lift = rep.GetByName(added_lift.lift_name);
+
+namespace Tests
+{
+    public class LiftsDbTest
+    {
+        ISchema _schema;
+        ContextTarantool _context;
+        private readonly ITestOutputHelper output;
+
+        public LiftsDbTest(ITestOutputHelper output)
+        {
+            this.output = output;
+
+            var box = Box.Connect("ski_admin:Tty454r293300@localhost:3301").GetAwaiter().GetResult();
+
+            _schema = box.GetSchema();
+            _context = new ContextTarantool(_schema);
+        }
+
+        [Fact]
+        public async Task Test_Add_GetById_Delete()
+        {
+            ILiftsRepository rep = new TarantoolLiftsRepository(_context);
+
+            //start testing 
+            Assert.Empty(await rep.GetList());
+
+            // add correct
+            LiftBL added_lift = new LiftBL(1, "A1", true , 10, 100, 1000);
+            await rep.Add(added_lift);
+            // add already existing
+            await Assert.ThrowsAsync<LiftDBException>(() => rep.Add(added_lift));
+
+            // get_by_id correct
+            LiftBL got_lift = await rep.GetById(added_lift.lift_id);
+            Assert.Equal(added_lift, got_lift);
+            // get_by_name correct
+            got_lift = await rep.GetByName(added_lift.lift_name);
+            Assert.Equal(added_lift, got_lift);
+
+            // delete correct
+            await rep.Delete(added_lift);
+
+            // get_by_id not existing
+            await Assert.ThrowsAsync<LiftDBException>(() => rep.GetById(added_lift.lift_id));
+            // get_by_id incorrect
+            await Assert.ThrowsAsync<LiftDBException>(() => rep.GetByName(added_lift.lift_name));
+
+            // delete not existing
+            await Assert.ThrowsAsync<LiftDBException>(() => rep.Delete(added_lift));
+
+            // end tests - empty getlist
+            Assert.Empty(await rep.GetList());
+        }
 
 
-//			Assert.Equal(added_lift, got_lift);
+        [Fact]
+        public async Task Test_Update_GetList()
+        {
 
-//			rep.Delete(added_lift);
+            ILiftsRepository rep = new TarantoolLiftsRepository(_context);
 
-//			Assert.Throws<IndexOutOfRangeException>(() => rep.GetByName(added_lift.lift_name));
-//		}
+            //start testing 
+            Assert.Empty(await rep.GetList());
 
+            LiftBL added_lift1 = new LiftBL(1, "A1", true, 10, 100, 1000);
+            await rep.Add(added_lift1);
 
-//		[Fact]
-//		public void Test_Update_GetList()
-//		{
+            LiftBL added_lift2 = new LiftBL(2, "B2", false, 20, 200, 2000);
+            await rep.Add(added_lift2);
 
-//			ILiftsRepository rep = new TarantoolLiftsRepository(_schema);
+            added_lift2.lift_name = "dfd";
+            added_lift1.is_open = !added_lift1.is_open;
 
-//			LiftBL added_lift1 = new LiftBL(100000, "A1", true, 100, 60, 360);
-//			rep.Add(added_lift1);
+            // updates correct
+            await rep.Update(added_lift1);
+            await rep.Update(added_lift2);
 
-//			LiftBL added_lift2 = new LiftBL(200000, "A2", false, 20, 10, 30);
-//			rep.Add(added_lift2);
+            var list = await rep.GetList();
+            Assert.Equal(2, list.Count);
+            Assert.Equal(added_lift1, list[0]);
+            Assert.Equal(added_lift2, list[1]);
 
-//			added_lift2.is_open = true;
-//			added_lift2.queue_time = 50;
-//			rep.Update(added_lift2);
-
-
-//			Assert.Equal(2, rep.GetList().Count());
-
-//			LiftBL got_lift1 = rep.GetList()[0];
-//			LiftBL got_lift2 = rep.GetList()[1];
+            await rep.Delete(added_lift1);
+            await rep.Delete(added_lift2);
 
 
-//			Assert.Equal(added_lift2, got_lift2);
+            // updates not existing
+            await Assert.ThrowsAsync<LiftDBException>(() => rep.Update(added_lift1));
+            await Assert.ThrowsAsync<LiftDBException>(() => rep.Update(added_lift2));
 
-//			rep.Delete(added_lift1);
-//			rep.Delete(added_lift2);
 
-//			Assert.Throws<IndexOutOfRangeException>(() => rep.GetById(added_lift1.lift_id));
-//			Assert.Throws<IndexOutOfRangeException>(() => rep.GetById(added_lift2.lift_id));
-//			Assert.Empty(rep.GetList());
-//		}
-//	}
-//}
+            // end tests - empty getlist
+            Assert.Empty(await rep.GetList());
+        }
+    }
+}
+

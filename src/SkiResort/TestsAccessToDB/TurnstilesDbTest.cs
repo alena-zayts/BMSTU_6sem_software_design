@@ -1,115 +1,121 @@
-//using System;
-//using System.Linq;
-//using System.Collections.Generic;
-//using Xunit;
-//using Xunit.Abstractions;
+using System.Threading.Tasks;
+using Xunit;
+using Xunit.Abstractions;
 
-//using ProGaudi.Tarantool.Client;
+using ProGaudi.Tarantool.Client;
 
-//using ComponentBL.ModelsBL;
-//using ComponentAccessToDB.RepositoriesInterfaces;
-//using ComponentAccessToDB.RepositoriesTarantool;
+using ComponentBL.ModelsBL;
+using ComponentBL.RepositoriesInterfaces;
 
 
-//namespace Tests
-//{
-//	public class TurnstilesDbTest
-//	{
-//		ISchema _schema;
-//		private readonly ITestOutputHelper output;
-//		public TurnstilesDbTest(ITestOutputHelper output)
-//		{
-//			this.output = output;
-
-//			var box = Box.Connect("ski_admin:Tty454r293300@localhost:3301").GetAwaiter().GetResult();
-
-//			_schema = box.GetSchema();
-//		}
-//		[Fact]
-//		public void Test_Add_GetById_Delete()
-//		{
-//			ITurnstilesRepository rep = new TarantoolTurnstilesRepository(_schema);
-
-
-//			List<TurnstileBL> got_turnstiles = rep.GetList();
-//			Assert.Empty(got_turnstiles);
-
-
-//			TurnstileBL added_turnstile = new TurnstileBL(100000, 1, true);
-//			rep.Add(added_turnstile);
-
-
-//			TurnstileBL got_turnstile = rep.GetById(added_turnstile.turnstile_id);
-			
-
-//			Assert.Equal(added_turnstile, got_turnstile);
-
-
-//			rep.Delete(added_turnstile);
-
-//			Assert.Throws<IndexOutOfRangeException>(() => rep.GetById(added_turnstile.turnstile_id));
-//		}
-
-//        [Fact]
-//        public void Test_Add_GetByLiftId_Delete()
-//        {
-
-//            ITurnstilesRepository rep = new TarantoolTurnstilesRepository(_schema);
-
-//            TurnstileBL added_turnstile1 = new TurnstileBL(1000, 3, true);
-//            rep.Add(added_turnstile1);
-//            TurnstileBL added_turnstile2 = new TurnstileBL(2000, 3, false);
-//            rep.Add(added_turnstile2);
-
-
-//            List<TurnstileBL> got_turnstiles = rep.GetByLiftId(3);
-//            Assert.Equal(2, got_turnstiles.Count());
-
-//            TurnstileBL got_turnstile1 = got_turnstiles[0];
-//            TurnstileBL got_turnstile2 = got_turnstiles[1];
-
-
-//            Assert.Equal(added_turnstile1, got_turnstile1);
-//            Assert.Equal(added_turnstile2, got_turnstile2);
+using ComponentAccessToDB.RepositoriesTarantool;
+using ComponentAccessToDB;
 
 
 
-//            rep.Delete(added_turnstile1);
-//            rep.Delete(added_turnstile2);
+namespace Tests
+{
+    public class TurnstilesDbTest
+    {
+        ISchema _schema;
+        ContextTarantool _context;
+        private readonly ITestOutputHelper output;
 
-//            got_turnstiles = rep.GetByLiftId(1);
-//            Assert.Empty(got_turnstiles);
+        public TurnstilesDbTest(ITestOutputHelper output)
+        {
+            this.output = output;
 
-//        }
+            var box = Box.Connect("ski_admin:Tty454r293300@localhost:3301").GetAwaiter().GetResult();
+
+            _schema = box.GetSchema();
+            _context = new ContextTarantool(_schema);
+        }
+
+        [Fact]
+        public async Task Test_Add_GetById_Delete()
+        {
+            ITurnstilesRepository rep = new TarantoolTurnstilesRepository(_context);
+
+            //start testing 
+            Assert.Empty(await rep.GetList());
+
+            // add correct
+            TurnstileBL added_turnstile = new TurnstileBL(1, 2, true);
+            await rep.Add(added_turnstile);
+            // add already existing
+            await Assert.ThrowsAsync<TurnstileDBException>(() => rep.Add(added_turnstile));
+
+            // get_by_id correct
+            TurnstileBL got_turnstile = await rep.GetById(added_turnstile.turnstile_id);
+            Assert.Equal(added_turnstile, got_turnstile);
+
+            // delete correct
+            await rep.Delete(added_turnstile);
+
+            // get_by_id not existing
+            await Assert.ThrowsAsync<TurnstileDBException>(() => rep.GetById(added_turnstile.turnstile_id));
+
+            // delete not existing
+            await Assert.ThrowsAsync<TurnstileDBException>(() => rep.Delete(added_turnstile));
+
+            // end tests - empty getlist
+            Assert.Empty(await rep.GetList());
+        }
 
 
-//        [Fact]
-//        public void Test_Update_GetList()
-//        {
+        [Fact]
+        public async Task Test_Update_GetList()
+        {
 
-//            ITurnstilesRepository rep = new TarantoolTurnstilesRepository(_schema);
+            ITurnstilesRepository rep = new TarantoolTurnstilesRepository(_context);
 
-//            TurnstileBL added_turnstile1 = new TurnstileBL(100000, 1, true);
-//            rep.Add(added_turnstile1);
-//            TurnstileBL added_turnstile2 = new TurnstileBL(200000, 2, false);
-//            rep.Add(added_turnstile2);
+            //start testing 
+            Assert.Empty(await rep.GetList());
 
-//            added_turnstile2.is_open = true;
-//            added_turnstile2.lift_id = 1;
-//            rep.Update(added_turnstile2);
+            uint lift_id = 10;
+
+            TurnstileBL added_turnstile1 = new TurnstileBL(1, lift_id, true);
+            await rep.Add(added_turnstile1);
+
+            TurnstileBL added_turnstile2 = new TurnstileBL(2, 2, false);
+            await rep.Add(added_turnstile2);
+
+            added_turnstile2.is_open = false;
+
+            // updates correct
+            await rep.Update(added_turnstile1);
+            await rep.Update(added_turnstile2);
+
+            var list = await rep.GetList();
+            Assert.Equal(2, list.Count);
+            Assert.Equal(added_turnstile1, list[0]);
+            Assert.Equal(added_turnstile2, list[1]);
 
 
-//            Assert.Equal(2, rep.GetList().Count());
+            // by lift id
+            TurnstileBL added_turnstile3 = new TurnstileBL(3, lift_id, true);
+            await rep.Add(added_turnstile3);
+            list = await rep.GetListByLiftId(lift_id);
+            Assert.Equal(2, list.Count);
+            Assert.Equal(added_turnstile1, list[0]);
+            Assert.Equal(added_turnstile3, list[1]);
+            Assert.Empty(await rep.GetListByLiftId(999));
 
-//            TurnstileBL got_turnstile1 = rep.GetList()[0];
-//            TurnstileBL got_turnstile2 = rep.GetList()[1];
 
 
-//            Assert.Equal(added_turnstile2, got_turnstile2);
 
-//            rep.Delete(added_turnstile1);
-//            rep.Delete(added_turnstile2);
-//            Assert.Empty(rep.GetList());
-//        }
-//    }
-//}
+            await rep.Delete(added_turnstile1);
+            await rep.Delete(added_turnstile2);
+            await rep.Delete(added_turnstile3);
+
+
+            // updates not existing
+            await Assert.ThrowsAsync<TurnstileDBException>(() => rep.Update(added_turnstile1));
+            await Assert.ThrowsAsync<TurnstileDBException>(() => rep.Update(added_turnstile2));
+
+
+            // end tests - empty getlist
+            Assert.Empty(await rep.GetList());
+        }
+    }
+}
