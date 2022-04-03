@@ -13,7 +13,7 @@ namespace SkiResort.ComponentBL.ModelsBL
             this.permissions = permissions;
 
         }
-        public uint user_id { get; set; }
+        public uint user_id { get; }
         public uint card_id { get; set; }
         public string user_email { get; set; }
         public string password { get; set; }

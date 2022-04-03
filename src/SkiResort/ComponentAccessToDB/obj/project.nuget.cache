@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "M38IrfG9fPywL67GIVLvD0kQ9wq09SzeS26/mobruJUjBKTRfmOqkPP1IG0eajr+TQPdeyhBr0L8Ae1rGXyiZA==",
+  "dgSpecHash": "1rACAXtEfRXnsRNv6zt8s1M16FOAMRzQ9Z7VOYuFqPALjn2kG6jGywepdsS/e9E941TvY74tz8AfR7JyxvClQQ==",
   "success": true,
   "projectFilePath": "C:\\BMSTU_6sem_software_design\\src\\SkiResort\\ComponentAccessToDB\\ComponentAccessToDB.csproj",
   "expectedPackageFiles": [
@@ -36,11 +36,7 @@
     "C:\\Users\\alena\\.nuget\\packages\\system.threading\\4.3.0\\system.threading.4.3.0.nupkg.sha512",
     "C:\\Users\\alena\\.nuget\\packages\\system.threading.tasks\\4.3.0\\system.threading.tasks.4.3.0.nupkg.sha512",
     "C:\\Users\\alena\\.nuget\\packages\\system.threading.thread\\4.3.0\\system.threading.thread.4.3.0.nupkg.sha512",
-    "C:\\Users\\alena\\.nuget\\packages\\system.valuetuple\\4.4.0\\system.valuetuple.4.4.0.nupkg.sha512",
-    "C:\\Users\\alena\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\5.0.15\\microsoft.netcore.app.host.win-x64.5.0.15.nupkg.sha512",
-    "C:\\Users\\alena\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\5.0.0\\microsoft.aspnetcore.app.ref.5.0.0.nupkg.sha512",
-    "C:\\Users\\alena\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\5.0.0\\microsoft.windowsdesktop.app.ref.5.0.0.nupkg.sha512",
-    "C:\\Users\\alena\\.nuget\\packages\\microsoft.netcore.app.ref\\5.0.0\\microsoft.netcore.app.ref.5.0.0.nupkg.sha512"
+    "C:\\Users\\alena\\.nuget\\packages\\system.valuetuple\\4.4.0\\system.valuetuple.4.4.0.nupkg.sha512"
   ],
   "logs": []
 }

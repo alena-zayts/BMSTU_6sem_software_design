@@ -38,7 +38,7 @@ namespace SkiResort.ComponentAccessToDB.RepositoriesTarantool
             List<CardReadingBL> result = new List<CardReadingBL>();
             var data = _index_primary.Select<
                 ValueTuple<uint>,
-                ValueTuple<uint, uint, uint, uint>
+                CardReadingDB
                 >
                 (ValueTuple.Create(0u), new SelectOptions { Iterator = Iterator.Ge });
 
@@ -54,7 +54,7 @@ namespace SkiResort.ComponentAccessToDB.RepositoriesTarantool
         {
             var data = _index_primary.Select<
                 ValueTuple<uint>,
-                ValueTuple<uint, uint, uint, uint>
+                CardReadingDB
                 >
                 (ValueTuple.Create(card_reading_id));
 
@@ -69,7 +69,7 @@ namespace SkiResort.ComponentAccessToDB.RepositoriesTarantool
             {
                 var card_readings_for_turnstile = _index_turnstile.Select<
                     ValueTuple<uint>,
-                    ValueTuple<uint, uint, uint, uint>>
+                    CardReadingDB>
                     (ValueTuple.Create(turnstile.turnstile_id),
                     new SelectOptions
                     {
@@ -100,7 +100,7 @@ namespace SkiResort.ComponentAccessToDB.RepositoriesTarantool
         }
         public void Delete(CardReadingBL card_reading)
         {
-            _index_primary.Delete<ValueTuple<uint>, ValueTuple<uint, uint, uint, uint>>(ValueTuple.Create(card_reading.record_id));
+            _index_primary.Delete<ValueTuple<uint>, CardReadingDB>(ValueTuple.Create(card_reading.record_id));
         }
     }
 }

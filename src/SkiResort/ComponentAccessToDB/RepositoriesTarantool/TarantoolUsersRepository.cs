@@ -7,10 +7,10 @@ using ProGaudi.Tarantool.Client.Model;
 using ProGaudi.Tarantool.Client.Model.Enums;
 using ProGaudi.Tarantool.Client.Model.UpdateOperations;
 
-using SkiResort.ComponentAccessToDB.DBContexts;
-using SkiResort.ComponentAccessToDB.RepositoriesInterfaces;
 using SkiResort.ComponentBL.ModelsBL;
+using SkiResort.ComponentBL.RepositoriesInterfaces;
 
+using SkiResort.ComponentAccessToDB.TarantoolContexts;
 
 namespace SkiResort.ComponentAccessToDB.RepositoriesTarantool
 {
@@ -27,11 +27,7 @@ namespace SkiResort.ComponentAccessToDB.RepositoriesTarantool
 
         public async Task<List<UserBL>> GetList()
         {
-            var data = await _index_primary.Select
-                <
-                ValueTuple<uint>,
-                ValueTuple<uint, uint, string, string, uint>
-                >
+            var data = await _index_primary.Select<ValueTuple<uint>, UserDB>
                 (ValueTuple.Create(0u), new SelectOptions { Iterator = Iterator.Ge });
 
             List<UserBL> result = new();
@@ -47,11 +43,7 @@ namespace SkiResort.ComponentAccessToDB.RepositoriesTarantool
 
         public async Task<UserBL> GetById(uint user_id)
         {
-            var data = await _index_primary.Select
-                <
-                ValueTuple<uint>,
-                ValueTuple<uint, uint, string, string, uint>
-                >
+            var data = await _index_primary.Select<ValueTuple<uint>,UserDB>
                 (ValueTuple.Create(user_id));
 
             return new UserBL(data.Data[0]);
@@ -63,7 +55,7 @@ namespace SkiResort.ComponentAccessToDB.RepositoriesTarantool
         }
         public async Task Update(UserBL user)
         {
-            var updatedData = await _space.Update<ValueTuple<uint>, ValueTuple<uint, uint, string, string, uint>>(
+            var updatedData = await _space.Update<ValueTuple<uint>, UserDB>(
                 ValueTuple.Create(user.user_id), new UpdateOperation[] {
                     UpdateOperation.CreateAssign<uint>(1, user.card_id),
                     UpdateOperation.CreateAssign<string>(2, user.user_email),
@@ -74,8 +66,8 @@ namespace SkiResort.ComponentAccessToDB.RepositoriesTarantool
 
         public async Task Delete(UserBL user)
         {
-            await _index_primary.Delete<ValueTuple<uint>,
-                ValueTuple<uint, uint, string, string, uint>>(ValueTuple.Create(user.user_id));
+            await _index_primary.Delete<ValueTuple<uint>,UserDB>
+                (ValueTuple.Create(user.user_id));
         }
     }
 }

@@ -12,7 +12,7 @@ namespace SkiResort.ComponentBL.ModelsBL
             this.reading_time = reading_time;
 
         }
-        public uint record_id { get; set; }
+        public uint record_id { get; }
         public uint turnstile_id { get; set; }
         public uint card_id { get; set; }
         public uint reading_time { get; set; }

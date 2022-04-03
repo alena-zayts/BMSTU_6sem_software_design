@@ -4,7 +4,7 @@ namespace SkiResort.ComponentBL.ModelsBL
 {
     public class LiftBL
     {
-        public uint lift_id { get; set; }
+        public uint lift_id { get; }
         public string lift_name { get; set; }
         public bool is_open { get; set; }
         public uint seats_amount { get; set; }

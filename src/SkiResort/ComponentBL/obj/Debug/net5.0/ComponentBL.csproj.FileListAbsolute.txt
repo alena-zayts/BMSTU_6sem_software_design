@@ -3,7 +3,6 @@ C:\BMSTU_6sem_software_design\src\SkiResort\ComponentBL\bin\Debug\net5.0\Compone
 C:\BMSTU_6sem_software_design\src\SkiResort\ComponentBL\bin\Debug\net5.0\ComponentBL.runtimeconfig.json
 C:\BMSTU_6sem_software_design\src\SkiResort\ComponentBL\bin\Debug\net5.0\ComponentBL.runtimeconfig.dev.json
 C:\BMSTU_6sem_software_design\src\SkiResort\ComponentBL\bin\Debug\net5.0\ComponentBL.dll
-C:\BMSTU_6sem_software_design\src\SkiResort\ComponentBL\bin\Debug\net5.0\ref\ComponentBL.dll
 C:\BMSTU_6sem_software_design\src\SkiResort\ComponentBL\bin\Debug\net5.0\ComponentBL.pdb
 C:\BMSTU_6sem_software_design\src\SkiResort\ComponentBL\obj\Debug\net5.0\ComponentBL.GeneratedMSBuildEditorConfig.editorconfig
 C:\BMSTU_6sem_software_design\src\SkiResort\ComponentBL\obj\Debug\net5.0\ComponentBL.AssemblyInfoInputs.cache
@@ -13,3 +12,5 @@ C:\BMSTU_6sem_software_design\src\SkiResort\ComponentBL\obj\Debug\net5.0\Compone
 C:\BMSTU_6sem_software_design\src\SkiResort\ComponentBL\obj\Debug\net5.0\ref\ComponentBL.dll
 C:\BMSTU_6sem_software_design\src\SkiResort\ComponentBL\obj\Debug\net5.0\ComponentBL.pdb
 C:\BMSTU_6sem_software_design\src\SkiResort\ComponentBL\obj\Debug\net5.0\ComponentBL.genruntimeconfig.cache
+C:\BMSTU_6sem_software_design\src\SkiResort\ComponentBL\obj\Debug\net5.0\ComponentBL.csproj.AssemblyReference.cache
+C:\BMSTU_6sem_software_design\src\SkiResort\ComponentBL\obj\Debug\net5.0\refint\ComponentBL.dll

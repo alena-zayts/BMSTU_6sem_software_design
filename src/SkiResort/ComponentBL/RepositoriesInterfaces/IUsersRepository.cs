@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using SkiResort.ComponentBL.ModelsBL;
 
 
-namespace SkiResort.ComponentAccessToDB.RepositoriesInterfaces
+namespace SkiResort.ComponentBL.RepositoriesInterfaces
 {
     public interface IUsersRepository
     {

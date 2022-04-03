@@ -2,18 +2,12 @@
 using System.Threading.Tasks;
 using ProGaudi.Tarantool.Client;
 
-namespace SkiResort.ComponentAccessToDB.DBContexts
-{
+using SkiResort.ComponentBL.DBContexts;
 
-    using CardReadingDB = ValueTuple<uint, uint, uint, uint>;
-    using LiftDB = ValueTuple<uint, string, bool, uint, uint, uint>;
-    using CardsDB = ValueTuple<uint, uint, string>;
-    using LiftsSlopesDB = ValueTuple<uint, uint, uint>;
-    using SlopesDB = ValueTuple<uint, string, bool, uint>;
-    using TurnstilesDB = ValueTuple<uint, uint, bool>;
-    using UsersDB = ValueTuple<uint, uint, string, string, uint>;
-    using MessageDB = ValueTuple<uint, uint, uint, string>;
-    public class TarantoolContext
+
+namespace SkiResort.ComponentAccessToDB.TarantoolContexts
+{
+    public class TarantoolContext: DBContext
     {
         public ISpace lifts_space;
         public IIndex lifts_index_primary;
