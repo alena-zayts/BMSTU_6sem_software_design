@@ -45,32 +45,39 @@ namespace ComponentAccessToDB.RepositoriesTarantool
 
         public async Task<uint> CountForLiftIdFromDate(uint lift_id, uint date_from)
         {
-            var result = await _box.Call_1_6<ValueTuple<uint, uint>, uint>("count_card_readings", (ValueTuple.Create(lift_id, date_from)));
-            return result.Data[0];
-        }
-
-
-        public async Task Add(CardReadingBL card)
-        {
             try
             {
-                await _space.Insert(ModelsAdapter.CardReadingBLToDB(card));
+                var result = await _box.Call_1_6<ValueTuple<uint, uint>, Int32[]>("count_card_readings", (ValueTuple.Create(lift_id, date_from)));
+                return (uint) result.Data[0][0];
             }
             catch (Exception ex)
             {
-                throw new CardReadingDBException($"Error: adding card {card}");
+                throw new CardReadingDBException($"Error: couldn't count amount of car_readings for lift_id={lift_id} from {date_from}");
+            }
+        }
+
+
+        public async Task Add(CardReadingBL card_reading)
+        {
+            try
+            {
+                await _space.Insert(ModelsAdapter.CardReadingBLToDB(card_reading));
+            }
+            catch (Exception ex)
+            {
+                throw new CardReadingDBException($"Error: adding card {card_reading}");
             }
         }
         
 
-        public async Task Delete(CardReadingBL card)
+        public async Task Delete(CardReadingBL card_reading)
         {
             var response = await _index_primary.Delete<ValueTuple<uint>, CardReadingDB>
-                (ValueTuple.Create(card.card_id));
+                (ValueTuple.Create(card_reading.record_id));
 
             if (response.Data.Length != 1)
             {
-                throw new CardReadingDBException($"Error: deleting card {card}");
+                throw new CardReadingDBException($"Error: deleting card_reading {card_reading}");
             }
 
         }

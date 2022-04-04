@@ -2,12 +2,11 @@
 using System.Threading.Tasks;
 using ProGaudi.Tarantool.Client;
 
-using ComponentBL.DBContexts;
 
 
 namespace ComponentAccessToDB
 {
-    public class ContextTarantool: DBContext
+    public class ContextTarantool
     {
         public IBox box;
         public ISpace lifts_space;
@@ -43,7 +42,7 @@ namespace ComponentAccessToDB
         public IIndex messages_index_checked_by_id;
 
 
-        public ContextTarantool(IBox box) => (
+        public ContextTarantool(string connection_string) => (
             box,
             lifts_space, lifts_index_primary, lifts_index_name,
             slopes_space, slopes_index_primary, slopes_index_name,
@@ -53,7 +52,7 @@ namespace ComponentAccessToDB
             cards_space, cards_index_primary,
             users_space, users_index_primary,
             messages_space, messages_index_primary, messages_index_sender_id, messages_index_checked_by_id
-            ) = Initialize(box).GetAwaiter().GetResult();
+            ) = Initialize(connection_string).GetAwaiter().GetResult();
 
 
         private static async Task<(
@@ -66,9 +65,11 @@ namespace ComponentAccessToDB
         ISpace, IIndex,
         ISpace, IIndex,
         ISpace, IIndex, IIndex, IIndex)> 
-            Initialize(IBox box)
+            Initialize(string connection_string)
         {
+            var box = await Box.Connect(connection_string);
             var schema = box.GetSchema();
+
             var lifts_space = await schema.GetSpace("lifts");
             var lifts_index_primary = await lifts_space.GetIndex("primary");
             var lifts_index_name = await lifts_space.GetIndex("index_name");

@@ -24,9 +24,8 @@ namespace Tests
         {
             this.output = output;
 
-            var box = Box.Connect("ski_admin:Tty454r293300@localhost:3301").GetAwaiter().GetResult();
-
-            _context = new ContextTarantool(box);
+            string connection_string = "ski_admin:Tty454r293300@localhost:3301";
+            _context = new ContextTarantool(connection_string);
         }
 
         [Fact]
