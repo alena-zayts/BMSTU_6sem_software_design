@@ -345,7 +345,9 @@ function count_card_readings(lift_id, date_from)
 end
 
 
-
+function test()
+	print("ok")
+end
 
 
 box.cfg {
