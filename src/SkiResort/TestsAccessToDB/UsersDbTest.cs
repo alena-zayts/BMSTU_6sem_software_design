@@ -98,6 +98,16 @@ namespace Tests
 
             // end tests - empty getlist
             Assert.Empty(await rep.GetList());
+
+
+
+            UserBL tmp2 = await rep.AddAutoIncrement(added_user1);
+            Assert.True(1 == tmp2.user_id);
+            UserBL tmp3 = await rep.AddAutoIncrement(added_user2);
+            Assert.True(2 == tmp3.user_id);
+            await rep.Delete(tmp2);
+            await rep.Delete(tmp3);
+            Assert.Empty(await rep.GetList());
         }
     }
 }

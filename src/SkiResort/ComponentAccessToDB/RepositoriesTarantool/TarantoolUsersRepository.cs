@@ -17,11 +17,13 @@ namespace ComponentAccessToDB.RepositoriesTarantool
         private ISpace _space;
         private IIndex _index_primary;
         private IIndex _index_email;
+        private IBox _box;
 
         public TarantoolUsersRepository(ContextTarantool context)
         {
             _space = context.users_space;
             _index_primary = context.users_index_primary;
+            _box = context.box;
         }
 
         public async Task<List<UserBL>> GetList()
@@ -64,6 +66,20 @@ namespace ComponentAccessToDB.RepositoriesTarantool
                 throw new UserDBException($"Error: adding user {user}");
             }
         }
+
+        public async Task<UserBL> AddAutoIncrement(UserBL obj)
+        {
+            try
+            {
+                var result = await _box.Call_1_6<UserDBi, UserDB>("auto_increment_users", (ModelsAdapter.UserBLToDBi(obj)));
+                return ModelsAdapter.UserDBToBL(result.Data[0]);
+            }
+            catch (Exception ex)
+            {
+                throw new UserDBException($"Error: couldn't auto increment {obj}");
+            }
+        }
+
         public async Task Update(UserBL user)
         {
             var response = await _space.Update<ValueTuple<uint>, UserDB>(

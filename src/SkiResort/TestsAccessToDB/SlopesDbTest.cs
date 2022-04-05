@@ -103,6 +103,15 @@ namespace Tests
 
             // end tests - empty getlist
             Assert.Empty(await rep.GetList());
+
+
+            SlopeBL tmp2 = await rep.AddAutoIncrement(added_slope1);
+            Assert.True(1 == tmp2.slope_id);
+            SlopeBL tmp3 = await rep.AddAutoIncrement(added_slope2);
+            Assert.True(2 == tmp3.slope_id);
+            await rep.Delete(tmp2);
+            await rep.Delete(tmp3);
+            Assert.Empty(await rep.GetList());
         }
     }
 }

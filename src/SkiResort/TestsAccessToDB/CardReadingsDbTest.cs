@@ -123,8 +123,12 @@ namespace Tests
             await turnstiles_rep.Delete(added_turnstile3);
             Assert.Empty(await turnstiles_rep.GetList());
 
-            var tmp2 = await rep.AddAutoIncrement(added_card_reading1);
+            CardReadingBL tmp2 = await rep.AddAutoIncrement(added_card_reading1);
+            Assert.True(1 == tmp2.record_id);
+            CardReadingBL tmp3 = await rep.AddAutoIncrement(added_card_reading1);
+            Assert.True(2 == tmp3.record_id);
             await rep.Delete(tmp2);
+            await rep.Delete(tmp3);
             Assert.Empty(await rep.GetList());
 
         }

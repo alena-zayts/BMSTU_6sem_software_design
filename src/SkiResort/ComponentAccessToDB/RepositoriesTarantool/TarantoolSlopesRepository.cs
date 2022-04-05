@@ -17,12 +17,14 @@ namespace ComponentAccessToDB.RepositoriesTarantool
         private IIndex _index_primary;
         private IIndex _index_name;
         private ISpace _space;
+        private IBox _box;
 
         public TarantoolSlopesRepository(ContextTarantool context)
         {
             _space = context.slopes_space;
             _index_primary = context.slopes_index_primary;
             _index_name = context.slopes_index_name;
+            _box = context.box;
         }
 
         public async Task<List<SlopeBL>> GetList()
@@ -78,6 +80,20 @@ namespace ComponentAccessToDB.RepositoriesTarantool
                 throw new SlopeDBException($"Error: adding slope {slope}");
             }
         }
+
+        public async Task<SlopeBL> AddAutoIncrement(SlopeBL obj)
+        {
+            try
+            {
+                var result = await _box.Call_1_6<SlopeDBi, SlopeDB>("auto_increment_slopes", (ModelsAdapter.SlopeBLToDBi(obj)));
+                return ModelsAdapter.SlopeDBToBL(result.Data[0]);
+            }
+            catch (Exception ex)
+            {
+                throw new SlopeDBException($"Error: couldn't auto increment {obj}");
+            }
+        }
+
         public async Task Update(SlopeBL slope)
         {
             var response = await _space.Update<ValueTuple<uint>, SlopeDB>(

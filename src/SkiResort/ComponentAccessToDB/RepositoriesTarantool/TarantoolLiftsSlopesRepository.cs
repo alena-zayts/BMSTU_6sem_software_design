@@ -20,6 +20,7 @@ namespace ComponentAccessToDB.RepositoriesTarantool
         private ISpace _space;
         private ISlopesRepository _slopes_rep;
         private ILiftsRepository _lifts_rep;
+        private IBox _box;
 
         public TarantoolLiftsSlopesRepository(ContextTarantool context)
         {
@@ -29,6 +30,7 @@ namespace ComponentAccessToDB.RepositoriesTarantool
             _index_slope_id = context.lifts_slopes_index_slope_id;
             _lifts_rep = new TarantoolLiftsRepository(context);
             _slopes_rep = new TarantoolSlopesRepository(context);
+            _box = context.box;
         }
         public async Task<List<LiftSlopeBL>> GetList()
         {
@@ -141,6 +143,20 @@ namespace ComponentAccessToDB.RepositoriesTarantool
                 throw new LiftSlopeDBException($"Error: adding lift_slope {lift_slope}");
             }
         }
+
+        public async Task<LiftSlopeBL> AddAutoIncrement(LiftSlopeBL obj)
+        {
+            try
+            {
+                var result = await _box.Call_1_6<LiftSlopeDBi, LiftSlopeDB>("auto_increment_lifts_slopes", (ModelsAdapter.LiftSlopeBLToDBi(obj)));
+                return ModelsAdapter.LiftSlopeDBToBL(result.Data[0]);
+            }
+            catch (Exception ex)
+            {
+                throw new LiftSlopeDBException($"Error: couldn't auto increment {obj}");
+            }
+        }
+
         public async Task Update(LiftSlopeBL lift_slope)
         {
             var response = await _space.Update<ValueTuple<uint>, LiftSlopeDB>(

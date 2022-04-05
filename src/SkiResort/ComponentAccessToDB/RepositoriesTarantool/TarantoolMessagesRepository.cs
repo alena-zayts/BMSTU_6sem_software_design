@@ -18,6 +18,7 @@ namespace ComponentAccessToDB.RepositoriesTarantool
         private IIndex _index_primary;
         private IIndex _index_sender_id;
         private IIndex _index_checked_by_id;
+        private IBox _box;
 
         public TarantoolMessagesRepository(ContextTarantool context)
         {
@@ -25,6 +26,7 @@ namespace ComponentAccessToDB.RepositoriesTarantool
             _index_primary = context.messages_index_primary;
             _index_sender_id = context.messages_index_sender_id;
             _index_checked_by_id = context.messages_index_checked_by_id;
+            _box = context.box;
         }
 
         public async Task<List<MessageBL>> GetList()
@@ -84,6 +86,19 @@ namespace ComponentAccessToDB.RepositoriesTarantool
             catch (Exception ex)
             {
                 throw new MessageDBException($"Error: adding message {message}");
+            }
+        }
+
+        public async Task<MessageBL> AddAutoIncrement(MessageBL obj)
+        {
+            try
+            {
+                var result = await _box.Call_1_6<MessageDBi, MessageDB>("auto_increment_messages", (ModelsAdapter.MessageBLToDBi(obj)));
+                return ModelsAdapter.MessageDBToBL(result.Data[0]);
+            }
+            catch (Exception ex)
+            {
+                throw new MessageDBException($"Error: couldn't auto increment {obj}");
             }
         }
         public async Task Update(MessageBL message)

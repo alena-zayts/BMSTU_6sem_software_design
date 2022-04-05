@@ -291,6 +291,14 @@ namespace Tests
             Assert.Empty(await slope_rep.GetList());
             Assert.Empty(await rep.GetList());
 
+            LiftSlopeBL tmp5 = await rep.AddAutoIncrement(added_lift_slope1);
+            Assert.True(1 == tmp5.record_id);
+            LiftSlopeBL tmp6 = await rep.AddAutoIncrement(added_lift_slope1);
+            Assert.True(2 == tmp6.record_id);
+            await rep.Delete(tmp5);
+            await rep.Delete(tmp6);
+            Assert.Empty(await rep.GetList());
+
         }
     }
 }

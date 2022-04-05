@@ -100,6 +100,15 @@ namespace Tests
 
             // end tests - empty getlist
             Assert.Empty(await rep.GetList());
+
+
+            CardBL tmp2 = await rep.AddAutoIncrement(added_card1);
+            Assert.True(1 == tmp2.card_id);
+            CardBL tmp3 = await rep.AddAutoIncrement(added_card1);
+            Assert.True(2 == tmp3.card_id);
+            await rep.Delete(tmp2);
+            await rep.Delete(tmp3);
+            Assert.Empty(await rep.GetList());
         }
     }
 }

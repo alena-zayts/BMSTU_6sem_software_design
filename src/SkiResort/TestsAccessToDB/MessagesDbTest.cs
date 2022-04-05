@@ -86,6 +86,15 @@ namespace Tests
 
             // end tests - empty getlist
             Assert.Empty(await rep.GetList());
+
+
+            MessageBL tmp2 = await rep.AddAutoIncrement(added_message1);
+            Assert.True(1 == tmp2.message_id);
+            MessageBL tmp3 = await rep.AddAutoIncrement(added_message1);
+            Assert.True(2 == tmp3.message_id);
+            await rep.Delete(tmp2);
+            await rep.Delete(tmp3);
+            Assert.Empty(await rep.GetList());
         }
     }
 }

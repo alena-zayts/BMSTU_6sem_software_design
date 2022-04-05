@@ -16,9 +16,11 @@ namespace ComponentAccessToDB.RepositoriesTarantool
     {
         private ISpace _space;
         private IIndex _index_primary;
+        private IBox _box;
 
         public TarantoolCardsRepository(ContextTarantool context)
         {
+            _box = context.box;
             _space = context.cards_space;
             _index_primary = context.cards_index_primary;
         }
@@ -61,6 +63,18 @@ namespace ComponentAccessToDB.RepositoriesTarantool
             catch (Exception ex)
             {
                 throw new CardDBException($"Error: adding card {card}");
+            }
+        }
+        public async Task<CardBL> AddAutoIncrement(CardBL obj)
+        {
+            try
+            {
+                var result = await _box.Call_1_6<CardDBi, CardDB>("auto_increment_cards", (ModelsAdapter.CardBLToDBi(obj)));
+                return ModelsAdapter.CardDBToBL(result.Data[0]);
+            }
+            catch (Exception ex)
+            {
+                throw new CardDBException($"Error: couldn't auto increment {obj}");
             }
         }
         public async Task Update(CardBL card)

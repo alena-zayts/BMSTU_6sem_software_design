@@ -17,12 +17,14 @@ namespace ComponentAccessToDB.RepositoriesTarantool
         private IIndex _index_primary;
         private IIndex _index_name;
         private ISpace _space;
+        private IBox _box;
 
         public TarantoolLiftsRepository(ContextTarantool context)
         {
             _space = context.lifts_space;
             _index_primary = context.lifts_index_primary;
             _index_name = context.lifts_index_name;
+            _box = context.box;
         }
 
         public async Task<List<LiftBL>> GetList()
@@ -76,6 +78,19 @@ namespace ComponentAccessToDB.RepositoriesTarantool
             catch (Exception ex)
             {
                 throw new LiftDBException($"Error: adding lift {lift}");
+            }
+        }
+
+        public async Task<LiftBL> AddAutoIncrement(LiftBL obj)
+        {
+            try
+            {
+                var result = await _box.Call_1_6<LiftDBi, LiftDB>("auto_increment_lifts", (ModelsAdapter.LiftBLToDBi(obj)));
+                return ModelsAdapter.LiftDBToBL(result.Data[0]);
+            }
+            catch (Exception ex)
+            {
+                throw new LiftDBException($"Error: couldn't auto increment {obj}");
             }
         }
         public async Task Update(LiftBL lift)

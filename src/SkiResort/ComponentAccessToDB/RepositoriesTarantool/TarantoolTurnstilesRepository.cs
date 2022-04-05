@@ -17,12 +17,14 @@ namespace ComponentAccessToDB.RepositoriesTarantool
         private IIndex _index_primary;
         private IIndex _index_lift_id;
         private ISpace _space;
+        private IBox _box;
 
         public TarantoolTurnstilesRepository(ContextTarantool context)
         {
             _space = context.turnstiles_space;
             _index_primary = context.turnstiles_index_primary;
             _index_lift_id = context.turnstiles_index_lift_id;
+            _box = context.box;
         }
 
         public async Task<List<TurnstileBL>> GetList()
@@ -81,6 +83,20 @@ namespace ComponentAccessToDB.RepositoriesTarantool
                 throw new TurnstileDBException($"Error: adding turnstile {turnstile}");
             }
         }
+
+        public async Task<TurnstileBL> AddAutoIncrement(TurnstileBL obj)
+        {
+            try
+            {
+                var result = await _box.Call_1_6<TurnstileDBi, TurnstileDB>("auto_increment_turnstiles", (ModelsAdapter.TurnstileBLToDBi(obj)));
+                return ModelsAdapter.TurnstileDBToBL(result.Data[0]);
+            }
+            catch (Exception ex)
+            {
+                throw new TurnstileDBException($"Error: couldn't auto increment {obj}");
+            }
+        }
+
         public async Task Update(TurnstileBL turnstile)
         {
             var response = await _space.Update<ValueTuple<uint>, TurnstileDB>(
