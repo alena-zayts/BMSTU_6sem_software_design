@@ -10,6 +10,7 @@ namespace ComponentBL.RepositoriesInterfaces
     {
         Task<List<MessageBL>> GetList();
         Task Add(MessageBL message);
+        Task<MessageBL> AddAutoIncrement(MessageBL obj);
         Task Update(MessageBL message); 
         Task Delete(MessageBL message);
         Task<List<MessageBL>> GetListBySenderId(uint sender_id);

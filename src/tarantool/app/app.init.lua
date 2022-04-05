@@ -43,7 +43,7 @@ local function init()
 	users:create_index('primary')
 	users:create_index('index_email', {parts = {'user_email'}})
 	print('users created!')
-	
+
 	--- cards
 	cards = box.schema.space.create('cards', {field_count=3})
 	cards:format({
@@ -349,6 +349,39 @@ end
 function test()
 	print("ok")
 end
+
+function auto_increment_users(card_id, user_email, password, permissions)
+	return box.space.users:auto_increment{card_id, user_email, password, permissions}
+end
+
+function auto_increment_cards(activation_time, card_type)
+	return box.space.cards:auto_increment{activation_time, card_type}
+end
+
+function auto_increment_card_readings(turnstile_id, card_id, reading_time)
+	return box.space.card_readings:auto_increment{turnstile_id, card_id, reading_time}
+end
+
+function auto_increment_turnstiles(lift_id, is_open)
+	return box.space.turnstiles:auto_increment{lift_id, is_open}
+end
+
+function auto_increment_lifts(lift_name, is_open, seats_amount, lifting_time, queue_time)
+	return box.space.lifts:auto_increment{lift_name, is_open, seats_amount, lifting_time, queue_time}
+end
+
+function auto_increment_slopes(slope_name, is_open, difficulty_level)
+	return box.space.slopes:auto_increment{slope_name, is_open, difficulty_level}
+end
+
+function auto_increment_lifts_slopes(lift_id, slope_id)
+	return box.space.lifts_slopes:auto_increment{lift_id, slope_id}
+end
+
+function auto_increment_messages(sender_id, checked_by_id, text)
+	return box.space.messages:auto_increment{sender_id, checked_by_id, text}
+end
+
 
 
 box.cfg {

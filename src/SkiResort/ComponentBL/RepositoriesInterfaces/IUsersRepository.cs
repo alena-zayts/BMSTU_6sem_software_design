@@ -13,6 +13,7 @@ namespace ComponentBL.RepositoriesInterfaces
         Task<bool> CheckIdExists(uint user_id);
         Task<bool> CheckEmailExists(string user_email);
         Task Add(UserBL user);
+        Task<UserBL> AddAutoIncrement(UserBL obj);
         Task Update(UserBL user); 
         Task Delete(UserBL user); 
     }

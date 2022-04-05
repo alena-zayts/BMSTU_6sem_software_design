@@ -55,6 +55,18 @@ namespace ComponentAccessToDB.RepositoriesTarantool
                 throw new CardReadingDBException($"Error: couldn't count amount of car_readings for lift_id={lift_id} from {date_from}");
             }
         }
+        public async Task<CardReadingBL> AddAutoIncrement(CardReadingBL obj)
+        {
+            try
+            {
+                var result = await _box.Call_1_6<UserDBi, UserDB>("auto_increment_card_readings", (ModelsAdapter.UserBLToDBi(obj)));
+                return ModelsAdapter.UserDBToBL(result.Data[0]);
+            }
+            catch (Exception ex)
+            {
+                throw new CardReadingDBException($"Error: couldn't auto increment car_reading {obj}");
+            }
+        }
 
 
         public async Task Add(CardReadingBL card_reading)

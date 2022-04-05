@@ -11,6 +11,7 @@ namespace ComponentBL.RepositoriesInterfaces
         Task<LiftBL> GetById(uint lift_id);
         Task<LiftBL> GetByName(string name);
         Task Add(LiftBL lift);
+        Task<LiftBL> AddAutoIncrement(LiftBL obj);
         Task Update(LiftBL lift);
         Task Delete(LiftBL lift); 
     }
