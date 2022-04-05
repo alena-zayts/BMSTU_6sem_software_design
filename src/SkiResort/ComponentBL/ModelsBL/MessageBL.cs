@@ -6,6 +6,11 @@ namespace ComponentBL.ModelsBL
     {
         public MessageBL(uint message_id, uint sender_id, uint checked_by_id, string text)
         {
+            if (text.Length == 0)
+            {
+                throw new MessageBLException("text of message cannot be empty");
+            }
+
             this.message_id = message_id;
             this.sender_id = sender_id;
             this.checked_by_id = checked_by_id;

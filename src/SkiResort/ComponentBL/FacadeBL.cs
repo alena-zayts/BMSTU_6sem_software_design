@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 using ComponentBL.ModelsBL;
 using ComponentBL.RepositoriesInterfaces;
+using ComponentBL.Services;
 
 namespace ComponentBL
 {
@@ -145,13 +146,25 @@ namespace ComponentBL
 
         public async Task AdminUsersDelete(UserBL user)
         {
+            string func_name = System.Reflection.MethodBase.GetCurrentMethod().Name;
             IUsersRepository usersRepository = repositories_factory.CreateUsersRepository();
             await usersRepository.Delete(user);
         }
 
-        //public async Task SendMessage(uint user_id, string message)
-        //{
-        //    MessageBL = new MessageBL()
-        //}
+        public async Task<MessageBL> SendMessage(uint user_id, string text)
+        {
+            if (! await CheckPermissionsService.CheckPermissions(
+                repositories_factory.CreateUsersRepository(),
+                user_id,
+                System.Reflection.MethodBase.GetCurrentMethod().Name))
+            {
+                throw new PermissionsException(user_id, System.Reflection.MethodBase.GetCurrentMethod().Name);
+            }
+
+            MessageBL message = new MessageBL(0, user_id, 0, text);
+            IMessagesRepository rep = repositories_factory.CreateMessagesRepository();
+            message = await rep.AddAutoIncrement(message);
+            return message;
+        }
     }
 }
