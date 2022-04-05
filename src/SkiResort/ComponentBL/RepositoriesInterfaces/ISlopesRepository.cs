@@ -11,6 +11,7 @@ namespace ComponentBL.RepositoriesInterfaces
         Task<SlopeBL> GetById(uint slope_id);
         Task<SlopeBL> GetByName(string name);
         Task Add(SlopeBL slope);
+        Task<SlopeBL> AddAutoIncrement(SlopeBL obj);
         Task Update(SlopeBL slope);
         Task Delete(SlopeBL slope); 
     }

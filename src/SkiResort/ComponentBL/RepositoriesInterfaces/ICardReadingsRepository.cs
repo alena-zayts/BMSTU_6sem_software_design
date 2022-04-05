@@ -11,8 +11,9 @@ namespace ComponentBL.RepositoriesInterfaces
         Task<uint> CountForLiftIdFromDate(uint lift_id, uint date_from);
 
 
-        // для тестов
+        // пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
         Task Add(CardReadingBL card_reading);
         Task Delete(CardReadingBL card_reading);
+        Task<CardReadingBL> AddAutoIncrement(CardReadingBL obj);
     }
 }

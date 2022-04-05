@@ -11,6 +11,7 @@ namespace ComponentBL.RepositoriesInterfaces
         Task<List<UserBL>> GetList();
         Task<UserBL> GetById(uint user_id);
         Task Add(UserBL user);
+        Task<UserBL> AddAutoIncrement(UserBL obj);
         Task Update(UserBL user); 
         Task Delete(UserBL user); 
     }
