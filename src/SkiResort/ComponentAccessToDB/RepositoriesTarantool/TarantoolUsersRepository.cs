@@ -16,6 +16,7 @@ namespace ComponentAccessToDB.RepositoriesTarantool
     {
         private ISpace _space;
         private IIndex _index_primary;
+        private IIndex _index_email;
 
         public TarantoolUsersRepository(ContextTarantool context)
         {
@@ -89,6 +90,36 @@ namespace ComponentAccessToDB.RepositoriesTarantool
                 throw new UserDBException($"Error: deleting user {user}");
             }
 
+        }
+        public async Task<bool> CheckIdExists(uint user_id)
+        {
+            try
+            {
+                UserBL user_tmp = await GetById(user_id);
+                return true;
+            }
+            catch (UserDBException ex)
+            {
+                return false;
+            }
+        }
+
+        public async Task<bool> CheckEmailExists(string user_email)
+        {
+            try
+            {
+                var data = await _index_email.Select<ValueTuple<string>, UserDB>
+                (ValueTuple.Create(user_email));
+
+                if (data.Data.Length == 1)
+                {
+                    return true;
+                }
+            }
+
+            catch (UserDBException ex) { }
+
+            return false;
         }
     }
 }

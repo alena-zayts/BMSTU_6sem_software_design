@@ -4,7 +4,7 @@ namespace ComponentBL.ModelsBL
 {
     public class LiftBL
     {
-        public uint lift_id { get; }
+        public uint lift_id { get; set; }
         public string lift_name { get; set; }
         public bool is_open { get; set; }
         public uint seats_amount { get; set; }

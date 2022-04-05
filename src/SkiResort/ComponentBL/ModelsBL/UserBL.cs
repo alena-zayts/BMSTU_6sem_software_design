@@ -1,14 +1,13 @@
 using System;
-using ComponentAccessToDB;
 
 namespace ComponentBL.ModelsBL
 {
-    public enum Permissions
+    public enum Permissions: uint
     {
-        UNAUTHORIZED,
-        AUTHORIZED,
-        SKI_PATROL,
-        ADMIN
+        UNAUTHORIZED = 0u,
+        AUTHORIZED = 1u,
+        SKI_PATROL = 2u,
+        ADMIN = 3u
     }
 
 public class UserBL
@@ -27,7 +26,7 @@ public class UserBL
             this.permissions = permissions;
 
         }
-        public uint user_id { get; }
+        public uint user_id { get; set; }
         public uint card_id { get; set; }
         public string user_email { get; set; }
         public string password { get; set; }

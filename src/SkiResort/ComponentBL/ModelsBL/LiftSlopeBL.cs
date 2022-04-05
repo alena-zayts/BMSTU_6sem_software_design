@@ -11,7 +11,7 @@ namespace ComponentBL.ModelsBL
             this.slope_id = slope_id;
 
         }
-        public uint record_id { get; }
+        public uint record_id { get; set; }
         public uint lift_id { get; set; }
         public uint slope_id { get; set; }
 

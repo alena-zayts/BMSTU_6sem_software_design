@@ -4,7 +4,7 @@ namespace ComponentBL.ModelsBL
 {
     public class SlopeBL
     {
-        public uint slope_id { get; }
+        public uint slope_id { get; set; }
         public string slope_name { get; set; }
         public bool is_open { get; set; }
         public uint difficulty_level { get; set; }

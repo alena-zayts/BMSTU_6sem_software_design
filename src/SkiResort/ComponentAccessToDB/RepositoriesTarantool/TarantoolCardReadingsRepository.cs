@@ -65,10 +65,27 @@ namespace ComponentAccessToDB.RepositoriesTarantool
             }
             catch (Exception ex)
             {
-                throw new CardReadingDBException($"Error: adding card {card_reading}");
+                throw new CardReadingDBException($"Error: adding card_reading {card_reading}");
             }
         }
-        
+
+        public async Task<CardReadingBL> AddAutoIncrement(CardReadingBL card_reading)
+        {
+            try
+            {
+                var list = await GetList();
+
+                uint new_index = (uint) list.Count + 1;
+                card_reading.record_id = new_index;
+                await Add(card_reading);
+                return card_reading;
+            }
+            catch (Exception ex)
+            {
+                throw new CardReadingDBException($"Error: increment card_reading {card_reading}");
+            }
+        }
+
 
         public async Task Delete(CardReadingBL card_reading)
         {

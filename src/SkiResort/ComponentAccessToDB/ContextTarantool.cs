@@ -35,6 +35,7 @@ namespace ComponentAccessToDB
 
         public ISpace users_space;
         public IIndex users_index_primary;
+        public IIndex users_index_email;
 
         public ISpace messages_space;
         public IIndex messages_index_primary;
@@ -50,7 +51,7 @@ namespace ComponentAccessToDB
             turnstiles_space, turnstiles_index_primary, turnstiles_index_lift_id,
             card_readings_space, card_readings_index_primary, card_readings_index_turnstile,
             cards_space, cards_index_primary,
-            users_space, users_index_primary,
+            users_space, users_index_primary, users_index_email,
             messages_space, messages_index_primary, messages_index_sender_id, messages_index_checked_by_id
             ) = Initialize(connection_string).GetAwaiter().GetResult();
 
@@ -63,7 +64,7 @@ namespace ComponentAccessToDB
         ISpace, IIndex, IIndex,
         ISpace, IIndex, IIndex,
         ISpace, IIndex,
-        ISpace, IIndex,
+        ISpace, IIndex, IIndex,
         ISpace, IIndex, IIndex, IIndex)> 
             Initialize(string connection_string)
         {
@@ -100,6 +101,7 @@ namespace ComponentAccessToDB
 
             var users_space = await schema.GetSpace("users");
             var users_index_primary = await users_space.GetIndex("primary");
+            var users_index_email = await users_space.GetIndex("index_email");
 
 
             var messages_space = await schema.GetSpace("messages");
@@ -118,7 +120,7 @@ namespace ComponentAccessToDB
                 turnstiles_space, turnstiles_index_primary, turnstiles_index_lift_id,
                 card_readings_space, card_readings_index_primary, card_readings_index_turnstile,
                 cards_space, cards_index_primary,
-                users_space, users_index_primary,
+                users_space, users_index_primary, users_index_email,
                 messages_space, messages_index_primary, messages_index_sender_id, messages_index_checked_by_id
             );
         }

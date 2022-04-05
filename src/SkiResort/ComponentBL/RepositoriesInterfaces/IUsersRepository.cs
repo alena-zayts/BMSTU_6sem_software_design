@@ -10,6 +10,8 @@ namespace ComponentBL.RepositoriesInterfaces
     {
         Task<List<UserBL>> GetList();
         Task<UserBL> GetById(uint user_id);
+        Task<bool> CheckIdExists(uint user_id);
+        Task<bool> CheckEmailExists(string user_email);
         Task Add(UserBL user);
         Task Update(UserBL user); 
         Task Delete(UserBL user); 

@@ -11,7 +11,7 @@ namespace ComponentBL.ModelsBL
             this.is_open = is_open;
 
         }
-        public uint turnstile_id { get; }
+        public uint turnstile_id { get; set; }
         public uint lift_id { get; set; }
         public bool is_open { get; set; }
 

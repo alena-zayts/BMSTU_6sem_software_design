@@ -11,7 +11,7 @@ namespace ComponentBL.ModelsBL
             this.type = type;
 
         }
-        public uint card_id { get; }
+        public uint card_id { get; set; }
         public uint activation_time { get; set; }
         public string type { get; set; }
 

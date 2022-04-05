@@ -12,7 +12,7 @@ namespace ComponentBL.ModelsBL
             this.text = text;
 
         }
-        public uint message_id { get; }
+        public uint message_id { get; set; }
         public uint sender_id { get; set; }
         public uint checked_by_id { get; set; }
         public string text { get; set; }

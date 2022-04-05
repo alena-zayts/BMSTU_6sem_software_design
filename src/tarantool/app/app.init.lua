@@ -41,6 +41,7 @@ local function init()
 		{name = 'permissions', type = 'unsigned'}
 	})
 	users:create_index('primary')
+	users:create_index('index_email', {parts = {'user_email'}})
 	print('users created!')
 	
 	--- cards

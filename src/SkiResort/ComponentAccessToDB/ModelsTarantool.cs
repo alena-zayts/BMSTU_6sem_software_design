@@ -6,4 +6,3 @@ global using LiftSlopeDB = System.ValueTuple<uint, uint, uint>;
 global using SlopeDB = System.ValueTuple<uint, string, bool, uint>;
 global using TurnstileDB = System.ValueTuple<uint, uint, bool>;
 global using MessageDB = System.ValueTuple<uint, uint, uint, string>;
-
