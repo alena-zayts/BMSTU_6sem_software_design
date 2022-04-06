@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace ComponentBL.ModelsBL
 {
@@ -8,7 +9,9 @@ namespace ComponentBL.ModelsBL
         public string slope_name { get; set; }
         public bool is_open { get; set; }
         public uint difficulty_level { get; set; }
-        
+        public List<LiftBL> connected_lifts { get; set; }
+
+
 
         public SlopeBL(uint slope_id, string slope_name, bool is_open, uint difficulty_level)
         {

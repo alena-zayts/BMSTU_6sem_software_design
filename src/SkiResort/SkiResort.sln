@@ -1,13 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.32228.343
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32328.378
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ComponentAccessToDB", "ComponentAccessToDB\ComponentAccessToDB.csproj", "{87C8CF63-BC54-4500-A9E1-9844A3533CDD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ComponentAccessToDB", "ComponentAccessToDB\ComponentAccessToDB.csproj", "{87C8CF63-BC54-4500-A9E1-9844A3533CDD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ComponentBL", "ComponentBL\ComponentBL.csproj", "{D64E8DAD-5374-46DC-95D5-F1128509F2A2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ComponentBL", "ComponentBL\ComponentBL.csproj", "{D64E8DAD-5374-46DC-95D5-F1128509F2A2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestsAccessToDB", "TestsAccessToDB\TestsAccessToDB.csproj", "{69BF6B9C-11C7-4B66-87FE-3E476E4E235E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestsAccessToDB", "TestsAccessToDB\TestsAccessToDB.csproj", "{69BF6B9C-11C7-4B66-87FE-3E476E4E235E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestsBL", "TestsBL\TestsBL.csproj", "{68F40463-83FA-47E3-8A16-1C8EAF216819}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{69BF6B9C-11C7-4B66-87FE-3E476E4E235E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{69BF6B9C-11C7-4B66-87FE-3E476E4E235E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{69BF6B9C-11C7-4B66-87FE-3E476E4E235E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{68F40463-83FA-47E3-8A16-1C8EAF216819}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{68F40463-83FA-47E3-8A16-1C8EAF216819}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{68F40463-83FA-47E3-8A16-1C8EAF216819}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{68F40463-83FA-47E3-8A16-1C8EAF216819}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

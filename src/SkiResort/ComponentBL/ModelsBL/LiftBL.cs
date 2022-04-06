@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace ComponentBL.ModelsBL
 {
@@ -10,6 +11,7 @@ namespace ComponentBL.ModelsBL
         public uint seats_amount { get; set; }
         public uint lifting_time { get; set; }
         public uint queue_time { get; set; }
+        public List<SlopeBL> connected_slopes { get; set; }
 
         public LiftBL(uint lift_id, string lift_name, bool is_open, uint seats_amount, uint lifting_time, uint queue_time)
         {
