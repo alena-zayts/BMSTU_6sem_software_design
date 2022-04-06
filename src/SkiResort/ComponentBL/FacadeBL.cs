@@ -138,6 +138,13 @@ namespace ComponentBL
             IUsersRepository usersRepository = repositories_factory.CreateUsersRepository();
             await usersRepository.Add(user);
         }
+
+        public async Task<UserBL> AdminUsersAddAoutoIncrement(UserBL user)
+        {
+            IUsersRepository usersRepository = repositories_factory.CreateUsersRepository();
+            return await usersRepository.AddAutoIncrement(user);
+        }
+
         public async Task AdminUsersUpdate(UserBL user)
         {
             IUsersRepository usersRepository = repositories_factory.CreateUsersRepository();
@@ -165,6 +172,150 @@ namespace ComponentBL
             IMessagesRepository rep = repositories_factory.CreateMessagesRepository();
             message = await rep.AddAutoIncrement(message);
             return message;
+        }
+
+        public async Task<List<MessageBL>> ReadMessagesList(uint user_id)
+        {
+            if (!await CheckPermissionsService.CheckPermissions(
+                repositories_factory.CreateUsersRepository(),
+                user_id,
+                System.Reflection.MethodBase.GetCurrentMethod().Name))
+            {
+                throw new PermissionsException(user_id, System.Reflection.MethodBase.GetCurrentMethod().Name);
+            }
+            IMessagesRepository rep = repositories_factory.CreateMessagesRepository();
+            return await rep.GetList();
+        }
+
+        public async Task<MessageBL> MarkMessageReadByUser(uint user_id, uint message_id)
+        {
+            if (!await CheckPermissionsService.CheckPermissions(
+                repositories_factory.CreateUsersRepository(),
+                user_id,
+                System.Reflection.MethodBase.GetCurrentMethod().Name))
+            {
+                throw new PermissionsException(user_id, System.Reflection.MethodBase.GetCurrentMethod().Name);
+            }
+
+            IMessagesRepository rep = repositories_factory.CreateMessagesRepository();
+            MessageBL message = await rep.GetById(message_id);
+            
+            if (message.checked_by_id != 0)
+            {
+                throw new MessageBLException("Couldn't mark message checked because it is alredy checked", message);
+            }
+
+            message.checked_by_id = user_id;
+            await rep.Update(message);
+
+            return message;
+        }
+
+        public async Task AdminMessagesUpdate(uint user_id, MessageBL message)
+        {
+            if (!await CheckPermissionsService.CheckPermissions(repositories_factory.CreateUsersRepository(),
+                user_id,
+                System.Reflection.MethodBase.GetCurrentMethod().Name))
+            {
+                throw new PermissionsException(user_id, System.Reflection.MethodBase.GetCurrentMethod().Name);
+            }
+
+            IMessagesRepository rep = repositories_factory.CreateMessagesRepository();
+            await rep.Update(message);
+        }
+
+        public async Task AdminMessagesDelete(uint user_id, MessageBL message)
+        {
+            if (!await CheckPermissionsService.CheckPermissions(repositories_factory.CreateUsersRepository(),
+                user_id,
+                System.Reflection.MethodBase.GetCurrentMethod().Name))
+            {
+                throw new PermissionsException(user_id, System.Reflection.MethodBase.GetCurrentMethod().Name);
+            }
+
+            IMessagesRepository rep = repositories_factory.CreateMessagesRepository();
+            await rep.Delete(message);
+        }
+
+        public async Task<LiftBL> GetLiftInfo(uint user_id, string lift_name)
+        {
+            if (!await CheckPermissionsService.CheckPermissions(repositories_factory.CreateUsersRepository(),
+                user_id,
+                System.Reflection.MethodBase.GetCurrentMethod().Name))
+            {
+                throw new PermissionsException(user_id, System.Reflection.MethodBase.GetCurrentMethod().Name);
+            }
+
+            ILiftsRepository rep = repositories_factory.CreateLiftsRepository();
+            LiftBL lift = await rep.GetByName(lift_name);
+
+            ILiftsSlopesRepository help_rep = repositories_factory.CreateLiftsSlopesRepository();
+            lift.connected_slopes = await help_rep.GetSlopesByLiftId(lift.lift_id);
+
+            return lift;
+
+        }
+
+        public async Task<List<LiftBL>> GetLiftsInfo(uint user_id)
+        {
+            if (!await CheckPermissionsService.CheckPermissions(repositories_factory.CreateUsersRepository(),
+                user_id,
+                System.Reflection.MethodBase.GetCurrentMethod().Name))
+            {
+                throw new PermissionsException(user_id, System.Reflection.MethodBase.GetCurrentMethod().Name);
+            }
+
+            ILiftsRepository rep = repositories_factory.CreateLiftsRepository();
+            List<LiftBL> lifts_list = await rep.GetList();
+
+            ILiftsSlopesRepository help_rep = repositories_factory.CreateLiftsSlopesRepository();
+
+            foreach (LiftBL lift in lifts_list)
+            {
+                lift.connected_slopes = await help_rep.GetSlopesByLiftId(lift.lift_id);
+            }
+            return lifts_list;
+        }
+
+        public async Task UpdateLiftInfo(uint user_id, LiftBL lift)
+        {
+            if (!await CheckPermissionsService.CheckPermissions(repositories_factory.CreateUsersRepository(),
+                 user_id,
+                System.Reflection.MethodBase.GetCurrentMethod().Name))
+            {
+                throw new PermissionsException(user_id, System.Reflection.MethodBase.GetCurrentMethod().Name);
+            }
+
+            ILiftsRepository rep = repositories_factory.CreateLiftsRepository();
+            await rep.Update(lift);
+
+        }
+
+        public async Task AdminLiftDelete(uint user_id, LiftBL lift)
+        {
+            if (!await CheckPermissionsService.CheckPermissions(repositories_factory.CreateUsersRepository(),
+                user_id,
+                System.Reflection.MethodBase.GetCurrentMethod().Name))
+            {
+                throw new PermissionsException(user_id, System.Reflection.MethodBase.GetCurrentMethod().Name);
+            }
+
+            ILiftsRepository rep = repositories_factory.CreateLiftsRepository();
+            await rep.Delete(lift);
+        }
+
+
+        public async Task AdminLiftAddAutoIncrement(uint user_id, LiftBL lift)
+        {
+            if (!await CheckPermissionsService.CheckPermissions(repositories_factory.CreateUsersRepository(),
+                user_id,
+                System.Reflection.MethodBase.GetCurrentMethod().Name))
+            {
+                throw new PermissionsException(user_id, System.Reflection.MethodBase.GetCurrentMethod().Name);
+            }
+
+            ILiftsRepository rep = repositories_factory.CreateLiftsRepository();
+            await rep.AddAutoIncrement(lift);
         }
     }
 }

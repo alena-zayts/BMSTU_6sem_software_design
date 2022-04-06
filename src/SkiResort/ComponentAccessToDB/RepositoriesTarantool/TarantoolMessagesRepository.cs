@@ -77,6 +77,19 @@ namespace ComponentAccessToDB.RepositoriesTarantool
             return result;
         }
 
+        public async Task<MessageBL> GetById(uint message_id)
+        {
+            var data = await _index_primary.Select<ValueTuple<uint>, MessageDB>
+                (ValueTuple.Create(message_id));
+
+            if (data.Data.Length != 1)
+            {
+                throw new MessageDBException($"Error: couldn't find message with message_id={message_id}");
+            }
+
+            return ModelsAdapter.MessageDBToBL(data.Data[0]);
+        }
+
         public async Task Add(MessageBL message)
         {
             try

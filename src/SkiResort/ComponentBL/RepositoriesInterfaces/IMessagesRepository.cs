@@ -9,6 +9,7 @@ namespace ComponentBL.RepositoriesInterfaces
     public interface IMessagesRepository
     {
         Task<List<MessageBL>> GetList();
+        Task<MessageBL> GetById(uint message_id);
         Task Add(MessageBL message);
         Task<MessageBL> AddAutoIncrement(MessageBL obj);
         Task Update(MessageBL message); 
