@@ -20,8 +20,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ComponentAccessToDB\ComponentAccessToDB.csproj" />
-    <ProjectReference Include="..\ComponentBL\ComponentBL.csproj" />
+    <ProjectReference Include="..\AccessToDB\AccessToDB.csproj" />
+    <ProjectReference Include="..\BL\BL.csproj" />
   </ItemGroup>
 
 </Project>

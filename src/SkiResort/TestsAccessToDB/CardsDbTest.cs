@@ -4,8 +4,8 @@ using Xunit.Abstractions;
 
 using ProGaudi.Tarantool.Client;
 
-using ComponentBL.ModelsBL;
-using ComponentBL.RepositoriesInterfaces;
+using BL.Models;
+using BL.IRepositories;
 
 
 using ComponentAccessToDB.RepositoriesTarantool;
@@ -43,14 +43,14 @@ namespace Tests
             await Assert.ThrowsAsync<CardDBException>(() => rep.Add(added_card));
 
             // get_by_id correct
-            CardBL got_card = await rep.GetById(added_card.card_id);
+            CardBL got_card = await rep.GetById(added_card.CardID);
             Assert.Equal(added_card, got_card);
 
             // delete correct
             await rep.Delete(added_card);
 
             // get_by_id not existing
-            await Assert.ThrowsAsync<CardDBException>(() => rep.GetById(added_card.card_id));
+            await Assert.ThrowsAsync<CardDBException>(() => rep.GetById(added_card.CardID));
 
             // delete not existing
             await Assert.ThrowsAsync<CardDBException>(() => rep.Delete(added_card));
@@ -77,8 +77,8 @@ namespace Tests
             CardBL added_card2 = new CardBL(2, 9, "adult");
             await rep.Add(added_card2);
 
-            added_card2.type = "wow";
-            added_card1.activation_time = 99;
+            added_card2.Type = "wow";
+            added_card1.ActivationTime = 99;
 
             // updates correct
             await rep.Update(added_card1);
@@ -103,9 +103,9 @@ namespace Tests
 
 
             CardBL tmp2 = await rep.AddAutoIncrement(added_card1);
-            Assert.True(1 == tmp2.card_id);
+            Assert.True(1 == tmp2.CardID);
             CardBL tmp3 = await rep.AddAutoIncrement(added_card1);
-            Assert.True(2 == tmp3.card_id);
+            Assert.True(2 == tmp3.CardID);
             await rep.Delete(tmp2);
             await rep.Delete(tmp3);
             Assert.Empty(await rep.GetList());

@@ -7,8 +7,8 @@
 //using ProGaudi.Tarantool.Client.Model.Enums;
 //using ProGaudi.Tarantool.Client.Model.UpdateOperations;
 
-//using ComponentBL.ModelsBL;
-//using ComponentBL.RepositoriesInterfaces;
+//using BL.Models;
+//using BL.IRepositories;
 
 //namespace ComponentAccessToDB.RepositoriesTarantool
 //{
@@ -48,84 +48,84 @@
 //            return result;
 //        }
 
-//        public async Task<LiftSlopeBL> GetById(uint record_id)
+//        public async Task<LiftSlopeBL> GetById(uint RecordID)
 //        {
 //            var data = await _index_primary.Select<ValueTuple<uint>, LiftSlopeDB>
-//                (ValueTuple.Create(record_id));
+//                (ValueTuple.Create(RecordID));
 
 //            if (data.Data.Length != 1)
 //            {
-//                throw new LiftSlopeDBException($"Error: couldn't find lift_slope with record_id={record_id}");
+//                throw new LiftSlopeDBException($"Error: couldn't find lift_slope with RecordID={RecordID}");
 //            }
 
 //            return ModelsAdapter.LiftSlopeDBToBL(data.Data[0]);
 //        }
-//        private async Task<List<uint>> GetLiftIdsBySlopeId(uint slope_id)
+//        private async Task<List<uint>> GetLiftIdsBySlopeId(uint SlopeID)
 //        {
 //            List<uint> result = new List<uint>();
 //            var data = await _index_slope_id.Select<ValueTuple<uint>, LiftSlopeDB>
-//                (ValueTuple.Create(slope_id));
+//                (ValueTuple.Create(SlopeID));
 
 //            foreach (var item in data.Data)
 //            {
 //                LiftSlopeBL lift_slope = ModelsAdapter.LiftSlopeDBToBL(item);
-//                result.Add(lift_slope.lift_id);
+//                result.Add(lift_slope.LiftID);
 //            }
 
 //            return result;
 //        }
-//        public async Task<List<LiftBL>> GetLiftsBySlopeId(uint slope_id)
+//        public async Task<List<LiftBL>> GetLiftsBySlopeId(uint SlopeID)
 //        {
 //            List<LiftBL> result = new List<LiftBL>();
-//            List<uint> lift_ids = await GetLiftIdsBySlopeId(slope_id);
+//            List<uint> lift_ids = await GetLiftIdsBySlopeId(SlopeID);
 
-//            foreach (var lift_id in lift_ids)
+//            foreach (var LiftID in lift_ids)
 //            {
 //                try
 //                {
-//                    var lift = await _lifts_rep.GetById(lift_id);
+//                    var lift = await _lifts_rep.GetById(LiftID);
 //                    result.Add(lift);
 
 //                }
 //                catch (LiftDBException)
 //                {
-//                    throw new LiftSlopeDBException($"Error: couldn't find lift_id={lift_id} (for slope_id={slope_id})");
+//                    throw new LiftSlopeDBException($"Error: couldn't find LiftID={LiftID} (for SlopeID={SlopeID})");
 //                }
 //            }
 //            return result;
 //        }
 
 
-//        private async Task<List<uint>> GetSlopeIdsByLiftId(uint lift_id)
+//        private async Task<List<uint>> GetSlopeIdsByLiftId(uint LiftID)
 //        {
 //            List<uint> result = new List<uint>();
 //            var data = await _index_lift_id.Select<ValueTuple<uint>, LiftSlopeDB>
-//                (ValueTuple.Create(lift_id));
+//                (ValueTuple.Create(LiftID));
 
 //            foreach (var item in data.Data)
 //            {
 //                LiftSlopeBL lift_slope = ModelsAdapter.LiftSlopeDBToBL(item);
-//                result.Add(lift_slope.slope_id);
+//                result.Add(lift_slope.SlopeID);
 //            }
 
 //            return result;
 //        }
-//        public async Task<List<SlopeBL>> GetSlopesByLiftId(uint lift_id)
+//        public async Task<List<SlopeBL>> GetSlopesByLiftId(uint LiftID)
 //        {
 //            List<SlopeBL> result = new();
-//            List<uint> slope_ids = await GetSlopeIdsByLiftId(lift_id);
+//            List<uint> slope_ids = await GetSlopeIdsByLiftId(LiftID);
 
-//            foreach (var slope_id in slope_ids)
+//            foreach (var SlopeID in slope_ids)
 //            {
 //                try
 //                {
-//                    var slope = await _slopes_rep.GetById(slope_id);
+//                    var slope = await _slopes_rep.GetById(SlopeID);
 //                    result.Add(slope);
 
 //                }
 //                catch (SlopeDBException)
 //                {
-//                    throw new LiftSlopeDBException($"Error: couldn't find slope_id={slope_id} (for lift_id={lift_id})");
+//                    throw new LiftSlopeDBException($"Error: couldn't find SlopeID={SlopeID} (for LiftID={LiftID})");
 //                }
 //            }
 //            return result;
@@ -160,9 +160,9 @@
 //        public async Task Update(LiftSlopeBL lift_slope)
 //        {
 //            var response = await _space.Update<ValueTuple<uint>, LiftSlopeDB>(
-//                ValueTuple.Create(lift_slope.record_id), new UpdateOperation[] {
-//                    UpdateOperation.CreateAssign<uint>(1, lift_slope.lift_id),
-//                    UpdateOperation.CreateAssign<uint>(2, lift_slope.slope_id),
+//                ValueTuple.Create(lift_slope.RecordID), new UpdateOperation[] {
+//                    UpdateOperation.CreateAssign<uint>(1, lift_slope.LiftID),
+//                    UpdateOperation.CreateAssign<uint>(2, lift_slope.SlopeID),
 //                });
 
 //            if (response.Data.Length != 1)
@@ -174,7 +174,7 @@
 //        public async Task Delete(LiftSlopeBL lift_slope)
 //        {
 //            var response = await _index_primary.Delete<ValueTuple<uint>, LiftSlopeDB>
-//                (ValueTuple.Create(lift_slope.record_id));
+//                (ValueTuple.Create(lift_slope.RecordID));
 
 //            if (response.Data.Length != 1)
 //            {

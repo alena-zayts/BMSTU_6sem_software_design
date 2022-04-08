@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Ninject.Modules;
 
-using ComponentBL.RepositoriesInterfaces;
+using BL.IRepositories;
 using TestsBL.RepositoriesFake;
 
 using ComponentBL;

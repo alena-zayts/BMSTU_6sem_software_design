@@ -7,8 +7,8 @@
 //using ProGaudi.Tarantool.Client.Model.Enums;
 //using ProGaudi.Tarantool.Client.Model.UpdateOperations;
 
-//using ComponentBL.ModelsBL;
-//using ComponentBL.RepositoriesInterfaces;
+//using BL.Models;
+//using BL.IRepositories;
 
 //namespace ComponentAccessToDB.RepositoriesTarantool
 //{
@@ -43,14 +43,14 @@
 //            return result;
 //        }
 
-//        public async Task<LiftBL> GetById(uint lift_id)
+//        public async Task<LiftBL> GetById(uint LiftID)
 //        {
 //            var data = await _index_primary.Select<ValueTuple<uint>, LiftDB>
-//                (ValueTuple.Create(lift_id));
+//                (ValueTuple.Create(LiftID));
 
 //            if (data.Data.Length != 1)
 //            {
-//                throw new LiftDBException($"Error: couldn't find lift with lift_id={lift_id}");
+//                throw new LiftDBException($"Error: couldn't find lift with LiftID={LiftID}");
 //            }
 
 //            return ModelsAdapter.LiftDBToBL(data.Data[0]);
@@ -96,12 +96,12 @@
 //        public async Task Update(LiftBL lift)
 //        {
 //            var response = await _space.Update<ValueTuple<uint>, LiftDB>(
-//                ValueTuple.Create(lift.lift_id), new UpdateOperation[] {
-//                    UpdateOperation.CreateAssign<string>(1, lift.lift_name),
-//                    UpdateOperation.CreateAssign<bool>(2, lift.is_open),
-//                    UpdateOperation.CreateAssign<uint>(3, lift.seats_amount),
-//                    UpdateOperation.CreateAssign<uint>(4, lift.lifting_time),
-//                    UpdateOperation.CreateAssign<uint>(5, lift.queue_time),
+//                ValueTuple.Create(lift.LiftID), new UpdateOperation[] {
+//                    UpdateOperation.CreateAssign<string>(1, lift.LiftName),
+//                    UpdateOperation.CreateAssign<bool>(2, lift.IsOpen),
+//                    UpdateOperation.CreateAssign<uint>(3, lift.SeatsAmount),
+//                    UpdateOperation.CreateAssign<uint>(4, lift.LiftingTime),
+//                    UpdateOperation.CreateAssign<uint>(5, lift.QueueTime),
 //                });
 
 //            if (response.Data.Length != 1)
@@ -113,7 +113,7 @@
 //        public async Task Delete(LiftBL lift)
 //        {
 //            var response = await _index_primary.Delete<ValueTuple<uint>, LiftDB>
-//                (ValueTuple.Create(lift.lift_id));
+//                (ValueTuple.Create(lift.LiftID));
 
 //            if (response.Data.Length != 1)
 //            {

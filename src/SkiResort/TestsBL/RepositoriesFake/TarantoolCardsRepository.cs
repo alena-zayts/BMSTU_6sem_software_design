@@ -7,8 +7,8 @@
 //using ProGaudi.Tarantool.Client.Model.Enums;
 //using ProGaudi.Tarantool.Client.Model.UpdateOperations;
 
-//using ComponentBL.ModelsBL;
-//using ComponentBL.RepositoriesInterfaces;
+//using BL.Models;
+//using BL.IRepositories;
 
 //namespace ComponentAccessToDB.RepositoriesTarantool
 //{
@@ -41,14 +41,14 @@
 //            return result;
 //        }
 
-//        public async Task<CardBL> GetById(uint card_id)
+//        public async Task<CardBL> GetById(uint CardID)
 //        {
 //            var data = await _index_primary.Select<ValueTuple<uint>, CardDB>
-//                (ValueTuple.Create(card_id));
+//                (ValueTuple.Create(CardID));
 
 //            if (data.Data.Length != 1)
 //            {
-//                throw new CardDBException($"Error: couldn't find card with card_id={card_id}");
+//                throw new CardDBException($"Error: couldn't find card with CardID={CardID}");
 //            }
 
 //            return ModelsAdapter.CardDBToBL(data.Data[0]);
@@ -80,9 +80,9 @@
 //        public async Task Update(CardBL card)
 //        {
 //            var response = await _space.Update<ValueTuple<uint>, CardDB>(
-//                ValueTuple.Create(card.card_id), new UpdateOperation[] {
-//                    UpdateOperation.CreateAssign<uint>(1, card.activation_time),
-//                    UpdateOperation.CreateAssign<string>(2, card.type),
+//                ValueTuple.Create(card.CardID), new UpdateOperation[] {
+//                    UpdateOperation.CreateAssign<uint>(1, card.ActivationTime),
+//                    UpdateOperation.CreateAssign<string>(2, card.Type),
 //                });
 
 //            if (response.Data.Length != 1)
@@ -94,7 +94,7 @@
 //        public async Task Delete(CardBL card)
 //        {
 //            var response = await _index_primary.Delete<ValueTuple<uint>, CardDB>
-//                (ValueTuple.Create(card.card_id));
+//                (ValueTuple.Create(card.CardID));
 
 //            if (response.Data.Length != 1)
 //            {

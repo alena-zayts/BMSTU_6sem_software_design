@@ -4,8 +4,8 @@ using Xunit.Abstractions;
 
 using ProGaudi.Tarantool.Client;
 
-using ComponentBL.ModelsBL;
-using ComponentBL.RepositoriesInterfaces;
+using BL.Models;
+using BL.IRepositories;
 
 
 using ComponentAccessToDB.RepositoriesTarantool;
@@ -34,16 +34,16 @@ namespace Tests
             IMessagesRepository rep = new TarantoolMessagesRepository(_context);
 
             //start testing 
-            Assert.Empty(await rep.GetList());
+            Assert.Empty(await rep.GetMessagesAsync());
             Task.Delay(1000).GetAwaiter().GetResult(); //вариант 2
 
 
             // add correct
             MessageBL added_message1 = new MessageBL(1, 1, 0, "text1");
             await rep.Add(added_message1);
-            MessageBL added_message2 = new MessageBL(2, added_message1.sender_id, 2, "text2");
+            MessageBL added_message2 = new MessageBL(2, added_message1.SenderID, 2, "text2");
             await rep.Add(added_message2);
-            MessageBL added_message3 = new MessageBL(3, 2, added_message2.checked_by_id, "text3");
+            MessageBL added_message3 = new MessageBL(3, 2, added_message2.CheckedByID, "text3");
             await rep.Add(added_message3);
 
 
@@ -51,25 +51,25 @@ namespace Tests
             await Assert.ThrowsAsync<MessageDBException>(() => rep.Add(added_message1));
 
 			// get_by_ids correct
-			var got_by_sender_id = await rep.GetListBySenderId(added_message1.sender_id);
+			var got_by_sender_id = await rep.GetListBySenderId(added_message1.SenderID);
             Assert.Equal(2, got_by_sender_id.Count);
             Assert.Equal(added_message1, got_by_sender_id[0]);
             Assert.Equal(added_message2, got_by_sender_id[1]);
 
-            got_by_sender_id = await rep.GetListBySenderId(0);
+            got_by_sender_id = await rep.GetMessagesBySenderIdAsync(0);
             Assert.Empty(got_by_sender_id);
 
-            var got_by_checker_id = await rep.GetListByCheckerId(added_message2.checked_by_id);
+            var got_by_checker_id = await rep.GetListByCheckerId(added_message2.CheckedByID);
             Assert.Equal(2, got_by_checker_id.Count);
             Assert.Equal(added_message2, got_by_checker_id[0]);
             Assert.Equal(added_message3, got_by_checker_id[1]);
 
-            got_by_checker_id = await rep.GetListByCheckerId(added_message1.checked_by_id);
+            got_by_checker_id = await rep.GetListByCheckerId(added_message1.CheckedByID);
             Assert.Single(got_by_checker_id);
             Assert.Equal(added_message1, got_by_checker_id[0]);
 
             //get list 
-            var list = await rep.GetList();
+            var list = await rep.GetMessagesAsync();
             Assert.Equal(3, list.Count);
             Assert.Equal(added_message1, list[0]);
             Assert.Equal(added_message2, list[1]);
@@ -85,16 +85,16 @@ namespace Tests
 			await Assert.ThrowsAsync<MessageDBException>(() => rep.Delete(added_message1));
 
             // end tests - empty getlist
-            Assert.Empty(await rep.GetList());
+            Assert.Empty(await rep.GetMessagesAsync());
 
 
             MessageBL tmp2 = await rep.AddAutoIncrement(added_message1);
-            Assert.True(1 == tmp2.message_id);
+            Assert.True(1 == tmp2.MessageID);
             MessageBL tmp3 = await rep.AddAutoIncrement(added_message1);
-            Assert.True(2 == tmp3.message_id);
+            Assert.True(2 == tmp3.MessageID);
             await rep.Delete(tmp2);
             await rep.Delete(tmp3);
-            Assert.Empty(await rep.GetList());
+            Assert.Empty(await rep.GetMessagesAsync());
         }
     }
 }

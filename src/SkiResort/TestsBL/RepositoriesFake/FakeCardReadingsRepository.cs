@@ -2,8 +2,8 @@
 //using System.Threading.Tasks;
 //using System.Collections.Generic;
 
-//using ComponentBL.ModelsBL;
-//using ComponentBL.RepositoriesInterfaces;
+//using BL.Models;
+//using BL.IRepositories;
 
 //namespace ComponentAccessToDB.RepositoriesTarantool
 //{
@@ -38,16 +38,16 @@
 //            return result;
 //        }
 
-//        public async Task<uint> CountForLiftIdFromDate(uint lift_id, uint date_from)
+//        public async Task<uint> CountForLiftIdFromDate(uint LiftID, uint date_from)
 //        {
 //            try
 //            {
-//                var result = await _box.Call_1_6<ValueTuple<uint, uint>, Int32[]>("count_card_readings", (ValueTuple.Create(lift_id, date_from)));
+//                var result = await _box.Call_1_6<ValueTuple<uint, uint>, Int32[]>("count_card_readings", (ValueTuple.Create(LiftID, date_from)));
 //                return (uint) result.Data[0][0];
 //            }
 //            catch (Exception ex)
 //            {
-//                throw new CardReadingDBException($"Error: couldn't count amount of car_readings for lift_id={lift_id} from {date_from}");
+//                throw new CardReadingDBException($"Error: couldn't count amount of car_readings for LiftID={LiftID} from {date_from}");
 //            }
 //        }
 //        public async Task<CardReadingBL> AddAutoIncrement(CardReadingBL obj)
@@ -80,7 +80,7 @@
 //        public async Task Delete(CardReadingBL card_reading)
 //        {
 //            var response = await _index_primary.Delete<ValueTuple<uint>, CardReadingDB>
-//                (ValueTuple.Create(card_reading.record_id));
+//                (ValueTuple.Create(card_reading.RecordID));
 
 //            if (response.Data.Length != 1)
 //            {

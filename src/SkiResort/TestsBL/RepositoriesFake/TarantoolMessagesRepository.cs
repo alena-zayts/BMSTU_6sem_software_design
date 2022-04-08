@@ -7,8 +7,8 @@
 //using ProGaudi.Tarantool.Client.Model.Enums;
 //using ProGaudi.Tarantool.Client.Model.UpdateOperations;
 
-//using ComponentBL.ModelsBL;
-//using ComponentBL.RepositoriesInterfaces;
+//using BL.Models;
+//using BL.IRepositories;
 
 //namespace ComponentAccessToDB.RepositoriesTarantool
 //{
@@ -45,10 +45,10 @@
 //            return result;
 //        }
 
-//        public async Task<List<MessageBL>> GetListBySenderId(uint sender_id)
+//        public async Task<List<MessageBL>> GetListBySenderId(uint SenderID)
 //        {
 //            var data = await _index_sender_id.Select<ValueTuple<uint>, MessageDB>
-//                (ValueTuple.Create(sender_id));
+//                (ValueTuple.Create(SenderID));
 
 //            List<MessageBL> result = new();
 
@@ -77,14 +77,14 @@
 //            return result;
 //        }
 
-//        public async Task<MessageBL> GetById(uint message_id)
+//        public async Task<MessageBL> GetById(uint MessageID)
 //        {
 //            var data = await _index_primary.Select<ValueTuple<uint>, MessageDB>
-//                (ValueTuple.Create(message_id));
+//                (ValueTuple.Create(MessageID));
 
 //            if (data.Data.Length != 1)
 //            {
-//                throw new MessageDBException($"Error: couldn't find message with message_id={message_id}");
+//                throw new MessageDBException($"Error: couldn't find message with MessageID={MessageID}");
 //            }
 
 //            return ModelsAdapter.MessageDBToBL(data.Data[0]);
@@ -117,10 +117,10 @@
 //        public async Task Update(MessageBL message)
 //        {
 //            var response = await _space.Update<ValueTuple<uint>, MessageDB>(
-//                ValueTuple.Create(message.message_id), new UpdateOperation[] {
-//                    UpdateOperation.CreateAssign<uint>(1, message.sender_id),
-//                    UpdateOperation.CreateAssign<uint>(2, message.checked_by_id),
-//                    UpdateOperation.CreateAssign<string>(3, message.text),
+//                ValueTuple.Create(message.MessageID), new UpdateOperation[] {
+//                    UpdateOperation.CreateAssign<uint>(1, message.SenderID),
+//                    UpdateOperation.CreateAssign<uint>(2, message.CheckedByID),
+//                    UpdateOperation.CreateAssign<string>(3, message.Text),
 //                });
 
 //            if (response.Data.Length != 1)
@@ -132,7 +132,7 @@
 //        public async Task Delete(MessageBL message)
 //        {
 //            var response = await _index_primary.Delete<ValueTuple<uint>, MessageDB>
-//                (ValueTuple.Create(message.message_id));
+//                (ValueTuple.Create(message.MessageID));
 
 //            if (response.Data.Length != 1)
 //            {

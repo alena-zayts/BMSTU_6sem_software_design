@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using ComponentBL.RepositoriesInterfaces;
+using BL.IRepositories;
 using ComponentBL;
 using TestsBL.RepositoriesFake;
 

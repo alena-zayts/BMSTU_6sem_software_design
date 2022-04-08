@@ -7,8 +7,8 @@
 //using ProGaudi.Tarantool.Client.Model.Enums;
 //using ProGaudi.Tarantool.Client.Model.UpdateOperations;
 
-//using ComponentBL.ModelsBL;
-//using ComponentBL.RepositoriesInterfaces;
+//using BL.Models;
+//using BL.IRepositories;
 
 //namespace ComponentAccessToDB.RepositoriesTarantool
 //{
@@ -43,10 +43,10 @@
 //            return result;
 //        }
 
-//        public async Task<List<TurnstileBL>> GetListByLiftId(uint lift_id)
+//        public async Task<List<TurnstileBL>> GetListByLiftId(uint LiftID)
 //        {
 //            var data = await _index_lift_id.Select<ValueTuple<uint>, TurnstileDB>
-//                (ValueTuple.Create(lift_id));
+//                (ValueTuple.Create(LiftID));
 
 //            List<TurnstileBL> result = new();
 
@@ -59,14 +59,14 @@
 //            return result;
 //        }
 
-//        public async Task<TurnstileBL> GetById(uint turnstile_id)
+//        public async Task<TurnstileBL> GetById(uint TurnstileID)
 //        {
 //            var data = await _index_primary.Select<ValueTuple<uint>, TurnstileDB>
-//                (ValueTuple.Create(turnstile_id));
+//                (ValueTuple.Create(TurnstileID));
 
 //            if (data.Data.Length != 1)
 //            {
-//                throw new TurnstileDBException($"Error: couldn't find turnstile with turnstile_id={turnstile_id}");
+//                throw new TurnstileDBException($"Error: couldn't find turnstile with TurnstileID={TurnstileID}");
 //            }
 
 //            return ModelsAdapter.TurnstileDBToBL(data.Data[0]);
@@ -100,9 +100,9 @@
 //        public async Task Update(TurnstileBL turnstile)
 //        {
 //            var response = await _space.Update<ValueTuple<uint>, TurnstileDB>(
-//                ValueTuple.Create(turnstile.turnstile_id), new UpdateOperation[] {
-//                    UpdateOperation.CreateAssign<uint>(1, turnstile.lift_id),
-//                    UpdateOperation.CreateAssign<bool>(2, turnstile.is_open),
+//                ValueTuple.Create(turnstile.TurnstileID), new UpdateOperation[] {
+//                    UpdateOperation.CreateAssign<uint>(1, turnstile.LiftID),
+//                    UpdateOperation.CreateAssign<bool>(2, turnstile.IsOpen),
 //                });
 
 //            if (response.Data.Length != 1)
@@ -114,7 +114,7 @@
 //        public async Task Delete(TurnstileBL turnstile)
 //        {
 //            var response = await _index_primary.Delete<ValueTuple<uint>, TurnstileDB>
-//                (ValueTuple.Create(turnstile.turnstile_id));
+//                (ValueTuple.Create(turnstile.TurnstileID));
 
 //            if (response.Data.Length != 1)
 //            {

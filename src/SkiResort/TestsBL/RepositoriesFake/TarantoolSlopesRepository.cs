@@ -7,8 +7,8 @@
 //using ProGaudi.Tarantool.Client.Model.Enums;
 //using ProGaudi.Tarantool.Client.Model.UpdateOperations;
 
-//using ComponentBL.ModelsBL;
-//using ComponentBL.RepositoriesInterfaces;
+//using BL.Models;
+//using BL.IRepositories;
 
 //namespace ComponentAccessToDB.RepositoriesTarantool
 //{
@@ -43,14 +43,14 @@
 //            return result;
 //        }
 
-//        public async Task<SlopeBL> GetById(uint slope_id)
+//        public async Task<SlopeBL> GetById(uint SlopeID)
 //        {
 //            var data = await _index_primary.Select<ValueTuple<uint>, SlopeDB>
-//                (ValueTuple.Create(slope_id));
+//                (ValueTuple.Create(SlopeID));
 
 //            if (data.Data.Length != 1)
 //            {
-//                throw new SlopeDBException($"Error: couldn't find slope with slope_id={slope_id}");
+//                throw new SlopeDBException($"Error: couldn't find slope with SlopeID={SlopeID}");
 //            }
 
 //            return ModelsAdapter.SlopeDBToBL(data.Data[0]);
@@ -97,10 +97,10 @@
 //        public async Task Update(SlopeBL slope)
 //        {
 //            var response = await _space.Update<ValueTuple<uint>, SlopeDB>(
-//                ValueTuple.Create(slope.slope_id), new UpdateOperation[] {
-//                    UpdateOperation.CreateAssign<string>(1, slope.slope_name),
-//                    UpdateOperation.CreateAssign<bool>(2, slope.is_open),
-//                    UpdateOperation.CreateAssign<uint>(3, slope.difficulty_level),
+//                ValueTuple.Create(slope.SlopeID), new UpdateOperation[] {
+//                    UpdateOperation.CreateAssign<string>(1, slope.SlopeName),
+//                    UpdateOperation.CreateAssign<bool>(2, slope.IsOpen),
+//                    UpdateOperation.CreateAssign<uint>(3, slope.DifficultyLevel),
 //                });
 
 //            if (response.Data.Length != 1)
@@ -112,7 +112,7 @@
 //        public async Task Delete(SlopeBL slope)
 //        {
 //            var response = await _index_primary.Delete<ValueTuple<uint>, SlopeDB>
-//                (ValueTuple.Create(slope.slope_id));
+//                (ValueTuple.Create(slope.SlopeID));
 
 //            if (response.Data.Length != 1)
 //            {

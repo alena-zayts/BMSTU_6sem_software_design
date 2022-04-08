@@ -4,8 +4,8 @@ using Xunit.Abstractions;
 
 using ProGaudi.Tarantool.Client;
 
-using ComponentBL.ModelsBL;
-using ComponentBL.RepositoriesInterfaces;
+using BL.Models;
+using BL.IRepositories;
 
 
 using ComponentAccessToDB.RepositoriesTarantool;
@@ -67,42 +67,42 @@ namespace Tests
             await lifts_rep.Add(added_lift2);
 
             ITurnstilesRepository turnstiles_rep = new TarantoolTurnstilesRepository(_context);
-            Assert.Empty(await turnstiles_rep.GetList());
+            Assert.Empty(await turnstiles_rep.GetTurnstilesAsync());
             // не тот подъемник
-            TurnstileBL added_turnstile1 = new TurnstileBL(1, added_lift1.lift_id, true);
+            TurnstileBL added_turnstile1 = new TurnstileBL(1, added_lift1.LiftID, true);
             await turnstiles_rep.Add(added_turnstile1);
 
             // тот подъеммник
-            TurnstileBL added_turnstile2 = new TurnstileBL(2, added_lift2.lift_id, false);
+            TurnstileBL added_turnstile2 = new TurnstileBL(2, added_lift2.LiftID, false);
             await turnstiles_rep.Add(added_turnstile2);
-            TurnstileBL added_turnstile3 = new TurnstileBL(3, added_lift2.lift_id, false);
+            TurnstileBL added_turnstile3 = new TurnstileBL(3, added_lift2.LiftID, false);
             await turnstiles_rep.Add(added_turnstile3);
 
             uint exact_time = 10;
 
             // не тот подъемник
-            CardReadingBL added_card_reading1 = new CardReadingBL(1, added_turnstile1.turnstile_id, 9, exact_time - 1);
+            CardReadingBL added_card_reading1 = new CardReadingBL(1, added_turnstile1.TurnstileID, 9, exact_time - 1);
             await rep.Add(added_card_reading1);
-            CardReadingBL added_card_reading2 = new CardReadingBL(2, added_turnstile1.turnstile_id, 9, exact_time + 1);
+            CardReadingBL added_card_reading2 = new CardReadingBL(2, added_turnstile1.TurnstileID, 9, exact_time + 1);
             await rep.Add(added_card_reading2);
 
             // тот подъемник но не то время
-            CardReadingBL added_card_reading3 = new CardReadingBL(3, added_turnstile2.turnstile_id, 9, exact_time - 1);
+            CardReadingBL added_card_reading3 = new CardReadingBL(3, added_turnstile2.TurnstileID, 9, exact_time - 1);
             await rep.Add(added_card_reading3);
 
             // подходят
-            CardReadingBL added_card_reading4 = new CardReadingBL(4, added_turnstile2.turnstile_id, 9, exact_time + 1);
+            CardReadingBL added_card_reading4 = new CardReadingBL(4, added_turnstile2.TurnstileID, 9, exact_time + 1);
             await rep.Add(added_card_reading4);
-            CardReadingBL added_card_reading5 = new CardReadingBL(5, added_turnstile3.turnstile_id, 9, exact_time);
+            CardReadingBL added_card_reading5 = new CardReadingBL(5, added_turnstile3.TurnstileID, 9, exact_time);
             await rep.Add(added_card_reading5);
 
-            uint card_readings_amount = await rep.CountForLiftIdFromDate(added_lift2.lift_id, exact_time);
+            uint card_readings_amount = await rep.CountForLiftIdFromDate(added_lift2.LiftID, exact_time);
             Assert.True(card_readings_amount == 2);
 
-            card_readings_amount = await rep.CountForLiftIdFromDate(added_lift1.lift_id, exact_time);
+            card_readings_amount = await rep.CountForLiftIdFromDate(added_lift1.LiftID, exact_time);
             Assert.True(card_readings_amount == 1);
 
-            card_readings_amount = await rep.CountForLiftIdFromDate(added_lift1.lift_id, exact_time + 2);
+            card_readings_amount = await rep.CountForLiftIdFromDate(added_lift1.LiftID, exact_time + 2);
             Assert.True(card_readings_amount == 0);
 
             var tmp = await rep.GetList();
@@ -121,12 +121,12 @@ namespace Tests
             await turnstiles_rep.Delete(added_turnstile1);
             await turnstiles_rep.Delete(added_turnstile2);
             await turnstiles_rep.Delete(added_turnstile3);
-            Assert.Empty(await turnstiles_rep.GetList());
+            Assert.Empty(await turnstiles_rep.GetTurnstilesAsync());
 
             CardReadingBL tmp2 = await rep.AddAutoIncrement(added_card_reading1);
-            Assert.True(1 == tmp2.record_id);
+            Assert.True(1 == tmp2.RecordID);
             CardReadingBL tmp3 = await rep.AddAutoIncrement(added_card_reading1);
-            Assert.True(2 == tmp3.record_id);
+            Assert.True(2 == tmp3.RecordID);
             await rep.Delete(tmp2);
             await rep.Delete(tmp3);
             Assert.Empty(await rep.GetList());

@@ -29,9 +29,9 @@
 
 //			ILiftsSlopesRepository rep = new TarantoolLiftsSlopesRepository(_schema);
 //			Assert.Empty(rep.GetList());
-//			LiftSlopeBL added_lift_slope1 = new LiftSlopeBL(1, added_lift1.lift_id, added_slope1.slope_id);
-//			LiftSlopeBL added_lift_slope2 = new LiftSlopeBL(2, added_lift1.lift_id, added_slope2.slope_id);
-//			LiftSlopeBL added_lift_slope4 = new LiftSlopeBL(4, added_lift2.lift_id, added_slope2.slope_id);
+//			LiftSlopeBL added_lift_slope1 = new LiftSlopeBL(1, added_lift1.LiftID, added_slope1.SlopeID);
+//			LiftSlopeBL added_lift_slope2 = new LiftSlopeBL(2, added_lift1.LiftID, added_slope2.SlopeID);
+//			LiftSlopeBL added_lift_slope4 = new LiftSlopeBL(4, added_lift2.LiftID, added_slope2.SlopeID);
 
 
 //			rep.Add(added_lift_slope1);
@@ -41,26 +41,26 @@
 //			var tmp2 = lift_rep.GetList();
 //			var tmp3 = slope_rep.GetList();
 
-//			List<LiftBL> from_slope1 = rep.GetLiftsBySlopeId(added_slope1.slope_id);
+//			List<LiftBL> from_slope1 = rep.GetLiftsBySlopeId(added_slope1.SlopeID);
 //			Assert.Equal(1, from_slope1.Count());
 //			Assert.Equal(added_lift1, from_slope1[0]);
 
-//			List<LiftBL> from_slope2 = rep.GetLiftsBySlopeId(added_slope2.slope_id);
+//			List<LiftBL> from_slope2 = rep.GetLiftsBySlopeId(added_slope2.SlopeID);
 //			Assert.Equal(2, from_slope2.Count());
 //			Assert.Equal(added_lift1, from_slope2[0]);
 //			Assert.Equal(added_lift2, from_slope2[1]);
 
-//			List<LiftBL> from_slope3 = rep.GetLiftsBySlopeId(added_slope3.slope_id);
+//			List<LiftBL> from_slope3 = rep.GetLiftsBySlopeId(added_slope3.SlopeID);
 //			Assert.Equal(0, from_slope3.Count());
 
 
 
-//			List<SlopeBL> from_lift1 = rep.GetSlopesByLiftId(added_lift1.lift_id);
+//			List<SlopeBL> from_lift1 = rep.GetSlopesByLiftId(added_lift1.LiftID);
 //			Assert.Equal(2, from_lift1.Count());
 //			Assert.Equal(added_slope1, from_lift1[0]);
 //			Assert.Equal(added_slope2, from_lift1[1]);
 
-//			List<SlopeBL> from_lift2 = rep.GetSlopesByLiftId(added_lift2.lift_id);
+//			List<SlopeBL> from_lift2 = rep.GetSlopesByLiftId(added_lift2.LiftID);
 //			Assert.Equal(1, from_lift2.Count());
 //			Assert.Equal(added_slope2, from_lift2[0]);
 
@@ -93,8 +93,8 @@
 //			LiftSlopeBL added_lift_slope2 = new LiftSlopeBL(200000, 1, 2);
 //			rep.Add(added_lift_slope2);
 
-//			added_lift_slope2.lift_id = 5;
-//			added_lift_slope2.slope_id = 9;
+//			added_lift_slope2.LiftID = 5;
+//			added_lift_slope2.SlopeID = 9;
 //			rep.Update(added_lift_slope2);
 
 
@@ -120,8 +120,8 @@ using Xunit.Abstractions;
 
 using ProGaudi.Tarantool.Client;
 
-using ComponentBL.ModelsBL;
-using ComponentBL.RepositoriesInterfaces;
+using BL.Models;
+using BL.IRepositories;
 
 
 using ComponentAccessToDB.RepositoriesTarantool;
@@ -159,14 +159,14 @@ namespace Tests
             await Assert.ThrowsAsync<LiftSlopeDBException>(() => rep.Add(added_lift_slope));
 
             // get_by_id correct
-            LiftSlopeBL got_lift_slope = await rep.GetById(added_lift_slope.record_id);
+            LiftSlopeBL got_lift_slope = await rep.GetById(added_lift_slope.RecordID);
             Assert.Equal(added_lift_slope, got_lift_slope);
 
             // delete correct
             await rep.Delete(added_lift_slope);
 
             // get_by_id not existing
-            await Assert.ThrowsAsync<LiftSlopeDBException>(() => rep.GetById(added_lift_slope.record_id));
+            await Assert.ThrowsAsync<LiftSlopeDBException>(() => rep.GetById(added_lift_slope.RecordID));
 
             // delete not existing
             await Assert.ThrowsAsync<LiftSlopeDBException>(() => rep.Delete(added_lift_slope));
@@ -191,8 +191,8 @@ namespace Tests
             LiftSlopeBL added_lift_slope2 = new LiftSlopeBL(2, 2, 1);
             await rep.Add(added_lift_slope2);
 
-            added_lift_slope2.lift_id = 100;
-            added_lift_slope1.slope_id = 200;
+            added_lift_slope2.LiftID = 100;
+            added_lift_slope1.SlopeID = 200;
 
             // updates correct
             await rep.Update(added_lift_slope1);
@@ -229,7 +229,7 @@ namespace Tests
             await lift_rep.Add(added_lift2);
 
             ISlopesRepository slope_rep = new TarantoolSlopesRepository(_context);
-            Assert.Empty(await slope_rep.GetList());
+            Assert.Empty(await slope_rep.GetSlopes());
 
             SlopeBL added_slope1 = new SlopeBL(1, "A1", true, 1);
             await slope_rep.Add(added_slope1);
@@ -241,9 +241,9 @@ namespace Tests
 
             ILiftsSlopesRepository rep = new TarantoolLiftsSlopesRepository(_context);
             Assert.Empty(await rep.GetList());
-            LiftSlopeBL added_lift_slope1 = new LiftSlopeBL(1, added_lift1.lift_id, added_slope1.slope_id);
-            LiftSlopeBL added_lift_slope2 = new LiftSlopeBL(2, added_lift1.lift_id, added_slope2.slope_id);
-            LiftSlopeBL added_lift_slope4 = new LiftSlopeBL(4, added_lift2.lift_id, added_slope2.slope_id);
+            LiftSlopeBL added_lift_slope1 = new LiftSlopeBL(1, added_lift1.LiftID, added_slope1.SlopeID);
+            LiftSlopeBL added_lift_slope2 = new LiftSlopeBL(2, added_lift1.LiftID, added_slope2.SlopeID);
+            LiftSlopeBL added_lift_slope4 = new LiftSlopeBL(4, added_lift2.LiftID, added_slope2.SlopeID);
 
 
             await rep.Add(added_lift_slope1);
@@ -252,28 +252,28 @@ namespace Tests
 
             var tmp1 = await rep.GetList();
             var tmp2 = await lift_rep.GetList();
-            var tmp3 = await slope_rep.GetList();
+            var tmp3 = await slope_rep.GetSlopes();
 
-            List<LiftBL> from_slope1 = await rep.GetLiftsBySlopeId(added_slope1.slope_id);
+            List<LiftBL> from_slope1 = await rep.GetLiftsBySlopeId(added_slope1.SlopeID);
             Assert.Equal(1, from_slope1.Count);
             Assert.Equal(added_lift1, from_slope1[0]);
 
-            List<LiftBL> from_slope2 = await rep.GetLiftsBySlopeId(added_slope2.slope_id);
+            List<LiftBL> from_slope2 = await rep.GetLiftsBySlopeId(added_slope2.SlopeID);
             Assert.Equal(2, from_slope2.Count);
             Assert.Equal(added_lift1, from_slope2[0]);
             Assert.Equal(added_lift2, from_slope2[1]);
 
-            List<LiftBL> from_slope3 = await rep.GetLiftsBySlopeId(added_slope3.slope_id);
+            List<LiftBL> from_slope3 = await rep.GetLiftsBySlopeId(added_slope3.SlopeID);
             Assert.Equal(0, from_slope3.Count);
 
 
 
-            List<SlopeBL> from_lift1 = await rep.GetSlopesByLiftId(added_lift1.lift_id);
+            List<SlopeBL> from_lift1 = await rep.GetSlopesByLiftId(added_lift1.LiftID);
             Assert.Equal(2, from_lift1.Count);
             Assert.Equal(added_slope1, from_lift1[0]);
             Assert.Equal(added_slope2, from_lift1[1]);
 
-            List<SlopeBL> from_lift2 = await rep.GetSlopesByLiftId(added_lift2.lift_id);
+            List<SlopeBL> from_lift2 = await rep.GetSlopesByLiftId(added_lift2.LiftID);
             Assert.Equal(1, from_lift2.Count);
             Assert.Equal(added_slope2, from_lift2[0]);
 
@@ -288,13 +288,13 @@ namespace Tests
             rep.Delete(added_lift_slope4);
 
             Assert.Empty(await lift_rep.GetList());
-            Assert.Empty(await slope_rep.GetList());
+            Assert.Empty(await slope_rep.GetSlopes());
             Assert.Empty(await rep.GetList());
 
             LiftSlopeBL tmp5 = await rep.AddAutoIncrement(added_lift_slope1);
-            Assert.True(1 == tmp5.record_id);
+            Assert.True(1 == tmp5.RecordID);
             LiftSlopeBL tmp6 = await rep.AddAutoIncrement(added_lift_slope1);
-            Assert.True(2 == tmp6.record_id);
+            Assert.True(2 == tmp6.RecordID);
             await rep.Delete(tmp5);
             await rep.Delete(tmp6);
             Assert.Empty(await rep.GetList());

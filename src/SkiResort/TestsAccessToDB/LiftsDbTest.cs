@@ -4,8 +4,8 @@ using Xunit.Abstractions;
 
 using ProGaudi.Tarantool.Client;
 
-using ComponentBL.ModelsBL;
-using ComponentBL.RepositoriesInterfaces;
+using BL.Models;
+using BL.IRepositories;
 
 
 using ComponentAccessToDB.RepositoriesTarantool;
@@ -43,19 +43,19 @@ namespace Tests
             await Assert.ThrowsAsync<LiftDBException>(() => rep.Add(added_lift));
 
             // get_by_id correct
-            LiftBL got_lift = await rep.GetById(added_lift.lift_id);
+            LiftBL got_lift = await rep.GetById(added_lift.LiftID);
             Assert.Equal(added_lift, got_lift);
             // get_by_name correct
-            got_lift = await rep.GetByName(added_lift.lift_name);
+            got_lift = await rep.GetByName(added_lift.LiftName);
             Assert.Equal(added_lift, got_lift);
 
             // delete correct
             await rep.Delete(added_lift);
 
             // get_by_id not existing
-            await Assert.ThrowsAsync<LiftDBException>(() => rep.GetById(added_lift.lift_id));
+            await Assert.ThrowsAsync<LiftDBException>(() => rep.GetById(added_lift.LiftID));
             // get_by_id incorrect
-            await Assert.ThrowsAsync<LiftDBException>(() => rep.GetByName(added_lift.lift_name));
+            await Assert.ThrowsAsync<LiftDBException>(() => rep.GetByName(added_lift.LiftName));
 
             // delete not existing
             await Assert.ThrowsAsync<LiftDBException>(() => rep.Delete(added_lift));
@@ -80,8 +80,8 @@ namespace Tests
             LiftBL added_lift2 = new LiftBL(2, "B2", false, 20, 200, 2000);
             await rep.Add(added_lift2);
 
-            added_lift2.lift_name = "dfd";
-            added_lift1.is_open = !added_lift1.is_open;
+            added_lift2.LiftName = "dfd";
+            added_lift1.IsOpen = !added_lift1.IsOpen;
 
             // updates correct
             await rep.Update(added_lift1);
@@ -106,9 +106,9 @@ namespace Tests
 
 
             LiftBL tmp2 = await rep.AddAutoIncrement(added_lift1);
-            Assert.True(1 == tmp2.lift_id);
+            Assert.True(1 == tmp2.LiftID);
             LiftBL tmp3 = await rep.AddAutoIncrement(added_lift2);
-            Assert.True(2 == tmp3.lift_id);
+            Assert.True(2 == tmp3.LiftID);
             await rep.Delete(tmp2);
             await rep.Delete(tmp3);
             Assert.Empty(await rep.GetList());

@@ -1684,14 +1684,14 @@
           "build/netcoreapp2.1/xunit.runner.visualstudio.props": {}
         }
       },
-      "ComponentBL/1.0.0": {
+      "BL/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
         "compile": {
-          "bin/placeholder/ComponentBL.dll": {}
+          "bin/placeholder/BL.dll": {}
         },
         "runtime": {
-          "bin/placeholder/ComponentBL.dll": {}
+          "bin/placeholder/BL.dll": {}
         }
       }
     }
@@ -6001,15 +6001,15 @@
         "xunit.runner.visualstudio.nuspec"
       ]
     },
-    "ComponentBL/1.0.0": {
+    "BL/1.0.0": {
       "type": "project",
-      "path": "../ComponentBL/ComponentBL.csproj",
-      "msbuildProject": "../ComponentBL/ComponentBL.csproj"
+      "path": "../BL/BL.csproj",
+      "msbuildProject": "../BL/BL.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net6.0": [
-      "ComponentBL >= 1.0.0",
+      "BL >= 1.0.0",
       "Microsoft.NET.Test.Sdk >= 16.11.0",
       "Ninject >= 3.3.4",
       "coverlet.collector >= 3.1.0",
@@ -6049,8 +6049,8 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\BMSTU_6sem_software_design\\src\\SkiResort\\ComponentBL\\ComponentBL.csproj": {
-              "projectPath": "C:\\BMSTU_6sem_software_design\\src\\SkiResort\\ComponentBL\\ComponentBL.csproj"
+            "C:\\BMSTU_6sem_software_design\\src\\SkiResort\\BL\\BL.csproj": {
+              "projectPath": "C:\\BMSTU_6sem_software_design\\src\\SkiResort\\BL\\BL.csproj"
             }
           }
         }

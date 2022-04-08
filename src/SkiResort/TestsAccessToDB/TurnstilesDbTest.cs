@@ -4,8 +4,8 @@ using Xunit.Abstractions;
 
 using ProGaudi.Tarantool.Client;
 
-using ComponentBL.ModelsBL;
-using ComponentBL.RepositoriesInterfaces;
+using BL.Models;
+using BL.IRepositories;
 
 
 using ComponentAccessToDB.RepositoriesTarantool;
@@ -34,7 +34,7 @@ namespace Tests
             ITurnstilesRepository rep = new TarantoolTurnstilesRepository(_context);
 
             //start testing 
-            Assert.Empty(await rep.GetList());
+            Assert.Empty(await rep.GetTurnstilesAsync());
 
             // add correct
             TurnstileBL added_turnstile = new TurnstileBL(1, 2, true);
@@ -43,20 +43,20 @@ namespace Tests
             await Assert.ThrowsAsync<TurnstileDBException>(() => rep.Add(added_turnstile));
 
             // get_by_id correct
-            TurnstileBL got_turnstile = await rep.GetById(added_turnstile.turnstile_id);
+            TurnstileBL got_turnstile = await rep.GetById(added_turnstile.TurnstileID);
             Assert.Equal(added_turnstile, got_turnstile);
 
             // delete correct
             await rep.Delete(added_turnstile);
 
             // get_by_id not existing
-            await Assert.ThrowsAsync<TurnstileDBException>(() => rep.GetById(added_turnstile.turnstile_id));
+            await Assert.ThrowsAsync<TurnstileDBException>(() => rep.GetById(added_turnstile.TurnstileID));
 
             // delete not existing
             await Assert.ThrowsAsync<TurnstileDBException>(() => rep.Delete(added_turnstile));
 
             // end tests - empty getlist
-            Assert.Empty(await rep.GetList());
+            Assert.Empty(await rep.GetTurnstilesAsync());
         }
 
 
@@ -67,36 +67,36 @@ namespace Tests
             ITurnstilesRepository rep = new TarantoolTurnstilesRepository(_context);
 
             //start testing 
-            Assert.Empty(await rep.GetList());
+            Assert.Empty(await rep.GetTurnstilesAsync());
 
-            uint lift_id = 10;
+            uint LiftID = 10;
 
-            TurnstileBL added_turnstile1 = new TurnstileBL(1, lift_id, true);
+            TurnstileBL added_turnstile1 = new TurnstileBL(1, LiftID, true);
             await rep.Add(added_turnstile1);
 
             TurnstileBL added_turnstile2 = new TurnstileBL(2, 2, false);
             await rep.Add(added_turnstile2);
 
-            added_turnstile2.is_open = false;
+            added_turnstile2.IsOpen = false;
 
             // updates correct
             await rep.Update(added_turnstile1);
             await rep.Update(added_turnstile2);
 
-            var list = await rep.GetList();
+            var list = await rep.GetTurnstilesAsync();
             Assert.Equal(2, list.Count);
             Assert.Equal(added_turnstile1, list[0]);
             Assert.Equal(added_turnstile2, list[1]);
 
 
             // by lift id
-            TurnstileBL added_turnstile3 = new TurnstileBL(3, lift_id, true);
+            TurnstileBL added_turnstile3 = new TurnstileBL(3, LiftID, true);
             await rep.Add(added_turnstile3);
-            list = await rep.GetListByLiftId(lift_id);
+            list = await rep.GetTurnstilesByLiftIdAsync(LiftID);
             Assert.Equal(2, list.Count);
             Assert.Equal(added_turnstile1, list[0]);
             Assert.Equal(added_turnstile3, list[1]);
-            Assert.Empty(await rep.GetListByLiftId(999));
+            Assert.Empty(await rep.GetTurnstilesByLiftIdAsync(999));
 
 
 
@@ -112,17 +112,17 @@ namespace Tests
 
 
             // end tests - empty getlist
-            Assert.Empty(await rep.GetList());
+            Assert.Empty(await rep.GetTurnstilesAsync());
 
 
 
             TurnstileBL tmp2 = await rep.AddAutoIncrement(added_turnstile1);
-            Assert.True(1 == tmp2.turnstile_id);
+            Assert.True(1 == tmp2.TurnstileID);
             TurnstileBL tmp3 = await rep.AddAutoIncrement(added_turnstile1);
-            Assert.True(2 == tmp3.turnstile_id);
+            Assert.True(2 == tmp3.TurnstileID);
             await rep.Delete(tmp2);
             await rep.Delete(tmp3);
-            Assert.Empty(await rep.GetList());
+            Assert.Empty(await rep.GetTurnstilesAsync());
         }
     }
 }

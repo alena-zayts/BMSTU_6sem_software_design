@@ -1837,28 +1837,28 @@
           "build/netcoreapp2.1/xunit.runner.visualstudio.props": {}
         }
       },
-      "ComponentAccessToDB/1.0.0": {
+      "AccessToDB/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
-          "ComponentBL": "1.0.0",
+          "BL": "1.0.0",
           "progaudi.tarantool": "0.15.0"
         },
         "compile": {
-          "bin/placeholder/ComponentAccessToDB.dll": {}
+          "bin/placeholder/AccessToDB.dll": {}
         },
         "runtime": {
-          "bin/placeholder/ComponentAccessToDB.dll": {}
+          "bin/placeholder/AccessToDB.dll": {}
         }
       },
-      "ComponentBL/1.0.0": {
+      "BL/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
         "compile": {
-          "bin/placeholder/ComponentBL.dll": {}
+          "bin/placeholder/BL.dll": {}
         },
         "runtime": {
-          "bin/placeholder/ComponentBL.dll": {}
+          "bin/placeholder/BL.dll": {}
         }
       }
     }
@@ -6423,21 +6423,21 @@
         "xunit.runner.visualstudio.nuspec"
       ]
     },
-    "ComponentAccessToDB/1.0.0": {
+    "AccessToDB/1.0.0": {
       "type": "project",
-      "path": "../ComponentAccessToDB/ComponentAccessToDB.csproj",
-      "msbuildProject": "../ComponentAccessToDB/ComponentAccessToDB.csproj"
+      "path": "../AccessToDB/AccessToDB.csproj",
+      "msbuildProject": "../AccessToDB/AccessToDB.csproj"
     },
-    "ComponentBL/1.0.0": {
+    "BL/1.0.0": {
       "type": "project",
-      "path": "../ComponentBL/ComponentBL.csproj",
-      "msbuildProject": "../ComponentBL/ComponentBL.csproj"
+      "path": "../BL/BL.csproj",
+      "msbuildProject": "../BL/BL.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net6.0": [
-      "ComponentAccessToDB >= 1.0.0",
-      "ComponentBL >= 1.0.0",
+      "AccessToDB >= 1.0.0",
+      "BL >= 1.0.0",
       "Microsoft.NET.Test.Sdk >= 16.9.4",
       "coverlet.collector >= 3.0.2",
       "xunit >= 2.4.1",
@@ -6476,11 +6476,11 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\BMSTU_6sem_software_design\\src\\SkiResort\\ComponentAccessToDB\\ComponentAccessToDB.csproj": {
-              "projectPath": "C:\\BMSTU_6sem_software_design\\src\\SkiResort\\ComponentAccessToDB\\ComponentAccessToDB.csproj"
+            "C:\\BMSTU_6sem_software_design\\src\\SkiResort\\AccessToDB\\AccessToDB.csproj": {
+              "projectPath": "C:\\BMSTU_6sem_software_design\\src\\SkiResort\\AccessToDB\\AccessToDB.csproj"
             },
-            "C:\\BMSTU_6sem_software_design\\src\\SkiResort\\ComponentBL\\ComponentBL.csproj": {
-              "projectPath": "C:\\BMSTU_6sem_software_design\\src\\SkiResort\\ComponentBL\\ComponentBL.csproj"
+            "C:\\BMSTU_6sem_software_design\\src\\SkiResort\\BL\\BL.csproj": {
+              "projectPath": "C:\\BMSTU_6sem_software_design\\src\\SkiResort\\BL\\BL.csproj"
             }
           }
         }

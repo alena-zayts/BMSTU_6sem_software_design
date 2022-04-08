@@ -4,14 +4,14 @@
     "C:\\BMSTU_6sem_software_design\\src\\SkiResort\\TestsBL\\TestsBL.csproj": {}
   },
   "projects": {
-    "C:\\BMSTU_6sem_software_design\\src\\SkiResort\\ComponentBL\\ComponentBL.csproj": {
+    "C:\\BMSTU_6sem_software_design\\src\\SkiResort\\BL\\BL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\BMSTU_6sem_software_design\\src\\SkiResort\\ComponentBL\\ComponentBL.csproj",
-        "projectName": "ComponentBL",
-        "projectPath": "C:\\BMSTU_6sem_software_design\\src\\SkiResort\\ComponentBL\\ComponentBL.csproj",
+        "projectUniqueName": "C:\\BMSTU_6sem_software_design\\src\\SkiResort\\BL\\BL.csproj",
+        "projectName": "BL",
+        "projectPath": "C:\\BMSTU_6sem_software_design\\src\\SkiResort\\BL\\BL.csproj",
         "packagesPath": "C:\\Users\\alena\\.nuget\\packages\\",
-        "outputPath": "C:\\BMSTU_6sem_software_design\\src\\SkiResort\\ComponentBL\\obj\\",
+        "outputPath": "C:\\BMSTU_6sem_software_design\\src\\SkiResort\\BL\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -90,8 +90,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\BMSTU_6sem_software_design\\src\\SkiResort\\ComponentBL\\ComponentBL.csproj": {
-                "projectPath": "C:\\BMSTU_6sem_software_design\\src\\SkiResort\\ComponentBL\\ComponentBL.csproj"
+              "C:\\BMSTU_6sem_software_design\\src\\SkiResort\\BL\\BL.csproj": {
+                "projectPath": "C:\\BMSTU_6sem_software_design\\src\\SkiResort\\BL\\BL.csproj"
               }
             }
           }

@@ -4,8 +4,8 @@ using Xunit.Abstractions;
 
 using ProGaudi.Tarantool.Client;
 
-using ComponentBL.ModelsBL;
-using ComponentBL.RepositoriesInterfaces;
+using BL.Models;
+using BL.IRepositories;
 
 
 using ComponentAccessToDB.RepositoriesTarantool;
@@ -34,7 +34,7 @@ namespace Tests
             IUsersRepository rep = new TarantoolUsersRepository(_context);
 
             //start testing 
-            Assert.Empty(await rep.GetList());
+            Assert.Empty(await rep.GetUsersAsync());
 
             // add correct
             UserBL added_user = new UserBL(1, 1, "qwe", "rty", 1);
@@ -43,20 +43,20 @@ namespace Tests
             await Assert.ThrowsAsync<UserDBException>(() => rep.Add(added_user));
 
 			// get_by_id correct
-			UserBL got_user = await rep.GetById(added_user.user_id);
+			UserBL got_user = await rep.GetById(added_user.UserID);
             Assert.Equal(added_user, got_user);
 
 			// delete correct
 			await rep.Delete(added_user);
 
 			// get_by_id not existing
-			await Assert.ThrowsAsync<UserDBException>(() => rep.GetById(added_user.user_id));
+			await Assert.ThrowsAsync<UserDBException>(() => rep.GetById(added_user.UserID));
 
 			// delete not existing
 			await Assert.ThrowsAsync<UserDBException>(() => rep.Delete(added_user));
 
             // end tests - empty getlist
-            Assert.Empty(await rep.GetList());
+            Assert.Empty(await rep.GetUsersAsync());
         }
 
 
@@ -67,7 +67,7 @@ namespace Tests
             IUsersRepository rep = new TarantoolUsersRepository(_context);
 
             //start testing 
-            Assert.Empty(await rep.GetList());
+            Assert.Empty(await rep.GetUsersAsync());
 
             UserBL added_user1 = new UserBL(1, 1, "qwe", "rty", 1);
             await rep.Add(added_user1);
@@ -75,14 +75,14 @@ namespace Tests
             UserBL added_user2 = new UserBL(2, 9, "rt", "dfd", 2);
             await rep.Add(added_user2);
 
-            added_user2.password = "dfd";
-            added_user1.user_email = "wow";
+            added_user2.Password = "dfd";
+            added_user1.UserEmail = "wow";
 
             // updates correct
             await rep.Update(added_user1);
             await rep.Update(added_user2);
 
-            var list = await rep.GetList();
+            var list = await rep.GetUsersAsync();
             Assert.Equal(2, list.Count);
             Assert.Equal(added_user1, list[0]);
             Assert.Equal(added_user2, list[1]);
@@ -97,17 +97,17 @@ namespace Tests
 
 
             // end tests - empty getlist
-            Assert.Empty(await rep.GetList());
+            Assert.Empty(await rep.GetUsersAsync());
 
 
 
             UserBL tmp2 = await rep.AddAutoIncrement(added_user1);
-            Assert.True(1 == tmp2.user_id);
+            Assert.True(1 == tmp2.UserID);
             UserBL tmp3 = await rep.AddAutoIncrement(added_user2);
-            Assert.True(2 == tmp3.user_id);
+            Assert.True(2 == tmp3.UserID);
             await rep.Delete(tmp2);
             await rep.Delete(tmp3);
-            Assert.Empty(await rep.GetList());
+            Assert.Empty(await rep.GetUsersAsync());
         }
     }
 }
