@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,7 +13,7 @@ namespace ComponentBL
 {
     public class FacadeBL
     {
-        private IRepositoriesFactory repositories_factory; //ninject.ioc
+        private IRepositoriesFactory repositories_factory;
         public FacadeBL(IRepositoriesFactory repositories_factory)
         {
             this.repositories_factory = repositories_factory;
@@ -33,14 +34,14 @@ namespace ComponentBL
             }
         }
 
-        public async Task Register(UserBL user)
+        public async Task<UserBL> Register(UserBL user)
         {
             if (!await CheckPermissionsService.CheckPermissions(
                 repositories_factory.CreateUsersRepository(),
                 user.user_id,
                 System.Reflection.MethodBase.GetCurrentMethod().Name))
             {
-                throw new PermissionsException(user.user_id, System.Reflection.MethodBase.GetCurrentMethod().Name);
+                throw new PermissionsException(user.user_id);
             }
 
             if (user.user_email.Length == 0  || user.password.Length == 0)
@@ -57,7 +58,9 @@ namespace ComponentBL
                         $" because such email already exists", user);
             }
 
+            user.permissions = (uint) Permissions.AUTHORIZED;
             await usersRepository.Update(user);
+            return user;
         }
 
         public async Task LogIn(UserBL user)
@@ -67,7 +70,7 @@ namespace ComponentBL
                     user.user_id,
                     System.Reflection.MethodBase.GetCurrentMethod().Name))
             {
-                throw new PermissionsException(user.user_id, System.Reflection.MethodBase.GetCurrentMethod().Name);
+                throw new PermissionsException(user.user_id);
             }
 
             IUsersRepository usersRepository = repositories_factory.CreateUsersRepository();
@@ -84,19 +87,20 @@ namespace ComponentBL
 
 
         }
-        public async Task LogOut(UserBL user)
+        public async Task<UserBL> LogOut(UserBL user)
         {
             if (!await CheckPermissionsService.CheckPermissions(
                 repositories_factory.CreateUsersRepository(),
                 user.user_id,
                 System.Reflection.MethodBase.GetCurrentMethod().Name))
             {
-                throw new PermissionsException(user.user_id, System.Reflection.MethodBase.GetCurrentMethod().Name);
+                throw new PermissionsException(user.user_id);
             }
 
             IUsersRepository usersRepository = repositories_factory.CreateUsersRepository();
             user.permissions = (uint)Permissions.UNAUTHORIZED;
             await usersRepository.Update(user);
+            return user;
         }
 
         public async Task<List<UserBL>> AdminUsersGetList()
@@ -113,9 +117,9 @@ namespace ComponentBL
 
         public async Task AdminUsersAdd(UserBL user)
         {
-            if (!await CheckPermissionsService.CheckPermissions(repositories_factory.CreateUsersRepository(), user.user_id, System.Reflection.MethodBase.GetCurrentMethod().Name))
+            if (!await CheckPermissionsService.CheckPermissions(repositories_factory.CreateUsersRepository(), user.user_id))
             {
-                throw new PermissionsException(user.user_id, System.Reflection.MethodBase.GetCurrentMethod().Name);
+                throw new PermissionsException(user.user_id);
             }
             IUsersRepository usersRepository = repositories_factory.CreateUsersRepository();
             await usersRepository.Add(user);
@@ -123,9 +127,9 @@ namespace ComponentBL
 
         public async Task<UserBL> AdminUsersAddAoutoIncrement(UserBL user)
         {
-            if (!await CheckPermissionsService.CheckPermissions(repositories_factory.CreateUsersRepository(), user.user_id, System.Reflection.MethodBase.GetCurrentMethod().Name))
+            if (!await CheckPermissionsService.CheckPermissions(repositories_factory.CreateUsersRepository(), user.user_id))
             {
-                throw new PermissionsException(user.user_id, System.Reflection.MethodBase.GetCurrentMethod().Name);
+                throw new PermissionsException(user.user_id);
             }
             IUsersRepository usersRepository = repositories_factory.CreateUsersRepository();
             return await usersRepository.AddAutoIncrement(user);
@@ -133,9 +137,9 @@ namespace ComponentBL
 
         public async Task AdminUsersUpdate(UserBL user)
         {
-            if (!await CheckPermissionsService.CheckPermissions(repositories_factory.CreateUsersRepository(), user.user_id, System.Reflection.MethodBase.GetCurrentMethod().Name))
+            if (!await CheckPermissionsService.CheckPermissions(repositories_factory.CreateUsersRepository(), user.user_id))
             {
-                throw new PermissionsException(user.user_id, System.Reflection.MethodBase.GetCurrentMethod().Name);
+                throw new PermissionsException(user.user_id);
             }
             IUsersRepository usersRepository = repositories_factory.CreateUsersRepository();
             await usersRepository.Update(user);
@@ -143,9 +147,9 @@ namespace ComponentBL
 
         public async Task AdminUsersDelete(UserBL user)
         {
-            if (!await CheckPermissionsService.CheckPermissions(repositories_factory.CreateUsersRepository(), user.user_id, System.Reflection.MethodBase.GetCurrentMethod().Name))
+            if (!await CheckPermissionsService.CheckPermissions(repositories_factory.CreateUsersRepository(), user.user_id))
             {
-                throw new PermissionsException(user.user_id, System.Reflection.MethodBase.GetCurrentMethod().Name);
+                throw new PermissionsException(user.user_id);
             }
             string func_name = System.Reflection.MethodBase.GetCurrentMethod().Name;
             IUsersRepository usersRepository = repositories_factory.CreateUsersRepository();
@@ -159,7 +163,7 @@ namespace ComponentBL
                 user_id,
                 System.Reflection.MethodBase.GetCurrentMethod().Name))
             {
-                throw new PermissionsException(user_id, System.Reflection.MethodBase.GetCurrentMethod().Name);
+                throw new PermissionsException(user_id);
             }
 
             MessageBL message = new MessageBL(0, user_id, 0, text);
@@ -175,7 +179,7 @@ namespace ComponentBL
                 user_id,
                 System.Reflection.MethodBase.GetCurrentMethod().Name))
             {
-                throw new PermissionsException(user_id, System.Reflection.MethodBase.GetCurrentMethod().Name);
+                throw new PermissionsException(user_id);
             }
             IMessagesRepository rep = repositories_factory.CreateMessagesRepository();
             return await rep.GetList();
@@ -188,7 +192,7 @@ namespace ComponentBL
                 user_id,
                 System.Reflection.MethodBase.GetCurrentMethod().Name))
             {
-                throw new PermissionsException(user_id, System.Reflection.MethodBase.GetCurrentMethod().Name);
+                throw new PermissionsException(user_id);
             }
 
             IMessagesRepository rep = repositories_factory.CreateMessagesRepository();
@@ -211,7 +215,7 @@ namespace ComponentBL
                 user_id,
                 System.Reflection.MethodBase.GetCurrentMethod().Name))
             {
-                throw new PermissionsException(user_id, System.Reflection.MethodBase.GetCurrentMethod().Name);
+                throw new PermissionsException(user_id);
             }
 
             IMessagesRepository rep = repositories_factory.CreateMessagesRepository();
@@ -224,7 +228,7 @@ namespace ComponentBL
                 user_id,
                 System.Reflection.MethodBase.GetCurrentMethod().Name))
             {
-                throw new PermissionsException(user_id, System.Reflection.MethodBase.GetCurrentMethod().Name);
+                throw new PermissionsException(user_id);
             }
 
             IMessagesRepository rep = repositories_factory.CreateMessagesRepository();
@@ -237,7 +241,7 @@ namespace ComponentBL
                 user_id,
                 System.Reflection.MethodBase.GetCurrentMethod().Name))
             {
-                throw new PermissionsException(user_id, System.Reflection.MethodBase.GetCurrentMethod().Name);
+                throw new PermissionsException(user_id);
             }
 
             ILiftsRepository rep = repositories_factory.CreateLiftsRepository();
@@ -256,7 +260,7 @@ namespace ComponentBL
                 user_id,
                 System.Reflection.MethodBase.GetCurrentMethod().Name))
             {
-                throw new PermissionsException(user_id, System.Reflection.MethodBase.GetCurrentMethod().Name);
+                throw new PermissionsException(user_id);
             }
 
             ILiftsRepository rep = repositories_factory.CreateLiftsRepository();
@@ -277,7 +281,7 @@ namespace ComponentBL
                  user_id,
                 System.Reflection.MethodBase.GetCurrentMethod().Name))
             {
-                throw new PermissionsException(user_id, System.Reflection.MethodBase.GetCurrentMethod().Name);
+                throw new PermissionsException(user_id);
             }
 
             ILiftsRepository rep = repositories_factory.CreateLiftsRepository();
@@ -290,7 +294,7 @@ namespace ComponentBL
                 user_id,
                 System.Reflection.MethodBase.GetCurrentMethod().Name))
             {
-                throw new PermissionsException(user_id, System.Reflection.MethodBase.GetCurrentMethod().Name);
+                throw new PermissionsException(user_id);
             }
 
 
@@ -323,7 +327,7 @@ namespace ComponentBL
                 user_id,
                 System.Reflection.MethodBase.GetCurrentMethod().Name))
             {
-                throw new PermissionsException(user_id, System.Reflection.MethodBase.GetCurrentMethod().Name);
+                throw new PermissionsException(user_id);
             }
 
             ILiftsRepository rep = repositories_factory.CreateLiftsRepository();
@@ -336,7 +340,7 @@ namespace ComponentBL
                 user_id,
                 System.Reflection.MethodBase.GetCurrentMethod().Name))
             {
-                throw new PermissionsException(user_id, System.Reflection.MethodBase.GetCurrentMethod().Name);
+                throw new PermissionsException(user_id);
             }
 
             ILiftsRepository rep = repositories_factory.CreateLiftsRepository();
@@ -353,7 +357,7 @@ namespace ComponentBL
                 user_id,
                 System.Reflection.MethodBase.GetCurrentMethod().Name))
             {
-                throw new PermissionsException(user_id, System.Reflection.MethodBase.GetCurrentMethod().Name);
+                throw new PermissionsException(user_id);
             }
 
             ISlopesRepository rep = repositories_factory.CreateSlopesRepository();
@@ -372,7 +376,7 @@ namespace ComponentBL
                 user_id,
                 System.Reflection.MethodBase.GetCurrentMethod().Name))
             {
-                throw new PermissionsException(user_id, System.Reflection.MethodBase.GetCurrentMethod().Name);
+                throw new PermissionsException(user_id);
             }
 
             ISlopesRepository rep = repositories_factory.CreateSlopesRepository();
@@ -393,7 +397,7 @@ namespace ComponentBL
                  user_id,
                 System.Reflection.MethodBase.GetCurrentMethod().Name))
             {
-                throw new PermissionsException(user_id, System.Reflection.MethodBase.GetCurrentMethod().Name);
+                throw new PermissionsException(user_id);
             }
 
             ISlopesRepository rep = repositories_factory.CreateSlopesRepository();
@@ -407,7 +411,7 @@ namespace ComponentBL
                 user_id,
                 System.Reflection.MethodBase.GetCurrentMethod().Name))
             {
-                throw new PermissionsException(user_id, System.Reflection.MethodBase.GetCurrentMethod().Name);
+                throw new PermissionsException(user_id);
             }
 
             ILiftsSlopesRepository lifts_slopes_rep = repositories_factory.CreateLiftsSlopesRepository();
@@ -431,7 +435,7 @@ namespace ComponentBL
                 user_id,
                 System.Reflection.MethodBase.GetCurrentMethod().Name))
             {
-                throw new PermissionsException(user_id, System.Reflection.MethodBase.GetCurrentMethod().Name);
+                throw new PermissionsException(user_id);
             }
 
             ISlopesRepository rep = repositories_factory.CreateSlopesRepository();
@@ -444,7 +448,7 @@ namespace ComponentBL
                 user_id,
                 System.Reflection.MethodBase.GetCurrentMethod().Name))
             {
-                throw new PermissionsException(user_id, System.Reflection.MethodBase.GetCurrentMethod().Name);
+                throw new PermissionsException(user_id);
             }
 
             ISlopesRepository rep = repositories_factory.CreateSlopesRepository();
@@ -453,9 +457,9 @@ namespace ComponentBL
         
         public async Task<List<LiftSlopeBL>> GetLiftsSlopesInfo(uint user_id)
         {
-            if (!await CheckPermissionsService.CheckPermissions(repositories_factory.CreateUsersRepository(), user_id, System.Reflection.MethodBase.GetCurrentMethod().Name))
+            if (!await CheckPermissionsService.CheckPermissions(repositories_factory.CreateUsersRepository(), user_id))
             {
-                throw new PermissionsException(user_id, System.Reflection.MethodBase.GetCurrentMethod().Name);
+                throw new PermissionsException(user_id);
             }
 
             ILiftsSlopesRepository rep = repositories_factory.CreateLiftsSlopesRepository();
@@ -464,9 +468,9 @@ namespace ComponentBL
 
         public async Task UpdateLiftSlope(uint user_id, LiftSlopeBL lift_slope)
         {
-            if (!await CheckPermissionsService.CheckPermissions(repositories_factory.CreateUsersRepository(), user_id, System.Reflection.MethodBase.GetCurrentMethod().Name))
+            if (!await CheckPermissionsService.CheckPermissions(repositories_factory.CreateUsersRepository(), user_id))
             {
-                throw new PermissionsException(user_id, System.Reflection.MethodBase.GetCurrentMethod().Name);
+                throw new PermissionsException(user_id);
             }
 
             ILiftsSlopesRepository rep = repositories_factory.CreateLiftsSlopesRepository();
@@ -475,9 +479,9 @@ namespace ComponentBL
 
         public async Task AdminDeleteLiftSlope(uint user_id, LiftSlopeBL lift_slope)
         {
-            if (!await CheckPermissionsService.CheckPermissions(repositories_factory.CreateUsersRepository(), user_id, System.Reflection.MethodBase.GetCurrentMethod().Name))
+            if (!await CheckPermissionsService.CheckPermissions(repositories_factory.CreateUsersRepository(), user_id))
             {
-                throw new PermissionsException(user_id, System.Reflection.MethodBase.GetCurrentMethod().Name);
+                throw new PermissionsException(user_id);
             }
 
             ILiftsSlopesRepository rep = repositories_factory.CreateLiftsSlopesRepository();
@@ -486,9 +490,9 @@ namespace ComponentBL
 
         public async Task AdminAddLiftSlope(uint user_id, LiftSlopeBL lift_slope)
         {
-            if (!await CheckPermissionsService.CheckPermissions(repositories_factory.CreateUsersRepository(), user_id, System.Reflection.MethodBase.GetCurrentMethod().Name))
+            if (!await CheckPermissionsService.CheckPermissions(repositories_factory.CreateUsersRepository(), user_id))
             {
-                throw new PermissionsException(user_id, System.Reflection.MethodBase.GetCurrentMethod().Name);
+                throw new PermissionsException(user_id);
             }
 
             ILiftsSlopesRepository rep = repositories_factory.CreateLiftsSlopesRepository();
@@ -497,9 +501,9 @@ namespace ComponentBL
 
         public async Task<LiftSlopeBL> AdminAddAutoIncrementLiftSlope(uint user_id, LiftSlopeBL lift_slope)
         {
-            if (!await CheckPermissionsService.CheckPermissions(repositories_factory.CreateUsersRepository(), user_id, System.Reflection.MethodBase.GetCurrentMethod().Name))
+            if (!await CheckPermissionsService.CheckPermissions(repositories_factory.CreateUsersRepository(), user_id))
             {
-                throw new PermissionsException(user_id, System.Reflection.MethodBase.GetCurrentMethod().Name);
+                throw new PermissionsException(user_id);
             }
 
             ILiftsSlopesRepository rep = repositories_factory.CreateLiftsSlopesRepository();
@@ -515,9 +519,9 @@ namespace ComponentBL
 
         public async Task AdminUpdateTurnstile(uint user_id, TurnstileBL turnstile)
         {
-            if (!await CheckPermissionsService.CheckPermissions(repositories_factory.CreateUsersRepository(), user_id, System.Reflection.MethodBase.GetCurrentMethod().Name))
+            if (!await CheckPermissionsService.CheckPermissions(repositories_factory.CreateUsersRepository(), user_id))
             {
-                throw new PermissionsException(user_id, System.Reflection.MethodBase.GetCurrentMethod().Name);
+                throw new PermissionsException(user_id);
             }
 
             ITurnstilesRepository rep = repositories_factory.CreateTurnstilesRepository();
@@ -526,9 +530,9 @@ namespace ComponentBL
 
         public async Task AdminDeleteTurnstile(uint user_id, TurnstileBL turnstile)
         {
-            if (!await CheckPermissionsService.CheckPermissions(repositories_factory.CreateUsersRepository(), user_id, System.Reflection.MethodBase.GetCurrentMethod().Name))
+            if (!await CheckPermissionsService.CheckPermissions(repositories_factory.CreateUsersRepository(), user_id))
             {
-                throw new PermissionsException(user_id, System.Reflection.MethodBase.GetCurrentMethod().Name);
+                throw new PermissionsException(user_id);
             }
 
             ITurnstilesRepository rep = repositories_factory.CreateTurnstilesRepository();
@@ -537,9 +541,9 @@ namespace ComponentBL
 
         public async Task AdminAddTurnstile(uint user_id, TurnstileBL turnstile)
         {
-            if (!await CheckPermissionsService.CheckPermissions(repositories_factory.CreateUsersRepository(), user_id, System.Reflection.MethodBase.GetCurrentMethod().Name))
+            if (!await CheckPermissionsService.CheckPermissions(repositories_factory.CreateUsersRepository(), user_id))
             {
-                throw new PermissionsException(user_id, System.Reflection.MethodBase.GetCurrentMethod().Name);
+                throw new PermissionsException(user_id);
             }
 
             ITurnstilesRepository rep = repositories_factory.CreateTurnstilesRepository();
@@ -548,9 +552,9 @@ namespace ComponentBL
 
         public async Task<TurnstileBL> AdminAddAutoIncrementTurnstile(uint user_id, TurnstileBL turnstile)
         {
-            if (!await CheckPermissionsService.CheckPermissions(repositories_factory.CreateUsersRepository(), user_id, System.Reflection.MethodBase.GetCurrentMethod().Name))
+            if (!await CheckPermissionsService.CheckPermissions(repositories_factory.CreateUsersRepository(), user_id))
             {
-                throw new PermissionsException(user_id, System.Reflection.MethodBase.GetCurrentMethod().Name);
+                throw new PermissionsException(user_id);
             }
 
             ITurnstilesRepository rep = repositories_factory.CreateTurnstilesRepository();
@@ -562,9 +566,9 @@ namespace ComponentBL
 
         public async Task AdminUpdateCard(uint user_id, CardBL card)
         {
-            if (!await CheckPermissionsService.CheckPermissions(repositories_factory.CreateUsersRepository(), user_id, System.Reflection.MethodBase.GetCurrentMethod().Name))
+            if (!await CheckPermissionsService.CheckPermissions(repositories_factory.CreateUsersRepository(), user_id))
             {
-                throw new PermissionsException(user_id, System.Reflection.MethodBase.GetCurrentMethod().Name);
+                throw new PermissionsException(user_id);
             }
 
             ICardsRepository rep = repositories_factory.CreateCardsRepository();
@@ -573,9 +577,9 @@ namespace ComponentBL
 
         public async Task AdminDeleteCard(uint user_id, CardBL card)
         {
-            if (!await CheckPermissionsService.CheckPermissions(repositories_factory.CreateUsersRepository(), user_id, System.Reflection.MethodBase.GetCurrentMethod().Name))
+            if (!await CheckPermissionsService.CheckPermissions(repositories_factory.CreateUsersRepository(), user_id))
             {
-                throw new PermissionsException(user_id, System.Reflection.MethodBase.GetCurrentMethod().Name);
+                throw new PermissionsException(user_id);
             }
 
             ICardsRepository rep = repositories_factory.CreateCardsRepository();
@@ -584,9 +588,9 @@ namespace ComponentBL
 
         public async Task AdminAddCard(uint user_id, CardBL card)
         {
-            if (!await CheckPermissionsService.CheckPermissions(repositories_factory.CreateUsersRepository(), user_id, System.Reflection.MethodBase.GetCurrentMethod().Name))
+            if (!await CheckPermissionsService.CheckPermissions(repositories_factory.CreateUsersRepository(), user_id))
             {
-                throw new PermissionsException(user_id, System.Reflection.MethodBase.GetCurrentMethod().Name);
+                throw new PermissionsException(user_id);
             }
 
             ICardsRepository rep = repositories_factory.CreateCardsRepository();
@@ -595,9 +599,9 @@ namespace ComponentBL
 
         public async Task<CardBL> AdminAddAutoIncrementCard(uint user_id, CardBL card)
         {
-            if (!await CheckPermissionsService.CheckPermissions(repositories_factory.CreateUsersRepository(), user_id, System.Reflection.MethodBase.GetCurrentMethod().Name))
+            if (!await CheckPermissionsService.CheckPermissions(repositories_factory.CreateUsersRepository(), user_id))
             {
-                throw new PermissionsException(user_id, System.Reflection.MethodBase.GetCurrentMethod().Name);
+                throw new PermissionsException(user_id);
             }
 
             ICardsRepository rep = repositories_factory.CreateCardsRepository();
@@ -611,9 +615,9 @@ namespace ComponentBL
 
         public async Task AdminDeleteCardReading(uint user_id, CardReadingBL card_readding)
         {
-            if (!await CheckPermissionsService.CheckPermissions(repositories_factory.CreateUsersRepository(), user_id, System.Reflection.MethodBase.GetCurrentMethod().Name))
+            if (!await CheckPermissionsService.CheckPermissions(repositories_factory.CreateUsersRepository(), user_id))
             {
-                throw new PermissionsException(user_id, System.Reflection.MethodBase.GetCurrentMethod().Name);
+                throw new PermissionsException(user_id);
             }
 
             ICardReadingsRepository rep = repositories_factory.CreateCardReadingsRepository();
@@ -622,9 +626,9 @@ namespace ComponentBL
 
         public async Task AdminAddCardReading(uint user_id, CardReadingBL card_readding)
         {
-            if (!await CheckPermissionsService.CheckPermissions(repositories_factory.CreateUsersRepository(), user_id, System.Reflection.MethodBase.GetCurrentMethod().Name))
+            if (!await CheckPermissionsService.CheckPermissions(repositories_factory.CreateUsersRepository(), user_id))
             {
-                throw new PermissionsException(user_id, System.Reflection.MethodBase.GetCurrentMethod().Name);
+                throw new PermissionsException(user_id);
             }
 
             ICardReadingsRepository rep = repositories_factory.CreateCardReadingsRepository();
@@ -633,9 +637,9 @@ namespace ComponentBL
 
         public async Task<CardReadingBL> AdminAddAutoIncrementCardReading(uint user_id, CardReadingBL card_readding)
         {
-            if (!await CheckPermissionsService.CheckPermissions(repositories_factory.CreateUsersRepository(), user_id, System.Reflection.MethodBase.GetCurrentMethod().Name))
+            if (!await CheckPermissionsService.CheckPermissions(repositories_factory.CreateUsersRepository(), user_id))
             {
-                throw new PermissionsException(user_id, System.Reflection.MethodBase.GetCurrentMethod().Name);
+                throw new PermissionsException(user_id);
             }
 
             ICardReadingsRepository rep = repositories_factory.CreateCardReadingsRepository();

@@ -118,7 +118,7 @@ namespace ComponentBL
 
     public class PermissionsException: Exception
     {
-        public PermissionsException(uint user_id, string func_name)
+        public PermissionsException(uint user_id, [System.Runtime.CompilerServices.CallerMemberName] string func_name = "")
         {
             this.user_id = user_id;
             this.func_name = func_name;
