@@ -4,7 +4,7 @@ namespace BL.IRepositories
 {
     public interface ILiftsRepository
     {
-        Task<List<Lift>> GetLiftsAsync();
+        Task<List<Lift>> GetLiftsAsync(uint offset, uint limit);
         Task<Lift> GetLiftByIdAsync(uint liftID);
         Task<Lift> GetLiftByNameAsync(string name);
         Task AddLiftAsync(Lift lift);

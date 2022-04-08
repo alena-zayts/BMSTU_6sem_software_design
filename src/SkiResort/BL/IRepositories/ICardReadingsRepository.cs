@@ -4,11 +4,11 @@ namespace BL.IRepositories
 {
     public interface ICardReadingsRepository
     {
-        Task<List<CardReading>> GetCardReadingsAsync(uint offset);
+        Task<List<CardReading>> GetCardReadingsAsync(uint offset, uint limit);
         Task<uint> CountForLiftIdFromDateAsync(uint liftID, uint dateFrom);
 
-        Task AddCardAsync(CardReading cardReading);
-        Task DeleteCardAsync(CardReading cardReading);
-        Task<CardReading> AddCardAutoIncrementAsync(CardReading cardReading);
+        Task AddCardReadingAsync(CardReading cardReading);
+        Task DeleteCardReadingAsync(CardReading cardReading);
+        Task<CardReading> AddCardReadingAutoIncrementAsync(CardReading cardReading);
     }
 }

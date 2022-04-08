@@ -5,7 +5,7 @@ namespace BL.IRepositories
 {
     public interface IMessagesRepository
     {
-        Task<List<Message>> GetMessagesAsync();
+        Task<List<Message>> GetMessagesAsync(uint offset, uint limit);
         Task<Message> GetMessageByIdAsync(uint messageID);
         Task AddMessageAsync(Message message);
         Task<Message> AddMessageAutoIncrementAsync(Message message);

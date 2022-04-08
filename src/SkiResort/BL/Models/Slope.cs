@@ -18,6 +18,16 @@ namespace BL.Models
             this.DifficultyLevel = difficultyLevel;
         }
 
+        public Slope(Slope slope, List<Lift> connectedLifts)
+        {
+            this.SlopeID = slope.SlopeID;
+            this.SlopeName = slope.SlopeName;
+            this.IsOpen = slope.IsOpen;
+            this.DifficultyLevel = slope.DifficultyLevel;
+            this.ConnectedLifts = connectedLifts;
+        }
+
+
         public override bool Equals(object? obj)
         {
             return obj is Slope dB &&

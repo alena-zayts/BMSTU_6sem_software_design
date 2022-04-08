@@ -20,6 +20,17 @@ namespace BL.Models
             this.QueueTime = queueTime;
         }
 
+        public Lift(Lift lift, List<Slope> connectedSlopes)
+        {
+            this.LiftID = lift.LiftID;
+            this.LiftName = lift.LiftName;
+            this.IsOpen = lift.IsOpen;
+            this.SeatsAmount = lift.SeatsAmount;
+            this.LiftingTime = lift.LiftingTime;
+            this.QueueTime = lift.QueueTime;
+            this.ConnectedSlopes = connectedSlopes;
+        }
+
         public override bool Equals(object? obj)
         {
             return obj is Lift dB &&

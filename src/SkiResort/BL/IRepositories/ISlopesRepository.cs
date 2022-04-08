@@ -4,7 +4,7 @@ namespace BL.IRepositories
 {
     public interface ISlopesRepository
     {
-        Task<List<Slope>> GetSlopes();
+        Task<List<Slope>> GetSlopes(uint offset, uint limit);
         Task<Slope> GetSlopeByIdAsync(uint SlopeID);
         Task<Slope> GetSlopeByNameAsync(string name);
         Task AddSlopeAsync(Slope slope);

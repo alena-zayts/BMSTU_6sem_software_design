@@ -6,20 +6,20 @@ namespace BL.Services
 {
     public class CheckPermissionsService
     {
-        public static async Task<bool> CheckPermissionsAsync(IUsersRepository usersRepository, uint userID, 
+        public static async Task CheckPermissionsAsync(IUsersRepository usersRepository, uint userID, 
             [System.Runtime.CompilerServices.CallerMemberName] string memberName = "")
         {
             PermissionsEnum permissions = (await usersRepository.GetUserByIdAsync(userID)).Permissions;
 
             if (permissions == PermissionsEnum.ADMIN)
             {
-                return true;
+                return;
             }
 
             // admin only
             if (memberName.Contains("Admin"))
             {
-                return false;
+                throw new PermissionsException("", userID, memberName);
             }
 
             // ski_patrol
@@ -27,35 +27,40 @@ namespace BL.Services
 
             if (admin_patrol_only.Contains(memberName) || memberName.Contains("Update"))
             {
-                return permissions == PermissionsEnum.SKI_PATROL;
+                if (permissions == PermissionsEnum.SKI_PATROL)
+                {
+                    return;
+                }
+                throw new PermissionsException("", userID, memberName);
             }
-
-            
 
             // everyone (GetLiftsSlopesInfo -- ski_patrol)
             if (memberName.Contains("Get"))
             {
-                return true;
+                return;
             }
 
             switch (memberName)
             {
                 // authorized but not ski patrol
                 case "SendMessge":
-                    return permissions == PermissionsEnum.AUTHORIZED;
+                    if (permissions == PermissionsEnum.AUTHORIZED) { return; }
+                    throw new PermissionsException("", userID, memberName);
 
 
                 case "LogIn":
-
-                    return permissions == PermissionsEnum.UNAUTHORIZED;
+                    if (permissions == PermissionsEnum.UNAUTHORIZED) { return; }
+                    throw new PermissionsException("", userID, memberName);
 
 
                 case "Register":
-                    return permissions == PermissionsEnum.UNAUTHORIZED;
+                    if (permissions == PermissionsEnum.UNAUTHORIZED) { return;  }
+                    throw new PermissionsException("", userID, memberName);
 
 
                 case "LogOut":
-                    return permissions != PermissionsEnum.UNAUTHORIZED;
+                    if (permissions != PermissionsEnum.UNAUTHORIZED) { return; }
+                    throw new PermissionsException("", userID, memberName);
             }
 
             throw new PermissionsException("unknown function", userID, memberName);

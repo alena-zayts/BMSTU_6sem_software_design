@@ -1,7 +1,11 @@
+using BL.Exceptions;
+
 namespace BL.Models
 {
     public class Message
     {
+        public static uint MessageUniversalID = 0;
+        public static uint MessageCheckedByNobody = 0;
         public uint MessageID { get; }
         public uint SenderID { get; }
         public uint CheckedByID { get; }
@@ -12,7 +16,7 @@ namespace BL.Models
         {
             if (text.Length == 0)
             {
-                throw new MessageBLException("Text of message cannot be empty");
+                throw new MessageException("Text of message cannot be empty");
             }
 
             this.MessageID = messageID;
