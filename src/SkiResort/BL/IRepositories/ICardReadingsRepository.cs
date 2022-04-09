@@ -4,7 +4,7 @@ namespace BL.IRepositories
 {
     public interface ICardReadingsRepository
     {
-        Task<List<CardReading>> GetCardReadingsAsync(uint offset, uint limit);
+        Task<List<CardReading>> GetCardReadingsAsync(uint offset = 0, uint limit = 0);
         Task<uint> CountForLiftIdFromDateAsync(uint liftID, uint dateFrom);
 
         Task AddCardReadingAsync(CardReading cardReading);

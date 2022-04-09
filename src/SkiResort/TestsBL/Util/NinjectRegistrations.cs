@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 using Ninject.Modules;
 
 using BL.IRepositories;
-using TestsBL.RepositoriesFake;
+using TestsBL.IoCRepositories;
 
 using ComponentBL;
 using TestsBL;
+using BL;
 
 namespace TestsBL.Util
 {
@@ -17,7 +18,7 @@ namespace TestsBL.Util
     {
         public override void Load()
         {
-            Bind<IRepositoriesFactory>().To<FakeRepositoriesFactory>();
+            Bind<IRepositoriesFactory>().To<IoCRepositoriesFactory>();
         }
     }
 }

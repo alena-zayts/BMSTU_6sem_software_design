@@ -1,6 +1,6 @@
 ﻿using BL.IRepositories;
 
-namespace ComponentBL
+namespace BL
 {
     public interface IRepositoriesFactory
     {

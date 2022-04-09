@@ -5,7 +5,7 @@ namespace BL.IRepositories
 {
     public interface IUsersRepository
     {
-        Task<List<User>> GetUsersAsync(uint offset, uint limit);
+        Task<List<User>> GetUsersAsync(uint offset = 0, uint limit = 0);
         Task<User> GetUserByIdAsync(uint userID);
         Task<bool> CheckUserIdExistsAsync(uint userID);
         Task<bool> CheckUserEmailExistsAsync(string userEmail);

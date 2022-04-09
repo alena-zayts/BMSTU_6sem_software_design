@@ -37,13 +37,13 @@ namespace Tests
             Assert.Empty(await rep.GetUsersAsync());
 
             // add correct
-            UserBL added_user = new UserBL(1, 1, "qwe", "rty", 1);
+            User added_user = new User(1, 1, "qwe", "rty", 1);
             await rep.Add(added_user);
             // add already existing
             await Assert.ThrowsAsync<UserDBException>(() => rep.Add(added_user));
 
 			// get_by_id correct
-			UserBL got_user = await rep.GetById(added_user.UserID);
+			User got_user = await rep.GetById(added_user.UserID);
             Assert.Equal(added_user, got_user);
 
 			// delete correct
@@ -69,10 +69,10 @@ namespace Tests
             //start testing 
             Assert.Empty(await rep.GetUsersAsync());
 
-            UserBL added_user1 = new UserBL(1, 1, "qwe", "rty", 1);
+            User added_user1 = new User(1, 1, "qwe", "rty", 1);
             await rep.Add(added_user1);
 
-            UserBL added_user2 = new UserBL(2, 9, "rt", "dfd", 2);
+            User added_user2 = new User(2, 9, "rt", "dfd", 2);
             await rep.Add(added_user2);
 
             added_user2.Password = "dfd";
@@ -101,9 +101,9 @@ namespace Tests
 
 
 
-            UserBL tmp2 = await rep.AddAutoIncrement(added_user1);
+            User tmp2 = await rep.AddAutoIncrement(added_user1);
             Assert.True(1 == tmp2.UserID);
-            UserBL tmp3 = await rep.AddAutoIncrement(added_user2);
+            User tmp3 = await rep.AddAutoIncrement(added_user2);
             Assert.True(2 == tmp3.UserID);
             await rep.Delete(tmp2);
             await rep.Delete(tmp3);

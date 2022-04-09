@@ -3,12 +3,12 @@ using BL.IRepositories;
 using BL.Services;
 using BL.Exceptions;
 
-namespace ComponentBL
+namespace BL
 {
-    public class FacadeBL
+    public class Facade
     {
         private readonly IRepositoriesFactory RepositoriesFactory;
-        public FacadeBL(IRepositoriesFactory repositoriesFactory)
+        public Facade(IRepositoriesFactory repositoriesFactory)
         {
             this.RepositoriesFactory = repositoriesFactory;
         }
@@ -22,7 +22,7 @@ namespace ComponentBL
                 throw new UserException($"Could't add new unauthorized user with userID={userID} because it already exists");
             }
 
-            User newUser = new(userID, 0, $"unauthorized_email_{userID}", $"unauthorized_password_{userID}", PermissionsEnum.UNAUTHORIZED);
+            User newUser = new(userID, User.UniversalCardID, $"unauthorized_email_{userID}", $"unauthorized_password_{userID}", PermissionsEnum.UNAUTHORIZED);
             await usersRepository.AddUserAsync(newUser);
             return newUser;
         }
@@ -109,6 +109,13 @@ namespace ComponentBL
             await CheckPermissionsService.CheckPermissionsAsync(RepositoriesFactory.CreateUsersRepository(), user.UserID);
             IUsersRepository usersRepository = RepositoriesFactory.CreateUsersRepository();
             await usersRepository.DeleteUserAsync(user);
+        }
+
+        public async Task<User> AdminUsersGetByIDAsync(uint callingUserID, uint userID)
+        {
+            await CheckPermissionsService.CheckPermissionsAsync(RepositoriesFactory.CreateUsersRepository(), callingUserID);
+            IUsersRepository usersRepository = RepositoriesFactory.CreateUsersRepository();
+            return await usersRepository.GetUserByIdAsync(userID);
         }
 
 
@@ -268,7 +275,7 @@ namespace ComponentBL
             await CheckPermissionsService.CheckPermissionsAsync(RepositoriesFactory.CreateUsersRepository(), userID);
 
             ISlopesRepository rep = RepositoriesFactory.CreateSlopesRepository();
-            List<Slope> slopes = await rep.GetSlopes(offset, limit);
+            List<Slope> slopes = await rep.GetSlopesAsync(offset, limit);
             List<Slope> slopesFull = new();
 
             ILiftsSlopesRepository help_rep = RepositoriesFactory.CreateLiftsSlopesRepository();
