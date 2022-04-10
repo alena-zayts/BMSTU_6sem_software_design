@@ -2,14 +2,13 @@ using System.Threading.Tasks;
 using Xunit;
 using Xunit.Abstractions;
 
-using ProGaudi.Tarantool.Client;
-
 using BL.Models;
 using BL.IRepositories;
 
 
-using ComponentAccessToDB.RepositoriesTarantool;
-using ComponentAccessToDB;
+using AccessToDB.RepositoriesTarantool;
+using AccessToDB.Exceptions;
+using AccessToDB;
 
 
 
@@ -17,7 +16,7 @@ namespace Tests
 {
     public class CardsDbTest
     {
-        ContextTarantool _context;
+        TarantoolContext _context;
         private readonly ITestOutputHelper output;
 
         public CardsDbTest(ITestOutputHelper output)
@@ -25,7 +24,7 @@ namespace Tests
             this.output = output;
 
             string connection_string = "ski_admin:Tty454r293300@localhost:3301";
-            _context = new ContextTarantool(connection_string);
+            _context = new TarantoolContext(connection_string);
         }
 
         [Fact]
@@ -34,29 +33,29 @@ namespace Tests
             ICardsRepository rep = new TarantoolCardsRepository(_context);
 
             //start testing 
-            Assert.Empty(await rep.GetList());
+            Assert.Empty(await rep.GetCardsAsync());
 
             // add correct
-            CardBL added_card = new CardBL(1, 1, "child");
-            await rep.Add(added_card);
+            Card added_card = new Card(1, 1, "child");
+            await rep.AddCardAsync(added_card);
             // add already existing
-            await Assert.ThrowsAsync<CardDBException>(() => rep.Add(added_card));
+            await Assert.ThrowsAsync<CardException>(() => rep.AddCardAsync(added_card));
 
             // get_by_id correct
-            CardBL got_card = await rep.GetById(added_card.CardID);
+            Card got_card = await rep.GetCardByIdAsync(added_card.CardID);
             Assert.Equal(added_card, got_card);
 
             // delete correct
-            await rep.Delete(added_card);
+            await rep.DeleteCardAsync(added_card);
 
             // get_by_id not existing
-            await Assert.ThrowsAsync<CardDBException>(() => rep.GetById(added_card.CardID));
+            await Assert.ThrowsAsync<CardException>(() => rep.GetCardByIdAsync(added_card.CardID));
 
             // delete not existing
-            await Assert.ThrowsAsync<CardDBException>(() => rep.Delete(added_card));
+            await Assert.ThrowsAsync<CardException>(() => rep.DeleteCardAsync(added_card));
 
             // end tests - empty getlist
-            Assert.Empty(await rep.GetList());
+            Assert.Empty(await rep.GetCardsAsync());
         }
 
 
@@ -68,47 +67,47 @@ namespace Tests
 
 
             //start testing 
-            Assert.Empty(await rep.GetList());
+            Assert.Empty(await rep.GetCardsAsync());
 
 
-            CardBL added_card1 = new CardBL(1, 1, "child");
-            await rep.Add(added_card1);
+            Card added_card1 = new Card(1, 1, "child");
+            await rep.AddCardAsync(added_card1);
 
-            CardBL added_card2 = new CardBL(2, 9, "adult");
-            await rep.Add(added_card2);
+            Card added_card2 = new Card(2, 9, "adult");
+            await rep.AddCardAsync(added_card2);
 
-            added_card2.Type = "wow";
-            added_card1.ActivationTime = 99;
+            added_card2 = new Card(added_card2.CardID, added_card2.ActivationTime, "wow");
+            added_card1 = new Card(added_card1.CardID, 99, added_card1.Type);
 
             // updates correct
-            await rep.Update(added_card1);
-            await rep.Update(added_card2);
+            await rep.UpdateCardAsync(added_card1);
+            await rep.UpdateCardAsync(added_card2);
 
-            var list = await rep.GetList();
+            var list = await rep.GetCardsAsync();
             Assert.Equal(2, list.Count);
             Assert.Equal(added_card1, list[0]);
             Assert.Equal(added_card2, list[1]);
 
-            await rep.Delete(added_card1);
-            await rep.Delete(added_card2);
+            await rep.DeleteCardAsync(added_card1);
+            await rep.DeleteCardAsync(added_card2);
 
 
             // updates not existing
-            await Assert.ThrowsAsync<CardDBException>(() => rep.Update(added_card1));
-            await Assert.ThrowsAsync<CardDBException>(() => rep.Update(added_card2));
+            await Assert.ThrowsAsync<CardException>(() => rep.UpdateCardAsync(added_card1));
+            await Assert.ThrowsAsync<CardException>(() => rep.UpdateCardAsync(added_card2));
 
 
             // end tests - empty getlist
-            Assert.Empty(await rep.GetList());
+            Assert.Empty(await rep.GetCardsAsync());
 
 
-            CardBL tmp2 = await rep.AddAutoIncrement(added_card1);
+            Card tmp2 = await rep.AddCardAutoIncrementAsync(added_card1);
             Assert.True(1 == tmp2.CardID);
-            CardBL tmp3 = await rep.AddAutoIncrement(added_card1);
+            Card tmp3 = await rep.AddCardAutoIncrementAsync(added_card1);
             Assert.True(2 == tmp3.CardID);
-            await rep.Delete(tmp2);
-            await rep.Delete(tmp3);
-            Assert.Empty(await rep.GetList());
+            await rep.DeleteCardAsync(tmp2);
+            await rep.DeleteCardAsync(tmp3);
+            Assert.Empty(await rep.GetCardsAsync());
         }
     }
 }

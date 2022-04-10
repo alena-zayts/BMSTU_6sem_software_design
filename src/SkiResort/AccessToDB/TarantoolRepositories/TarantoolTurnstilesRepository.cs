@@ -7,10 +7,13 @@ using ProGaudi.Tarantool.Client.Model;
 using ProGaudi.Tarantool.Client.Model.Enums;
 using ProGaudi.Tarantool.Client.Model.UpdateOperations;
 
+using BL;
 using BL.Models;
 using BL.IRepositories;
+using AccessToDB.Converters;
+using AccessToDB.Exceptions;
 
-namespace ComponentAccessToDB.RepositoriesTarantool
+namespace AccessToDB.RepositoriesTarantool
 {
     public class TarantoolTurnstilesRepository : ITurnstilesRepository
     {
@@ -27,17 +30,16 @@ namespace ComponentAccessToDB.RepositoriesTarantool
             _box = context.box;
         }
 
-        public async Task<List<Turnstile>> GetTurnstilesAsync()
+        public async Task<List<Turnstile>> GetTurnstilesAsync(uint offset = 0u, uint limit = Facade.UNLIMITED)
         {
             var data = await _index_primary.Select<ValueTuple<uint>, TurnstileDB>
                 (ValueTuple.Create(0u), new SelectOptions { Iterator = Iterator.Ge });
 
             List<Turnstile> result = new();
 
-            foreach (var item in data.Data)
+            for (uint i = offset; i < (uint)data.Data.Length && i < limit; i++)
             {
-                Turnstile turnstile = ModelsAdapter.TurnstileDBToBL(item);
-                result.Add(turnstile);
+                result.Add(TurnstileConverter.DBToBL(data.Data[i]));
             }
 
             return result;
@@ -52,7 +54,7 @@ namespace ComponentAccessToDB.RepositoriesTarantool
 
             foreach (var item in data.Data)
             {
-                Turnstile turnstile = ModelsAdapter.TurnstileDBToBL(item);
+                Turnstile turnstile = TurnstileConverter.DBToBL(item);
                 result.Add(turnstile);
             }
 
@@ -66,21 +68,21 @@ namespace ComponentAccessToDB.RepositoriesTarantool
 
             if (data.Data.Length != 1)
             {
-                throw new TurnstileDBException($"Error: couldn't find turnstile with TurnstileID={TurnstileID}");
+                throw new TurnstileException($"Error: couldn't find turnstile with TurnstileID={TurnstileID}");
             }
 
-            return ModelsAdapter.TurnstileDBToBL(data.Data[0]);
+            return TurnstileConverter.DBToBL(data.Data[0]);
         }
 
         public async Task AddTurnstileAsync(Turnstile turnstile)
         {
             try
             {
-                await _space.Insert(ModelsAdapter.TurnstileBLToDB(turnstile));
+                await _space.Insert(TurnstileConverter.BLToDB(turnstile));
             }
             catch (Exception ex)
             {
-                throw new TurnstileDBException($"Error: adding turnstile {turnstile}");
+                throw new TurnstileException($"Error: adding turnstile {turnstile}");
             }
         }
 
@@ -88,12 +90,12 @@ namespace ComponentAccessToDB.RepositoriesTarantool
         {
             try
             {
-                var result = await _box.Call_1_6<TurnstileDBi, TurnstileDB>("auto_increment_turnstiles", (ModelsAdapter.TurnstileBLToDBi(obj)));
-                return ModelsAdapter.TurnstileDBToBL(result.Data[0]);
+                var result = await _box.Call_1_6<TurnstileDBNoIndex, TurnstileDB>("auto_increment_turnstiles", (TurnstileConverter.BLToDBNoIndex(obj)));
+                return TurnstileConverter.DBToBL(result.Data[0]);
             }
             catch (Exception ex)
             {
-                throw new TurnstileDBException($"Error: couldn't auto increment {obj}");
+                throw new TurnstileException($"Error: couldn't auto increment {obj}");
             }
         }
 
@@ -107,7 +109,7 @@ namespace ComponentAccessToDB.RepositoriesTarantool
 
             if (response.Data.Length != 1)
             {
-                throw new TurnstileDBException($"Error: updating turnstile {turnstile}");
+                throw new TurnstileException($"Error: updating turnstile {turnstile}");
             }
         }
 
@@ -118,7 +120,7 @@ namespace ComponentAccessToDB.RepositoriesTarantool
 
             if (response.Data.Length != 1)
             {
-                throw new TurnstileDBException($"Error: deleting turnstile {turnstile}");
+                throw new TurnstileException($"Error: deleting turnstile {turnstile}");
             }
 
         }

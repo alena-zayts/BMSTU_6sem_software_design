@@ -1,16 +1,15 @@
-using System;
-using System.Threading.Tasks;
-using System.Collections.Generic;
-
 using ProGaudi.Tarantool.Client;
 using ProGaudi.Tarantool.Client.Model;
 using ProGaudi.Tarantool.Client.Model.Enums;
 using ProGaudi.Tarantool.Client.Model.UpdateOperations;
 
+using BL;
 using BL.Models;
 using BL.IRepositories;
+using AccessToDB.Converters;
+using AccessToDB.Exceptions;
 
-namespace ComponentAccessToDB.RepositoriesTarantool
+namespace AccessToDB.RepositoriesTarantool
 {
     public class TarantoolCardsRepository : ICardsRepository
     {
@@ -25,17 +24,16 @@ namespace ComponentAccessToDB.RepositoriesTarantool
             _index_primary = context.cards_index_primary;
         }
 
-        public async Task<List<Card>> GetCardsAsync()
+        public async Task<List<Card>> GetCardsAsync(uint offset = 0u, uint limit = Facade.UNLIMITED)
         {
             var data = await _index_primary.Select<ValueTuple<uint>, CardDB>
                 (ValueTuple.Create(0u), new SelectOptions { Iterator = Iterator.Ge });
 
             List<Card> result = new();
 
-            foreach (var item in data.Data)
+            for (uint i = offset; i < (uint)data.Data.Length && i < limit; i++)
             {
-                Card card = ModelsAdapter.CardDBToBL(item);
-                result.Add(card);
+                result.Add(CardConverter.DBToBL(data.Data[i]));
             }
 
             return result;
@@ -48,33 +46,33 @@ namespace ComponentAccessToDB.RepositoriesTarantool
 
             if (data.Data.Length != 1)
             {
-                throw new CardDBException($"Error: couldn't find card with CardID={CardID}");
+                throw new CardException($"Error: couldn't find card with CardID={CardID}");
             }
 
-            return ModelsAdapter.CardDBToBL(data.Data[0]);
+            return CardConverter.DBToBL(data.Data[0]);
         }
 
         public async Task AddCardAsync(Card card)
         {
             try
             {
-                await _space.Insert(ModelsAdapter.CardBLToDB(card));
+                await _space.Insert(CardConverter.BLToDB(card));
             }
             catch (Exception ex)
             {
-                throw new CardDBException($"Error: adding card {card}");
+                throw new CardException($"Error: adding card {card}");
             }
         }
         public async Task<Card> AddCardAutoIncrementAsync(Card obj)
         {
             try
             {
-                var result = await _box.Call_1_6<CardDBi, CardDB>("auto_increment_cards", (ModelsAdapter.CardBLToDBi(obj)));
-                return ModelsAdapter.CardDBToBL(result.Data[0]);
+                var result = await _box.Call_1_6<CardDBNoIndex, CardDB>("auto_increment_cards", (CardConverter.BLToDBNoIndex(obj)));
+                return CardConverter.DBToBL(result.Data[0]);
             }
             catch (Exception ex)
             {
-                throw new CardDBException($"Error: couldn't auto increment {obj}");
+                throw new CardException($"Error: couldn't auto increment {obj}");
             }
         }
         public async Task UpdateCardAsync(Card card)
@@ -87,7 +85,7 @@ namespace ComponentAccessToDB.RepositoriesTarantool
 
             if (response.Data.Length != 1)
             {
-                throw new CardDBException($"Error: updating card {card}");
+                throw new CardException($"Error: updating card {card}");
             }
         }
 
@@ -98,7 +96,7 @@ namespace ComponentAccessToDB.RepositoriesTarantool
 
             if (response.Data.Length != 1)
             {
-                throw new CardDBException($"Error: deleting card {card}");
+                throw new CardException($"Error: deleting card {card}");
             }
 
         }

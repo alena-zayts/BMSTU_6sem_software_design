@@ -7,10 +7,13 @@ using ProGaudi.Tarantool.Client.Model;
 using ProGaudi.Tarantool.Client.Model.Enums;
 using ProGaudi.Tarantool.Client.Model.UpdateOperations;
 
+using BL;
 using BL.Models;
 using BL.IRepositories;
+using AccessToDB.Converters;
+using AccessToDB.Exceptions;
 
-namespace ComponentAccessToDB.RepositoriesTarantool
+namespace AccessToDB.RepositoriesTarantool
 {
     public class TarantoolSlopesRepository : ISlopesRepository
     {
@@ -27,17 +30,17 @@ namespace ComponentAccessToDB.RepositoriesTarantool
             _box = context.box;
         }
 
-        public async Task<List<Slope>> GetSlopes()
+
+        public async Task<List<Slope>> GetSlopesAsync(uint offset = 0u, uint limit = Facade.UNLIMITED)
         {
             var data = await _index_primary.Select<ValueTuple<uint>, SlopeDB>
                 (ValueTuple.Create(0u), new SelectOptions { Iterator = Iterator.Ge });
 
             List<Slope> result = new();
 
-            foreach (var item in data.Data)
+            for (uint i = offset; i < (uint)data.Data.Length && i < limit; i++)
             {
-                Slope slope = ModelsAdapter.SlopeDBToBL(item);
-                result.Add(slope);
+                result.Add(SlopeConverter.DBToBL(data.Data[i]));
             }
 
             return result;
@@ -50,10 +53,10 @@ namespace ComponentAccessToDB.RepositoriesTarantool
 
             if (data.Data.Length != 1)
             {
-                throw new SlopeDBException($"Error: couldn't find slope with SlopeID={SlopeID}");
+                throw new SlopeException($"Error: couldn't find slope with SlopeID={SlopeID}");
             }
 
-            return ModelsAdapter.SlopeDBToBL(data.Data[0]);
+            return SlopeConverter.DBToBL(data.Data[0]);
         }
 
         public async Task<Slope> GetSlopeByNameAsync(string name)
@@ -63,21 +66,21 @@ namespace ComponentAccessToDB.RepositoriesTarantool
 
             if (data.Data.Length != 1)
             {
-                throw new SlopeDBException($"Error: couldn't find slope with name={name}");
+                throw new SlopeException($"Error: couldn't find slope with name={name}");
             }
 
-            return ModelsAdapter.SlopeDBToBL(data.Data[0]);
+            return SlopeConverter.DBToBL(data.Data[0]);
         }
 
         public async Task AddSlopeAsync(Slope slope)
         {
             try
             {
-                await _space.Insert(ModelsAdapter.SlopeBLToDB(slope));
+                await _space.Insert(SlopeConverter.BLToDB(slope));
             }
             catch (Exception ex)
             {
-                throw new SlopeDBException($"Error: adding slope {slope}");
+                throw new SlopeException($"Error: adding slope {slope}");
             }
         }
 
@@ -85,12 +88,12 @@ namespace ComponentAccessToDB.RepositoriesTarantool
         {
             try
             {
-                var result = await _box.Call_1_6<SlopeDBi, SlopeDB>("auto_increment_slopes", (ModelsAdapter.SlopeBLToDBi(obj)));
-                return ModelsAdapter.SlopeDBToBL(result.Data[0]);
+                var result = await _box.Call_1_6<SlopeDBNoIndex, SlopeDB>("auto_increment_slopes", (SlopeConverter.BLToDBNoIndex(obj)));
+                return SlopeConverter.DBToBL(result.Data[0]);
             }
             catch (Exception ex)
             {
-                throw new SlopeDBException($"Error: couldn't auto increment {obj}");
+                throw new SlopeException($"Error: couldn't auto increment {obj}");
             }
         }
 
@@ -105,7 +108,7 @@ namespace ComponentAccessToDB.RepositoriesTarantool
 
             if (response.Data.Length != 1)
             {
-                throw new SlopeDBException($"Error: updating slope {slope}");
+                throw new SlopeException($"Error: updating slope {slope}");
             }
         }
 
@@ -116,7 +119,7 @@ namespace ComponentAccessToDB.RepositoriesTarantool
 
             if (response.Data.Length != 1)
             {
-                throw new SlopeDBException($"Error: deleting slope {slope}");
+                throw new SlopeException($"Error: deleting slope {slope}");
             }
 
         }

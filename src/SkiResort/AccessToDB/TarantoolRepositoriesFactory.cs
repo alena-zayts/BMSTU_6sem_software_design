@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿using BL;
 using BL.IRepositories;
-using ComponentBL;
-using ComponentAccessToDB.RepositoriesTarantool;
+using AccessToDB.RepositoriesTarantool;
 
 
-namespace ComponentAccessToDB
+namespace AccessToDB
 {
     public class TarantoolRepositoriesFactory: IRepositoriesFactory
     {

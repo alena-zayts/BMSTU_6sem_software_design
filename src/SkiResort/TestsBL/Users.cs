@@ -9,7 +9,7 @@ using System.Collections.Generic;
 
 namespace TestsBL
 {
-    public class TestWorkingWithUsers
+    public class Users
     {
         [Fact]
         public async Task Test1()

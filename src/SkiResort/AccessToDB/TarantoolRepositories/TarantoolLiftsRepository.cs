@@ -7,10 +7,13 @@ using ProGaudi.Tarantool.Client.Model;
 using ProGaudi.Tarantool.Client.Model.Enums;
 using ProGaudi.Tarantool.Client.Model.UpdateOperations;
 
+using BL;
 using BL.Models;
 using BL.IRepositories;
+using AccessToDB.Converters;
+using AccessToDB.Exceptions;
 
-namespace ComponentAccessToDB.RepositoriesTarantool
+namespace AccessToDB.RepositoriesTarantool
 {
     public class TarantoolLiftsRepository : ILiftsRepository
     {
@@ -27,17 +30,16 @@ namespace ComponentAccessToDB.RepositoriesTarantool
             _box = context.box;
         }
 
-        public async Task<List<Lift>> GetLiftsAsync()
+        public async Task<List<Lift>> GetLiftsAsync(uint offset = 0u, uint limit = Facade.UNLIMITED)
         {
             var data = await _index_primary.Select<ValueTuple<uint>, LiftDB>
                 (ValueTuple.Create(0u), new SelectOptions { Iterator = Iterator.Ge });
 
             List<Lift> result = new();
 
-            foreach (var item in data.Data)
+            for (uint i = offset; i < (uint)data.Data.Length && i < limit; i++)
             {
-                Lift lift = ModelsAdapter.LiftDBToBL(item);
-                result.Add(lift);
+                result.Add(LiftConverter.DBToBL(data.Data[i]));
             }
 
             return result;
@@ -50,10 +52,10 @@ namespace ComponentAccessToDB.RepositoriesTarantool
 
             if (data.Data.Length != 1)
             {
-                throw new LiftDBException($"Error: couldn't find lift with LiftID={LiftID}");
+                throw new LiftException($"Error: couldn't find lift with LiftID={LiftID}");
             }
 
-            return ModelsAdapter.LiftDBToBL(data.Data[0]);
+            return LiftConverter.DBToBL(data.Data[0]);
         }
 
         public async Task<Lift> GetLiftByNameAsync(string name)
@@ -63,21 +65,21 @@ namespace ComponentAccessToDB.RepositoriesTarantool
 
             if (data.Data.Length != 1)
             {
-                throw new LiftDBException($"Error: couldn't find lift with name={name}");
+                throw new LiftException($"Error: couldn't find lift with name={name}");
             }
 
-            return ModelsAdapter.LiftDBToBL(data.Data[0]);
+            return LiftConverter.DBToBL(data.Data[0]);
         }
 
         public async Task AddLiftAsync(Lift lift)
         {
             try
             {
-                await _space.Insert(ModelsAdapter.LiftBLToDB(lift));
+                await _space.Insert(LiftConverter.BLToDB(lift));
             }
             catch (Exception ex)
             {
-                throw new LiftDBException($"Error: adding lift {lift}");
+                throw new LiftException($"Error: adding lift {lift}");
             }
         }
 
@@ -85,12 +87,12 @@ namespace ComponentAccessToDB.RepositoriesTarantool
         {
             try
             {
-                var result = await _box.Call_1_6<LiftDBi, LiftDB>("auto_increment_lifts", (ModelsAdapter.LiftBLToDBi(obj)));
-                return ModelsAdapter.LiftDBToBL(result.Data[0]);
+                var result = await _box.Call_1_6<LiftDBNoIndex, LiftDB>("auto_increment_lifts", (LiftConverter.BLToDBNoIndex(obj)));
+                return LiftConverter.DBToBL(result.Data[0]);
             }
             catch (Exception ex)
             {
-                throw new LiftDBException($"Error: couldn't auto increment {obj}");
+                throw new LiftException($"Error: couldn't auto increment {obj}");
             }
         }
         public async Task UpdateLiftAsync(Lift lift)
@@ -106,7 +108,7 @@ namespace ComponentAccessToDB.RepositoriesTarantool
 
             if (response.Data.Length != 1)
             {
-                throw new LiftDBException($"Error: updating lift {lift}");
+                throw new LiftException($"Error: updating lift {lift}");
             }
         }
 
@@ -117,7 +119,7 @@ namespace ComponentAccessToDB.RepositoriesTarantool
 
             if (response.Data.Length != 1)
             {
-                throw new LiftDBException($"Error: deleting lift {lift}");
+                throw new LiftException($"Error: deleting lift {lift}");
             }
 
         }

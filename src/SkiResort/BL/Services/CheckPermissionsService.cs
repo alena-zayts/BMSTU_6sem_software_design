@@ -23,7 +23,7 @@ namespace BL.Services
             }
 
             // ski_patrol
-            List<string> admin_patrol_only = new List<string> { "MarkMessageReadByUser", "ReadMessagesList", "GetLiftsSlopesInfo"};
+            List<string> admin_patrol_only = new List<string> { "MarkMessageReadByUserAsync", "GetMessagesAsync", "GetLiftsSlopesInfoAsync"};
 
             if (admin_patrol_only.Contains(memberName) || memberName.Contains("Update"))
             {
@@ -43,7 +43,7 @@ namespace BL.Services
             switch (memberName)
             {
                 // authorized but not ski patrol
-                case "SendMessgeAsync":
+                case "SendMessageAsync":
                     if (permissions == PermissionsEnum.AUTHORIZED) { return; }
                     throw new PermissionsException("", userID, memberName);
 

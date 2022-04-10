@@ -8,8 +8,9 @@ using BL.Models;
 using BL.IRepositories;
 
 
-using ComponentAccessToDB.RepositoriesTarantool;
-using ComponentAccessToDB;
+using AccessToDB.RepositoriesTarantool;
+using AccessToDB.Exceptions;
+using AccessToDB;
 
 
 
@@ -17,7 +18,7 @@ namespace Tests
 {
     public class TurnstilesDbTest
     { 
-        ContextTarantool _context;
+        TarantoolContext _context;
         private readonly ITestOutputHelper output;
 
         public TurnstilesDbTest(ITestOutputHelper output)
@@ -25,7 +26,7 @@ namespace Tests
             this.output = output;
 
             string connection_string = "ski_admin:Tty454r293300@localhost:3301";
-            _context = new ContextTarantool(connection_string);
+            _context = new TarantoolContext(connection_string);
         }
 
         [Fact]
@@ -37,23 +38,23 @@ namespace Tests
             Assert.Empty(await rep.GetTurnstilesAsync());
 
             // add correct
-            TurnstileBL added_turnstile = new TurnstileBL(1, 2, true);
-            await rep.Add(added_turnstile);
+            Turnstile added_turnstile = new Turnstile(1, 2, true);
+            await rep.AddTurnstileAsync(added_turnstile);
             // add already existing
-            await Assert.ThrowsAsync<TurnstileDBException>(() => rep.Add(added_turnstile));
+            await Assert.ThrowsAsync<TurnstileException>(() => rep.AddTurnstileAsync(added_turnstile));
 
             // get_by_id correct
-            TurnstileBL got_turnstile = await rep.GetById(added_turnstile.TurnstileID);
+            Turnstile got_turnstile = await rep.GetTurnstileByIdAsync(added_turnstile.TurnstileID);
             Assert.Equal(added_turnstile, got_turnstile);
 
             // delete correct
-            await rep.Delete(added_turnstile);
+            await rep.DeleteTurnstileAsync(added_turnstile);
 
             // get_by_id not existing
-            await Assert.ThrowsAsync<TurnstileDBException>(() => rep.GetById(added_turnstile.TurnstileID));
+            await Assert.ThrowsAsync<TurnstileException>(() => rep.GetTurnstileByIdAsync(added_turnstile.TurnstileID));
 
             // delete not existing
-            await Assert.ThrowsAsync<TurnstileDBException>(() => rep.Delete(added_turnstile));
+            await Assert.ThrowsAsync<TurnstileException>(() => rep.DeleteTurnstileAsync(added_turnstile));
 
             // end tests - empty getlist
             Assert.Empty(await rep.GetTurnstilesAsync());
@@ -71,17 +72,17 @@ namespace Tests
 
             uint LiftID = 10;
 
-            TurnstileBL added_turnstile1 = new TurnstileBL(1, LiftID, true);
-            await rep.Add(added_turnstile1);
+            Turnstile added_turnstile1 = new Turnstile(1, LiftID, true);
+            await rep.AddTurnstileAsync(added_turnstile1);
 
-            TurnstileBL added_turnstile2 = new TurnstileBL(2, 2, false);
-            await rep.Add(added_turnstile2);
+            Turnstile added_turnstile2 = new Turnstile(2, 2, false);
+            await rep.AddTurnstileAsync(added_turnstile2);
 
-            added_turnstile2.IsOpen = false;
+            added_turnstile2 = new Turnstile(added_turnstile2.TurnstileID, added_turnstile2.LiftID, !added_turnstile2.IsOpen);
 
             // updates correct
-            await rep.Update(added_turnstile1);
-            await rep.Update(added_turnstile2);
+            await rep.UpdateTurnstileAsync(added_turnstile1);
+            await rep.UpdateTurnstileAsync(added_turnstile2);
 
             var list = await rep.GetTurnstilesAsync();
             Assert.Equal(2, list.Count);
@@ -90,8 +91,8 @@ namespace Tests
 
 
             // by lift id
-            TurnstileBL added_turnstile3 = new TurnstileBL(3, LiftID, true);
-            await rep.Add(added_turnstile3);
+            Turnstile added_turnstile3 = new Turnstile(3, LiftID, true);
+            await rep.AddTurnstileAsync(added_turnstile3);
             list = await rep.GetTurnstilesByLiftIdAsync(LiftID);
             Assert.Equal(2, list.Count);
             Assert.Equal(added_turnstile1, list[0]);
@@ -101,14 +102,14 @@ namespace Tests
 
 
 
-            await rep.Delete(added_turnstile1);
-            await rep.Delete(added_turnstile2);
-            await rep.Delete(added_turnstile3);
+            await rep.DeleteTurnstileAsync(added_turnstile1);
+            await rep.DeleteTurnstileAsync(added_turnstile2);
+            await rep.DeleteTurnstileAsync(added_turnstile3);
 
 
             // updates not existing
-            await Assert.ThrowsAsync<TurnstileDBException>(() => rep.Update(added_turnstile1));
-            await Assert.ThrowsAsync<TurnstileDBException>(() => rep.Update(added_turnstile2));
+            await Assert.ThrowsAsync<TurnstileException>(() => rep.UpdateTurnstileAsync(added_turnstile1));
+            await Assert.ThrowsAsync<TurnstileException>(() => rep.UpdateTurnstileAsync(added_turnstile2));
 
 
             // end tests - empty getlist
@@ -116,12 +117,12 @@ namespace Tests
 
 
 
-            TurnstileBL tmp2 = await rep.AddAutoIncrement(added_turnstile1);
+            Turnstile tmp2 = await rep.AddTurnstileAutoIncrementAsync(added_turnstile1);
             Assert.True(1 == tmp2.TurnstileID);
-            TurnstileBL tmp3 = await rep.AddAutoIncrement(added_turnstile1);
+            Turnstile tmp3 = await rep.AddTurnstileAutoIncrementAsync(added_turnstile1);
             Assert.True(2 == tmp3.TurnstileID);
-            await rep.Delete(tmp2);
-            await rep.Delete(tmp3);
+            await rep.DeleteTurnstileAsync(tmp2);
+            await rep.DeleteTurnstileAsync(tmp3);
             Assert.Empty(await rep.GetTurnstilesAsync());
         }
     }

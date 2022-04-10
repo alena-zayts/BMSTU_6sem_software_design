@@ -134,22 +134,22 @@ namespace BL
         {
             await CheckPermissionsService.CheckPermissionsAsync(RepositoriesFactory.CreateUsersRepository(), requesterUserID);
 
-            Message message = new Message(Message.MessageUniversalID, requesterUserID, Message.MessageCheckedByNobody, text);
+            Message message = new(Message.MessageUniversalID, requesterUserID, Message.MessageCheckedByNobody, text);
             IMessagesRepository rep = RepositoriesFactory.CreateMessagesRepository();
             message = await rep.AddMessageAutoIncrementAsync(message);
             return message;
         }
 
-        public async Task<List<Message>> ReadMessagesListAsync(uint requesterUserID, uint offset, uint limit)
+        public async Task<List<Message>> GetMessagesAsync(uint requesterUserID, uint offset, uint limit)
         {
             await CheckPermissionsService.CheckPermissionsAsync(RepositoriesFactory.CreateUsersRepository(), requesterUserID);
             IMessagesRepository rep = RepositoriesFactory.CreateMessagesRepository();
             return await rep.GetMessagesAsync(offset, limit);
         }
 
-        public async Task<Message> MarkMessageReadByUserAsync(uint userID, uint messageID)
+        public async Task<Message> MarkMessageReadByUserAsync(uint requesterUserID, uint messageID)
         {
-            await CheckPermissionsService.CheckPermissionsAsync(RepositoriesFactory.CreateUsersRepository(), userID);
+            await CheckPermissionsService.CheckPermissionsAsync(RepositoriesFactory.CreateUsersRepository(), requesterUserID);
 
             IMessagesRepository rep = RepositoriesFactory.CreateMessagesRepository();
             Message message = await rep.GetMessageByIdAsync(messageID);
@@ -159,13 +159,13 @@ namespace BL
                 throw new MessageException("Couldn't mark message checked because it is alredy checked", message);
             }
 
-            Message checkedMessage = new(message.MessageID, message.SenderID, userID, message.Text);
+            Message checkedMessage = new(message.MessageID, message.SenderID, requesterUserID, message.Text);
             await rep.UpdateMessageAsync(checkedMessage);
 
             return checkedMessage;
         }
 
-        public async Task AdminMessagesUpdateAsync(uint userID, Message message)
+        public async Task AdminUpdateMessageAsync(uint userID, Message message)
         {
             await CheckPermissionsService.CheckPermissionsAsync(RepositoriesFactory.CreateUsersRepository(), userID);
 
@@ -173,13 +173,14 @@ namespace BL
             await rep.UpdateMessageAsync(message);
         }
 
-        public async Task AdminMessagesDeleteAsync(uint userID, Message message)
+        public async Task AdminDeleteMessageAsync(uint userID, Message message)
         {
             await CheckPermissionsService.CheckPermissionsAsync(RepositoriesFactory.CreateUsersRepository(), userID);
 
             IMessagesRepository rep = RepositoriesFactory.CreateMessagesRepository();
             await rep.DeleteMessageAsync(message);
         }
+        // -----------
 
         public async Task<Lift> GetLiftInfoAsync(uint userID, string LiftName)
         {

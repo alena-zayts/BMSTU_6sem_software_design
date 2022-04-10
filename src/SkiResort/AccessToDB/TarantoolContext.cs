@@ -1,10 +1,7 @@
-﻿using System;
-using System.Threading.Tasks;
-using ProGaudi.Tarantool.Client;
+﻿using ProGaudi.Tarantool.Client;
 
 
-
-namespace ComponentAccessToDB
+namespace AccessToDB
 {
     public class TarantoolContext
     {
@@ -26,9 +23,9 @@ namespace ComponentAccessToDB
         public IIndex turnstiles_index_primary;
         public IIndex turnstiles_index_lift_id;
 
-        public ISpace card_readings_space;
-        public IIndex card_readings_index_primary;
-        public IIndex card_readings_index_turnstile;
+        public ISpace cardReadings_space;
+        public IIndex cardReadings_index_primary;
+        public IIndex cardReadings_index_turnstile;
 
         public ISpace cards_space;
         public IIndex cards_index_primary;
@@ -49,7 +46,7 @@ namespace ComponentAccessToDB
             slopes_space, slopes_index_primary, slopes_index_name,
             lifts_slopes_space, lifts_slopes_index_primary, lifts_slopes_index_lift_id, lifts_slopes_index_slope_id,
             turnstiles_space, turnstiles_index_primary, turnstiles_index_lift_id,
-            card_readings_space, card_readings_index_primary, card_readings_index_turnstile,
+            cardReadings_space, cardReadings_index_primary, cardReadings_index_turnstile,
             cards_space, cards_index_primary,
             users_space, users_index_primary, users_index_email,
             messages_space, messages_index_primary, messages_index_sender_id, messages_index_checked_by_id
@@ -90,9 +87,9 @@ namespace ComponentAccessToDB
             var turnstiles_index_lift_id = await turnstiles_space.GetIndex("index_lift_id");
 
 
-            var card_readings_space = await schema.GetSpace("card_readings");
-            var card_readings_index_primary = await card_readings_space.GetIndex("primary");
-            var card_readings_index_turnstile = await card_readings_space.GetIndex("index_turnstile");
+            var cardReadings_space = await schema.GetSpace("cardReadings");
+            var cardReadings_index_primary = await cardReadings_space.GetIndex("primary");
+            var cardReadings_index_turnstile = await cardReadings_space.GetIndex("index_turnstile");
 
 
             var cards_space = await schema.GetSpace("cards");
@@ -118,7 +115,7 @@ namespace ComponentAccessToDB
                 slopes_space, slopes_index_primary, slopes_index_name,
                 lifts_slopes_space, lifts_slopes_index_primary, lifts_slopes_index_lift_id, lifts_slopes_index_slope_id,
                 turnstiles_space, turnstiles_index_primary, turnstiles_index_lift_id,
-                card_readings_space, card_readings_index_primary, card_readings_index_turnstile,
+                cardReadings_space, cardReadings_index_primary, cardReadings_index_turnstile,
                 cards_space, cards_index_primary,
                 users_space, users_index_primary, users_index_email,
                 messages_space, messages_index_primary, messages_index_sender_id, messages_index_checked_by_id

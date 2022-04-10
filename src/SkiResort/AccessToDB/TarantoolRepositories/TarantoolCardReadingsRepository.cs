@@ -1,16 +1,14 @@
-using System;
-using System.Threading.Tasks;
-using System.Collections.Generic;
-
 using ProGaudi.Tarantool.Client;
 using ProGaudi.Tarantool.Client.Model;
 using ProGaudi.Tarantool.Client.Model.Enums;
-using ProGaudi.Tarantool.Client.Model.UpdateOperations;
 
+using BL;
 using BL.Models;
 using BL.IRepositories;
+using AccessToDB.Converters;
+using AccessToDB.Exceptions;
 
-namespace ComponentAccessToDB.RepositoriesTarantool
+namespace AccessToDB.RepositoriesTarantool
 {
     public class TarantoolCardReadingsRepository : ICardReadingsRepository
     {
@@ -22,74 +20,73 @@ namespace ComponentAccessToDB.RepositoriesTarantool
         public TarantoolCardReadingsRepository(TarantoolContext context)
         {
             _box = context.box;
-            _space = context.card_readings_space;
-            _index_primary = context.card_readings_index_primary;
-            _index_turnstile = context.card_readings_index_turnstile;
+            _space = context.cardReadings_space;
+            _index_primary = context.cardReadings_index_primary;
+            _index_turnstile = context.cardReadings_index_turnstile;
     }
 
-        public async Task<List<CardReading>> GetList()
+        public async Task<List<CardReading>> GetCardReadingsAsync(uint offset = 0u, uint limit = Facade.UNLIMITED)
         {
             var data = await _index_primary.Select<ValueTuple<uint>, CardReadingDB>
                 (ValueTuple.Create(0u), new SelectOptions { Iterator = Iterator.Ge });
 
             List<CardReading> result = new();
 
-            foreach (var item in data.Data)
+            for (uint i = offset; i < (uint)data.Data.Length && i < limit; i++)
             {
-                CardReading card = ModelsAdapter.CardReadingDBToBL(item);
-                result.Add(card);
+                result.Add(CardReadingConverter.DBToBL(data.Data[i]));
             }
 
             return result;
         }
 
-        public async Task<uint> CountForLiftIdFromDate(uint LiftID, uint date_from)
+        public async Task<uint> CountForLiftIdFromDateAsync(uint LiftID, uint dateFrom)
         {
             try
             {
-                var result = await _box.Call_1_6<ValueTuple<uint, uint>, Int32[]>("count_card_readings", (ValueTuple.Create(LiftID, date_from)));
+                var result = await _box.Call_1_6<ValueTuple<uint, uint>, Int32[]>("count_cardReadings", (ValueTuple.Create(LiftID, dateFrom)));
                 return (uint) result.Data[0][0];
             }
             catch (Exception ex)
             {
-                throw new CardReadingDBException($"Error: couldn't count amount of car_readings for LiftID={LiftID} from {date_from}");
+                throw new CardReadingException($"Error: couldn't count amount of car_readings for LiftID={LiftID} from {dateFrom}");
             }
         }
-        public async Task<CardReading> AddAutoIncrement(CardReading obj)
+        public async Task<CardReading> AddCardReadingAutoIncrementAsync(CardReading obj)
         {
             try
             {
-                var result = await _box.Call_1_6<CardReadingDBi, CardReadingDB>("auto_increment_card_readings", (ModelsAdapter.CardReadingBLToDBi(obj)));
-                return ModelsAdapter.CardReadingDBToBL(result.Data[0]);
+                var result = await _box.Call_1_6<CardReadingDBNoIndex, CardReadingDB>("auto_increment_cardReadings", (CardReadingConverter.BLToDBNoIndex(obj)));
+                return CardReadingConverter.DBToBL(result.Data[0]);
             }
             catch (Exception ex)
             {
-                throw new CardReadingDBException($"Error: couldn't auto increment car_reading {obj}");
+                throw new CardReadingException($"Error: couldn't auto increment car_reading {obj}");
             }
         }
 
 
-        public async Task Add(CardReading card_reading)
+        public async Task AddCardReadingAsync(CardReading cardReading)
         {
             try
             {
-                await _space.Insert(ModelsAdapter.CardReadingBLToDB(card_reading));
+                await _space.Insert(CardReadingConverter.BLToDB(cardReading));
             }
             catch (Exception ex)
             {
-                throw new CardReadingDBException($"Error: adding card_reading {card_reading}");
+                throw new CardReadingException($"Error: adding cardReading {cardReading}");
             }
         }
 
 
-        public async Task Delete(CardReading card_reading)
+        public async Task DeleteCardReadingAsync(CardReading cardReading)
         {
             var response = await _index_primary.Delete<ValueTuple<uint>, CardReadingDB>
-                (ValueTuple.Create(card_reading.RecordID));
+                (ValueTuple.Create(cardReading.RecordID));
 
             if (response.Data.Length != 1)
             {
-                throw new CardReadingDBException($"Error: deleting card_reading {card_reading}");
+                throw new CardReadingException($"Error: deleting cardReading {cardReading}");
             }
 
         }

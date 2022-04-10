@@ -2,6 +2,7 @@ using System;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 
+using BL;
 using BL.Models;
 using BL.IRepositories;
 
@@ -68,9 +69,12 @@ namespace TestsBL.IoCRepositories
             throw new Exception();
         }
 
-        public async Task<List<Card>> GetCardsAsync(uint offset = 0, uint limit = 0)
+        public async Task<List<Card>> GetCardsAsync(uint offset = 0, uint limit = Facade.UNLIMITED)
         {
-            return data.GetRange((int)offset, (int)(limit - offset));
+            if (limit != Facade.UNLIMITED)
+                return data.GetRange((int)offset, (int)limit);
+            else
+                return data.GetRange((int)offset, (int)data.Count);
         }
 
         public async Task UpdateCardAsync(Card card)

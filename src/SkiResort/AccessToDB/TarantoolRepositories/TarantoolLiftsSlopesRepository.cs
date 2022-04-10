@@ -7,10 +7,13 @@ using ProGaudi.Tarantool.Client.Model;
 using ProGaudi.Tarantool.Client.Model.Enums;
 using ProGaudi.Tarantool.Client.Model.UpdateOperations;
 
+using BL;
 using BL.Models;
 using BL.IRepositories;
+using AccessToDB.Converters;
+using AccessToDB.Exceptions;
 
-namespace ComponentAccessToDB.RepositoriesTarantool
+namespace AccessToDB.RepositoriesTarantool
 {
     public class TarantoolLiftsSlopesRepository : ILiftsSlopesRepository
     {
@@ -32,17 +35,17 @@ namespace ComponentAccessToDB.RepositoriesTarantool
             _slopes_rep = new TarantoolSlopesRepository(context);
             _box = context.box;
         }
-        public async Task<List<LiftSlope>> GetLiftsSlopesAsync()
+
+        public async Task<List<LiftSlope>> GetLiftsSlopesAsync(uint offset = 0u, uint limit = Facade.UNLIMITED)
         {
             var data = await _index_primary.Select<ValueTuple<uint>, LiftSlopeDB>
                 (ValueTuple.Create(0u), new SelectOptions { Iterator = Iterator.Ge });
 
             List<LiftSlope> result = new();
 
-            foreach (var item in data.Data)
+            for (uint i = offset; i < (uint)data.Data.Length && i < limit; i++)
             {
-                LiftSlope lift_slope = ModelsAdapter.LiftSlopeDBToBL(item);
-                result.Add(lift_slope);
+                result.Add(LiftSlopeConverter.DBToBL(data.Data[i]));
             }
 
             return result;
@@ -55,10 +58,10 @@ namespace ComponentAccessToDB.RepositoriesTarantool
 
             if (data.Data.Length != 1)
             {
-                throw new LiftSlopeDBException($"Error: couldn't find lift_slope with RecordID={RecordID}");
+                throw new LiftSlopeException($"Error: couldn't find lift_slope with RecordID={RecordID}");
             }
 
-            return ModelsAdapter.LiftSlopeDBToBL(data.Data[0]);
+            return LiftSlopeConverter.DBToBL(data.Data[0]);
         }
         private async Task<List<uint>> GetLiftIdsBySlopeId(uint SlopeID)
         {
@@ -68,7 +71,7 @@ namespace ComponentAccessToDB.RepositoriesTarantool
 
             foreach (var item in data.Data)
             {
-                LiftSlope lift_slope = ModelsAdapter.LiftSlopeDBToBL(item);
+                LiftSlope lift_slope = LiftSlopeConverter.DBToBL(item);
                 result.Add(lift_slope.LiftID);
             }
 
@@ -87,9 +90,9 @@ namespace ComponentAccessToDB.RepositoriesTarantool
                     result.Add(lift);
 
                 }
-                catch (LiftDBException)
+                catch (LiftException)
                 {
-                    throw new LiftSlopeDBException($"Error: couldn't find LiftID={LiftID} (for SlopeID={SlopeID})");
+                    throw new LiftSlopeException($"Error: couldn't find LiftID={LiftID} (for SlopeID={SlopeID})");
                 }
             }
             return result;
@@ -104,7 +107,7 @@ namespace ComponentAccessToDB.RepositoriesTarantool
 
             foreach (var item in data.Data)
             {
-                LiftSlope lift_slope = ModelsAdapter.LiftSlopeDBToBL(item);
+                LiftSlope lift_slope = LiftSlopeConverter.DBToBL(item);
                 result.Add(lift_slope.SlopeID);
             }
 
@@ -123,9 +126,9 @@ namespace ComponentAccessToDB.RepositoriesTarantool
                     result.Add(slope);
 
                 }
-                catch (SlopeDBException)
+                catch (SlopeException)
                 {
-                    throw new LiftSlopeDBException($"Error: couldn't find SlopeID={SlopeID} (for LiftID={LiftID})");
+                    throw new LiftSlopeException($"Error: couldn't find SlopeID={SlopeID} (for LiftID={LiftID})");
                 }
             }
             return result;
@@ -136,11 +139,11 @@ namespace ComponentAccessToDB.RepositoriesTarantool
         {
             try
             {
-                await _space.Insert(ModelsAdapter.LiftSlopeBLToDB(lift_slope));
+                await _space.Insert(LiftSlopeConverter.BLToDB(lift_slope));
             }
             catch (Exception ex)
             {
-                throw new LiftSlopeDBException($"Error: adding lift_slope {lift_slope}");
+                throw new LiftSlopeException($"Error: adding lift_slope {lift_slope}");
             }
         }
 
@@ -148,12 +151,12 @@ namespace ComponentAccessToDB.RepositoriesTarantool
         {
             try
             {
-                var result = await _box.Call_1_6<LiftSlopeDBi, LiftSlopeDB>("auto_increment_lifts_slopes", (ModelsAdapter.LiftSlopeBLToDBi(obj)));
-                return ModelsAdapter.LiftSlopeDBToBL(result.Data[0]);
+                var result = await _box.Call_1_6<LiftSlopeDBNoIndex, LiftSlopeDB>("auto_increment_lifts_slopes", (LiftSlopeConverter.BLToDBNoIndex(obj)));
+                return LiftSlopeConverter.DBToBL(result.Data[0]);
             }
             catch (Exception ex)
             {
-                throw new LiftSlopeDBException($"Error: couldn't auto increment {obj}");
+                throw new LiftSlopeException($"Error: couldn't auto increment {obj}");
             }
         }
 
@@ -167,7 +170,7 @@ namespace ComponentAccessToDB.RepositoriesTarantool
 
             if (response.Data.Length != 1)
             {
-                throw new LiftSlopeDBException($"Error: updating lift_slope {lift_slope}");
+                throw new LiftSlopeException($"Error: updating lift_slope {lift_slope}");
             }
         }
 
@@ -178,7 +181,7 @@ namespace ComponentAccessToDB.RepositoriesTarantool
 
             if (response.Data.Length != 1)
             {
-                throw new LiftSlopeDBException($"Error: deleting lift_slope {lift_slope}");
+                throw new LiftSlopeException($"Error: deleting lift_slope {lift_slope}");
             }
 
         }
