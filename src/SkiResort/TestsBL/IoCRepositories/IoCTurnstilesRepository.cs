@@ -75,6 +75,16 @@ namespace TestsBL.IoCRepositories
             return data.GetRange((int)offset, (int)(limit - offset));
         }
 
+        public async Task<List<Turnstile>> GetTurnstilesByLiftIdAsync(uint liftID)
+        {
+            List<Turnstile> turnstiles = new();
+            foreach (Turnstile turnstile in data)
+                if (turnstile.LiftID == liftID)
+                    turnstiles.Add(turnstile);
+
+            return turnstiles;
+        }
+
         public async Task UpdateTurnstileAsync(Turnstile turnstile)
         {
             for (int i = 0; i < data.Count; i++)

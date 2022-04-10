@@ -12,6 +12,7 @@ namespace BL.Models
     {
         public const uint UniversalCardID = 0;
 
+        public const uint UniversalUserID = 0;
         public uint UserID { get; }
         public uint CardID { get; }
         public string UserEmail { get; }

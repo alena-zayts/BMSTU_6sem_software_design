@@ -43,27 +43,27 @@ namespace BL.Services
             switch (memberName)
             {
                 // authorized but not ski patrol
-                case "SendMessge":
+                case "SendMessgeAsync":
                     if (permissions == PermissionsEnum.AUTHORIZED) { return; }
                     throw new PermissionsException("", userID, memberName);
 
 
-                case "LogIn":
+                case "LogInAsync":
                     if (permissions == PermissionsEnum.UNAUTHORIZED) { return; }
                     throw new PermissionsException("", userID, memberName);
 
 
-                case "Register":
+                case "RegisterAsync":
                     if (permissions == PermissionsEnum.UNAUTHORIZED) { return;  }
                     throw new PermissionsException("", userID, memberName);
 
 
-                case "LogOut":
+                case "LogOutAsync":
                     if (permissions != PermissionsEnum.UNAUTHORIZED) { return; }
                     throw new PermissionsException("", userID, memberName);
             }
 
-            throw new PermissionsException("unknown function", userID, memberName);
+            throw new PermissionsException($"unknown function {memberName}", userID, memberName);
         }
 
     }

@@ -8,8 +8,8 @@ using Ninject.Modules;
 using BL.IRepositories;
 using TestsBL.IoCRepositories;
 
-using ComponentBL;
-using TestsBL;
+
+
 using BL;
 
 namespace TestsBL.Util

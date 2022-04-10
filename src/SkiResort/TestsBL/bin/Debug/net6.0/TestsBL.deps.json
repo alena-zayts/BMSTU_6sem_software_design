@@ -8,7 +8,7 @@
     ".NETCoreApp,Version=v6.0": {
       "TestsBL/1.0.0": {
         "dependencies": {
-          "ComponentBL": "1.0.0",
+          "BL": "1.0.0",
           "Microsoft.NET.Test.Sdk": "16.11.0",
           "Ninject": "3.3.4",
           "coverlet.collector": "3.1.0",
@@ -1103,9 +1103,9 @@
         }
       },
       "xunit.runner.visualstudio/2.4.3": {},
-      "ComponentBL/1.0.0": {
+      "BL/1.0.0": {
         "runtime": {
-          "ComponentBL.dll": {}
+          "BL.dll": {}
         }
       }
     }
@@ -1767,7 +1767,7 @@
       "path": "xunit.runner.visualstudio/2.4.3",
       "hashPath": "xunit.runner.visualstudio.2.4.3.nupkg.sha512"
     },
-    "ComponentBL/1.0.0": {
+    "BL/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

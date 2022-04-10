@@ -7,132 +7,142 @@ namespace BL
 {
     public class Facade
     {
+        public const uint UNLIMITED = 0;
         private readonly IRepositoriesFactory RepositoriesFactory;
         public Facade(IRepositoriesFactory repositoriesFactory)
         {
             this.RepositoriesFactory = repositoriesFactory;
         }
 
-        public async Task<User> LogInAsUnauthorizedAsync(uint userID)
+        //-----------------------------------------------------------------------------------
+        //--------------------------------------------------------------------- User
+        public async Task<User> LogInAsUnauthorizedAsync(uint requesterUserID)
         {
             IUsersRepository usersRepository = RepositoriesFactory.CreateUsersRepository();
 
-            if (await usersRepository.CheckUserIdExistsAsync(userID))
+            if (await usersRepository.CheckUserIdExistsAsync(requesterUserID))
             {
-                throw new UserException($"Could't add new unauthorized user with userID={userID} because it already exists");
+                throw new UserException($"Could't add new unauthorized user with userID={requesterUserID} because it already exists");
             }
 
-            User newUser = new(userID, User.UniversalCardID, $"unauthorized_email_{userID}", $"unauthorized_password_{userID}", PermissionsEnum.UNAUTHORIZED);
+            User newUser = new(requesterUserID, User.UniversalCardID, $"unauthorized_email_{requesterUserID}", $"unauthorized_password_{requesterUserID}", PermissionsEnum.UNAUTHORIZED);
             await usersRepository.AddUserAsync(newUser);
             return newUser;
         }
 
-        public async Task<User> RegisterAsync(User user)
+        public async Task<User> RegisterAsync(uint requesterUserID, uint cardID, string email, string password)
         {
-            await CheckPermissionsService.CheckPermissionsAsync(RepositoriesFactory.CreateUsersRepository(), user.UserID);
+            await CheckPermissionsService.CheckPermissionsAsync(RepositoriesFactory.CreateUsersRepository(), requesterUserID);
 
-            if (user.UserEmail.Length == 0  || user.Password.Length == 0)
+            if (email.Length == 0  || password.Length == 0)
             {
-                throw new UserException($"Could't register new user because of incorrect password or email", user);
+                throw new UserException($"Could't register new user {requesterUserID} because of incorrect password or email");
             }
 
             IUsersRepository usersRepository = RepositoriesFactory.CreateUsersRepository();
 
-            if (await usersRepository.CheckUserEmailExistsAsync(user.UserEmail))
+            if (await usersRepository.CheckUserEmailExistsAsync(email))
             {
-                throw new UserException($"Could't register new user because such email already exists", user);
+                throw new UserException($"Could't register new user {requesterUserID} because such email already exists");
             }
 
-            User nowAuthorizedUser = new(user.UserID, user.CardID, user.UserEmail, user.Password, PermissionsEnum.AUTHORIZED);
-            await usersRepository.UpdateUserAsync(nowAuthorizedUser);
-            return nowAuthorizedUser;
+            User authorizedUser = new(requesterUserID, cardID, email, password, PermissionsEnum.AUTHORIZED);
+            await usersRepository.UpdateUserAsync(authorizedUser);
+            return authorizedUser;
         }
 
-        public async Task<User> LogInAsync(User user)
+        public async Task<User> LogInAsync(uint requesterUserID, string email, string password)
         {
-            await CheckPermissionsService.CheckPermissionsAsync(RepositoriesFactory.CreateUsersRepository(), user.UserID);
+            await CheckPermissionsService.CheckPermissionsAsync(RepositoriesFactory.CreateUsersRepository(), requesterUserID);
 
             IUsersRepository usersRepository = RepositoriesFactory.CreateUsersRepository();
-            User userFromDB = await usersRepository.GetUserByIdAsync(user.UserID);
+            User userFromDB = await usersRepository.GetUserByIdAsync(requesterUserID);
 
-            if (user.UserEmail != userFromDB.UserEmail || user.Password != userFromDB.Password)
+            if (email != userFromDB.UserEmail || password != userFromDB.Password)
             {
-                throw new UserException($"Could't authorize user because of wrong email " +
-                    $"(expected {userFromDB.UserEmail}) or password (expected {userFromDB.Password})", user);
+                throw new UserException($"Could't authorize user {requesterUserID} because of wrong email " +
+                    $"(expected {userFromDB.UserEmail}) or password (expected {userFromDB.Password})");
             }
 
-            User nowAuthorizedUser = new(user.UserID, user.CardID, user.UserEmail, user.Password, PermissionsEnum.AUTHORIZED);
-            await usersRepository.UpdateUserAsync(nowAuthorizedUser);
-            return nowAuthorizedUser;
+            User authorizedUser = new(userFromDB.UserID, userFromDB.CardID, userFromDB.UserEmail, userFromDB.Password, PermissionsEnum.AUTHORIZED);
+            await usersRepository.UpdateUserAsync(authorizedUser);
+            return authorizedUser;
         }
 
-        public async Task<User> LogOutAsync(User user)
+        public async Task<User> LogOutAsync(uint requesterUserID)
         {
-            await CheckPermissionsService.CheckPermissionsAsync(RepositoriesFactory.CreateUsersRepository(), user.UserID);
+            await CheckPermissionsService.CheckPermissionsAsync(RepositoriesFactory.CreateUsersRepository(), requesterUserID);
 
             IUsersRepository usersRepository = RepositoriesFactory.CreateUsersRepository();
 
-            User nowUnauthorizedUser = new(user.UserID, user.CardID, user.UserEmail, user.Password, PermissionsEnum.UNAUTHORIZED);
-            await usersRepository.UpdateUserAsync(nowUnauthorizedUser);
-            return nowUnauthorizedUser;
+            User userFromDB = await usersRepository.GetUserByIdAsync(requesterUserID);
+
+            User unauthorizedUser = new(userFromDB.UserID, userFromDB.CardID, userFromDB.UserEmail, userFromDB.Password, PermissionsEnum.UNAUTHORIZED);
+            await usersRepository.UpdateUserAsync(unauthorizedUser);
+            return unauthorizedUser;
         }
 
-        public async Task<List<User>> AdminUsersGetListAsync(uint offset, uint limit)
+        public async Task<List<User>> AdminGetUsersAsync(uint requesterUserID, uint offset, uint limit)
         {
+            await CheckPermissionsService.CheckPermissionsAsync(RepositoriesFactory.CreateUsersRepository(), requesterUserID);
             IUsersRepository usersRepository = RepositoriesFactory.CreateUsersRepository();
             return await usersRepository.GetUsersAsync(offset, limit);
         }
 
-        public async Task AdminUsersAddAsync(User user)
+        public async Task AdminAddUserAsync(uint requesterUserID, User user)
         {
-            await CheckPermissionsService.CheckPermissionsAsync(RepositoriesFactory.CreateUsersRepository(), user.UserID);
+            await CheckPermissionsService.CheckPermissionsAsync(RepositoriesFactory.CreateUsersRepository(), requesterUserID);
+
             IUsersRepository usersRepository = RepositoriesFactory.CreateUsersRepository();
             await usersRepository.AddUserAsync(user);
         }
 
-        public async Task<User> AdminUsersAddAoutoIncrementAsync(User user)
+        public async Task<User> AdminAddAutoIncrementUserAsync(uint requesterUserID, User user)
         {
-            await CheckPermissionsService.CheckPermissionsAsync(RepositoriesFactory.CreateUsersRepository(), user.UserID);
+            await CheckPermissionsService.CheckPermissionsAsync(RepositoriesFactory.CreateUsersRepository(), requesterUserID);
             IUsersRepository usersRepository = RepositoriesFactory.CreateUsersRepository();
             return await usersRepository.AddUserAutoIncrementAsync(user);
         }
 
-        public async Task AdminUsersUpdateAsync(User user)
+        public async Task AdminUpdateUserAsync(uint requesterUserID, User user)
         {
-            await CheckPermissionsService.CheckPermissionsAsync(RepositoriesFactory.CreateUsersRepository(), user.UserID);
+            await CheckPermissionsService.CheckPermissionsAsync(RepositoriesFactory.CreateUsersRepository(), requesterUserID);
             IUsersRepository usersRepository = RepositoriesFactory.CreateUsersRepository();
             await usersRepository.UpdateUserAsync(user);
         }
 
-        public async Task AdminUsersDeleteAsync(User user)
+        public async Task AdminDeleteUserAsync(uint requesterUserID, uint userToDeleteID)
         {
-            await CheckPermissionsService.CheckPermissionsAsync(RepositoriesFactory.CreateUsersRepository(), user.UserID);
+            await CheckPermissionsService.CheckPermissionsAsync(RepositoriesFactory.CreateUsersRepository(), requesterUserID);
             IUsersRepository usersRepository = RepositoriesFactory.CreateUsersRepository();
-            await usersRepository.DeleteUserAsync(user);
+
+            User userFromDB = await usersRepository.GetUserByIdAsync(userToDeleteID);  
+            await usersRepository.DeleteUserAsync(userFromDB);
         }
 
-        public async Task<User> AdminUsersGetByIDAsync(uint callingUserID, uint userID)
+        public async Task<User> AdminGetUserByIDAsync(uint requesterUserID, uint userID)
         {
-            await CheckPermissionsService.CheckPermissionsAsync(RepositoriesFactory.CreateUsersRepository(), callingUserID);
+            await CheckPermissionsService.CheckPermissionsAsync(RepositoriesFactory.CreateUsersRepository(), requesterUserID);
             IUsersRepository usersRepository = RepositoriesFactory.CreateUsersRepository();
             return await usersRepository.GetUserByIdAsync(userID);
         }
 
 
-
-        public async Task<Message> SendMessageAsync(uint userID, string text)
+        // -------------------------------------------------------------------------------------------------------
+        // -------------------------------------------- Message
+        public async Task<Message> SendMessageAsync(uint requesterUserID, string text)
         {
-            await CheckPermissionsService.CheckPermissionsAsync(RepositoriesFactory.CreateUsersRepository(), userID);
+            await CheckPermissionsService.CheckPermissionsAsync(RepositoriesFactory.CreateUsersRepository(), requesterUserID);
 
-            Message message = new Message(Message.MessageUniversalID, userID, Message.MessageCheckedByNobody, text);
+            Message message = new Message(Message.MessageUniversalID, requesterUserID, Message.MessageCheckedByNobody, text);
             IMessagesRepository rep = RepositoriesFactory.CreateMessagesRepository();
             message = await rep.AddMessageAutoIncrementAsync(message);
             return message;
         }
 
-        public async Task<List<Message>> ReadMessagesListAsync(uint userID, uint offset, uint limit)
+        public async Task<List<Message>> ReadMessagesListAsync(uint requesterUserID, uint offset, uint limit)
         {
-            await CheckPermissionsService.CheckPermissionsAsync(RepositoriesFactory.CreateUsersRepository(), userID);
+            await CheckPermissionsService.CheckPermissionsAsync(RepositoriesFactory.CreateUsersRepository(), requesterUserID);
             IMessagesRepository rep = RepositoriesFactory.CreateMessagesRepository();
             return await rep.GetMessagesAsync(offset, limit);
         }

@@ -5,9 +5,6 @@ C:\BMSTU_6sem_software_design\src\SkiResort\TestsBL\obj\Debug\net6.0\TestsBL.Ass
 C:\BMSTU_6sem_software_design\src\SkiResort\TestsBL\obj\Debug\net6.0\TestsBL.AssemblyInfo.cs
 C:\BMSTU_6sem_software_design\src\SkiResort\TestsBL\obj\Debug\net6.0\TestsBL.csproj.CoreCompileInputs.cache
 C:\BMSTU_6sem_software_design\src\SkiResort\TestsBL\bin\Debug\net6.0\testhost.dll
-C:\BMSTU_6sem_software_design\src\SkiResort\TestsBL\bin\Debug\net6.0\ComponentBL.deps.json
-C:\BMSTU_6sem_software_design\src\SkiResort\TestsBL\bin\Debug\net6.0\ComponentBL.runtimeconfig.json
-C:\BMSTU_6sem_software_design\src\SkiResort\TestsBL\bin\Debug\net6.0\ComponentBL.exe
 C:\BMSTU_6sem_software_design\src\SkiResort\TestsBL\bin\Debug\net6.0\testhost.exe
 C:\BMSTU_6sem_software_design\src\SkiResort\TestsBL\bin\Debug\net6.0\Microsoft.TestPlatform.PlatformAbstractions.dll
 C:\BMSTU_6sem_software_design\src\SkiResort\TestsBL\bin\Debug\net6.0\xunit.runner.visualstudio.dotnetcore.testadapter.dll
@@ -96,11 +93,11 @@ C:\BMSTU_6sem_software_design\src\SkiResort\TestsBL\bin\Debug\net6.0\zh-Hans\Mic
 C:\BMSTU_6sem_software_design\src\SkiResort\TestsBL\bin\Debug\net6.0\zh-Hant\Microsoft.TestPlatform.CommunicationUtilities.resources.dll
 C:\BMSTU_6sem_software_design\src\SkiResort\TestsBL\bin\Debug\net6.0\zh-Hant\Microsoft.TestPlatform.CrossPlatEngine.resources.dll
 C:\BMSTU_6sem_software_design\src\SkiResort\TestsBL\bin\Debug\net6.0\zh-Hant\Microsoft.VisualStudio.TestPlatform.Common.resources.dll
-C:\BMSTU_6sem_software_design\src\SkiResort\TestsBL\bin\Debug\net6.0\ComponentBL.dll
-C:\BMSTU_6sem_software_design\src\SkiResort\TestsBL\bin\Debug\net6.0\ComponentBL.pdb
 C:\BMSTU_6sem_software_design\src\SkiResort\TestsBL\obj\Debug\net6.0\TestsBL.csproj.CopyComplete
 C:\BMSTU_6sem_software_design\src\SkiResort\TestsBL\obj\Debug\net6.0\TestsBL.dll
 C:\BMSTU_6sem_software_design\src\SkiResort\TestsBL\obj\Debug\net6.0\refint\TestsBL.dll
 C:\BMSTU_6sem_software_design\src\SkiResort\TestsBL\obj\Debug\net6.0\TestsBL.pdb
 C:\BMSTU_6sem_software_design\src\SkiResort\TestsBL\obj\Debug\net6.0\TestsBL.genruntimeconfig.cache
 C:\BMSTU_6sem_software_design\src\SkiResort\TestsBL\obj\Debug\net6.0\ref\TestsBL.dll
+C:\BMSTU_6sem_software_design\src\SkiResort\TestsBL\bin\Debug\net6.0\BL.dll
+C:\BMSTU_6sem_software_design\src\SkiResort\TestsBL\bin\Debug\net6.0\BL.pdb
