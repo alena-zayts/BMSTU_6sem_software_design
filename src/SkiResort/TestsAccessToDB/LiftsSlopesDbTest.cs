@@ -77,12 +77,12 @@ namespace Tests
             LiftSlope added_lift_slope2 = new LiftSlope(2, 2, 1);
             await rep.AddLiftSlopeAsync(added_lift_slope2);
 
-            added_lift_slope2 = new LiftSlope(added_lift_slope1.RecordID, 100, 200);
-
+            added_lift_slope2 = new LiftSlope(added_lift_slope2.RecordID, 100, 200);
+            await rep.UpdateLiftSlopeAsync(added_lift_slope2);
 
             // updates correct
-            await rep.UpdateLiftSlopeAsync(added_lift_slope1);
-            await rep.UpdateLiftSlopeAsync(added_lift_slope2);
+            Assert.Contains(added_lift_slope1, await rep.GetLiftsSlopesAsync());
+            Assert.Contains(added_lift_slope2, await rep.GetLiftsSlopesAsync());
 
             var list = await rep.GetLiftsSlopesAsync();
             Assert.Equal(2, list.Count);

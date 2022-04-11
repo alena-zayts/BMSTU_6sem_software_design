@@ -36,6 +36,12 @@ namespace BL.Models
                    IsOpen == dB.IsOpen &&
                    DifficultyLevel == dB.DifficultyLevel;
         }
+
+        public bool EqualsFull(Slope slope)
+        {
+            return this.Equals(slope) &&
+                new HashSet<Lift>(slope.ConnectedLifts).SetEquals(this.ConnectedLifts);
+        }
     }
 }
 

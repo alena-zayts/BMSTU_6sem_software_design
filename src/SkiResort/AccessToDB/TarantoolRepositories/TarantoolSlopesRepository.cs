@@ -38,7 +38,7 @@ namespace AccessToDB.RepositoriesTarantool
 
             List<Slope> result = new();
 
-            for (uint i = offset; i < (uint)data.Data.Length && i < limit; i++)
+            for (uint i = offset; i < (uint)data.Data.Length && (i < limit || limit == Facade.UNLIMITED); i++)
             {
                 result.Add(SlopeConverter.DBToBL(data.Data[i]));
             }

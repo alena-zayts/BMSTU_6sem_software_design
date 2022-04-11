@@ -38,8 +38,13 @@ namespace BL.Models
                    LiftName == dB.LiftName &&
                    IsOpen == dB.IsOpen &&
                    SeatsAmount == dB.SeatsAmount &&
-                   LiftingTime == dB.LiftingTime &&
                    QueueTime == dB.QueueTime;
+        }
+
+        public bool EqualsFull(Lift lift)
+        {
+            return this.Equals(lift) && 
+                new HashSet<Slope>(lift.ConnectedSlopes).SetEquals(this.ConnectedSlopes);
         }
     }
 }

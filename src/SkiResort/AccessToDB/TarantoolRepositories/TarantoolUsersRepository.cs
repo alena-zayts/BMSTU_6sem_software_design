@@ -36,7 +36,7 @@ namespace AccessToDB.RepositoriesTarantool
 
             List<User> result = new();
 
-            for (uint i = offset; i < (uint)data.Data.Length && i < limit; i++)
+            for (uint i = offset; i < (uint)data.Data.Length && (i < limit || limit == Facade.UNLIMITED); i++)
             {
                 result.Add(UserConverter.DBToBL(data.Data[i]));
             }

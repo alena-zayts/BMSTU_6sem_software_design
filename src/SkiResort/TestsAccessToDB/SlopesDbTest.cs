@@ -81,7 +81,7 @@ namespace Tests
             Slope added_slope2 = new Slope(2, "B2", false, 20);
             await rep.AddSlopeAsync(added_slope2);
 
-            added_slope2 = new Slope(added_slope1.SlopeID, "dfd", added_slope1.IsOpen, added_slope1.DifficultyLevel);
+            added_slope2 = new Slope(added_slope2.SlopeID, "dfd", added_slope2.IsOpen, added_slope2.DifficultyLevel);
 
             // updates correct
             await rep.UpdateSlopeAsync(added_slope1);

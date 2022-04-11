@@ -37,7 +37,7 @@ namespace AccessToDB.RepositoriesTarantool
 
             List<Lift> result = new();
 
-            for (uint i = offset; i < (uint)data.Data.Length && i < limit; i++)
+            for (uint i = offset; i < (uint)data.Data.Length && (i < limit || limit == Facade.UNLIMITED); i++)
             {
                 result.Add(LiftConverter.DBToBL(data.Data[i]));
             }

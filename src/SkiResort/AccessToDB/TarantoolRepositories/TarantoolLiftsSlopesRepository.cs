@@ -43,7 +43,7 @@ namespace AccessToDB.RepositoriesTarantool
 
             List<LiftSlope> result = new();
 
-            for (uint i = offset; i < (uint)data.Data.Length && i < limit; i++)
+            for (uint i = offset; i < (uint)data.Data.Length && (i < limit || limit == Facade.UNLIMITED); i++)
             {
                 result.Add(LiftSlopeConverter.DBToBL(data.Data[i]));
             }

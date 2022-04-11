@@ -8,8 +8,8 @@
     ".NETCoreApp,Version=v6.0": {
       "TestsAccessToDB/1.0.0": {
         "dependencies": {
-          "ComponentAccessToDB": "1.0.0",
-          "ComponentBL": "1.0.0",
+          "AccessToDB": "1.0.0",
+          "BL": "1.0.0",
           "Microsoft.NET.Test.Sdk": "16.9.4",
           "coverlet.collector": "3.0.2",
           "xunit": "2.4.1",
@@ -1189,18 +1189,18 @@
         }
       },
       "xunit.runner.visualstudio/2.4.3": {},
-      "ComponentAccessToDB/1.0.0": {
+      "AccessToDB/1.0.0": {
         "dependencies": {
-          "ComponentBL": "1.0.0",
+          "BL": "1.0.0",
           "progaudi.tarantool": "0.15.0"
         },
         "runtime": {
-          "ComponentAccessToDB.dll": {}
+          "AccessToDB.dll": {}
         }
       },
-      "ComponentBL/1.0.0": {
+      "BL/1.0.0": {
         "runtime": {
-          "ComponentBL.dll": {}
+          "BL.dll": {}
         }
       }
     }
@@ -1925,12 +1925,12 @@
       "path": "xunit.runner.visualstudio/2.4.3",
       "hashPath": "xunit.runner.visualstudio.2.4.3.nupkg.sha512"
     },
-    "ComponentAccessToDB/1.0.0": {
+    "AccessToDB/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
     },
-    "ComponentBL/1.0.0": {
+    "BL/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

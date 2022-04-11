@@ -180,8 +180,8 @@ namespace BL
             IMessagesRepository rep = RepositoriesFactory.CreateMessagesRepository();
             await rep.DeleteMessageAsync(message);
         }
-        // -----------
 
+        // -----------
         public async Task<Lift> GetLiftInfoAsync(uint userID, string LiftName)
         {
             await CheckPermissionsService.CheckPermissionsAsync(RepositoriesFactory.CreateUsersRepository(), userID);
@@ -389,7 +389,7 @@ namespace BL
 
 
 
-        public async Task AdminUpdateTurnstile(uint userID, Turnstile turnstile)
+        public async Task AdminUpdateTurnstileAsync(uint userID, Turnstile turnstile)
         {
             await CheckPermissionsService.CheckPermissionsAsync(RepositoriesFactory.CreateUsersRepository(), userID);
 
@@ -397,7 +397,7 @@ namespace BL
             await rep.UpdateTurnstileAsync(turnstile);
         }
 
-        public async Task AdminDeleteTurnstile(uint userID, Turnstile turnstile)
+        public async Task AdminDeleteTurnstileAsync(uint userID, Turnstile turnstile)
         {
             await CheckPermissionsService.CheckPermissionsAsync(RepositoriesFactory.CreateUsersRepository(), userID);
 
@@ -405,7 +405,7 @@ namespace BL
             await rep.DeleteTurnstileAsync(turnstile);
         }
 
-        public async Task AdminAddTurnstile(uint userID, Turnstile turnstile)
+        public async Task AdminAddTurnstileAsync(uint userID, Turnstile turnstile)
         {
             await CheckPermissionsService.CheckPermissionsAsync(RepositoriesFactory.CreateUsersRepository(), userID);
 
@@ -413,7 +413,7 @@ namespace BL
             await rep.AddTurnstileAsync(turnstile);
         }
 
-        public async Task<Turnstile> AdminAddAutoIncrementTurnstile(uint userID, Turnstile turnstile)
+        public async Task<Turnstile> AdminAddAutoIncrementTurnstileAsync(uint userID, Turnstile turnstile)
         {
             await CheckPermissionsService.CheckPermissionsAsync(RepositoriesFactory.CreateUsersRepository(), userID);
 
@@ -424,7 +424,7 @@ namespace BL
 
 
 
-        public async Task AdminUpdateCard(uint userID, Card card)
+        public async Task AdminUpdateCardAsync(uint userID, Card card)
         {
             await CheckPermissionsService.CheckPermissionsAsync(RepositoriesFactory.CreateUsersRepository(), userID);
 
@@ -432,7 +432,7 @@ namespace BL
             await rep.UpdateCardAsync(card);
         }
 
-        public async Task AdminDeleteCard(uint userID, Card card)
+        public async Task AdminDeleteCardAsync(uint userID, Card card)
         {
             await CheckPermissionsService.CheckPermissionsAsync(RepositoriesFactory.CreateUsersRepository(), userID);
 
@@ -440,7 +440,7 @@ namespace BL
             await rep.DeleteCardAsync(card);
         }
 
-        public async Task AdminAddCard(uint userID, Card card)
+        public async Task AdminAddCardAsync(uint userID, Card card)
         {
             await CheckPermissionsService.CheckPermissionsAsync(RepositoriesFactory.CreateUsersRepository(), userID);
 
@@ -448,7 +448,7 @@ namespace BL
             await rep.AddCardAsync(card);
         }
 
-        public async Task<Card> AdminAddAutoIncrementCard(uint userID, Card card)
+        public async Task<Card> AdminAddAutoIncrementCardAsync(uint userID, Card card)
         {
             await CheckPermissionsService.CheckPermissionsAsync(RepositoriesFactory.CreateUsersRepository(), userID);
 
@@ -461,7 +461,7 @@ namespace BL
 
 
 
-        public async Task AdminDeleteCardReading(uint userID, CardReading card_readding)
+        public async Task AdminDeleteCardReadingAsync(uint userID, CardReading card_readding)
         {
             await CheckPermissionsService.CheckPermissionsAsync(RepositoriesFactory.CreateUsersRepository(), userID);
 
@@ -469,7 +469,7 @@ namespace BL
             await rep.DeleteCardReadingAsync(card_readding);
         }
 
-        public async Task AdminAddCardReading(uint userID, CardReading card_readding)
+        public async Task AdminAddCardReadingAsync(uint userID, CardReading card_readding)
         {
             await CheckPermissionsService.CheckPermissionsAsync(RepositoriesFactory.CreateUsersRepository(), userID);
 
@@ -477,7 +477,7 @@ namespace BL
             await rep.AddCardReadingAsync(card_readding);
         }
 
-        public async Task<CardReading> AdminAddAutoIncrementCardReading(uint userID, CardReading card_readding)
+        public async Task<CardReading> AdminAddAutoIncrementCardReadingAsync(uint userID, CardReading card_readding)
         {
             await CheckPermissionsService.CheckPermissionsAsync(RepositoriesFactory.CreateUsersRepository(), userID);
 

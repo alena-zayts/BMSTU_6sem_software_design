@@ -87,7 +87,7 @@ namespace AccessToDB
             var turnstiles_index_lift_id = await turnstiles_space.GetIndex("index_lift_id");
 
 
-            var cardReadings_space = await schema.GetSpace("cardReadings");
+            var cardReadings_space = await schema.GetSpace("card_readings");
             var cardReadings_index_primary = await cardReadings_space.GetIndex("primary");
             var cardReadings_index_turnstile = await cardReadings_space.GetIndex("index_turnstile");
 

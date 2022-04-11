@@ -1,11 +1,5 @@
 C:\BMSTU_6sem_software_design\src\SkiResort\TestsAccessToDB\bin\Debug\net6.0\CoverletSourceRootsMapping
 C:\BMSTU_6sem_software_design\src\SkiResort\TestsAccessToDB\bin\Debug\net6.0\testhost.dll
-C:\BMSTU_6sem_software_design\src\SkiResort\TestsAccessToDB\bin\Debug\net6.0\ComponentAccessToDB.deps.json
-C:\BMSTU_6sem_software_design\src\SkiResort\TestsAccessToDB\bin\Debug\net6.0\ComponentAccessToDB.runtimeconfig.json
-C:\BMSTU_6sem_software_design\src\SkiResort\TestsAccessToDB\bin\Debug\net6.0\ComponentBL.deps.json
-C:\BMSTU_6sem_software_design\src\SkiResort\TestsAccessToDB\bin\Debug\net6.0\ComponentBL.runtimeconfig.json
-C:\BMSTU_6sem_software_design\src\SkiResort\TestsAccessToDB\bin\Debug\net6.0\ComponentBL.exe
-C:\BMSTU_6sem_software_design\src\SkiResort\TestsAccessToDB\bin\Debug\net6.0\ComponentAccessToDB.exe
 C:\BMSTU_6sem_software_design\src\SkiResort\TestsAccessToDB\bin\Debug\net6.0\testhost.exe
 C:\BMSTU_6sem_software_design\src\SkiResort\TestsAccessToDB\bin\Debug\net6.0\Microsoft.TestPlatform.PlatformAbstractions.dll
 C:\BMSTU_6sem_software_design\src\SkiResort\TestsAccessToDB\bin\Debug\net6.0\xunit.runner.visualstudio.dotnetcore.testadapter.dll
@@ -96,10 +90,6 @@ C:\BMSTU_6sem_software_design\src\SkiResort\TestsAccessToDB\bin\Debug\net6.0\zh-
 C:\BMSTU_6sem_software_design\src\SkiResort\TestsAccessToDB\bin\Debug\net6.0\zh-Hant\Microsoft.TestPlatform.CommunicationUtilities.resources.dll
 C:\BMSTU_6sem_software_design\src\SkiResort\TestsAccessToDB\bin\Debug\net6.0\zh-Hant\Microsoft.TestPlatform.CrossPlatEngine.resources.dll
 C:\BMSTU_6sem_software_design\src\SkiResort\TestsAccessToDB\bin\Debug\net6.0\zh-Hant\Microsoft.VisualStudio.TestPlatform.Common.resources.dll
-C:\BMSTU_6sem_software_design\src\SkiResort\TestsAccessToDB\bin\Debug\net6.0\ComponentAccessToDB.dll
-C:\BMSTU_6sem_software_design\src\SkiResort\TestsAccessToDB\bin\Debug\net6.0\ComponentBL.dll
-C:\BMSTU_6sem_software_design\src\SkiResort\TestsAccessToDB\bin\Debug\net6.0\ComponentAccessToDB.pdb
-C:\BMSTU_6sem_software_design\src\SkiResort\TestsAccessToDB\bin\Debug\net6.0\ComponentBL.pdb
 C:\BMSTU_6sem_software_design\src\SkiResort\TestsAccessToDB\obj\Debug\net6.0\TestsAccessToDB.csproj.AssemblyReference.cache
 C:\BMSTU_6sem_software_design\src\SkiResort\TestsAccessToDB\obj\Debug\net6.0\TestsAccessToDB.GeneratedMSBuildEditorConfig.editorconfig
 C:\BMSTU_6sem_software_design\src\SkiResort\TestsAccessToDB\obj\Debug\net6.0\TestsAccessToDB.AssemblyInfoInputs.cache
@@ -111,3 +101,7 @@ C:\BMSTU_6sem_software_design\src\SkiResort\TestsAccessToDB\obj\Debug\net6.0\ref
 C:\BMSTU_6sem_software_design\src\SkiResort\TestsAccessToDB\obj\Debug\net6.0\TestsAccessToDB.pdb
 C:\BMSTU_6sem_software_design\src\SkiResort\TestsAccessToDB\obj\Debug\net6.0\TestsAccessToDB.genruntimeconfig.cache
 C:\BMSTU_6sem_software_design\src\SkiResort\TestsAccessToDB\obj\Debug\net6.0\ref\TestsAccessToDB.dll
+C:\BMSTU_6sem_software_design\src\SkiResort\TestsAccessToDB\bin\Debug\net6.0\AccessToDB.dll
+C:\BMSTU_6sem_software_design\src\SkiResort\TestsAccessToDB\bin\Debug\net6.0\BL.dll
+C:\BMSTU_6sem_software_design\src\SkiResort\TestsAccessToDB\bin\Debug\net6.0\AccessToDB.pdb
+C:\BMSTU_6sem_software_design\src\SkiResort\TestsAccessToDB\bin\Debug\net6.0\BL.pdb

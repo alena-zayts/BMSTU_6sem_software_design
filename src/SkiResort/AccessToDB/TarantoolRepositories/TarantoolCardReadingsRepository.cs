@@ -32,7 +32,7 @@ namespace AccessToDB.RepositoriesTarantool
 
             List<CardReading> result = new();
 
-            for (uint i = offset; i < (uint)data.Data.Length && i < limit; i++)
+            for (uint i = offset; i < (uint)data.Data.Length && (i < limit || limit == Facade.UNLIMITED); i++)
             {
                 result.Add(CardReadingConverter.DBToBL(data.Data[i]));
             }
@@ -44,7 +44,7 @@ namespace AccessToDB.RepositoriesTarantool
         {
             try
             {
-                var result = await _box.Call_1_6<ValueTuple<uint, uint>, Int32[]>("count_cardReadings", (ValueTuple.Create(LiftID, dateFrom)));
+                var result = await _box.Call_1_6<ValueTuple<uint, uint>, Int32[]>("count_card_readings", (ValueTuple.Create(LiftID, dateFrom)));
                 return (uint) result.Data[0][0];
             }
             catch (Exception ex)
@@ -56,7 +56,7 @@ namespace AccessToDB.RepositoriesTarantool
         {
             try
             {
-                var result = await _box.Call_1_6<CardReadingDBNoIndex, CardReadingDB>("auto_increment_cardReadings", (CardReadingConverter.BLToDBNoIndex(obj)));
+                var result = await _box.Call_1_6<CardReadingDBNoIndex, CardReadingDB>("auto_increment_card_readings", (CardReadingConverter.BLToDBNoIndex(obj)));
                 return CardReadingConverter.DBToBL(result.Data[0]);
             }
             catch (Exception ex)
