@@ -255,6 +255,7 @@ class CardReading(Table):
         return data
 
 
+
 class Message(Table):
     json_filename = "json_data/messages.json"
     space_name = 'messages'
@@ -288,15 +289,6 @@ def generate_table_data_to_json_file(table: Table):
         json.dump(table.generate_data(), write_file)
 
 
-# def fill_tarantool_table_with_data(connection, table: Table):
-#     generate_table_data_to_json_file(table)
-#     with open(table.json_filename, "r") as input_file:
-#         data = json.load(input_file)
-#
-#     space = connection.space(table.space_name)
-#
-#     for row in data:
-#         space.insert(tuple(row.values()))
 
 
 def generate_all_data_to_json_file():
@@ -311,27 +303,33 @@ def generate_all_data_to_json_file():
     generate_table_data_to_json_file(Message)
 
 
-if __name__ == "__main__":
-    generate_all_data_to_json_file()
-    #
-    # connection = tarantool.connect("localhost", 3301, user='ski_admin', password="Tty454r293300")
-    #
-    # try:
-    #     fill_all_tarantool_with_data(connection)
-    #     print('ok')
-    #
-    # except Exception as e:
-    #     traceback.print_exc()
-    #     print(e)
-    #
-    # connection.close()
+def infinite_card_readings_generator():
+    import time
+    import datetime
 
-# card_columns  = ['card_id']
-# users_group_columns = ['group_id', 'group_name', 'access_rights']
-# authorised_user_columns = ['user_id', 'users_group_id', 'access_rights', 'password']
-# slope_columns = ['slope_id', 'slope_name', 'difficulty_level', 'is_open']
-# lift_columns = ['lift_id', 'lift_name', 'number_of_seats', 'lifting_time',  'is_open', 'queue_time']
-# lift_slope_columns = ['record_id', 'lift_id', 'slope_id']
-# turnstile_columns= ['turnstile_id', 'lift_id']
-# reading_columns = ['record_id', 'card_id', 'turnstile_id', 'reading_time']
-# notification_columns =
+    sleep_time = 1
+    i = 0
+
+    while True:
+        cur_time = time.mktime(datetime.datetime.now().timetuple())
+        obj = CardReading.generate_data(1, date_limits=(cur_time - sleep_time, cur_time))[0]
+
+        file_name = "C:/BMSTU_6sem_software_design/src/tarantool/app/json_data/card_readings/card_reading_" + str(i) + ".json"
+
+        with open(file_name, "w") as write_file:
+            json.dump(obj, write_file)
+
+        print(file_name, cur_time)
+
+        i += 1
+        time.sleep(sleep_time)
+
+if __name__ == "__main__":
+    # generate_all_data_to_json_file()
+    infinite_card_readings_generator()
+
+
+
+
+
+

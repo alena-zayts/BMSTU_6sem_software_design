@@ -5,13 +5,13 @@ VisualStudioVersion = 17.1.32328.378
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestsAccessToDB", "TestsAccessToDB\TestsAccessToDB.csproj", "{69BF6B9C-11C7-4B66-87FE-3E476E4E235E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestsBL", "TestsBL\TestsBL.csproj", "{68F40463-83FA-47E3-8A16-1C8EAF216819}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestsBL", "TestsBL\TestsBL.csproj", "{68F40463-83FA-47E3-8A16-1C8EAF216819}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkerService1", "WorkerService1\WorkerService1.csproj", "{F9BFA40F-F4B6-40C2-9D2E-3DC0807F2F6F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CardReadingReciever", "WorkerService1\CardReadingReciever.csproj", "{F9BFA40F-F4B6-40C2-9D2E-3DC0807F2F6F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AccessToDB", "AccessToDB\AccessToDB.csproj", "{4B9B8E82-FEC1-4999-B02B-906EF4D98E5E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AccessToDB", "AccessToDB\AccessToDB.csproj", "{4B9B8E82-FEC1-4999-B02B-906EF4D98E5E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BL", "BL\BL.csproj", "{FAA9BAD8-2FE9-4F74-B4EB-E665FB469B91}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BL", "BL\BL.csproj", "{FAA9BAD8-2FE9-4F74-B4EB-E665FB469B91}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
