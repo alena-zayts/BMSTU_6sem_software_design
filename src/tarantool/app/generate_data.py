@@ -303,6 +303,26 @@ def generate_all_data_to_json_file():
     generate_table_data_to_json_file(Message)
 
 
+class CardReading2(Table):
+    def __init__(self, record_id, turnstile_id, card_id, reading_time):
+        self.RecordID = record_id
+        self.TurnstileID = turnstile_id
+        self.CardID = card_id
+        self.ReadingTime = reading_time
+
+    @classmethod
+    def generate(cls, date_limits=(1585575897, 1648647930)):
+        with open(Turnstile.json_filename, 'r') as f:
+            turnstiles = [Turnstile(*(list(turnstile_dict.values()))) for turnstile_dict in json.load(f)]
+        turnstile_ids = [turnstile.turnstile_id for turnstile in turnstiles]
+
+        with open(Card.json_filename, 'r') as f:
+            cards = [Card(*(list(card_dict.values()))) for card_dict in json.load(f)]
+        card_ids = [card.card_id for card in cards]
+
+        return CardReading2(0, choice(turnstile_ids), choice(card_ids), randint(*date_limits)).to_json()
+
+
 def infinite_card_readings_generator():
     import time
     import datetime
@@ -312,7 +332,7 @@ def infinite_card_readings_generator():
 
     while True:
         cur_time = time.mktime(datetime.datetime.now().timetuple())
-        obj = CardReading.generate_data(1, date_limits=(cur_time - sleep_time, cur_time))[0]
+        obj = CardReading2.generate(date_limits=(cur_time - sleep_time, cur_time))
 
         file_name = "C:/BMSTU_6sem_software_design/src/tarantool/app/json_data/card_readings/card_reading_" + str(i) + ".json"
 

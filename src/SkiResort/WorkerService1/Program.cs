@@ -1,4 +1,4 @@
-using CardReadingReciever;
+using CardReadingRecieving;
 
 IHost host = Host.CreateDefaultBuilder(args)
     .ConfigureServices(services =>

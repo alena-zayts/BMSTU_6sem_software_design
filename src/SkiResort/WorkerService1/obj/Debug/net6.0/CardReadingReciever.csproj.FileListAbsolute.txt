@@ -51,3 +51,4 @@ C:\BMSTU_6sem_software_design\src\SkiResort\WorkerService1\obj\Debug\net6.0\refi
 C:\BMSTU_6sem_software_design\src\SkiResort\WorkerService1\obj\Debug\net6.0\CardReadingReciever.pdb
 C:\BMSTU_6sem_software_design\src\SkiResort\WorkerService1\obj\Debug\net6.0\CardReadingReciever.genruntimeconfig.cache
 C:\BMSTU_6sem_software_design\src\SkiResort\WorkerService1\obj\Debug\net6.0\ref\CardReadingReciever.dll
+C:\BMSTU_6sem_software_design\src\SkiResort\WorkerService1\bin\Debug\net6.0\Newtonsoft.Json.dll

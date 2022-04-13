@@ -31,14 +31,25 @@ namespace BL.Models
             this.ConnectedSlopes = connectedSlopes;
         }
 
+        public Lift(Lift lift, uint newQueueTime)
+        {
+            this.LiftID = lift.LiftID;
+            this.LiftName = lift.LiftName;
+            this.IsOpen = lift.IsOpen;
+            this.SeatsAmount = lift.SeatsAmount;
+            this.LiftingTime = lift.LiftingTime;
+            this.ConnectedSlopes = lift.ConnectedSlopes;
+
+            this.QueueTime = newQueueTime;
+        }
+
         public override bool Equals(object? obj)
         {
             return obj is Lift dB &&
                    LiftID == dB.LiftID &&
                    LiftName == dB.LiftName &&
                    IsOpen == dB.IsOpen &&
-                   SeatsAmount == dB.SeatsAmount &&
-                   QueueTime == dB.QueueTime;
+                   SeatsAmount == dB.SeatsAmount;
         }
 
         public bool EqualsFull(Lift lift)
