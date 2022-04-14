@@ -6,13 +6,13 @@
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v6.0": {
-      "QueueTimeCountingService/1.0.0": {
+      "QueueTimeCountingWorker/1.0.0": {
         "dependencies": {
           "BL": "1.0.0",
           "Microsoft.Extensions.Hosting": "6.0.1"
         },
         "runtime": {
-          "QueueTimeCountingService.dll": {}
+          "QueueTimeCountingWorker.dll": {}
         }
       },
       "Microsoft.Extensions.Configuration/6.0.0": {
@@ -400,7 +400,7 @@
     }
   },
   "libraries": {
-    "QueueTimeCountingService/1.0.0": {
+    "QueueTimeCountingWorker/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

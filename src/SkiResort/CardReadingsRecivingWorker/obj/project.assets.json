@@ -1839,11 +1839,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\BMSTU_6sem_software_design\\src\\SkiResort\\WorkerService1\\CardReadingsRecivingWorker.csproj",
+      "projectUniqueName": "C:\\BMSTU_6sem_software_design\\src\\SkiResort\\CardReadingsRecivingWorker\\CardReadingsRecivingWorker.csproj",
       "projectName": "CardReadingsRecivingWorker",
-      "projectPath": "C:\\BMSTU_6sem_software_design\\src\\SkiResort\\WorkerService1\\CardReadingsRecivingWorker.csproj",
+      "projectPath": "C:\\BMSTU_6sem_software_design\\src\\SkiResort\\CardReadingsRecivingWorker\\CardReadingsRecivingWorker.csproj",
       "packagesPath": "C:\\Users\\alena\\.nuget\\packages\\",
-      "outputPath": "C:\\BMSTU_6sem_software_design\\src\\SkiResort\\WorkerService1\\obj\\",
+      "outputPath": "C:\\BMSTU_6sem_software_design\\src\\SkiResort\\CardReadingsRecivingWorker\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
