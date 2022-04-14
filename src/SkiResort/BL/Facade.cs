@@ -232,13 +232,13 @@ namespace BL
                 throw new LiftException("Cannot delete lift because it has connected turnstiles", lift);
             }
 
-            ILiftsSlopesRepository lifts_slopes_rep = RepositoriesFactory.CreateLiftsSlopesRepository();
-            List<LiftSlope> lift_slopes = await lifts_slopes_rep.GetLiftsSlopesAsync();
+            ILiftsSlopesRepository lifts_slopesRepository = RepositoriesFactory.CreateLiftsSlopesRepository();
+            List<LiftSlope> lift_slopes = await lifts_slopesRepository.GetLiftsSlopesAsync();
             foreach (LiftSlope lift_slope in lift_slopes)
             {
                 if (lift_slope.LiftID == lift.LiftID)
                 {
-                    await lifts_slopes_rep.DeleteLiftSlopeAsync(lift_slope);
+                    await lifts_slopesRepository.DeleteLiftSlopeAsync(lift_slope);
                 }
             }
 
@@ -311,13 +311,13 @@ namespace BL
         {
             await CheckPermissionsService.CheckPermissionsAsync(RepositoriesFactory.CreateUsersRepository(), requesterUserID);
 
-            ILiftsSlopesRepository lifts_slopes_rep = RepositoriesFactory.CreateLiftsSlopesRepository();
-            List<LiftSlope> lifts_slopes = await lifts_slopes_rep.GetLiftsSlopesAsync();
+            ILiftsSlopesRepository lifts_slopesRepository = RepositoriesFactory.CreateLiftsSlopesRepository();
+            List<LiftSlope> lifts_slopes = await lifts_slopesRepository.GetLiftsSlopesAsync();
             foreach (LiftSlope lift_slope in lifts_slopes)
             {
                 if (lift_slope.SlopeID == slope.SlopeID)
                 {
-                    await lifts_slopes_rep.DeleteLiftSlopeAsync(lift_slope);
+                    await lifts_slopesRepository.DeleteLiftSlopeAsync(lift_slope);
                 }
             }
 

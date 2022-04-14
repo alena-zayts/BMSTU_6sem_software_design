@@ -2071,7 +2071,7 @@
           "bin/placeholder/BL.dll": {}
         }
       },
-      "CardReadingsReciveingService/1.0.0": {
+      "CardReadingsRecivingWorker/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
@@ -2081,13 +2081,13 @@
           "System.IO.FileSystem": "4.3.0"
         },
         "compile": {
-          "bin/placeholder/CardReadingsReciveingService.dll": {}
+          "bin/placeholder/CardReadingsRecivingWorker.dll": {}
         },
         "runtime": {
-          "bin/placeholder/CardReadingsReciveingService.dll": {}
+          "bin/placeholder/CardReadingsRecivingWorker.dll": {}
         }
       },
-      "QueueTimeCountingService/1.0.0": {
+      "QueueTimeCountingWorker/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
@@ -2095,10 +2095,10 @@
           "Microsoft.Extensions.Hosting": "6.0.1"
         },
         "compile": {
-          "bin/placeholder/QueueTimeCountingService.dll": {}
+          "bin/placeholder/QueueTimeCountingWorker.dll": {}
         },
         "runtime": {
-          "bin/placeholder/QueueTimeCountingService.dll": {}
+          "bin/placeholder/QueueTimeCountingWorker.dll": {}
         }
       }
     }
@@ -6917,24 +6917,24 @@
       "path": "../BL/BL.csproj",
       "msbuildProject": "../BL/BL.csproj"
     },
-    "CardReadingsReciveingService/1.0.0": {
+    "CardReadingsRecivingWorker/1.0.0": {
       "type": "project",
-      "path": "../WorkerService1/CardReadingsReciveingService.csproj",
-      "msbuildProject": "../WorkerService1/CardReadingsReciveingService.csproj"
+      "path": "../WorkerService1/CardReadingsRecivingWorker.csproj",
+      "msbuildProject": "../WorkerService1/CardReadingsRecivingWorker.csproj"
     },
-    "QueueTimeCountingService/1.0.0": {
+    "QueueTimeCountingWorker/1.0.0": {
       "type": "project",
-      "path": "../QueueTimeCountingService/QueueTimeCountingService.csproj",
-      "msbuildProject": "../QueueTimeCountingService/QueueTimeCountingService.csproj"
+      "path": "../QueueTimeCountingService/QueueTimeCountingWorker.csproj",
+      "msbuildProject": "../QueueTimeCountingService/QueueTimeCountingWorker.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net6.0": [
       "BL >= 1.0.0",
-      "CardReadingsReciveingService >= 1.0.0",
+      "CardReadingsRecivingWorker >= 1.0.0",
       "Microsoft.NET.Test.Sdk >= 16.11.0",
       "Ninject >= 3.3.4",
-      "QueueTimeCountingService >= 1.0.0",
+      "QueueTimeCountingWorker >= 1.0.0",
       "coverlet.collector >= 3.1.0",
       "xunit >= 2.4.1",
       "xunit.runner.visualstudio >= 2.4.3"
@@ -6975,11 +6975,11 @@
             "C:\\BMSTU_6sem_software_design\\src\\SkiResort\\BL\\BL.csproj": {
               "projectPath": "C:\\BMSTU_6sem_software_design\\src\\SkiResort\\BL\\BL.csproj"
             },
-            "C:\\BMSTU_6sem_software_design\\src\\SkiResort\\QueueTimeCountingService\\QueueTimeCountingService.csproj": {
-              "projectPath": "C:\\BMSTU_6sem_software_design\\src\\SkiResort\\QueueTimeCountingService\\QueueTimeCountingService.csproj"
+            "C:\\BMSTU_6sem_software_design\\src\\SkiResort\\QueueTimeCountingService\\QueueTimeCountingWorker.csproj": {
+              "projectPath": "C:\\BMSTU_6sem_software_design\\src\\SkiResort\\QueueTimeCountingService\\QueueTimeCountingWorker.csproj"
             },
-            "C:\\BMSTU_6sem_software_design\\src\\SkiResort\\WorkerService1\\CardReadingsReciveingService.csproj": {
-              "projectPath": "C:\\BMSTU_6sem_software_design\\src\\SkiResort\\WorkerService1\\CardReadingsReciveingService.csproj"
+            "C:\\BMSTU_6sem_software_design\\src\\SkiResort\\WorkerService1\\CardReadingsRecivingWorker.csproj": {
+              "projectPath": "C:\\BMSTU_6sem_software_design\\src\\SkiResort\\WorkerService1\\CardReadingsRecivingWorker.csproj"
             }
           }
         }

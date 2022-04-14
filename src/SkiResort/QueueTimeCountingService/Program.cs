@@ -1,4 +1,4 @@
-using QueueTimeCounting;
+using QueueTimeCountingWorker;
 
 IHost host = Host.CreateDefaultBuilder(args)
     .ConfigureServices(services =>

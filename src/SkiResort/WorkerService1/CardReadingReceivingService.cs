@@ -3,15 +3,15 @@ using BL.Models;
 using Newtonsoft.Json.Linq;
 
 
-namespace CardReadingRecieving
+namespace CardReadingsReceivingWorker
 {
-    public class CardReadingRecieverService : BackgroundService
+    public class CardReadingReceivingService : BackgroundService
     {
-        private readonly ILogger<CardReadingRecieverService> _logger;
+        private readonly ILogger<CardReadingReceivingService> _logger;
         private readonly ICardReadingsRepository _cardReadingsRepository;
         private readonly string _path;
 
-        public CardReadingRecieverService(ILogger<CardReadingRecieverService> logger, ICardReadingsRepository cardReadingsRepository, string path)
+        public CardReadingReceivingService(ILogger<CardReadingReceivingService> logger, ICardReadingsRepository cardReadingsRepository, string path)
         {
             _logger = logger;
             _cardReadingsRepository = cardReadingsRepository;

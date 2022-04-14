@@ -1,9 +1,9 @@
-using CardReadingRecieving;
+using CardReadingsReceivingWorker;
 
 IHost host = Host.CreateDefaultBuilder(args)
     .ConfigureServices(services =>
     {
-        services.AddHostedService<CardReadingRecieverService>();
+        services.AddHostedService<CardReadingReceivingService>();
     })
     .Build();
 

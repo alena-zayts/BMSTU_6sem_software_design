@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "BZCF/F69E8ObK8QVgZp6YABGwYKVc2OftA4YtaoHHhYsRkOX58F09EA5Qi2wkmdNRXY2M/TFuVMj2qnf07sH/w==",
+  "dgSpecHash": "RzGfOvLaDjt8QppSLdiDr4Ckxes78Z4tmAe5LvFBvP7IlK1MAZ4kFsYunTsUJPCMJCZEwjyoIDD7Jrx3wQ7TQw==",
   "success": true,
-  "projectFilePath": "C:\\BMSTU_6sem_software_design\\src\\SkiResort\\WorkerService1\\CardReadingsReciveingService.csproj",
+  "projectFilePath": "C:\\BMSTU_6sem_software_design\\src\\SkiResort\\WorkerService1\\CardReadingsRecivingWorker.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\alena\\.nuget\\packages\\microsoft.extensions.configuration\\6.0.0\\microsoft.extensions.configuration.6.0.0.nupkg.sha512",
     "C:\\Users\\alena\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\6.0.0\\microsoft.extensions.configuration.abstractions.6.0.0.nupkg.sha512",

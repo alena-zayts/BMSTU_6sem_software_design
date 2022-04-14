@@ -1,7 +1,7 @@
 using BL.IRepositories;
 using BL.Models;
 
-namespace QueueTimeCounting
+namespace QueueTimeCountingWorker
 {
     public class QueueTimeCountingService : BackgroundService
     {

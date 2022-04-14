@@ -17,22 +17,22 @@ namespace AccessToDB.RepositoriesTarantool
 {
     public class TarantoolTurnstilesRepository : ITurnstilesRepository
     {
-        private IIndex _index_primary;
-        private IIndex _index_lift_id;
+        private IIndex _indexPrimary;
+        private IIndex _indexLiftID;
         private ISpace _space;
         private IBox _box;
 
         public TarantoolTurnstilesRepository(TarantoolContext context)
         {
-            _space = context.turnstiles_space;
-            _index_primary = context.turnstiles_index_primary;
-            _index_lift_id = context.turnstiles_index_lift_id;
+            _space = context.turnstilesSpace;
+            _indexPrimary = context.turnstilesIndexPrimary;
+            _indexLiftID = context.turnstilesIndexLiftID;
             _box = context.box;
         }
 
         public async Task<List<Turnstile>> GetTurnstilesAsync(uint offset = 0u, uint limit = Facade.UNLIMITED)
         {
-            var data = await _index_primary.Select<ValueTuple<uint>, TurnstileDB>
+            var data = await _indexPrimary.Select<ValueTuple<uint>, TurnstileDB>
                 (ValueTuple.Create(0u), new SelectOptions { Iterator = Iterator.Ge });
 
             List<Turnstile> result = new();
@@ -47,7 +47,7 @@ namespace AccessToDB.RepositoriesTarantool
 
         public async Task<List<Turnstile>> GetTurnstilesByLiftIdAsync(uint LiftID)
         {
-            var data = await _index_lift_id.Select<ValueTuple<uint>, TurnstileDB>
+            var data = await _indexLiftID.Select<ValueTuple<uint>, TurnstileDB>
                 (ValueTuple.Create(LiftID));
 
             List<Turnstile> result = new();
@@ -63,7 +63,7 @@ namespace AccessToDB.RepositoriesTarantool
 
         public async Task<Turnstile> GetTurnstileByIdAsync(uint TurnstileID)
         {
-            var data = await _index_primary.Select<ValueTuple<uint>, TurnstileDB>
+            var data = await _indexPrimary.Select<ValueTuple<uint>, TurnstileDB>
                 (ValueTuple.Create(TurnstileID));
 
             if (data.Data.Length != 1)
@@ -115,7 +115,7 @@ namespace AccessToDB.RepositoriesTarantool
 
         public async Task DeleteTurnstileAsync(Turnstile turnstile)
         {
-            var response = await _index_primary.Delete<ValueTuple<uint>, TurnstileDB>
+            var response = await _indexPrimary.Delete<ValueTuple<uint>, TurnstileDB>
                 (ValueTuple.Create(turnstile.TurnstileID));
 
             if (response.Data.Length != 1)

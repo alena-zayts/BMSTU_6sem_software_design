@@ -23,8 +23,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\BL\BL.csproj" />
-    <ProjectReference Include="..\QueueTimeCountingService\QueueTimeCountingService.csproj" />
-    <ProjectReference Include="..\WorkerService1\CardReadingsReciveingService.csproj" />
+    <ProjectReference Include="..\QueueTimeCountingService\QueueTimeCountingWorker.csproj" />
+    <ProjectReference Include="..\WorkerService1\CardReadingsRecivingWorker.csproj" />
   </ItemGroup>
 
 </Project>

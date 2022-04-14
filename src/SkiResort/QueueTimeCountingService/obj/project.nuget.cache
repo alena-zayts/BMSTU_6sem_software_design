@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "PJEHE3MFPYcGih7MT8A3GhO3IzgRGyfeVxDgsO2jhJh5MFtHDPwdi62rwxkbHnkEri/SM7DT98b5qVO7TGJfKA==",
+  "dgSpecHash": "auxlF8D4d7N1wDZDSPypfmzJ/buSo4yioHhyZOh00Kief+UZLkMvhzAQMyAVsNrF13gLxLYUCG/xhxEVI8x6jA==",
   "success": true,
-  "projectFilePath": "C:\\BMSTU_6sem_software_design\\src\\SkiResort\\QueueTimeCountingService\\QueueTimeCountingService.csproj",
+  "projectFilePath": "C:\\BMSTU_6sem_software_design\\src\\SkiResort\\QueueTimeCountingService\\QueueTimeCountingWorker.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\alena\\.nuget\\packages\\microsoft.extensions.configuration\\6.0.0\\microsoft.extensions.configuration.6.0.0.nupkg.sha512",
     "C:\\Users\\alena\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\6.0.0\\microsoft.extensions.configuration.abstractions.6.0.0.nupkg.sha512",

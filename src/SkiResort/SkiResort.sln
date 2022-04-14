@@ -7,13 +7,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestsAccessToDB", "TestsAcc
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestsBL", "TestsBL\TestsBL.csproj", "{68F40463-83FA-47E3-8A16-1C8EAF216819}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CardReadingsReciveingService", "WorkerService1\CardReadingsReciveingService.csproj", "{F9BFA40F-F4B6-40C2-9D2E-3DC0807F2F6F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CardReadingsRecivingWorker", "WorkerService1\CardReadingsRecivingWorker.csproj", "{F9BFA40F-F4B6-40C2-9D2E-3DC0807F2F6F}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AccessToDB", "AccessToDB\AccessToDB.csproj", "{4B9B8E82-FEC1-4999-B02B-906EF4D98E5E}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BL", "BL\BL.csproj", "{FAA9BAD8-2FE9-4F74-B4EB-E665FB469B91}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QueueTimeCountingService", "QueueTimeCountingService\QueueTimeCountingService.csproj", "{6E7CCBB9-429A-4094-8A05-4C4F54CEC7F9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QueueTimeCountingWorker", "QueueTimeCountingService\QueueTimeCountingWorker.csproj", "{6E7CCBB9-429A-4094-8A05-4C4F54CEC7F9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

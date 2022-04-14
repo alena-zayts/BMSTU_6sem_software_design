@@ -18,24 +18,24 @@ namespace AccessToDB.RepositoriesTarantool
     public class TarantoolMessagesRepository : IMessagesRepository
     {
         private ISpace _space;
-        private IIndex _index_primary;
-        private IIndex _index_sender_id;
-        private IIndex _index_checked_by_id;
+        private IIndex _indexPrimary;
+        private IIndex _indexSenderID;
+        private IIndex _indexCheckedByID;
         private IBox _box;
 
         public TarantoolMessagesRepository(TarantoolContext context)
         {
-            _space = context.messages_space;
-            _index_primary = context.messages_index_primary;
-            _index_sender_id = context.messages_index_sender_id;
-            _index_checked_by_id = context.messages_index_checked_by_id;
+            _space = context.messagesSpace;
+            _indexPrimary = context.messagesIndexPrimary;
+            _indexSenderID = context.messagesIndexSenderID;
+            _indexCheckedByID = context.messagesIndexCheckedByID;
             _box = context.box;
         }
 
 
         public async Task<List<Message>> GetMessagesAsync(uint offset = 0u, uint limit = Facade.UNLIMITED)
         {
-            var data = await _index_primary.Select<ValueTuple<uint>, MessageDB>
+            var data = await _indexPrimary.Select<ValueTuple<uint>, MessageDB>
                 (ValueTuple.Create(0u), new SelectOptions { Iterator = Iterator.Ge });
 
             List<Message> result = new();
@@ -50,7 +50,7 @@ namespace AccessToDB.RepositoriesTarantool
 
         public async Task<List<Message>> GetMessagesBySenderIdAsync(uint senderID)
         {
-            var data = await _index_sender_id.Select<ValueTuple<uint>, MessageDB>
+            var data = await _indexSenderID.Select<ValueTuple<uint>, MessageDB>
                 (ValueTuple.Create(senderID));
 
             List<Message> result = new();
@@ -66,7 +66,7 @@ namespace AccessToDB.RepositoriesTarantool
 
         public async Task<List<Message>> GetMessagesByCheckerIdAsync(uint checkerId)
         {
-            var data = await _index_checked_by_id.Select<ValueTuple<uint>, MessageDB>
+            var data = await _indexCheckedByID.Select<ValueTuple<uint>, MessageDB>
                 (ValueTuple.Create(checkerId));
 
             List<Message> result = new();
@@ -82,7 +82,7 @@ namespace AccessToDB.RepositoriesTarantool
 
         public async Task<Message> GetMessageByIdAsync(uint MessageID)
         {
-            var data = await _index_primary.Select<ValueTuple<uint>, MessageDB>
+            var data = await _indexPrimary.Select<ValueTuple<uint>, MessageDB>
                 (ValueTuple.Create(MessageID));
 
             if (data.Data.Length != 1)
@@ -134,7 +134,7 @@ namespace AccessToDB.RepositoriesTarantool
 
         public async Task DeleteMessageAsync(Message message)
         {
-            var response = await _index_primary.Delete<ValueTuple<uint>, MessageDB>
+            var response = await _indexPrimary.Delete<ValueTuple<uint>, MessageDB>
                 (ValueTuple.Create(message.MessageID));
 
             if (response.Data.Length != 1)

@@ -18,20 +18,20 @@ namespace AccessToDB.RepositoriesTarantool
     public class TarantoolUsersRepository : IUsersRepository
     {
         private ISpace _space;
-        private IIndex _index_primary;
-        private IIndex _index_email;
+        private IIndex _indexPrimary;
+        private IIndex _indexEmail;
         private IBox _box;
 
         public TarantoolUsersRepository(TarantoolContext context)
         {
-            _space = context.users_space;
-            _index_primary = context.users_index_primary;
+            _space = context.usersSpace;
+            _indexPrimary = context.users_indexPrimary;
             _box = context.box;
         }
 
         public async Task<List<User>> GetUsersAsync(uint offset = 0u, uint limit = Facade.UNLIMITED)
         {
-            var data = await _index_primary.Select<ValueTuple<uint>, UserDB>
+            var data = await _indexPrimary.Select<ValueTuple<uint>, UserDB>
                 (ValueTuple.Create(0u), new SelectOptions { Iterator = Iterator.Ge });
 
             List<User> result = new();
@@ -46,7 +46,7 @@ namespace AccessToDB.RepositoriesTarantool
 
         public async Task<User> GetUserByIdAsync(uint UserID)
         {
-            var data = await _index_primary.Select<ValueTuple<uint>,UserDB>
+            var data = await _indexPrimary.Select<ValueTuple<uint>,UserDB>
                 (ValueTuple.Create(UserID));
 
             if (data.Data.Length != 1)
@@ -100,7 +100,7 @@ namespace AccessToDB.RepositoriesTarantool
 
         public async Task DeleteUserAsync(User user)
         {
-            var response = await _index_primary.Delete<ValueTuple<uint>,UserDB>
+            var response = await _indexPrimary.Delete<ValueTuple<uint>,UserDB>
                 (ValueTuple.Create(user.UserID));
 
             if (response.Data.Length != 1)
@@ -126,7 +126,7 @@ namespace AccessToDB.RepositoriesTarantool
         {
             try
             {
-                var data = await _index_email.Select<ValueTuple<string>, UserDB>
+                var data = await _indexEmail.Select<ValueTuple<string>, UserDB>
                 (ValueTuple.Create(UserEmail));
 
                 if (data.Data.Length == 1)

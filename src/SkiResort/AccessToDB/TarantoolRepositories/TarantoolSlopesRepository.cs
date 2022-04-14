@@ -17,23 +17,23 @@ namespace AccessToDB.RepositoriesTarantool
 {
     public class TarantoolSlopesRepository : ISlopesRepository
     {
-        private IIndex _index_primary;
-        private IIndex _index_name;
+        private IIndex _indexPrimary;
+        private IIndex _indexName;
         private ISpace _space;
         private IBox _box;
 
         public TarantoolSlopesRepository(TarantoolContext context)
         {
-            _space = context.slopes_space;
-            _index_primary = context.slopes_index_primary;
-            _index_name = context.slopes_index_name;
+            _space = context.slopesSpace;
+            _indexPrimary = context.slopesIndexPrimary;
+            _indexName = context.slopesIndexName;
             _box = context.box;
         }
 
 
         public async Task<List<Slope>> GetSlopesAsync(uint offset = 0u, uint limit = Facade.UNLIMITED)
         {
-            var data = await _index_primary.Select<ValueTuple<uint>, SlopeDB>
+            var data = await _indexPrimary.Select<ValueTuple<uint>, SlopeDB>
                 (ValueTuple.Create(0u), new SelectOptions { Iterator = Iterator.Ge });
 
             List<Slope> result = new();
@@ -48,7 +48,7 @@ namespace AccessToDB.RepositoriesTarantool
 
         public async Task<Slope> GetSlopeByIdAsync(uint SlopeID)
         {
-            var data = await _index_primary.Select<ValueTuple<uint>, SlopeDB>
+            var data = await _indexPrimary.Select<ValueTuple<uint>, SlopeDB>
                 (ValueTuple.Create(SlopeID));
 
             if (data.Data.Length != 1)
@@ -61,7 +61,7 @@ namespace AccessToDB.RepositoriesTarantool
 
         public async Task<Slope> GetSlopeByNameAsync(string name)
         {
-            var data = await _index_name.Select<ValueTuple<string>, SlopeDB>
+            var data = await _indexName.Select<ValueTuple<string>, SlopeDB>
                 (ValueTuple.Create(name));
 
             if (data.Data.Length != 1)
@@ -114,7 +114,7 @@ namespace AccessToDB.RepositoriesTarantool
 
         public async Task DeleteSlopeAsync(Slope slope)
         {
-            var response = await _index_primary.Delete<ValueTuple<uint>, SlopeDB>
+            var response = await _indexPrimary.Delete<ValueTuple<uint>, SlopeDB>
                 (ValueTuple.Create(slope.SlopeID));
 
             if (response.Data.Length != 1)

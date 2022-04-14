@@ -1245,9 +1245,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\BMSTU_6sem_software_design\\src\\SkiResort\\QueueTimeCountingService\\QueueTimeCountingService.csproj",
-      "projectName": "QueueTimeCountingService",
-      "projectPath": "C:\\BMSTU_6sem_software_design\\src\\SkiResort\\QueueTimeCountingService\\QueueTimeCountingService.csproj",
+      "projectUniqueName": "C:\\BMSTU_6sem_software_design\\src\\SkiResort\\QueueTimeCountingService\\QueueTimeCountingWorker.csproj",
+      "projectName": "QueueTimeCountingWorker",
+      "projectPath": "C:\\BMSTU_6sem_software_design\\src\\SkiResort\\QueueTimeCountingService\\QueueTimeCountingWorker.csproj",
       "packagesPath": "C:\\Users\\alena\\.nuget\\packages\\",
       "outputPath": "C:\\BMSTU_6sem_software_design\\src\\SkiResort\\QueueTimeCountingService\\obj\\",
       "projectStyle": "PackageReference",

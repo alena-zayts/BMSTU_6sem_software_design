@@ -17,22 +17,22 @@ namespace AccessToDB.RepositoriesTarantool
 {
     public class TarantoolLiftsRepository : ILiftsRepository
     {
-        private IIndex _index_primary;
-        private IIndex _index_name;
+        private IIndex _indexPrimary;
+        private IIndex _indexName;
         private ISpace _space;
         private IBox _box;
 
         public TarantoolLiftsRepository(TarantoolContext context)
         {
-            _space = context.lifts_space;
-            _index_primary = context.lifts_index_primary;
-            _index_name = context.lifts_index_name;
+            _space = context.liftsSpace;
+            _indexPrimary = context.liftsIndexPrimary;
+            _indexName = context.liftsIndexName;
             _box = context.box;
         }
 
         public async Task<List<Lift>> GetLiftsAsync(uint offset = 0u, uint limit = Facade.UNLIMITED)
         {
-            var data = await _index_primary.Select<ValueTuple<uint>, LiftDB>
+            var data = await _indexPrimary.Select<ValueTuple<uint>, LiftDB>
                 (ValueTuple.Create(0u), new SelectOptions { Iterator = Iterator.Ge });
 
             List<Lift> result = new();
@@ -47,7 +47,7 @@ namespace AccessToDB.RepositoriesTarantool
 
         public async Task<Lift> GetLiftByIdAsync(uint LiftID)
         {
-            var data = await _index_primary.Select<ValueTuple<uint>, LiftDB>
+            var data = await _indexPrimary.Select<ValueTuple<uint>, LiftDB>
                 (ValueTuple.Create(LiftID));
 
             if (data.Data.Length != 1)
@@ -60,7 +60,7 @@ namespace AccessToDB.RepositoriesTarantool
 
         public async Task<Lift> GetLiftByNameAsync(string name)
         {
-            var data = await _index_name.Select<ValueTuple<string>, LiftDB>
+            var data = await _indexName.Select<ValueTuple<string>, LiftDB>
                 (ValueTuple.Create(name));
 
             if (data.Data.Length != 1)
@@ -114,7 +114,7 @@ namespace AccessToDB.RepositoriesTarantool
 
         public async Task DeleteLiftAsync(Lift lift)
         {
-            var response = await _index_primary.Delete<ValueTuple<uint>, LiftDB>
+            var response = await _indexPrimary.Delete<ValueTuple<uint>, LiftDB>
                 (ValueTuple.Create(lift.LiftID));
 
             if (response.Data.Length != 1)

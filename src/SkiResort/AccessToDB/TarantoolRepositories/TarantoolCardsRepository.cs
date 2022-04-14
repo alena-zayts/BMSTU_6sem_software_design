@@ -14,19 +14,19 @@ namespace AccessToDB.RepositoriesTarantool
     public class TarantoolCardsRepository : ICardsRepository
     {
         private ISpace _space;
-        private IIndex _index_primary;
+        private IIndex _indexPrimary;
         private IBox _box;
 
         public TarantoolCardsRepository(TarantoolContext context)
         {
             _box = context.box;
-            _space = context.cards_space;
-            _index_primary = context.cards_index_primary;
+            _space = context.cardsSpace;
+            _indexPrimary = context.cardsIndexPrimary;
         }
 
         public async Task<List<Card>> GetCardsAsync(uint offset = 0u, uint limit = Facade.UNLIMITED)
         {
-            var data = await _index_primary.Select<ValueTuple<uint>, CardDB>
+            var data = await _indexPrimary.Select<ValueTuple<uint>, CardDB>
                 (ValueTuple.Create(0u), new SelectOptions { Iterator = Iterator.Ge });
 
             List<Card> result = new();
@@ -41,7 +41,7 @@ namespace AccessToDB.RepositoriesTarantool
 
         public async Task<Card> GetCardByIdAsync(uint CardID)
         {
-            var data = await _index_primary.Select<ValueTuple<uint>, CardDB>
+            var data = await _indexPrimary.Select<ValueTuple<uint>, CardDB>
                 (ValueTuple.Create(CardID));
 
             if (data.Data.Length != 1)
@@ -91,7 +91,7 @@ namespace AccessToDB.RepositoriesTarantool
 
         public async Task DeleteCardAsync(Card card)
         {
-            var response = await _index_primary.Delete<ValueTuple<uint>, CardDB>
+            var response = await _indexPrimary.Delete<ValueTuple<uint>, CardDB>
                 (ValueTuple.Create(card.CardID));
 
             if (response.Data.Length != 1)

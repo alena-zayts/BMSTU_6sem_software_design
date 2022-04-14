@@ -14,20 +14,20 @@ namespace AccessToDB.RepositoriesTarantool
     {
         private IBox _box;
         private ISpace _space;
-        private IIndex _index_primary;
-        private IIndex _index_turnstile;
+        private IIndex _indexPrimary;
+        private IIndex _indexTurnstile;
 
         public TarantoolCardReadingsRepository(TarantoolContext context)
         {
             _box = context.box;
-            _space = context.cardReadings_space;
-            _index_primary = context.cardReadings_index_primary;
-            _index_turnstile = context.cardReadings_index_turnstile;
+            _space = context.cardReadingsSpace;
+            _indexPrimary = context.cardReadingsIndexPrimary;
+            _indexTurnstile = context.cardReadingsIndexTurnstile;
     }
 
         public async Task<List<CardReading>> GetCardReadingsAsync(uint offset = 0u, uint limit = Facade.UNLIMITED)
         {
-            var data = await _index_primary.Select<ValueTuple<uint>, CardReadingDB>
+            var data = await _indexPrimary.Select<ValueTuple<uint>, CardReadingDB>
                 (ValueTuple.Create(0u), new SelectOptions { Iterator = Iterator.Ge });
 
             List<CardReading> result = new();
@@ -81,7 +81,7 @@ namespace AccessToDB.RepositoriesTarantool
 
         public async Task DeleteCardReadingAsync(CardReading cardReading)
         {
-            var response = await _index_primary.Delete<ValueTuple<uint>, CardReadingDB>
+            var response = await _indexPrimary.Delete<ValueTuple<uint>, CardReadingDB>
                 (ValueTuple.Create(cardReading.RecordID));
 
             if (response.Data.Length != 1)

@@ -1839,9 +1839,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\BMSTU_6sem_software_design\\src\\SkiResort\\WorkerService1\\CardReadingsReciveingService.csproj",
-      "projectName": "CardReadingsReciveingService",
-      "projectPath": "C:\\BMSTU_6sem_software_design\\src\\SkiResort\\WorkerService1\\CardReadingsReciveingService.csproj",
+      "projectUniqueName": "C:\\BMSTU_6sem_software_design\\src\\SkiResort\\WorkerService1\\CardReadingsRecivingWorker.csproj",
+      "projectName": "CardReadingsRecivingWorker",
+      "projectPath": "C:\\BMSTU_6sem_software_design\\src\\SkiResort\\WorkerService1\\CardReadingsRecivingWorker.csproj",
       "packagesPath": "C:\\Users\\alena\\.nuget\\packages\\",
       "outputPath": "C:\\BMSTU_6sem_software_design\\src\\SkiResort\\WorkerService1\\obj\\",
       "projectStyle": "PackageReference",
