@@ -15,8 +15,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BL", "BL\BL.csproj", "{FAA9
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QueueTimeCountingWorker", "QueueTimeCountingService\QueueTimeCountingWorker.csproj", "{6E7CCBB9-429A-4094-8A05-4C4F54CEC7F9}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bot", "Telegram.Bot.Examples.Polling\Bot.csproj", "{65405FCE-EE66-43BC-BE7A-3E6D4ABA38FD}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TelegramWorker", "TelegramWorker\TelegramWorker.csproj", "{3ECBF0B7-A0E3-44A1-B6EB-6E9E536E8929}"
 EndProject
 Global
@@ -49,10 +47,6 @@ Global
 		{6E7CCBB9-429A-4094-8A05-4C4F54CEC7F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6E7CCBB9-429A-4094-8A05-4C4F54CEC7F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6E7CCBB9-429A-4094-8A05-4C4F54CEC7F9}.Release|Any CPU.Build.0 = Release|Any CPU
-		{65405FCE-EE66-43BC-BE7A-3E6D4ABA38FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{65405FCE-EE66-43BC-BE7A-3E6D4ABA38FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{65405FCE-EE66-43BC-BE7A-3E6D4ABA38FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{65405FCE-EE66-43BC-BE7A-3E6D4ABA38FD}.Release|Any CPU.Build.0 = Release|Any CPU
 		{3ECBF0B7-A0E3-44A1-B6EB-6E9E536E8929}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3ECBF0B7-A0E3-44A1-B6EB-6E9E536E8929}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3ECBF0B7-A0E3-44A1-B6EB-6E9E536E8929}.Release|Any CPU.ActiveCfg = Release|Any CPU
