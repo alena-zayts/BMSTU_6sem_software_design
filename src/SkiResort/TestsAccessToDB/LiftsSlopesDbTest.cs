@@ -110,9 +110,9 @@ namespace Tests
 
 
             Lift added_lift1 = new Lift(100000, "A1", true, 100, 60, 360);
-            await lift_rep.AddLiftAsync(added_lift1);
+            await lift_rep.AddLiftAsync(added_lift1.LiftID, added_lift1.LiftName, added_lift1.IsOpen, added_lift1.SeatsAmount, added_lift1.LiftingTime, added_lift1.QueueTime);
             Lift added_lift2 = new Lift(200000, "A2", false, 20, 10, 30);
-            await lift_rep.AddLiftAsync(added_lift2);
+            await lift_rep.AddLiftAsync(added_lift2.LiftID, added_lift2.LiftName, added_lift2.IsOpen, added_lift2.SeatsAmount, added_lift2.LiftingTime, added_lift2.QueueTime);
 
             ISlopesRepository slope_rep = new TarantoolSlopesRepository(_context);
             Assert.Empty(await slope_rep.GetSlopesAsync());
@@ -164,8 +164,8 @@ namespace Tests
             Assert.Equal(added_slope2, from_lift2[0]);
 
 
-            lift_rep.DeleteLiftAsync(added_lift1);
-            lift_rep.DeleteLiftAsync(added_lift2);
+            lift_rep.DeleteLiftByIDAsync(added_lift1.LiftID);
+            lift_rep.DeleteLiftByIDAsync(added_lift2.LiftID);
             slope_rep.DeleteSlopeAsync(added_slope1);
             slope_rep.DeleteSlopeAsync(added_slope2);
             slope_rep.DeleteSlopeAsync(added_slope3);

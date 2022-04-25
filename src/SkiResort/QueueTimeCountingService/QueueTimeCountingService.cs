@@ -37,7 +37,7 @@ namespace QueueTimeCountingWorker
                     uint newQueueTime = previousQueueTime - minusQueueTime + plusQueueTime;
 
                     Lift updatedLift = new(lift, newQueueTime);
-                    await _liftsRepository.UpdateLiftAsync(updatedLift);
+                    await _liftsRepository.UpdateLiftByIDAsync(updatedLift.LiftID, updatedLift.LiftName, updatedLift.IsOpen, updatedLift.SeatsAmount, updatedLift.LiftingTime, updatedLift.QueueTime);
                 }
                 
                 _logger.LogInformation("QueueTimeCountingService running at: {time}", DateTimeOffset.Now);

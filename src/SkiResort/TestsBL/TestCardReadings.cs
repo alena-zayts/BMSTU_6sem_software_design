@@ -25,7 +25,8 @@ namespace TestsBL
             Lift added_lift1 = new(1, "A1", true, 100, 60, 360);
             await facade.AdminAddLiftAsync(TestUsersCreator.adminID, added_lift1);
             Lift added_lift2 = new Lift(2, "A2", false, 20, 10, 30);
-            added_lift2 = await facade.AdminAddAutoIncrementLiftAsync(TestUsersCreator.adminID, added_lift2);
+            uint added_lift2_id = await facade.AdminAddAutoIncrementLiftAsync(TestUsersCreator.adminID, added_lift2);
+            added_lift2 = new Lift(added_lift2_id, added_lift2.LiftName, added_lift2.IsOpen, added_lift2.SeatsAmount, added_lift2.LiftingTime, added_lift2.QueueTime);
 
 
             // не тот подъемник

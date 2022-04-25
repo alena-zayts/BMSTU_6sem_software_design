@@ -14,16 +14,16 @@ namespace TestsBL.IoCRepositories
     {
         private static readonly List<Lift> data = new();
 
-        public async Task AddLiftAsync(Lift lift)
+        public async Task AddLiftAsync(uint liftID, string liftName, bool isOpen, uint seatsAmount, uint liftingTime, uint queueTime)
         {
-            if (await CheckLiftIdExistsAsync(lift.LiftID))
+            if (await CheckLiftIdExistsAsync(liftID))
             {
                 throw new Exception();
             }
-            data.Add(lift);
+            data.Add(new Lift(liftID, liftName, isOpen, seatsAmount, liftingTime, queueTime));
         }
 
-        public async Task<Lift> AddLiftAutoIncrementAsync(Lift lift)
+        public async Task<uint> AddLiftAutoIncrementAsync(string liftName, bool isOpen, uint seatsAmount, uint liftingTime, uint queueTime)
         {
             uint maxLiftID = 0;
             foreach (var liftFromDB in data)
@@ -31,9 +31,9 @@ namespace TestsBL.IoCRepositories
                 if (liftFromDB.LiftID > maxLiftID)
                     maxLiftID = liftFromDB.LiftID;
             }
-            Lift liftWithCorrectId = new(maxLiftID + 1, lift.LiftName, lift.IsOpen, lift.SeatsAmount, lift.LiftingTime, lift.QueueTime);
-            await AddLiftAsync(liftWithCorrectId);
-            return liftWithCorrectId;
+            Lift liftWithCorrectId = new(maxLiftID + 1, liftName, isOpen, seatsAmount, liftingTime, queueTime);
+            await AddLiftAsync(liftWithCorrectId.LiftID, liftWithCorrectId.LiftName, liftWithCorrectId.IsOpen, liftWithCorrectId.SeatsAmount, liftWithCorrectId.LiftingTime, liftWithCorrectId.QueueTime);
+            return liftWithCorrectId.LiftID;
         }
 
         public async Task<bool> CheckLiftIdExistsAsync(uint liftID)
@@ -48,11 +48,11 @@ namespace TestsBL.IoCRepositories
             return false;
         }
 
-        public async Task DeleteLiftAsync(Lift lift)
+        public async Task DeleteLiftByIDAsync(uint liftID)
         {
             foreach (var obj in data)
             {
-                if (obj.LiftID == lift.LiftID)
+                if (obj.LiftID == liftID)
                 {
                     data.Remove(obj);
                     return;
@@ -91,15 +91,15 @@ namespace TestsBL.IoCRepositories
 
 
 
-        public async Task UpdateLiftAsync(Lift lift)
+        public async Task UpdateLiftByIDAsync(uint liftID, string newLiftName, bool newIsOpen, uint newSeatsAmount, uint newLiftingTime, uint newQueueTime)
         {
             for (int i = 0; i < data.Count; i++)
             {
                 Lift liftFromDB = data[i];
-                if (liftFromDB.LiftID == lift.LiftID)
+                if (liftFromDB.LiftID == liftID)
                 {
                     data.Remove(liftFromDB);
-                    data.Insert(i, lift);
+                    data.Insert(i, new Lift(liftID, newLiftName, newIsOpen, newSeatsAmount, newLiftingTime, newQueueTime));
                     return;
                 }
             }

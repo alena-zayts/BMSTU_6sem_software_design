@@ -218,7 +218,7 @@ namespace BL
             await CheckPermissionsService.CheckPermissionsAsync(RepositoriesFactory.CreateUsersRepository(), requesterUserID);
 
             ILiftsRepository rep = RepositoriesFactory.CreateLiftsRepository();
-            await rep.UpdateLiftAsync(lift);
+            await rep.UpdateLiftByIDAsync(lift.LiftID, lift.LiftName, lift.IsOpen, lift.SeatsAmount, lift.LiftingTime, lift.QueueTime);
         }
 
         public async Task AdminDeleteLiftAsync(uint requesterUserID, Lift lift)
@@ -243,16 +243,16 @@ namespace BL
             }
 
             ILiftsRepository rep = RepositoriesFactory.CreateLiftsRepository();
-            await rep.DeleteLiftAsync(lift);
+            await rep.DeleteLiftByIDAsync(lift.LiftID);
         }
 
 
-        public async Task<Lift> AdminAddAutoIncrementLiftAsync(uint requesterUserID, Lift lift)
+        public async Task<uint> AdminAddAutoIncrementLiftAsync(uint requesterUserID, Lift lift)
         {
             await CheckPermissionsService.CheckPermissionsAsync(RepositoriesFactory.CreateUsersRepository(), requesterUserID);
 
             ILiftsRepository rep = RepositoriesFactory.CreateLiftsRepository();
-            return await rep.AddLiftAutoIncrementAsync(lift);
+            return await rep.AddLiftAutoIncrementAsync(lift.LiftName, lift.IsOpen, lift.SeatsAmount, lift.LiftingTime, lift.QueueTime);
         }
 
         public async Task AdminAddLiftAsync(uint requesterUserID, Lift lift)
@@ -260,7 +260,7 @@ namespace BL
             await CheckPermissionsService.CheckPermissionsAsync(RepositoriesFactory.CreateUsersRepository(), requesterUserID);
 
             ILiftsRepository rep = RepositoriesFactory.CreateLiftsRepository();
-            await rep.AddLiftAsync(lift);
+            await rep.AddLiftAsync(lift.LiftID, lift.LiftName, lift.IsOpen, lift.SeatsAmount, lift.LiftingTime, lift.QueueTime);
         }
 
 

@@ -61,9 +61,9 @@ namespace Tests
             ILiftsRepository lifts_rep = new TarantoolLiftsRepository(_context);
             Assert.Empty(await lifts_rep.GetLiftsAsync());
             Lift added_lift1 = new Lift(1, "A1", true, 100, 60, 360);
-            await lifts_rep.AddLiftAsync(added_lift1);
+            await lifts_rep.AddLiftAsync(added_lift1.LiftID, added_lift1.LiftName, added_lift1.IsOpen, added_lift1.SeatsAmount, added_lift1.LiftingTime, added_lift1.QueueTime);
             Lift added_lift2 = new Lift(2, "A2", false, 20, 10, 30);
-            await lifts_rep.AddLiftAsync(added_lift2);
+            await lifts_rep.AddLiftAsync(added_lift2.LiftID, added_lift2.LiftName, added_lift2.IsOpen, added_lift2.SeatsAmount, added_lift2.LiftingTime, added_lift2.QueueTime);
 
             ITurnstilesRepository turnstiles_rep = new TarantoolTurnstilesRepository(_context);
             Assert.Empty(await turnstiles_rep.GetTurnstilesAsync());
@@ -113,8 +113,8 @@ namespace Tests
             await rep.DeleteCardReadingAsync(added_card_reading5.RecordID);
             Assert.Empty(await rep.GetCardReadingsAsync());
 
-            await lifts_rep.DeleteLiftAsync(added_lift1);
-            await lifts_rep.DeleteLiftAsync(added_lift2);
+            await lifts_rep.DeleteLiftByIDAsync(added_lift1.LiftID);
+            await lifts_rep.DeleteLiftByIDAsync(added_lift2.LiftID);
             Assert.Empty(await lifts_rep.GetLiftsAsync());
 
             await turnstiles_rep.DeleteTurnstileAsync(added_turnstile1);

@@ -39,9 +39,9 @@ namespace Tests
 
             // add correct
             Lift added_lift = new Lift(1, "A1", true , 10, 100, 1000);
-            await rep.AddLiftAsync(added_lift);
+            await rep.AddLiftAsync(added_lift.LiftID, added_lift.LiftName, added_lift.IsOpen, added_lift.SeatsAmount, added_lift.LiftingTime, added_lift.QueueTime);
             // add already existing
-            await Assert.ThrowsAsync<LiftException>(() => rep.AddLiftAsync(added_lift));
+            await Assert.ThrowsAsync<LiftException>(() => rep.AddLiftAsync(added_lift.LiftID, added_lift.LiftName, added_lift.IsOpen, added_lift.SeatsAmount, added_lift.LiftingTime, added_lift.QueueTime));
 
             // get_by_id correct
             Lift got_lift = await rep.GetLiftByIdAsync(added_lift.LiftID);
@@ -51,7 +51,7 @@ namespace Tests
             Assert.Equal(added_lift, got_lift);
 
             // delete correct
-            await rep.DeleteLiftAsync(added_lift);
+            await rep.DeleteLiftByIDAsync(added_lift.LiftID);
 
             // get_by_id not existing
             await Assert.ThrowsAsync<LiftException>(() => rep.GetLiftByIdAsync(added_lift.LiftID));
@@ -59,7 +59,7 @@ namespace Tests
             await Assert.ThrowsAsync<LiftException>(() => rep.GetLiftByNameAsync(added_lift.LiftName));
 
             // delete not existing
-            await Assert.ThrowsAsync<LiftException>(() => rep.DeleteLiftAsync(added_lift));
+            await Assert.ThrowsAsync<LiftException>(() => rep.DeleteLiftByIDAsync(added_lift.LiftID));
 
             // end tests - empty getlist
             Assert.Empty(await rep.GetLiftsAsync());
@@ -76,41 +76,41 @@ namespace Tests
             Assert.Empty(await rep.GetLiftsAsync());
 
             Lift added_lift1 = new Lift(1, "A1", true, 10, 100, 1000);
-            await rep.AddLiftAsync(added_lift1);
+            await rep.AddLiftAsync(added_lift1.LiftID, added_lift1.LiftName, added_lift1.IsOpen, added_lift1.SeatsAmount, added_lift1.LiftingTime, added_lift1.QueueTime);
 
             Lift added_lift2 = new Lift(2, "B2", false, 20, 200, 2000);
-            await rep.AddLiftAsync(added_lift2);
+            await rep.AddLiftAsync(added_lift2.LiftID, added_lift2.LiftName, added_lift2.IsOpen, added_lift2.SeatsAmount, added_lift2.LiftingTime, added_lift2.QueueTime);
 
             added_lift2 = new Lift(added_lift2.LiftID, added_lift2.LiftName, added_lift2.IsOpen, 821, added_lift2.LiftingTime, added_lift2.QueueTime);
 
             // updates correct
-            await rep.UpdateLiftAsync(added_lift1);
-            await rep.UpdateLiftAsync(added_lift2);
+            await rep.UpdateLiftByIDAsync(added_lift1.LiftID, added_lift1.LiftName, added_lift1.IsOpen, added_lift1.SeatsAmount, added_lift1.LiftingTime, added_lift1.QueueTime);
+            await rep.UpdateLiftByIDAsync(added_lift2.LiftID, added_lift2.LiftName, added_lift2.IsOpen, added_lift2.SeatsAmount, added_lift2.LiftingTime, added_lift2.QueueTime);
 
             var list = await rep.GetLiftsAsync();
             Assert.Equal(2, list.Count);
             Assert.Equal(added_lift1, list[0]);
             Assert.Equal(added_lift2, list[1]);
 
-            await rep.DeleteLiftAsync(added_lift1);
-            await rep.DeleteLiftAsync(added_lift2);
+            await rep.DeleteLiftByIDAsync(added_lift1.LiftID);
+            await rep.DeleteLiftByIDAsync(added_lift2.LiftID);
 
 
             // updates not existing
-            await Assert.ThrowsAsync<LiftException>(() => rep.UpdateLiftAsync(added_lift1));
-            await Assert.ThrowsAsync<LiftException>(() => rep.UpdateLiftAsync(added_lift2));
+            await Assert.ThrowsAsync<LiftException>(() => rep.UpdateLiftByIDAsync(added_lift1.LiftID, added_lift1.LiftName, added_lift1.IsOpen, added_lift1.SeatsAmount, added_lift1.LiftingTime, added_lift1.QueueTime));
+            await Assert.ThrowsAsync<LiftException>(() => rep.UpdateLiftByIDAsync(added_lift2.LiftID, added_lift2.LiftName, added_lift2.IsOpen, added_lift2.SeatsAmount, added_lift2.LiftingTime, added_lift2.QueueTime));
 
 
             // end tests - empty getlist
             Assert.Empty(await rep.GetLiftsAsync());
 
 
-            Lift tmp2 = await rep.AddLiftAutoIncrementAsync(added_lift1);
-            Assert.True(1 == tmp2.LiftID);
-            Lift tmp3 = await rep.AddLiftAutoIncrementAsync(added_lift2);
-            Assert.True(2 == tmp3.LiftID);
-            await rep.DeleteLiftAsync(tmp2);
-            await rep.DeleteLiftAsync(tmp3);
+            uint tmpLiftID2 = await rep.AddLiftAutoIncrementAsync(added_lift1.LiftName, added_lift1.IsOpen, added_lift1.SeatsAmount, added_lift1.LiftingTime, added_lift1.QueueTime);
+            Assert.True(1 == tmpLiftID2);
+            uint tmpLiftID3 = await rep.AddLiftAutoIncrementAsync(added_lift2.LiftName, added_lift2.IsOpen, added_lift2.SeatsAmount, added_lift2.LiftingTime, added_lift2.QueueTime);
+            Assert.True(2 == tmpLiftID3);
+            await rep.DeleteLiftByIDAsync(tmpLiftID2);
+            await rep.DeleteLiftByIDAsync(tmpLiftID3);
             Assert.Empty(await rep.GetLiftsAsync());
         }
     }

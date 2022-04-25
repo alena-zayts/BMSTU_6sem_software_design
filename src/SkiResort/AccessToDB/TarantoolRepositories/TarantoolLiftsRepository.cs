@@ -71,55 +71,55 @@ namespace AccessToDB.RepositoriesTarantool
             return LiftConverter.DBToBL(data.Data[0]);
         }
 
-        public async Task AddLiftAsync(Lift lift)
+        public async Task AddLiftAsync(uint liftID, string liftName, bool isOpen, uint seatsAmount, uint liftingTime, uint queueTime)
         {
             try
             {
-                await _space.Insert(LiftConverter.BLToDB(lift));
+                await _space.Insert(new LiftDB(liftID, liftName, isOpen, seatsAmount, liftingTime, queueTime));
             }
             catch (Exception ex)
             {
-                throw new LiftException($"Error: adding lift {lift}");
+                throw new LiftException($"Error: adding lift");
             }
         }
 
-        public async Task<Lift> AddLiftAutoIncrementAsync(Lift obj)
+        public async Task<uint> AddLiftAutoIncrementAsync(string liftName, bool isOpen, uint seatsAmount, uint liftingTime, uint queueTime)
         {
             try
             {
-                var result = await _box.Call_1_6<LiftDBNoIndex, LiftDB>("auto_increment_lifts", (LiftConverter.BLToDBNoIndex(obj)));
-                return LiftConverter.DBToBL(result.Data[0]);
+                var result = await _box.Call_1_6<LiftDBNoIndex, LiftDB>("auto_increment_lifts", (new LiftDBNoIndex(liftName, isOpen, seatsAmount, liftingTime, queueTime)));
+                return LiftConverter.DBToBL(result.Data[0]).LiftID;
             }
             catch (Exception ex)
             {
-                throw new LiftException($"Error: couldn't auto increment {obj}");
+                throw new LiftException($"Error: couldn't auto increment");
             }
         }
-        public async Task UpdateLiftAsync(Lift lift)
+        public async Task UpdateLiftByIDAsync(uint liftID, string newLiftName, bool newIsOpen, uint newSeatsAmount, uint newLiftingTime, uint newQueueTime)
         {
             var response = await _space.Update<ValueTuple<uint>, LiftDB>(
-                ValueTuple.Create(lift.LiftID), new UpdateOperation[] {
-                    UpdateOperation.CreateAssign<string>(1, lift.LiftName),
-                    UpdateOperation.CreateAssign<bool>(2, lift.IsOpen),
-                    UpdateOperation.CreateAssign<uint>(3, lift.SeatsAmount),
-                    UpdateOperation.CreateAssign<uint>(4, lift.LiftingTime),
-                    UpdateOperation.CreateAssign<uint>(5, lift.QueueTime),
+                ValueTuple.Create(liftID), new UpdateOperation[] {
+                    UpdateOperation.CreateAssign<string>(1, newLiftName),
+                    UpdateOperation.CreateAssign<bool>(2, newIsOpen),
+                    UpdateOperation.CreateAssign<uint>(3, newSeatsAmount),
+                    UpdateOperation.CreateAssign<uint>(4, newLiftingTime),
+                    UpdateOperation.CreateAssign<uint>(5, newQueueTime),
                 });
 
             if (response.Data.Length != 1)
             {
-                throw new LiftException($"Error: updating lift {lift}");
+                throw new LiftException($"Error: updating lift");
             }
         }
 
-        public async Task DeleteLiftAsync(Lift lift)
+        public async Task DeleteLiftByIDAsync(uint liftID)
         {
             var response = await _indexPrimary.Delete<ValueTuple<uint>, LiftDB>
-                (ValueTuple.Create(lift.LiftID));
+                (ValueTuple.Create(liftID));
 
             if (response.Data.Length != 1)
             {
-                throw new LiftException($"Error: deleting lift {lift}");
+                throw new LiftException($"Error: deleting lift");
             }
 
         }
