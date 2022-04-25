@@ -400,7 +400,7 @@ namespace BL
             await CheckPermissionsService.CheckPermissionsAsync(RepositoriesFactory.CreateUsersRepository(), requesterUserID);
 
             ITurnstilesRepository rep = RepositoriesFactory.CreateTurnstilesRepository();
-            await rep.UpdateTurnstileAsync(turnstile);
+            await rep.UpdateTurnstileByIDAsync(turnstile.TurnstileID, turnstile.LiftID, turnstile.IsOpen);
         }
 
         public async Task AdminDeleteTurnstileAsync(uint requesterUserID, Turnstile turnstile)
@@ -408,7 +408,7 @@ namespace BL
             await CheckPermissionsService.CheckPermissionsAsync(RepositoriesFactory.CreateUsersRepository(), requesterUserID);
 
             ITurnstilesRepository rep = RepositoriesFactory.CreateTurnstilesRepository();
-            await rep.DeleteTurnstileAsync(turnstile);
+            await rep.DeleteTurnstileByIDAsync(turnstile.TurnstileID);
         }
 
         public async Task AdminAddTurnstileAsync(uint requesterUserID, Turnstile turnstile)
@@ -416,15 +416,15 @@ namespace BL
             await CheckPermissionsService.CheckPermissionsAsync(RepositoriesFactory.CreateUsersRepository(), requesterUserID);
 
             ITurnstilesRepository rep = RepositoriesFactory.CreateTurnstilesRepository();
-            await rep.AddTurnstileAsync(turnstile);
+            await rep.AddTurnstileAsync(turnstile.TurnstileID,  turnstile.LiftID, turnstile.IsOpen);
         }
 
-        public async Task<Turnstile> AdminAddAutoIncrementTurnstileAsync(uint requesterUserID, Turnstile turnstile)
+        public async Task<uint> AdminAddAutoIncrementTurnstileAsync(uint requesterUserID, Turnstile turnstile)
         {
             await CheckPermissionsService.CheckPermissionsAsync(RepositoriesFactory.CreateUsersRepository(), requesterUserID);
 
             ITurnstilesRepository rep = RepositoriesFactory.CreateTurnstilesRepository();
-            return await rep.AddTurnstileAutoIncrementAsync(turnstile);
+            return await rep.AddTurnstileAutoIncrementAsync(turnstile.TurnstileID, turnstile.IsOpen);
         }
 
 

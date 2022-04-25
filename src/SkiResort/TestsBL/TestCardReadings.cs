@@ -35,9 +35,11 @@ namespace TestsBL
 
             // тот подъеммник
             Turnstile added_turnstile2 = new Turnstile(2, added_lift2.LiftID, false);
-            added_turnstile2 = await facade.AdminAddAutoIncrementTurnstileAsync(TestUsersCreator.adminID, added_turnstile2);
+            uint addedTurnstile2ID = await facade.AdminAddAutoIncrementTurnstileAsync(TestUsersCreator.adminID, added_turnstile2);
+            added_turnstile2 = new(addedTurnstile2ID, added_turnstile2.LiftID, added_turnstile2.IsOpen);
             Turnstile added_turnstile3 = new Turnstile(3, added_lift2.LiftID, false);
-            added_turnstile3 = await facade.AdminAddAutoIncrementTurnstileAsync(TestUsersCreator.adminID, added_turnstile3);
+            uint addedTurnstile3ID = await facade.AdminAddAutoIncrementTurnstileAsync(TestUsersCreator.adminID, added_turnstile3);
+            added_turnstile3 = new(addedTurnstile3ID, added_turnstile3.LiftID, added_turnstile3.IsOpen);
 
             uint exact_time = 10;
 

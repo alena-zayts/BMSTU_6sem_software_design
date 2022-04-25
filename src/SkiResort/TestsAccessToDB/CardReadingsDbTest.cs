@@ -69,13 +69,13 @@ namespace Tests
             Assert.Empty(await turnstiles_rep.GetTurnstilesAsync());
             // не тот подъемник
             Turnstile added_turnstile1 = new Turnstile(1, added_lift1.LiftID, true);
-            await turnstiles_rep.AddTurnstileAsync(added_turnstile1);
+            await turnstiles_rep.AddTurnstileAsync(added_turnstile1.TurnstileID, added_turnstile1.LiftID, added_turnstile1.IsOpen);
 
             // тот подъеммник
             Turnstile added_turnstile2 = new Turnstile(2, added_lift2.LiftID, false);
-            await turnstiles_rep.AddTurnstileAsync(added_turnstile2);
+            await turnstiles_rep.AddTurnstileAsync(added_turnstile2.TurnstileID, added_turnstile2.LiftID, added_turnstile2.IsOpen);
             Turnstile added_turnstile3 = new Turnstile(3, added_lift2.LiftID, false);
-            await turnstiles_rep.AddTurnstileAsync(added_turnstile3);
+            await turnstiles_rep.AddTurnstileAsync(added_turnstile3.TurnstileID, added_turnstile3.LiftID, added_turnstile3.IsOpen);
 
             uint exact_time = 10;
 
@@ -117,9 +117,9 @@ namespace Tests
             await lifts_rep.DeleteLiftByIDAsync(added_lift2.LiftID);
             Assert.Empty(await lifts_rep.GetLiftsAsync());
 
-            await turnstiles_rep.DeleteTurnstileAsync(added_turnstile1);
-            await turnstiles_rep.DeleteTurnstileAsync(added_turnstile2);
-            await turnstiles_rep.DeleteTurnstileAsync(added_turnstile3);
+            await turnstiles_rep.DeleteTurnstileByIDAsync(added_turnstile1.TurnstileID);
+            await turnstiles_rep.DeleteTurnstileByIDAsync(added_turnstile2.TurnstileID);
+            await turnstiles_rep.DeleteTurnstileByIDAsync(added_turnstile3.TurnstileID);
             Assert.Empty(await turnstiles_rep.GetTurnstilesAsync());
 
             uint tmpCardReadingID2 = await rep.AddCardReadingAutoIncrementAsync(added_card_reading1.TurnstileID, added_card_reading1.CardID, added_card_reading1.ReadingTime);

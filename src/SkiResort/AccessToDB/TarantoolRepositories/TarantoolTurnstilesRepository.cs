@@ -74,53 +74,53 @@ namespace AccessToDB.RepositoriesTarantool
             return TurnstileConverter.DBToBL(data.Data[0]);
         }
 
-        public async Task AddTurnstileAsync(Turnstile turnstile)
+        public async Task AddTurnstileAsync(uint turnstileID, uint liftID, bool isOpen)
         {
             try
             {
-                await _space.Insert(TurnstileConverter.BLToDB(turnstile));
+                await _space.Insert(new TurnstileDB(turnstileID, liftID, isOpen));
             }
             catch (Exception ex)
             {
-                throw new TurnstileException($"Error: adding turnstile {turnstile}");
+                throw new TurnstileException($"Error: adding turnstile");
             }
         }
 
-        public async Task<Turnstile> AddTurnstileAutoIncrementAsync(Turnstile obj)
+        public async Task<uint> AddTurnstileAutoIncrementAsync(uint liftID, bool isOpen)
         {
             try
             {
-                var result = await _box.Call_1_6<TurnstileDBNoIndex, TurnstileDB>("auto_increment_turnstiles", (TurnstileConverter.BLToDBNoIndex(obj)));
-                return TurnstileConverter.DBToBL(result.Data[0]);
+                var result = await _box.Call_1_6<TurnstileDBNoIndex, TurnstileDB>("auto_increment_turnstiles", (new TurnstileDBNoIndex(liftID, isOpen)));
+                return TurnstileConverter.DBToBL(result.Data[0]).TurnstileID;
             }
             catch (Exception ex)
             {
-                throw new TurnstileException($"Error: couldn't auto increment {obj}");
+                throw new TurnstileException($"Error: couldn't auto increment");
             }
         }
 
-        public async Task UpdateTurnstileAsync(Turnstile turnstile)
+        public async Task UpdateTurnstileByIDAsync(uint turnstileID, uint newLiftID, bool newIsOpen)
         {
             var response = await _space.Update<ValueTuple<uint>, TurnstileDB>(
-                ValueTuple.Create(turnstile.TurnstileID), new UpdateOperation[] {
-                    UpdateOperation.CreateAssign<uint>(1, turnstile.LiftID),
-                    UpdateOperation.CreateAssign<bool>(2, turnstile.IsOpen),
+                ValueTuple.Create(turnstileID), new UpdateOperation[] {
+                    UpdateOperation.CreateAssign<uint>(1, newLiftID),
+                    UpdateOperation.CreateAssign<bool>(2, newIsOpen),
                 });
 
             if (response.Data.Length != 1)
             {
-                throw new TurnstileException($"Error: updating turnstile {turnstile}");
+                throw new TurnstileException($"Error: updating turnstile ");
             }
         }
 
-        public async Task DeleteTurnstileAsync(Turnstile turnstile)
+        public async Task DeleteTurnstileByIDAsync(uint turnstileID)
         {
             var response = await _indexPrimary.Delete<ValueTuple<uint>, TurnstileDB>
-                (ValueTuple.Create(turnstile.TurnstileID));
+                (ValueTuple.Create(turnstileID));
 
             if (response.Data.Length != 1)
             {
-                throw new TurnstileException($"Error: deleting turnstile {turnstile}");
+                throw new TurnstileException($"Error: deleting turnstile");
             }
 
         }

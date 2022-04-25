@@ -14,16 +14,16 @@ namespace TestsBL.IoCRepositories
     {
         private static readonly List<Turnstile> data = new();
 
-        public async Task AddTurnstileAsync(Turnstile turnstile)
+        public async Task AddTurnstileAsync(uint turnstileID, uint liftID, bool isOpen)
         {
-            if (await CheckTurnstileIdExistsAsync(turnstile.TurnstileID))
+            if (await CheckTurnstileIdExistsAsync(turnstileID))
             {
                 throw new Exception();
             }
-            data.Add(turnstile);
+            data.Add(new Turnstile(turnstileID, liftID, isOpen));
         }
 
-        public async Task<Turnstile> AddTurnstileAutoIncrementAsync(Turnstile turnstile)
+        public async Task<uint> AddTurnstileAutoIncrementAsync(uint liftID, bool isOpen)
         {
             uint maxTurnstileID = 0;
             foreach (var turnstileFromDB in data)
@@ -31,9 +31,9 @@ namespace TestsBL.IoCRepositories
                 if (turnstileFromDB.TurnstileID > maxTurnstileID)
                     maxTurnstileID = turnstileFromDB.TurnstileID;
             }
-            Turnstile turnstileWithCorrectId = new(maxTurnstileID + 1, turnstile.LiftID, turnstile.IsOpen);
-            await AddTurnstileAsync(turnstileWithCorrectId);
-            return turnstileWithCorrectId;
+            Turnstile turnstileWithCorrectId = new(maxTurnstileID + 1, liftID, isOpen);
+            await AddTurnstileAsync(turnstileWithCorrectId.TurnstileID, turnstileWithCorrectId.LiftID, turnstileWithCorrectId.IsOpen);
+            return turnstileWithCorrectId.TurnstileID;
         }
 
         public async Task<bool> CheckTurnstileIdExistsAsync(uint turnstileID)
@@ -48,11 +48,11 @@ namespace TestsBL.IoCRepositories
             return false;
         }
 
-        public async Task DeleteTurnstileAsync(Turnstile turnstile)
+        public async Task DeleteTurnstileByIDAsync(uint turnstileID)
         {
             foreach (var obj in data)
             {
-                if (obj.TurnstileID == turnstile.TurnstileID)
+                if (obj.TurnstileID == turnstileID)
                 {
                     data.Remove(obj);
                     return;
@@ -89,15 +89,15 @@ namespace TestsBL.IoCRepositories
             return turnstiles;
         }
 
-        public async Task UpdateTurnstileAsync(Turnstile turnstile)
+        public async Task UpdateTurnstileByIDAsync(uint turnstileID, uint newLiftID, bool newIsOpen)
         {
             for (int i = 0; i < data.Count; i++)
             {
                 Turnstile turnstileFromDB = data[i];
-                if (turnstileFromDB.TurnstileID == turnstile.TurnstileID)
+                if (turnstileFromDB.TurnstileID == turnstileID)
                 {
                     data.Remove(turnstileFromDB);
-                    data.Insert(i, turnstile);
+                    data.Insert(i, new Turnstile(turnstileID, newLiftID, newIsOpen));
                     return;
                 }
             }
