@@ -1,6 +1,6 @@
 namespace BL.Models
 {
-    public class LiftSlope
+    public record class LiftSlope
     {
         public uint RecordID { get; }
         public uint LiftID { get; }
@@ -12,14 +12,6 @@ namespace BL.Models
             this.LiftID = lLiftID;
             this.SlopeID = slopeID;
 
-        }
-
-        public override bool Equals(object? obj)
-        {
-            return obj is LiftSlope dB &&
-                   RecordID == dB.RecordID &&
-                   LiftID == dB.LiftID &&
-                   SlopeID == dB.SlopeID;
         }
     }
 

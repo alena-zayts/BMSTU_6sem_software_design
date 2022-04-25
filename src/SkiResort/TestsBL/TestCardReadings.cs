@@ -5,6 +5,7 @@ using BL.Models;
 using System.Threading.Tasks;
 using BL.Exceptions;
 using System.Collections.Generic;
+using System;
 
 namespace TestsBL
 {
@@ -40,22 +41,22 @@ namespace TestsBL
             uint exact_time = 10;
 
             // не тот подъемник
-            CardReading added_card_reading1 = new CardReading(1, added_turnstile1.TurnstileID, 9, exact_time - 1);
+            CardReading added_card_reading1 = new CardReading(1, added_turnstile1.TurnstileID, 9, DateTimeOffset.FromUnixTimeSeconds(exact_time - 1));
             await facade.AdminAddCardReadingAsync(TestUsersCreator.adminID, added_card_reading1);
-            CardReading added_card_reading2 = new CardReading(2, added_turnstile1.TurnstileID, 9, exact_time + 1);
+            CardReading added_card_reading2 = new CardReading(2, added_turnstile1.TurnstileID, 9, DateTimeOffset.FromUnixTimeSeconds(exact_time + 1));
             added_card_reading2 = await facade.AdminAddAutoIncrementCardReadingAsync(TestUsersCreator.adminID, added_card_reading2);
 
 
             // тот подъемник но не то время
-            CardReading added_card_reading3 = new CardReading(3, added_turnstile2.TurnstileID, 9, exact_time - 1);
+            CardReading added_card_reading3 = new CardReading(3, added_turnstile2.TurnstileID, 9, DateTimeOffset.FromUnixTimeSeconds(exact_time - 1));
             added_card_reading3 = await facade.AdminAddAutoIncrementCardReadingAsync(TestUsersCreator.adminID, added_card_reading3);
 
 
             // подходят
-            CardReading added_card_reading4 = new CardReading(4, added_turnstile2.TurnstileID, 9, exact_time + 1);
+            CardReading added_card_reading4 = new CardReading(4, added_turnstile2.TurnstileID, 9, DateTimeOffset.FromUnixTimeSeconds(exact_time + 1));
             added_card_reading4 = await facade.AdminAddAutoIncrementCardReadingAsync(TestUsersCreator.adminID, added_card_reading4);
 
-            CardReading added_card_reading5 = new CardReading(5, added_turnstile3.TurnstileID, 9, exact_time);
+            CardReading added_card_reading5 = new CardReading(5, added_turnstile3.TurnstileID, 9, DateTimeOffset.FromUnixTimeSeconds(exact_time));
             added_card_reading5 = await facade.AdminAddAutoIncrementCardReadingAsync(TestUsersCreator.adminID, added_card_reading5);
 
 

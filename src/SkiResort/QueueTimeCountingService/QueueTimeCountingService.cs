@@ -22,13 +22,14 @@ namespace QueueTimeCountingWorker
         {
             while (!stoppingToken.IsCancellationRequested)
             {
-                DateTimeOffset dto = new();
-                uint currentTime = (uint) dto.ToUnixTimeSeconds();
+                //DateTimeOffset dto = new();
+                //uint currentTime = (uint) dto.ToUnixTimeSeconds();
+                DateTimeOffset currentTime = DateTimeOffset.Now;
 
                 List<Lift> lifts = await _liftsRepository.GetLiftsAsync();
                 foreach (Lift lift in lifts)
                 {
-                    uint cardReadingsAmout = await _cardReadingsRepository.CountForLiftIdFromDateAsync(lift.LiftID, currentTime - _timeDelta);
+                    uint cardReadingsAmout = await _cardReadingsRepository.CountForLiftIdFromDateAsync(lift.LiftID, DateTimeOffset.FromUnixTimeSeconds(currentTime.ToUnixTimeSeconds() - (long) _timeDelta).DateTime);
                     uint previousQueueTime = lift.QueueTime;
                     uint minusQueueTime = _timeDelta;
                     uint plusQueueTime = cardReadingsAmout * (2 * lift.LiftingTime / lift.SeatsAmount);

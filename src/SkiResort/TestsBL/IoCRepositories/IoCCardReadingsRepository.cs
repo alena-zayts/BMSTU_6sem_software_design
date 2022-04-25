@@ -49,7 +49,7 @@ namespace TestsBL.IoCRepositories
             return false;
         }
 
-        public async Task<uint> CountForLiftIdFromDateAsync(uint liftID, uint dateFrom)
+        public async Task<uint> CountForLiftIdFromDateAsync(uint liftID, DateTimeOffset dateFrom)
         {
             IRepositoriesFactory repositoriesFactory = new IoCRepositoriesFactory();
             ITurnstilesRepository turnstilesRepository = repositoriesFactory.CreateTurnstilesRepository();

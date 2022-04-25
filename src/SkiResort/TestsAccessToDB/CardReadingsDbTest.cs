@@ -1,6 +1,7 @@
 using System.Threading.Tasks;
 using Xunit;
 using Xunit.Abstractions;
+using System;
 
 using BL.Models;
 using BL.IRepositories;
@@ -34,7 +35,7 @@ namespace Tests
             Assert.Empty(await rep.GetCardReadingsAsync());
 
             // add correct
-            CardReading added_card_reading = new CardReading(1, 1, 1, 1);
+            CardReading added_card_reading = new CardReading(1, 1, 1, DateTimeOffset.FromUnixTimeSeconds(1));
             await rep.AddCardReadingAsync(added_card_reading);
             // add already existing
             await Assert.ThrowsAsync<CardReadingException>(() => rep.AddCardReadingAsync(added_card_reading));
@@ -79,28 +80,28 @@ namespace Tests
             uint exact_time = 10;
 
             // не тот подъемник
-            CardReading added_card_reading1 = new CardReading(1, added_turnstile1.TurnstileID, 9, exact_time - 1);
+            CardReading added_card_reading1 = new CardReading(1, added_turnstile1.TurnstileID, 9, DateTimeOffset.FromUnixTimeSeconds(exact_time - 1));
             await rep.AddCardReadingAsync(added_card_reading1);
-            CardReading added_card_reading2 = new CardReading(2, added_turnstile1.TurnstileID, 9, exact_time + 1);
+            CardReading added_card_reading2 = new CardReading(2, added_turnstile1.TurnstileID, 9, DateTimeOffset.FromUnixTimeSeconds(exact_time + 1));
             await rep.AddCardReadingAsync(added_card_reading2);
 
             // тот подъемник но не то время
-            CardReading added_card_reading3 = new CardReading(3, added_turnstile2.TurnstileID, 9, exact_time - 1);
+            CardReading added_card_reading3 = new CardReading(3, added_turnstile2.TurnstileID, 9, DateTimeOffset.FromUnixTimeSeconds(exact_time - 1));
             await rep.AddCardReadingAsync(added_card_reading3);
 
             // подходят
-            CardReading added_card_reading4 = new CardReading(4, added_turnstile2.TurnstileID, 9, exact_time + 1);
+            CardReading added_card_reading4 = new CardReading(4, added_turnstile2.TurnstileID, 9, DateTimeOffset.FromUnixTimeSeconds(exact_time + 1));
             await rep.AddCardReadingAsync(added_card_reading4);
-            CardReading added_card_reading5 = new CardReading(5, added_turnstile3.TurnstileID, 9, exact_time);
+            CardReading added_card_reading5 = new CardReading(5, added_turnstile3.TurnstileID, 9, DateTimeOffset.FromUnixTimeSeconds(exact_time));
             await rep.AddCardReadingAsync(added_card_reading5);
 
-            uint card_readings_amount = await rep.CountForLiftIdFromDateAsync(added_lift2.LiftID, exact_time);
+            uint card_readings_amount = await rep.CountForLiftIdFromDateAsync(added_lift2.LiftID, DateTimeOffset.FromUnixTimeSeconds(exact_time));
             Assert.True(card_readings_amount == 2);
 
-            card_readings_amount = await rep.CountForLiftIdFromDateAsync(added_lift1.LiftID, exact_time);
+            card_readings_amount = await rep.CountForLiftIdFromDateAsync(added_lift1.LiftID, DateTimeOffset.FromUnixTimeSeconds(exact_time));
             Assert.True(card_readings_amount == 1);
 
-            card_readings_amount = await rep.CountForLiftIdFromDateAsync(added_lift1.LiftID, exact_time + 2);
+            card_readings_amount = await rep.CountForLiftIdFromDateAsync(added_lift1.LiftID, DateTimeOffset.FromUnixTimeSeconds(exact_time + 2));
             Assert.True(card_readings_amount == 0);
 
             var tmp = await rep.GetCardReadingsAsync();

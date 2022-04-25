@@ -1,6 +1,6 @@
 namespace BL.Models
 {
-    public class Slope
+    public record class Slope
     {
         public uint SlopeID { get; }
         public string SlopeName { get;}
@@ -27,20 +27,13 @@ namespace BL.Models
             this.ConnectedLifts = connectedLifts;
         }
 
-
-        public override bool Equals(object? obj)
+        public bool EqualWithoutConnectedLifts(Slope otherSlope)
         {
-            return obj is Slope dB &&
-                   SlopeID == dB.SlopeID &&
-                   SlopeName == dB.SlopeName &&
-                   IsOpen == dB.IsOpen &&
-                   DifficultyLevel == dB.DifficultyLevel;
-        }
+            return this.IsOpen == otherSlope.IsOpen &&
+                this.DifficultyLevel == otherSlope.DifficultyLevel &&  
+                this.SlopeID == otherSlope.SlopeID &&
+                this.SlopeName == otherSlope.SlopeName;
 
-        public bool EqualsFull(Slope slope)
-        {
-            return this.Equals(slope) &&
-                new HashSet<Lift>(slope.ConnectedLifts).SetEquals(this.ConnectedLifts);
         }
     }
 }

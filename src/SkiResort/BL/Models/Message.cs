@@ -2,7 +2,7 @@ using BL.Exceptions;
 
 namespace BL.Models
 {
-    public class Message
+    public record class Message
     {
         public static uint MessageUniversalID = 0;
         public static uint MessageCheckedByNobody = 0;
@@ -24,15 +24,6 @@ namespace BL.Models
             this.CheckedByID = checkedByID;
             this.Text = text;
 
-        }
-
-        public override bool Equals(object? obj)
-        {
-            return obj is Message dB &&
-                   MessageID == dB.MessageID &&
-                   SenderID == dB.SenderID &&
-                   CheckedByID == dB.CheckedByID &&
-                   Text == dB.Text;
         }
     }
 }

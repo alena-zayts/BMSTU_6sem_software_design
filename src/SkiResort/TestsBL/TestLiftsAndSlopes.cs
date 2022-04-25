@@ -30,7 +30,7 @@ namespace TestsBL
             await facade.AdminAddLiftAsync(TestUsersCreator.adminID, added_lift2);
             added_lift2 = new Lift(added_lift2.LiftID, added_lift2.LiftName, !added_lift2.IsOpen, added_lift2.SeatsAmount + 1, added_lift2.LiftingTime, added_lift2.QueueTime);
             await facade.UpdateLiftInfoAsync(TestUsersCreator.adminID, added_lift2);
-            Assert.Equal(added_lift2, await facade.GetLiftInfoAsync(TestUsersCreator.skiPatrolID, added_lift2.LiftName));
+            Assert.True(added_lift2.EqualWithoutConnectedSlopes(await facade.GetLiftInfoAsync(TestUsersCreator.skiPatrolID, added_lift2.LiftName)));
 
 
 
@@ -44,7 +44,7 @@ namespace TestsBL
             await facade.AdminAddSlopeAsync(TestUsersCreator.adminID, added_slope3);
             added_slope3 = new Slope(added_slope3.SlopeID, "A33", added_slope3.IsOpen, added_slope3.DifficultyLevel);
             await facade.UpdateSlopeInfoAsync(TestUsersCreator.skiPatrolID, added_slope3);
-            Assert.Equal(added_slope3, await facade.GetSlopeInfoAsync(TestUsersCreator.skiPatrolID, added_slope3.SlopeName));
+            Assert.True(added_slope3.EqualWithoutConnectedLifts(await facade.GetSlopeInfoAsync(TestUsersCreator.skiPatrolID, added_slope3.SlopeName)));
 
 
             Assert.Empty(await facade.GetLiftsSlopesInfoAsync(TestUsersCreator.skiPatrolID));
@@ -60,12 +60,13 @@ namespace TestsBL
 
             List<Lift> from_slope1 = (await facade.GetSlopeInfoAsync(TestUsersCreator.unauthorizedID, added_slope1.SlopeName)).ConnectedLifts;
             Assert.Equal(1, from_slope1.Count);
-            Assert.Equal(added_lift1, from_slope1[0]);
+            Assert.True(added_lift1.EqualWithoutConnectedSlopes(from_slope1[0]));
 
             List<Lift> from_slope2 = (await facade.GetSlopeInfoAsync(TestUsersCreator.skiPatrolID, added_slope2.SlopeName)).ConnectedLifts;
             Assert.Equal(2, from_slope2.Count);
-            Assert.Equal(added_lift1, from_slope2[0]);
-            Assert.Equal(added_lift2, from_slope2[1]);
+            Assert.True(added_lift1.EqualWithoutConnectedSlopes(from_slope2[0]));
+            Assert.True(added_lift2.EqualWithoutConnectedSlopes(from_slope2[1]));
+
 
             List<Lift> from_slope3 = (await facade.GetSlopeInfoAsync(TestUsersCreator.authorizedID, added_slope3.SlopeName)).ConnectedLifts;
             Assert.Equal(0, from_slope3.Count);
@@ -79,7 +80,7 @@ namespace TestsBL
 
             List<Slope> from_lift2 = (await facade.GetLiftInfoAsync(TestUsersCreator.unauthorizedID, added_lift2.LiftName)).ConnectedSlopes;
             Assert.Equal(1, from_lift2.Count);
-            Assert.Equal(added_slope2, from_lift2[0]);
+            Assert.True(added_slope2.EqualWithoutConnectedLifts(from_lift2[0]));
 
             await facade.AdminDeleteLiftAsync(TestUsersCreator.adminID, added_lift1);
             await facade.AdminDeleteLiftAsync(TestUsersCreator.adminID, added_lift2);

@@ -8,7 +8,7 @@ namespace BL.Models
         ADMIN = 3u
     }
 
-    public class User
+    public record class User
     {
         public const uint UniversalCardID = 0;
 
@@ -26,17 +26,6 @@ namespace BL.Models
             this.UserEmail = UserEmail;
             this.Password = password;
             this.Permissions = permissions;
-        }
-
-
-        public override bool Equals(object? obj)
-        {
-            return obj is User dB &&
-                   UserID == dB.UserID &&
-                   CardID == dB.CardID &&
-                   UserEmail == dB.UserEmail &&
-                   Password == dB.Password &&
-                   Permissions == dB.Permissions;
         }
     }
 }

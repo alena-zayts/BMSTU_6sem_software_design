@@ -134,10 +134,5 @@ C:\BMSTU_6sem_software_design\src\SkiResort\TestsBL\bin\Debug\net6.0\runtimes\wi
 C:\BMSTU_6sem_software_design\src\SkiResort\TestsBL\bin\Debug\net6.0\QueueTimeCountingWorker.deps.json
 C:\BMSTU_6sem_software_design\src\SkiResort\TestsBL\bin\Debug\net6.0\QueueTimeCountingWorker.runtimeconfig.json
 C:\BMSTU_6sem_software_design\src\SkiResort\TestsBL\bin\Debug\net6.0\QueueTimeCountingWorker.exe
-C:\BMSTU_6sem_software_design\src\SkiResort\TestsBL\bin\Debug\net6.0\CardReadingsRecivingWorker.deps.json
-C:\BMSTU_6sem_software_design\src\SkiResort\TestsBL\bin\Debug\net6.0\CardReadingsRecivingWorker.runtimeconfig.json
-C:\BMSTU_6sem_software_design\src\SkiResort\TestsBL\bin\Debug\net6.0\CardReadingsRecivingWorker.exe
-C:\BMSTU_6sem_software_design\src\SkiResort\TestsBL\bin\Debug\net6.0\CardReadingsRecivingWorker.dll
 C:\BMSTU_6sem_software_design\src\SkiResort\TestsBL\bin\Debug\net6.0\QueueTimeCountingWorker.dll
 C:\BMSTU_6sem_software_design\src\SkiResort\TestsBL\bin\Debug\net6.0\QueueTimeCountingWorker.pdb
-C:\BMSTU_6sem_software_design\src\SkiResort\TestsBL\bin\Debug\net6.0\CardReadingsRecivingWorker.pdb

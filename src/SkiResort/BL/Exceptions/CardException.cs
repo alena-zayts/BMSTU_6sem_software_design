@@ -10,7 +10,7 @@ namespace BL.Exceptions
         public CardException(string? message) : base(message) { }
         public CardException(string? message, Exception? innerException) : base(message, innerException) { }
 
-        public CardException(string? message, Card? card)
+        public CardException(string? message, Card? card) : base(message)
         {
             this.Card = card;
         }

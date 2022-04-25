@@ -1,6 +1,6 @@
 namespace BL.Models
 {
-    public class Lift
+    public record class Lift
     {
         public uint LiftID { get; }
         public string LiftName { get; }
@@ -43,19 +43,14 @@ namespace BL.Models
             this.QueueTime = newQueueTime;
         }
 
-        public override bool Equals(object? obj)
+        public bool EqualWithoutConnectedSlopes(Lift otherLift)
         {
-            return obj is Lift dB &&
-                   LiftID == dB.LiftID &&
-                   LiftName == dB.LiftName &&
-                   IsOpen == dB.IsOpen &&
-                   SeatsAmount == dB.SeatsAmount;
-        }
-
-        public bool EqualsFull(Lift lift)
-        {
-            return this.Equals(lift) && 
-                new HashSet<Slope>(lift.ConnectedSlopes).SetEquals(this.ConnectedSlopes);
+            return LiftID == otherLift.LiftID &&
+                this.LiftName == otherLift.LiftName && 
+                this.IsOpen == otherLift.IsOpen &&
+                this.SeatsAmount == otherLift.SeatsAmount &&
+                this.LiftingTime == otherLift.LiftingTime &&
+                this.QueueTime == otherLift.QueueTime;
         }
     }
 }

@@ -23,7 +23,7 @@ namespace CardReadingsReceivingWorker
         {
             string data = File.ReadAllText(filename);
             dynamic stuff = JObject.Parse(data);
-            CardReading cardReading = new((uint) stuff.RecordID, (uint) stuff.TurnstileID, (uint) stuff.CardID, (uint) stuff.ReadingTime);
+            CardReading cardReading = new((uint) stuff.RecordID, (uint) stuff.TurnstileID, (uint) stuff.CardID, (DateTimeOffset) (DateTimeOffset.FromUnixTimeSeconds(stuff.ReadingTime)));
             return cardReading;
         }
 

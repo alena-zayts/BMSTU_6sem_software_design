@@ -1,6 +1,7 @@
 using System.Threading.Tasks;
 using Xunit;
 using Xunit.Abstractions;
+using System;
 
 using BL.Models;
 using BL.IRepositories;
@@ -36,7 +37,7 @@ namespace Tests
             Assert.Empty(await rep.GetCardsAsync());
 
             // add correct
-            Card added_card = new Card(1, 1, "child");
+            Card added_card = new Card(1, DateTimeOffset.FromUnixTimeSeconds(1), "child");
             await rep.AddCardAsync(added_card);
             // add already existing
             await Assert.ThrowsAsync<CardException>(() => rep.AddCardAsync(added_card));
@@ -70,14 +71,14 @@ namespace Tests
             Assert.Empty(await rep.GetCardsAsync());
 
 
-            Card added_card1 = new Card(1, 1, "child");
+            Card added_card1 = new Card(1, DateTimeOffset.FromUnixTimeSeconds(1), "child");
             await rep.AddCardAsync(added_card1);
 
-            Card added_card2 = new Card(2, 9, "adult");
+            Card added_card2 = new Card(2, DateTimeOffset.FromUnixTimeSeconds(9), "adult");
             await rep.AddCardAsync(added_card2);
 
             added_card2 = new Card(added_card2.CardID, added_card2.ActivationTime, "wow");
-            added_card1 = new Card(added_card1.CardID, 99, added_card1.Type);
+            added_card1 = new Card(added_card1.CardID, DateTimeOffset.FromUnixTimeSeconds(99), added_card1.Type);
 
             // updates correct
             await rep.UpdateCardAsync(added_card1);

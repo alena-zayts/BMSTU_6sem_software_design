@@ -40,11 +40,11 @@ namespace AccessToDB.RepositoriesTarantool
             return result;
         }
 
-        public async Task<uint> CountForLiftIdFromDateAsync(uint LiftID, uint dateFrom)
+        public async Task<uint> CountForLiftIdFromDateAsync(uint LiftID, DateTimeOffset dateFrom)
         {
             try
             {
-                var result = await _box.Call_1_6<ValueTuple<uint, uint>, Int32[]>("count_card_readings", (ValueTuple.Create(LiftID, dateFrom)));
+                var result = await _box.Call_1_6<ValueTuple<uint, uint>, Int32[]>("count_card_readings", (ValueTuple.Create(LiftID, (uint) dateFrom.ToUnixTimeSeconds())));
                 return (uint) result.Data[0][0];
             }
             catch (Exception ex)

@@ -79,7 +79,7 @@ namespace AccessToDB.RepositoriesTarantool
         {
             var response = await _space.Update<ValueTuple<uint>, CardDB>(
                 ValueTuple.Create(card.CardID), new UpdateOperation[] {
-                    UpdateOperation.CreateAssign<uint>(1, card.ActivationTime),
+                    UpdateOperation.CreateAssign<uint>(1, (uint) card.ActivationTime.ToUnixTimeSeconds()),
                     UpdateOperation.CreateAssign<string>(2, card.Type),
                 });
 
