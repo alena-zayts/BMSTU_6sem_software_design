@@ -14,16 +14,16 @@ namespace TestsBL.IoCRepositories
     {
         private static readonly List<Slope> data = new();
 
-        public async Task AddSlopeAsync(Slope slope)
+        public async Task AddSlopeAsync(uint slopeID, string slopeName, bool isOpen, uint difficultyLevel)
         {
-            if (await CheckSlopeIdExistsAsync(slope.SlopeID))
+            if (await CheckSlopeIdExistsAsync(slopeID))
             {
                 throw new Exception();
             }
-            data.Add(slope);
+            data.Add(new Slope(slopeID, slopeName, isOpen, difficultyLevel));
         }
 
-        public async Task<Slope> AddSlopeAutoIncrementAsync(Slope slope)
+        public async Task<uint> AddSlopeAutoIncrementAsync(string slopeName, bool isOpen, uint difficultyLevel)
         {
             uint maxSlopeID = 0;
             foreach (var slopeFromDB in data)
@@ -31,9 +31,9 @@ namespace TestsBL.IoCRepositories
                 if (slopeFromDB.SlopeID > maxSlopeID)
                     maxSlopeID = slopeFromDB.SlopeID;
             }
-            Slope slopeWithCorrectId = new(maxSlopeID + 1, slope.SlopeName, slope.IsOpen, slope.DifficultyLevel);
-            await AddSlopeAsync(slopeWithCorrectId);
-            return slopeWithCorrectId;
+            Slope slopeWithCorrectId = new(maxSlopeID + 1, slopeName, isOpen, difficultyLevel);
+            await AddSlopeAsync(slopeWithCorrectId.SlopeID, slopeWithCorrectId.SlopeName, slopeWithCorrectId.IsOpen, slopeWithCorrectId.DifficultyLevel);
+            return slopeWithCorrectId.SlopeID;
         }
 
         public async Task<bool> CheckSlopeIdExistsAsync(uint slopeID)
@@ -48,11 +48,11 @@ namespace TestsBL.IoCRepositories
             return false;
         }
 
-        public async Task DeleteSlopeAsync(Slope slope)
+        public async Task DeleteSlopeByIDAsync(uint slopeID)
         {
             foreach (var obj in data)
             {
-                if (obj.SlopeID == slope.SlopeID)
+                if (obj.SlopeID == slopeID)
                 {
                     data.Remove(obj);
                     return;
@@ -88,15 +88,15 @@ namespace TestsBL.IoCRepositories
                 return data.GetRange((int)offset, (int)data.Count);
         }
 
-        public async Task UpdateSlopeAsync(Slope slope)
+        public async Task UpdateSlopeByIDAsync(uint slopeID, string newSlopeName, bool newIsOpen, uint newDifficultyLevel)
         {
             for (int i = 0; i < data.Count; i++)
             {
                 Slope slopeFromDB = data[i];
-                if (slopeFromDB.SlopeID == slope.SlopeID)
+                if (slopeFromDB.SlopeID == slopeID)
                 {
                     data.Remove(slopeFromDB);
-                    data.Insert(i, slope);
+                    data.Insert(i, new Slope(slopeID, newSlopeName, newIsOpen, newDifficultyLevel));
                     return;
                 }
             }

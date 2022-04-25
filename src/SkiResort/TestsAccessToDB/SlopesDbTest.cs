@@ -39,9 +39,9 @@ namespace Tests
 
             // add correct
             Slope added_slope = new Slope(1, "A1", true, 10);
-            await rep.AddSlopeAsync(added_slope);
+            await rep.AddSlopeAsync(added_slope.SlopeID, added_slope.SlopeName, added_slope.IsOpen, added_slope.DifficultyLevel);
             // add already existing
-            await Assert.ThrowsAsync<SlopeException>(() => rep.AddSlopeAsync(added_slope));
+            await Assert.ThrowsAsync<SlopeException>(() => rep.AddSlopeAsync(added_slope.SlopeID, added_slope.SlopeName, added_slope.IsOpen, added_slope.DifficultyLevel));
 
             // get_by_id correct
             Slope got_slope = await rep.GetSlopeByIdAsync(added_slope.SlopeID);
@@ -51,7 +51,7 @@ namespace Tests
             Assert.Equal(added_slope, got_slope);
 
             // delete correct
-            await rep.DeleteSlopeAsync(added_slope);
+            await rep.DeleteSlopeByIDAsync(added_slope.SlopeID);
 
             // get_by_id not existing
             await Assert.ThrowsAsync<SlopeException>(() => rep.GetSlopeByIdAsync(added_slope.SlopeID));
@@ -59,7 +59,7 @@ namespace Tests
             await Assert.ThrowsAsync<SlopeException>(() => rep.GetSlopeByNameAsync(added_slope.SlopeName));
 
             // delete not existing
-            await Assert.ThrowsAsync<SlopeException>(() => rep.DeleteSlopeAsync(added_slope));
+            await Assert.ThrowsAsync<SlopeException>(() => rep.DeleteSlopeByIDAsync(added_slope.SlopeID));
 
             // end tests - empty getlist
             Assert.Empty(await rep.GetSlopesAsync());
@@ -76,41 +76,41 @@ namespace Tests
             Assert.Empty(await rep.GetSlopesAsync());
 
             Slope added_slope1 = new Slope(1, "A1", true, 10);
-            await rep.AddSlopeAsync(added_slope1);
+            await rep.AddSlopeAsync(added_slope1.SlopeID, added_slope1.SlopeName, added_slope1.IsOpen, added_slope1.DifficultyLevel);
 
             Slope added_slope2 = new Slope(2, "B2", false, 20);
-            await rep.AddSlopeAsync(added_slope2);
+            await rep.AddSlopeAsync(added_slope2.SlopeID, added_slope2.SlopeName, added_slope2.IsOpen, added_slope2.DifficultyLevel);
 
             added_slope2 = new Slope(added_slope2.SlopeID, "dfd", added_slope2.IsOpen, added_slope2.DifficultyLevel);
 
             // updates correct
-            await rep.UpdateSlopeAsync(added_slope1);
-            await rep.UpdateSlopeAsync(added_slope2);
+            await rep.UpdateSlopeByIDAsync(added_slope1.SlopeID, added_slope1.SlopeName, added_slope1.IsOpen, added_slope1.DifficultyLevel);
+            await rep.UpdateSlopeByIDAsync(added_slope2.SlopeID, added_slope2.SlopeName, added_slope2.IsOpen, added_slope2.DifficultyLevel);
 
             var list = await rep.GetSlopesAsync();
             Assert.Equal(2, list.Count);
             Assert.Equal(added_slope1, list[0]);
             Assert.Equal(added_slope2, list[1]);
 
-            await rep.DeleteSlopeAsync(added_slope1);
-            await rep.DeleteSlopeAsync(added_slope2);
+            await rep.DeleteSlopeByIDAsync(added_slope1.SlopeID);
+            await rep.DeleteSlopeByIDAsync(added_slope2.SlopeID);
 
 
             // updates not existing
-            await Assert.ThrowsAsync<SlopeException>(() => rep.UpdateSlopeAsync(added_slope1));
-            await Assert.ThrowsAsync<SlopeException>(() => rep.UpdateSlopeAsync(added_slope2));
+            await Assert.ThrowsAsync<SlopeException>(() => rep.UpdateSlopeByIDAsync(added_slope1.SlopeID, added_slope1.SlopeName, added_slope1.IsOpen, added_slope1.DifficultyLevel));
+            await Assert.ThrowsAsync<SlopeException>(() => rep.UpdateSlopeByIDAsync(added_slope2.SlopeID, added_slope2.SlopeName, added_slope2.IsOpen, added_slope2.DifficultyLevel));
 
 
             // end tests - empty getlist
             Assert.Empty(await rep.GetSlopesAsync());
 
 
-            Slope tmp2 = await rep.AddSlopeAutoIncrementAsync(added_slope1);
-            Assert.True(1 == tmp2.SlopeID);
-            Slope tmp3 = await rep.AddSlopeAutoIncrementAsync(added_slope2);
-            Assert.True(2 == tmp3.SlopeID);
-            await rep.DeleteSlopeAsync(tmp2);
-            await rep.DeleteSlopeAsync(tmp3);
+            uint tmpSlopeID2 = await rep.AddSlopeAutoIncrementAsync(added_slope1.SlopeName, added_slope1.IsOpen, added_slope1.DifficultyLevel);
+            Assert.True(1 == tmpSlopeID2);
+            uint tmptmpSlopeID3 = await rep.AddSlopeAutoIncrementAsync(added_slope2.SlopeName, added_slope2.IsOpen, added_slope2.DifficultyLevel);
+            Assert.True(2 == tmptmpSlopeID3);
+            await rep.DeleteSlopeByIDAsync(tmpSlopeID2);
+            await rep.DeleteSlopeByIDAsync(tmptmpSlopeID3);
             Assert.Empty(await rep.GetSlopesAsync());
         }
     }

@@ -118,11 +118,11 @@ namespace Tests
             Assert.Empty(await slope_rep.GetSlopesAsync());
 
             Slope added_slope1 = new Slope(1, "A1", true, 1);
-            await slope_rep.AddSlopeAsync(added_slope1);
+            await slope_rep.AddSlopeAsync(added_slope1.SlopeID, added_slope1.SlopeName, added_slope1.IsOpen, added_slope1.DifficultyLevel);
             Slope added_slope2 = new Slope(2, "A2", false, 20);
-            await slope_rep.AddSlopeAsync(added_slope2);
+            await slope_rep.AddSlopeAsync(added_slope2.SlopeID, added_slope2.SlopeName, added_slope2.IsOpen, added_slope2.DifficultyLevel);
             Slope added_slope3 = new Slope(3, "A3", true, 5);
-            await slope_rep.AddSlopeAsync(added_slope3);
+            await slope_rep.AddSlopeAsync(added_slope3.SlopeID, added_slope3.SlopeName, added_slope3.IsOpen, added_slope3.DifficultyLevel);
 
 
             ILiftsSlopesRepository rep = new TarantoolLiftsSlopesRepository(_context);
@@ -166,9 +166,9 @@ namespace Tests
 
             lift_rep.DeleteLiftByIDAsync(added_lift1.LiftID);
             lift_rep.DeleteLiftByIDAsync(added_lift2.LiftID);
-            slope_rep.DeleteSlopeAsync(added_slope1);
-            slope_rep.DeleteSlopeAsync(added_slope2);
-            slope_rep.DeleteSlopeAsync(added_slope3);
+            slope_rep.DeleteSlopeByIDAsync(added_slope1.SlopeID);
+            slope_rep.DeleteSlopeByIDAsync(added_slope2.SlopeID);
+            slope_rep.DeleteSlopeByIDAsync(added_slope3.SlopeID);
             rep.DeleteLiftSlopeAsync(added_lift_slope1);
             rep.DeleteLiftSlopeAsync(added_lift_slope2);
             rep.DeleteLiftSlopeAsync(added_lift_slope4);

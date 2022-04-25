@@ -38,7 +38,8 @@ namespace TestsBL
             Assert.Empty(await facade.GetSlopesInfoAsync(TestUsersCreator.skiPatrolID));
 
             Slope added_slope1 = new Slope(1, "A1", true, 1);
-            added_slope1 = await facade.AdminAddAutoIncrementSlopeAsync(TestUsersCreator.adminID, added_slope1);
+            uint newID = await facade.AdminAddAutoIncrementSlopeAsync(TestUsersCreator.adminID, added_slope1);
+            added_slope1 = new(newID, added_slope1.SlopeName, added_slope1.IsOpen, added_slope1.DifficultyLevel);
             Slope added_slope2 = new Slope(2, "A2", false, 20);
             await facade.AdminAddSlopeAsync(TestUsersCreator.adminID, added_slope2);
             Slope added_slope3 = new Slope(3, "A3", true, 5);

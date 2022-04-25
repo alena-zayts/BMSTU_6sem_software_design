@@ -303,7 +303,7 @@ namespace BL
             await CheckPermissionsService.CheckPermissionsAsync(RepositoriesFactory.CreateUsersRepository(), requesterUserID);
 
             ISlopesRepository rep = RepositoriesFactory.CreateSlopesRepository();
-            await rep.UpdateSlopeAsync(slope);
+            await rep.UpdateSlopeByIDAsync(slope.SlopeID, slope.SlopeName, slope.IsOpen, slope.DifficultyLevel);
 
         }
 
@@ -322,16 +322,16 @@ namespace BL
             }
 
             ISlopesRepository rep = RepositoriesFactory.CreateSlopesRepository();
-            await rep.DeleteSlopeAsync(slope);
+            await rep.DeleteSlopeByIDAsync(slope.SlopeID);
         }
 
 
-        public async Task<Slope> AdminAddAutoIncrementSlopeAsync(uint requesterUserID, Slope slope)
+        public async Task<uint> AdminAddAutoIncrementSlopeAsync(uint requesterUserID, Slope slope)
         {
             await CheckPermissionsService.CheckPermissionsAsync(RepositoriesFactory.CreateUsersRepository(), requesterUserID);
 
             ISlopesRepository rep = RepositoriesFactory.CreateSlopesRepository();
-            return await rep.AddSlopeAutoIncrementAsync(slope);
+            return await rep.AddSlopeAutoIncrementAsync(slope.SlopeName, slope.IsOpen, slope.DifficultyLevel);
         }
 
         public async Task AdminAddSlopeAsync(uint requesterUserID, Slope slope)
@@ -339,7 +339,7 @@ namespace BL
             await CheckPermissionsService.CheckPermissionsAsync(RepositoriesFactory.CreateUsersRepository(), requesterUserID);
 
             ISlopesRepository rep = RepositoriesFactory.CreateSlopesRepository();
-            await rep.AddSlopeAsync(slope);
+            await rep.AddSlopeAsync(slope.SlopeID, slope.SlopeName, slope.IsOpen, slope.DifficultyLevel);
         }
         
         public async Task<List<LiftSlope>> GetLiftsSlopesInfoAsync(uint requesterUserID, uint offset=0, uint limit=UNLIMITED)
