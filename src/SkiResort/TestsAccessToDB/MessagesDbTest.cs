@@ -41,15 +41,15 @@ namespace Tests
 
             // add correct
             Message added_message1 = new Message(1, 1, 0, "text1");
-            await rep.AddMessageAsync(added_message1);
+            await rep.AddMessageAsync(added_message1.MessageID, added_message1.SenderID, added_message1.CheckedByID, added_message1.Text);
             Message added_message2 = new Message(2, added_message1.SenderID, 2, "text2");
-            await rep.AddMessageAsync(added_message2);
+            await rep.AddMessageAsync(added_message2.MessageID, added_message2.SenderID, added_message2.CheckedByID, added_message2.Text);
             Message added_message3 = new Message(3, 2, added_message2.CheckedByID, "text3");
-            await rep.AddMessageAsync(added_message3);
+            await rep.AddMessageAsync(added_message3.MessageID, added_message3.SenderID, added_message3.CheckedByID, added_message3.Text);
 
 
             // add already existing
-            await Assert.ThrowsAsync<MessageException>(() => rep.AddMessageAsync(added_message1));
+            await Assert.ThrowsAsync<MessageException>(() => rep.AddMessageAsync(added_message1.MessageID, added_message1.SenderID, added_message1.CheckedByID, added_message1.Text));
 
 			// get_by_ids correct
 			var got_by_sender_id = await rep.GetMessagesBySenderIdAsync(added_message1.SenderID);
@@ -77,24 +77,24 @@ namespace Tests
             Assert.Equal(added_message3, list[2]);
 
             // delete correct
-            await rep.DeleteMessageAsync(added_message1);
-            await rep.DeleteMessageAsync(added_message2);
-            await rep.DeleteMessageAsync(added_message3);
+            await rep.DeleteMessageByIDAsync(added_message1.MessageID);
+            await rep.DeleteMessageByIDAsync(added_message2.MessageID);
+            await rep.DeleteMessageByIDAsync(added_message3.MessageID);
 
 
 			// delete not existing
-			await Assert.ThrowsAsync<MessageException>(() => rep.DeleteMessageAsync(added_message1));
+			await Assert.ThrowsAsync<MessageException>(() => rep.DeleteMessageByIDAsync(added_message1.MessageID));
 
             // end tests - empty getlist
             Assert.Empty(await rep.GetMessagesAsync());
 
 
-            Message tmp2 = await rep.AddMessageAutoIncrementAsync(added_message1);
-            Assert.True(1 == tmp2.MessageID);
-            Message tmp3 = await rep.AddMessageAutoIncrementAsync(added_message1);
-            Assert.True(2 == tmp3.MessageID);
-            await rep.DeleteMessageAsync(tmp2);
-            await rep.DeleteMessageAsync(tmp3);
+            uint tmpMessageID2 = await rep.AddMessageAutoIncrementAsync(added_message1.SenderID, added_message1.CheckedByID, added_message1.Text);
+            Assert.True(1 == tmpMessageID2);
+            uint tmpMessageID3 = await rep.AddMessageAutoIncrementAsync(added_message1.SenderID, added_message1.CheckedByID, added_message1.Text);
+            Assert.True(2 == tmpMessageID3);
+            await rep.DeleteMessageByIDAsync(tmpMessageID2);
+            await rep.DeleteMessageByIDAsync(tmpMessageID3);
             Assert.Empty(await rep.GetMessagesAsync());
         }
     }

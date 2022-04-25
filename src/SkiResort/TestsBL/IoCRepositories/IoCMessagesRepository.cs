@@ -14,16 +14,16 @@ namespace TestsBL.IoCRepositories
     {
         private static readonly List<Message> data = new();
 
-        public async Task AddMessageAsync(Message message)
+        public async Task AddMessageAsync(uint messageID, uint senderID, uint checkedByID, string text)
         {
-            if (await CheckMessageIdExistsAsync(message.MessageID))
+            if (await CheckMessageIdExistsAsync(messageID))
             {
                 throw new Exception();
             }
-            data.Add(message);
+            data.Add(new Message(messageID, senderID, checkedByID,  text));
         }
 
-        public async Task<Message> AddMessageAutoIncrementAsync(Message message)
+        public async Task<uint> AddMessageAutoIncrementAsync(uint senderID, uint checkedByID, string text)
         {
             uint maxMessageID = 0;
             foreach (var messageFromDB in data)
@@ -31,9 +31,9 @@ namespace TestsBL.IoCRepositories
                 if (messageFromDB.MessageID > maxMessageID)
                     maxMessageID = messageFromDB.MessageID;
             }
-            Message messageWithCorrectId = new(maxMessageID + 1, message.SenderID, message.CheckedByID, message.Text);
-            await AddMessageAsync(messageWithCorrectId);
-            return messageWithCorrectId;
+            Message messageWithCorrectId = new(maxMessageID + 1, senderID, checkedByID, text);
+            await AddMessageAsync(messageWithCorrectId.MessageID, messageWithCorrectId.SenderID, messageWithCorrectId.CheckedByID, messageWithCorrectId.Text);
+            return messageWithCorrectId.MessageID;
         }
 
         public async Task<bool> CheckMessageIdExistsAsync(uint messageID)
@@ -48,11 +48,11 @@ namespace TestsBL.IoCRepositories
             return false;
         }
 
-        public async Task DeleteMessageAsync(Message message)
+        public async Task DeleteMessageByIDAsync(uint messageID)
         {
             foreach (var obj in data)
             {
-                if (obj.MessageID == message.MessageID)
+                if (obj.MessageID == messageID)
                 {
                     data.Remove(obj);
                     return;
@@ -104,15 +104,15 @@ namespace TestsBL.IoCRepositories
             return result;
         }
 
-        public async Task UpdateMessageAsync(Message message)
+        public async Task UpdateMessageByIDAsync(uint messageID, uint newSenderID, uint newCheckedByID, string newText)
         {
             for (int i = 0; i < data.Count; i++)
             {
                 Message messageFromDB = data[i];
-                if (messageFromDB.MessageID == message.MessageID)
+                if (messageFromDB.MessageID == messageID)
                 {
                     data.Remove(messageFromDB);
-                    data.Insert(i, message);
+                    data.Insert(i, new Message(messageID, newSenderID, newCheckedByID, newText));
                     return;
                 }
             }

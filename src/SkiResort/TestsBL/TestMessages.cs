@@ -20,8 +20,11 @@ namespace TestsBL
 
             await TestUsersCreator.Create();
 
-            Message sentMessage1 = await facade.SendMessageAsync(TestUsersCreator.authorizedID, "test text 1");
-            Message sentMessage2 = await facade.SendMessageAsync(TestUsersCreator.authorizedID, "test text 2");
+            uint messageID1 = await facade.SendMessageAsync(TestUsersCreator.authorizedID, "test text 1");
+            Message sentMessage1 = await facade.AdminGetMessageByIDAsync(TestUsersCreator.adminID, messageID1);
+            uint messageID2 = await facade.SendMessageAsync(TestUsersCreator.authorizedID, "test text 2");
+            Message sentMessage2 = await facade.AdminGetMessageByIDAsync(TestUsersCreator.adminID, messageID2);
+
             Assert.Equal(Message.MessageCheckedByNobody, sentMessage1.CheckedByID);
             Assert.Equal(Message.MessageCheckedByNobody, sentMessage2.CheckedByID);
             await Assert.ThrowsAsync<PermissionsException>(() => facade.SendMessageAsync(TestUsersCreator.unauthorizedID, "test text 0"));

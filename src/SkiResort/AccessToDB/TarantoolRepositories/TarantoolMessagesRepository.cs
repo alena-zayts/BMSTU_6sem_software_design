@@ -93,53 +93,53 @@ namespace AccessToDB.RepositoriesTarantool
             return MessageConverter.DBToBL(data.Data[0]);
         }
 
-        public async Task AddMessageAsync(Message message)
+        public async Task AddMessageAsync(uint messageID, uint senderID, uint checkedByID, string text)
         {
             try
             {
-                await _space.Insert(MessageConverter.BLToDB(message));
+                await _space.Insert(new MessageDB(messageID, senderID, checkedByID, text));
             }
             catch (Exception ex)
             {
-                throw new MessageException($"Error: adding message {message}");
+                throw new MessageException($"Error: adding message");
             }
         }
 
-        public async Task<Message> AddMessageAutoIncrementAsync(Message obj)
+        public async Task<uint> AddMessageAutoIncrementAsync(uint senderID, uint checkedByID, string text)
         {
             try
             {
-                var result = await _box.Call_1_6<MessageDBNoIndex, MessageDB>("auto_increment_messages", (MessageConverter.BLToDBNoIndex(obj)));
-                return MessageConverter.DBToBL(result.Data[0]);
+                var result = await _box.Call_1_6<MessageDBNoIndex, MessageDB>("auto_increment_messages", (new MessageDBNoIndex(senderID, checkedByID, text)));
+                return MessageConverter.DBToBL(result.Data[0]).MessageID;
             }
             catch (Exception ex)
             {
-                throw new MessageException($"Error: couldn't auto increment {obj}");
+                throw new MessageException($"Error: couldn't auto increment ");
             }
         }
-        public async Task UpdateMessageAsync(Message message)
+        public async Task UpdateMessageByIDAsync(uint messageID, uint newSenderID, uint newCheckedByID, string newText)
         {
             var response = await _space.Update<ValueTuple<uint>, MessageDB>(
-                ValueTuple.Create(message.MessageID), new UpdateOperation[] {
-                    UpdateOperation.CreateAssign<uint>(1, message.SenderID),
-                    UpdateOperation.CreateAssign<uint>(2, message.CheckedByID),
-                    UpdateOperation.CreateAssign<string>(3, message.Text),
+                ValueTuple.Create(messageID), new UpdateOperation[] {
+                    UpdateOperation.CreateAssign<uint>(1, newSenderID),
+                    UpdateOperation.CreateAssign<uint>(2, newCheckedByID),
+                    UpdateOperation.CreateAssign<string>(3, newText),
                 });
 
             if (response.Data.Length != 1)
             {
-                throw new MessageException($"Error: updating message {message}");
+                throw new MessageException($"Error: updating message");
             }
         }
 
-        public async Task DeleteMessageAsync(Message message)
+        public async Task DeleteMessageByIDAsync(uint messageID)
         {
             var response = await _indexPrimary.Delete<ValueTuple<uint>, MessageDB>
-                (ValueTuple.Create(message.MessageID));
+                (ValueTuple.Create(messageID));
 
             if (response.Data.Length != 1)
             {
-                throw new MessageException($"Error: deleting message {message}");
+                throw new MessageException($"Error: deleting message");
             }
 
         }

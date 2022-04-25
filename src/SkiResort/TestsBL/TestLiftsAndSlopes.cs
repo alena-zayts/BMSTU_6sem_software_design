@@ -54,7 +54,8 @@ namespace TestsBL
             LiftSlope added_lift_slope2 = new LiftSlope(2, added_lift1.LiftID, added_slope2.SlopeID);
             LiftSlope added_lift_slope4 = new LiftSlope(4, added_lift2.LiftID, added_slope2.SlopeID);
 
-            added_lift_slope1 = await facade.AdminAddAutoIncrementLiftSlopeAsync(TestUsersCreator.adminID, added_lift_slope1);
+            uint liftSlopeID1 = await facade.AdminAddAutoIncrementLiftSlopeAsync(TestUsersCreator.adminID, added_lift_slope1);
+            added_lift_slope1 = new LiftSlope(liftSlopeID1, added_lift_slope1.LiftID, added_lift_slope1.SlopeID);
             await facade.AdminAddLiftSlopeAsync(TestUsersCreator.adminID, added_lift_slope2);
             await facade.AdminAddLiftSlopeAsync(TestUsersCreator.adminID, added_lift_slope4);
 
