@@ -8,9 +8,9 @@ namespace BL.IRepositories
         Task<LiftSlope> GetLiftSlopeByIdAsync(uint recordID);
         Task<List<Lift>> GetLiftsBySlopeIdAsync(uint slopeID);
         Task<List<Slope>> GetSlopesByLiftIdAsync(uint liftID);
-        Task AddLiftSlopeAsync(LiftSlope lift_slope);
-        Task<LiftSlope> AddLiftSlopeAutoIncrementAsync(LiftSlope lift_slope);
-        Task UpdateLiftSlopeAsync(LiftSlope lift_slope);
-        Task DeleteLiftSlopeAsync(LiftSlope lift_slope); 
+        Task AddLiftSlopeAsync(uint recordID, uint liftID, uint slopeID);
+        Task<uint> AddLiftSlopeAutoIncrementAsync(uint liftID, uint slopeID);
+        Task UpdateLiftSlopesByIDAsync(uint recordID, uint newLiftID, uint newSlopeID);
+        Task DeleteLiftSlopesByIDAsync(uint recordID); 
     }
 }

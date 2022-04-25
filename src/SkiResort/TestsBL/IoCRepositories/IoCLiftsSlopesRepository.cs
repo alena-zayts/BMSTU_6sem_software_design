@@ -12,16 +12,16 @@ namespace TestsBL.IoCRepositories
     {
         private static readonly List<LiftSlope> data = new();
 
-        public async Task AddLiftSlopeAsync(LiftSlope liftSlope)
+        public async Task AddLiftSlopeAsync(uint recordID, uint liftID, uint slopeID)
         {
-            if (await CheckLiftSlopeIdExistsAsync(liftSlope.RecordID))
+            if (await CheckLiftSlopeIdExistsAsync(recordID))
             {
                 throw new Exception();
             }
-            data.Add(liftSlope);
+            data.Add(new LiftSlope(recordID, liftID, slopeID));
         }
 
-        public async Task<LiftSlope> AddLiftSlopeAutoIncrementAsync(LiftSlope liftSlope)
+        public async Task<uint> AddLiftSlopeAutoIncrementAsync(uint liftID, uint slopeID)
         {
             uint maxLiftSlopeID = 0;
             foreach (var liftSlopeFromDB in data)
@@ -29,9 +29,9 @@ namespace TestsBL.IoCRepositories
                 if (liftSlopeFromDB.RecordID > maxLiftSlopeID)
                     maxLiftSlopeID = liftSlopeFromDB.RecordID;
             }
-            LiftSlope liftSlopeWithCorrectId = new(maxLiftSlopeID + 1, liftSlope.LiftID, liftSlope.SlopeID);
-            await AddLiftSlopeAsync(liftSlopeWithCorrectId);
-            return liftSlopeWithCorrectId;
+            LiftSlope liftSlopeWithCorrectId = new(maxLiftSlopeID + 1, liftID, slopeID);
+            await AddLiftSlopeAsync(liftSlopeWithCorrectId.RecordID, liftSlopeWithCorrectId.LiftID, liftSlopeWithCorrectId.SlopeID);
+            return liftSlopeWithCorrectId.RecordID;
         }
 
         public async Task<bool> CheckLiftSlopeIdExistsAsync(uint cardID)
@@ -46,11 +46,11 @@ namespace TestsBL.IoCRepositories
             return false;
         }
 
-        public async Task DeleteLiftSlopeAsync(LiftSlope liftSlope)
+        public async Task DeleteLiftSlopesByIDAsync(uint recordID)
         {
             foreach (var cardFromDB in data)
             {
-                if (cardFromDB.RecordID == liftSlope.RecordID)
+                if (cardFromDB.RecordID == recordID)
                 {
                     data.Remove(cardFromDB);
                     return;
@@ -121,15 +121,15 @@ namespace TestsBL.IoCRepositories
             return connectedSlopes;
         }
 
-        public async Task UpdateLiftSlopeAsync(LiftSlope liftSlope)
+        public async Task UpdateLiftSlopesByIDAsync(uint recordID, uint newLiftID, uint newSlopeID)
         {
             for (int i = 0; i < data.Count; i++)
             {
-                LiftSlope cardFromDB = data[i];
-                if (cardFromDB.RecordID == liftSlope.RecordID)
+                LiftSlope liftSlopeFromDB = data[i];
+                if (liftSlopeFromDB.RecordID == recordID)
                 {
-                    data.Remove(cardFromDB);
-                    data.Insert(i, liftSlope);
+                    data.Remove(liftSlopeFromDB);
+                    data.Insert(i, new LiftSlope(recordID, newLiftID, newSlopeID));
                     return;
                 }
             }

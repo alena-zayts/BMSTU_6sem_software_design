@@ -40,22 +40,22 @@ namespace Tests
 
             // add correct
             LiftSlope added_lift_slope = new LiftSlope(1, 1, 1);
-            await rep.AddLiftSlopeAsync(added_lift_slope);
+            await rep.AddLiftSlopeAsync(added_lift_slope.RecordID, added_lift_slope.LiftID, added_lift_slope.SlopeID);
             // add already existing
-            await Assert.ThrowsAsync<LiftSlopeException>(() => rep.AddLiftSlopeAsync(added_lift_slope));
+            await Assert.ThrowsAsync<LiftSlopeException>(() => rep.AddLiftSlopeAsync(added_lift_slope.RecordID, added_lift_slope.LiftID, added_lift_slope.SlopeID));
 
             // get_by_id correct
             LiftSlope got_lift_slope = await rep.GetLiftSlopeByIdAsync(added_lift_slope.RecordID);
             Assert.Equal(added_lift_slope, got_lift_slope);
 
             // DeleteLiftSlopeAsync correct
-            await rep.DeleteLiftSlopeAsync(added_lift_slope);
+            await rep.DeleteLiftSlopesByIDAsync(added_lift_slope.RecordID);
 
             // get_by_id not existing
             await Assert.ThrowsAsync<LiftSlopeException>(() => rep.GetLiftSlopeByIdAsync(added_lift_slope.RecordID));
 
             // DeleteLiftSlopeAsync not existing
-            await Assert.ThrowsAsync<LiftSlopeException>(() => rep.DeleteLiftSlopeAsync(added_lift_slope));
+            await Assert.ThrowsAsync<LiftSlopeException>(() => rep.DeleteLiftSlopesByIDAsync(added_lift_slope.RecordID));
 
             // end tests - empty getlist
             Assert.Empty(await rep.GetLiftsSlopesAsync());
@@ -72,13 +72,13 @@ namespace Tests
             Assert.Empty(await rep.GetLiftsSlopesAsync());
 
             LiftSlope added_lift_slope1 = new LiftSlope(1, 1, 1);
-            await rep.AddLiftSlopeAsync(added_lift_slope1);
+            await rep.AddLiftSlopeAsync(added_lift_slope1.RecordID, added_lift_slope1.LiftID, added_lift_slope1.SlopeID);
 
             LiftSlope added_lift_slope2 = new LiftSlope(2, 2, 1);
-            await rep.AddLiftSlopeAsync(added_lift_slope2);
+            await rep.AddLiftSlopeAsync(added_lift_slope2.RecordID, added_lift_slope2.LiftID, added_lift_slope2.SlopeID);
 
             added_lift_slope2 = new LiftSlope(added_lift_slope2.RecordID, 100, 200);
-            await rep.UpdateLiftSlopeAsync(added_lift_slope2);
+            await rep.UpdateLiftSlopesByIDAsync(added_lift_slope2.RecordID, added_lift_slope2.LiftID, added_lift_slope2.SlopeID);
 
             // updates correct
             Assert.Contains(added_lift_slope1, await rep.GetLiftsSlopesAsync());
@@ -89,13 +89,13 @@ namespace Tests
             Assert.Equal(added_lift_slope1, list[0]);
             Assert.Equal(added_lift_slope2, list[1]);
 
-            await rep.DeleteLiftSlopeAsync(added_lift_slope1);
-            await rep.DeleteLiftSlopeAsync(added_lift_slope2);
+            await rep.DeleteLiftSlopesByIDAsync(added_lift_slope1.RecordID);
+            await rep.DeleteLiftSlopesByIDAsync(added_lift_slope2.RecordID);
 
 
             // updates not existing
-            await Assert.ThrowsAsync<LiftSlopeException>(() => rep.UpdateLiftSlopeAsync(added_lift_slope1));
-            await Assert.ThrowsAsync<LiftSlopeException>(() => rep.UpdateLiftSlopeAsync(added_lift_slope2));
+            await Assert.ThrowsAsync<LiftSlopeException>(() => rep.UpdateLiftSlopesByIDAsync(added_lift_slope1.RecordID, added_lift_slope1.LiftID, added_lift_slope1.SlopeID));
+            await Assert.ThrowsAsync<LiftSlopeException>(() => rep.UpdateLiftSlopesByIDAsync(added_lift_slope2.RecordID, added_lift_slope2.LiftID, added_lift_slope2.SlopeID));
 
 
             // end tests - empty getlist
@@ -132,9 +132,9 @@ namespace Tests
             LiftSlope added_lift_slope4 = new LiftSlope(4, added_lift2.LiftID, added_slope2.SlopeID);
 
 
-            await rep.AddLiftSlopeAsync(added_lift_slope1);
-            await rep.AddLiftSlopeAsync(added_lift_slope2);
-            await rep.AddLiftSlopeAsync(added_lift_slope4);
+            await rep.AddLiftSlopeAsync(added_lift_slope1.RecordID, added_lift_slope1.LiftID, added_lift_slope1.SlopeID);
+            await rep.AddLiftSlopeAsync(added_lift_slope2.RecordID, added_lift_slope2.LiftID, added_lift_slope2.SlopeID);
+            await rep.AddLiftSlopeAsync(added_lift_slope4.RecordID, added_lift_slope4.LiftID, added_lift_slope4.SlopeID);
 
             var tmp1 = await rep.GetLiftsSlopesAsync();
             var tmp2 = await lift_rep.GetLiftsAsync();
@@ -169,20 +169,20 @@ namespace Tests
             slope_rep.DeleteSlopeByIDAsync(added_slope1.SlopeID);
             slope_rep.DeleteSlopeByIDAsync(added_slope2.SlopeID);
             slope_rep.DeleteSlopeByIDAsync(added_slope3.SlopeID);
-            rep.DeleteLiftSlopeAsync(added_lift_slope1);
-            rep.DeleteLiftSlopeAsync(added_lift_slope2);
-            rep.DeleteLiftSlopeAsync(added_lift_slope4);
+            rep.DeleteLiftSlopesByIDAsync(added_lift_slope1.RecordID);
+            rep.DeleteLiftSlopesByIDAsync(added_lift_slope2.RecordID);
+            rep.DeleteLiftSlopesByIDAsync(added_lift_slope4.RecordID);
 
             Assert.Empty(await lift_rep.GetLiftsAsync());
             Assert.Empty(await slope_rep.GetSlopesAsync());
             Assert.Empty(await rep.GetLiftsSlopesAsync());
 
-            LiftSlope tmp5 = await rep.AddLiftSlopeAutoIncrementAsync(added_lift_slope1);
-            Assert.True(1 == tmp5.RecordID);
-            LiftSlope tmp6 = await rep.AddLiftSlopeAutoIncrementAsync(added_lift_slope1);
-            Assert.True(2 == tmp6.RecordID);
-            await rep.DeleteLiftSlopeAsync(tmp5);
-            await rep.DeleteLiftSlopeAsync(tmp6);
+            uint tmpLiftSlopeID5 = await rep.AddLiftSlopeAutoIncrementAsync(added_lift_slope1.LiftID, added_lift_slope1.SlopeID);
+            Assert.True(1 == tmpLiftSlopeID5);
+            uint tmpLiftSlopeID6 = await rep.AddLiftSlopeAutoIncrementAsync(added_lift_slope1.LiftID, added_lift_slope1.SlopeID);
+            Assert.True(2 == tmpLiftSlopeID6);
+            await rep.DeleteLiftSlopesByIDAsync(tmpLiftSlopeID5);
+            await rep.DeleteLiftSlopesByIDAsync(tmpLiftSlopeID6);
             Assert.Empty(await rep.GetLiftsSlopesAsync());
 
         }

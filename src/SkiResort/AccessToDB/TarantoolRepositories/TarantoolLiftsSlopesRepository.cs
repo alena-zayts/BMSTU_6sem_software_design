@@ -135,53 +135,53 @@ namespace AccessToDB.RepositoriesTarantool
         }
 
 
-        public async Task AddLiftSlopeAsync(LiftSlope lift_slope)
+        public async Task AddLiftSlopeAsync(uint recordID, uint liftID, uint slopeID)
         {
             try
             {
-                await _space.Insert(LiftSlopeConverter.BLToDB(lift_slope));
+                await _space.Insert(new LiftSlopeDB(recordID, liftID, slopeID));
             }
             catch (Exception ex)
             {
-                throw new LiftSlopeException($"Error: adding lift_slope {lift_slope}");
+                throw new LiftSlopeException($"Error: adding lift_slope");
             }
         }
 
-        public async Task<LiftSlope> AddLiftSlopeAutoIncrementAsync(LiftSlope obj)
+        public async Task<uint> AddLiftSlopeAutoIncrementAsync(uint liftID, uint slopeID)
         {
             try
             {
-                var result = await _box.Call_1_6<LiftSlopeDBNoIndex, LiftSlopeDB>("auto_increment_lifts_slopes", (LiftSlopeConverter.BLToDBNoIndex(obj)));
-                return LiftSlopeConverter.DBToBL(result.Data[0]);
+                var result = await _box.Call_1_6<LiftSlopeDBNoIndex, LiftSlopeDB>("auto_increment_lifts_slopes", (new LiftSlopeDBNoIndex(liftID, slopeID)));
+                return LiftSlopeConverter.DBToBL(result.Data[0]).RecordID;
             }
             catch (Exception ex)
             {
-                throw new LiftSlopeException($"Error: couldn't auto increment {obj}");
+                throw new LiftSlopeException($"Error: couldn't auto increment ");
             }
         }
 
-        public async Task UpdateLiftSlopeAsync(LiftSlope lift_slope)
+        public async Task UpdateLiftSlopesByIDAsync(uint recordID, uint newLiftID, uint newSlopeID)
         {
             var response = await _space.Update<ValueTuple<uint>, LiftSlopeDB>(
-                ValueTuple.Create(lift_slope.RecordID), new UpdateOperation[] {
-                    UpdateOperation.CreateAssign<uint>(1, lift_slope.LiftID),
-                    UpdateOperation.CreateAssign<uint>(2, lift_slope.SlopeID),
+                ValueTuple.Create(recordID), new UpdateOperation[] {
+                    UpdateOperation.CreateAssign<uint>(1, newLiftID),
+                    UpdateOperation.CreateAssign<uint>(2, newSlopeID),
                 });
 
             if (response.Data.Length != 1)
             {
-                throw new LiftSlopeException($"Error: updating lift_slope {lift_slope}");
+                throw new LiftSlopeException($"Error: updating lift_slope");
             }
         }
 
-        public async Task DeleteLiftSlopeAsync(LiftSlope lift_slope)
+        public async Task DeleteLiftSlopesByIDAsync(uint recordID)
         {
             var response = await _indexPrimary.Delete<ValueTuple<uint>, LiftSlopeDB>
-                (ValueTuple.Create(lift_slope.RecordID));
+                (ValueTuple.Create(recordID));
 
             if (response.Data.Length != 1)
             {
-                throw new LiftSlopeException($"Error: deleting lift_slope {lift_slope}");
+                throw new LiftSlopeException($"Error: deleting lift_slope");
             }
 
         }
