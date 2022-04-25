@@ -2086,20 +2086,6 @@
         "runtime": {
           "bin/placeholder/CardReadingsRecivingWorker.dll": {}
         }
-      },
-      "QueueTimeCountingWorker/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v6.0",
-        "dependencies": {
-          "BL": "1.0.0",
-          "Microsoft.Extensions.Hosting": "6.0.1"
-        },
-        "compile": {
-          "bin/placeholder/QueueTimeCountingWorker.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/QueueTimeCountingWorker.dll": {}
-        }
       }
     }
   },
@@ -6921,11 +6907,6 @@
       "type": "project",
       "path": "../WorkerService1/CardReadingsRecivingWorker.csproj",
       "msbuildProject": "../WorkerService1/CardReadingsRecivingWorker.csproj"
-    },
-    "QueueTimeCountingWorker/1.0.0": {
-      "type": "project",
-      "path": "../QueueTimeCountingService/QueueTimeCountingWorker.csproj",
-      "msbuildProject": "../QueueTimeCountingService/QueueTimeCountingWorker.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -6934,7 +6915,6 @@
       "CardReadingsRecivingWorker >= 1.0.0",
       "Microsoft.NET.Test.Sdk >= 16.11.0",
       "Ninject >= 3.3.4",
-      "QueueTimeCountingWorker >= 1.0.0",
       "coverlet.collector >= 3.1.0",
       "xunit >= 2.4.1",
       "xunit.runner.visualstudio >= 2.4.3"
@@ -6974,9 +6954,6 @@
           "projectReferences": {
             "C:\\BMSTU_6sem_software_design\\src\\SkiResort\\BL\\BL.csproj": {
               "projectPath": "C:\\BMSTU_6sem_software_design\\src\\SkiResort\\BL\\BL.csproj"
-            },
-            "C:\\BMSTU_6sem_software_design\\src\\SkiResort\\QueueTimeCountingService\\QueueTimeCountingWorker.csproj": {
-              "projectPath": "C:\\BMSTU_6sem_software_design\\src\\SkiResort\\QueueTimeCountingService\\QueueTimeCountingWorker.csproj"
             },
             "C:\\BMSTU_6sem_software_design\\src\\SkiResort\\WorkerService1\\CardReadingsRecivingWorker.csproj": {
               "projectPath": "C:\\BMSTU_6sem_software_design\\src\\SkiResort\\WorkerService1\\CardReadingsRecivingWorker.csproj"

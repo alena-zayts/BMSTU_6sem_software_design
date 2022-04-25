@@ -1,5 +1,5 @@
 
-namespace TelegramWorker
+namespace Workers
 {
     public static class Configuration
     {

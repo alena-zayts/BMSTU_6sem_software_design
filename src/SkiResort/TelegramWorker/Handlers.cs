@@ -13,7 +13,7 @@ using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace TelegramWorker
+namespace Workers
 {
 
     public class Handlers

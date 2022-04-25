@@ -1,7 +1,7 @@
 using Telegram.Bot;
 using Telegram.Bot.Extensions.Polling;
 
-namespace TelegramWorker
+namespace Workers
 {
     public class TelegramService : BackgroundService
     {

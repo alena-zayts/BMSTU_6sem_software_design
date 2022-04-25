@@ -530,6 +530,16 @@
         "runtime": {
           "lib/netcoreapp3.1/Telegram.Bot.Extensions.Polling.dll": {}
         }
+      },
+      "BL/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "compile": {
+          "bin/placeholder/BL.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/BL.dll": {}
+        }
       }
     }
   },
@@ -1354,10 +1364,16 @@
         "telegram.bot.extensions.polling.1.0.2.nupkg.sha512",
         "telegram.bot.extensions.polling.nuspec"
       ]
+    },
+    "BL/1.0.0": {
+      "type": "project",
+      "path": "../BL/BL.csproj",
+      "msbuildProject": "../BL/BL.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net6.0": [
+      "BL >= 1.0.0",
       "Microsoft.Extensions.Hosting >= 6.0.1",
       "Telegram.Bot >= 17.0.0",
       "Telegram.Bot.Extensions.Polling >= 1.0.2"
@@ -1370,9 +1386,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\BMSTU_6sem_software_design\\src\\SkiResort\\TelegramWorker\\TelegramWorker.csproj",
-      "projectName": "TelegramWorker",
-      "projectPath": "C:\\BMSTU_6sem_software_design\\src\\SkiResort\\TelegramWorker\\TelegramWorker.csproj",
+      "projectUniqueName": "C:\\BMSTU_6sem_software_design\\src\\SkiResort\\TelegramWorker\\Workers.csproj",
+      "projectName": "Workers",
+      "projectPath": "C:\\BMSTU_6sem_software_design\\src\\SkiResort\\TelegramWorker\\Workers.csproj",
       "packagesPath": "C:\\Users\\alena\\.nuget\\packages\\",
       "outputPath": "C:\\BMSTU_6sem_software_design\\src\\SkiResort\\TelegramWorker\\obj\\",
       "projectStyle": "PackageReference",
@@ -1394,7 +1410,11 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\BMSTU_6sem_software_design\\src\\SkiResort\\BL\\BL.csproj": {
+              "projectPath": "C:\\BMSTU_6sem_software_design\\src\\SkiResort\\BL\\BL.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

@@ -12,7 +12,6 @@
           "CardReadingsRecivingWorker": "1.0.0",
           "Microsoft.NET.Test.Sdk": "16.11.0",
           "Ninject": "3.3.4",
-          "QueueTimeCountingWorker": "1.0.0",
           "coverlet.collector": "3.1.0",
           "xunit": "2.4.1",
           "xunit.runner.visualstudio": "2.4.3"
@@ -1408,26 +1407,6 @@
         "runtime": {
           "BL.dll": {}
         }
-      },
-      "CardReadingsRecivingWorker/1.0.0": {
-        "dependencies": {
-          "BL": "1.0.0",
-          "Microsoft.Extensions.Hosting": "6.0.1",
-          "Newtonsoft.Json": "13.0.1",
-          "System.IO.FileSystem": "4.3.0"
-        },
-        "runtime": {
-          "CardReadingsRecivingWorker.dll": {}
-        }
-      },
-      "QueueTimeCountingWorker/1.0.0": {
-        "dependencies": {
-          "BL": "1.0.0",
-          "Microsoft.Extensions.Hosting": "6.0.1"
-        },
-        "runtime": {
-          "QueueTimeCountingWorker.dll": {}
-        }
       }
     }
   },
@@ -2271,16 +2250,6 @@
       "hashPath": "xunit.runner.visualstudio.2.4.3.nupkg.sha512"
     },
     "BL/1.0.0": {
-      "type": "project",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "CardReadingsRecivingWorker/1.0.0": {
-      "type": "project",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "QueueTimeCountingWorker/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

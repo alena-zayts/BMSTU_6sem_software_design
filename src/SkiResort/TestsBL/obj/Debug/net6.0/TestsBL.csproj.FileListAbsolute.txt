@@ -101,8 +101,6 @@ C:\BMSTU_6sem_software_design\src\SkiResort\TestsBL\obj\Debug\net6.0\TestsBL.gen
 C:\BMSTU_6sem_software_design\src\SkiResort\TestsBL\obj\Debug\net6.0\ref\TestsBL.dll
 C:\BMSTU_6sem_software_design\src\SkiResort\TestsBL\bin\Debug\net6.0\BL.dll
 C:\BMSTU_6sem_software_design\src\SkiResort\TestsBL\bin\Debug\net6.0\BL.pdb
-C:\BMSTU_6sem_software_design\src\SkiResort\TestsBL\bin\Debug\net6.0\appsettings.Development.json
-C:\BMSTU_6sem_software_design\src\SkiResort\TestsBL\bin\Debug\net6.0\appsettings.json
 C:\BMSTU_6sem_software_design\src\SkiResort\TestsBL\bin\Debug\net6.0\Microsoft.Extensions.Configuration.dll
 C:\BMSTU_6sem_software_design\src\SkiResort\TestsBL\bin\Debug\net6.0\Microsoft.Extensions.Configuration.Abstractions.dll
 C:\BMSTU_6sem_software_design\src\SkiResort\TestsBL\bin\Debug\net6.0\Microsoft.Extensions.Configuration.Binder.dll
@@ -131,8 +129,3 @@ C:\BMSTU_6sem_software_design\src\SkiResort\TestsBL\bin\Debug\net6.0\Microsoft.E
 C:\BMSTU_6sem_software_design\src\SkiResort\TestsBL\bin\Debug\net6.0\System.Diagnostics.EventLog.dll
 C:\BMSTU_6sem_software_design\src\SkiResort\TestsBL\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Diagnostics.EventLog.Messages.dll
 C:\BMSTU_6sem_software_design\src\SkiResort\TestsBL\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Diagnostics.EventLog.dll
-C:\BMSTU_6sem_software_design\src\SkiResort\TestsBL\bin\Debug\net6.0\QueueTimeCountingWorker.deps.json
-C:\BMSTU_6sem_software_design\src\SkiResort\TestsBL\bin\Debug\net6.0\QueueTimeCountingWorker.runtimeconfig.json
-C:\BMSTU_6sem_software_design\src\SkiResort\TestsBL\bin\Debug\net6.0\QueueTimeCountingWorker.exe
-C:\BMSTU_6sem_software_design\src\SkiResort\TestsBL\bin\Debug\net6.0\QueueTimeCountingWorker.dll
-C:\BMSTU_6sem_software_design\src\SkiResort\TestsBL\bin\Debug\net6.0\QueueTimeCountingWorker.pdb
