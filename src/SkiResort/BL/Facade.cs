@@ -466,7 +466,7 @@ namespace BL
             await CheckPermissionsService.CheckPermissionsAsync(RepositoriesFactory.CreateUsersRepository(), requesterUserID);
 
             ICardReadingsRepository rep = RepositoriesFactory.CreateCardReadingsRepository();
-            await rep.DeleteCardReadingAsync(card_readding);
+            await rep.DeleteCardReadingAsync(card_readding.RecordID);
         }
 
         public async Task AdminAddCardReadingAsync(uint requesterUserID, CardReading card_readding)
@@ -474,15 +474,15 @@ namespace BL
             await CheckPermissionsService.CheckPermissionsAsync(RepositoriesFactory.CreateUsersRepository(), requesterUserID);
 
             ICardReadingsRepository rep = RepositoriesFactory.CreateCardReadingsRepository();
-            await rep.AddCardReadingAsync(card_readding);
+            await rep.AddCardReadingAsync(card_readding.RecordID, card_readding.TurnstileID, card_readding.CardID, card_readding.ReadingTime);
         }
 
-        public async Task<CardReading> AdminAddAutoIncrementCardReadingAsync(uint requesterUserID, CardReading card_readding)
+        public async Task<uint> AdminAddAutoIncrementCardReadingAsync(uint requesterUserID, CardReading card_readding)
         {
             await CheckPermissionsService.CheckPermissionsAsync(RepositoriesFactory.CreateUsersRepository(), requesterUserID);
 
             ICardReadingsRepository rep = RepositoriesFactory.CreateCardReadingsRepository();
-            return await rep.AddCardReadingAutoIncrementAsync(card_readding);
+            return await rep.AddCardReadingAutoIncrementAsync(card_readding.TurnstileID, card_readding.CardID, card_readding.ReadingTime);
         }
     }
 }

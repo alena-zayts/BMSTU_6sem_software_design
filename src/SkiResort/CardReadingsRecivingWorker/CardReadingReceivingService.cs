@@ -37,12 +37,12 @@ namespace CardReadingsReceivingWorker
                     try
                     {
                         CardReading cardReading = LoadCardReadingFromJson(filename);
-                        cardReading = _cardReadingsRepository.AddCardReadingAutoIncrementAsync(cardReading).GetAwaiter().GetResult();
+                        uint cardReadingID = _cardReadingsRepository.AddCardReadingAutoIncrementAsync(cardReading.TurnstileID,cardReading.CardID, cardReading.ReadingTime).GetAwaiter().GetResult();
 
                         FileInfo fileInfo = new(filename);
                         fileInfo.Delete();
                         
-                        string message = $"{cardReading.RecordID}, {cardReading.ReadingTime}";
+                        string message = $"{cardReading.RecordID}";
                         _logger.LogInformation(message);
                     }
                     catch (Exception ex)

@@ -15,16 +15,16 @@ namespace TestsBL.IoCRepositories
     {
         private static readonly List<CardReading> data = new();
 
-        public async Task AddCardReadingAsync(CardReading cardReading)
+        public async Task AddCardReadingAsync(uint recordID, uint turnstileID, uint cardID, DateTimeOffset readingTime)
         {
-            if (await CheckCardReadingIdExistsAsync(cardReading.RecordID))
+            if (await CheckCardReadingIdExistsAsync(recordID))
             {
                 throw new Exception();
             }
-            data.Add(cardReading);
+            data.Add(new CardReading(recordID, turnstileID, cardID, readingTime));
         }
 
-        public async Task<CardReading> AddCardReadingAutoIncrementAsync(CardReading cardReading)
+        public async Task<uint> AddCardReadingAutoIncrementAsync(uint turnstileID, uint cardID, DateTimeOffset readingTime)
         {
             uint maxCardReadingID = 0;
             foreach (var obj in data)
@@ -32,9 +32,9 @@ namespace TestsBL.IoCRepositories
                 if (obj.RecordID > maxCardReadingID)
                     maxCardReadingID = obj.RecordID;
             }
-            CardReading cardReadingWithCorrectId = new(maxCardReadingID + 1, cardReading.TurnstileID, cardReading.CardID, cardReading.ReadingTime);
-            await AddCardReadingAsync(cardReadingWithCorrectId);
-            return cardReadingWithCorrectId;
+            uint cardReadingID = maxCardReadingID + 1;
+            await AddCardReadingAsync(cardReadingID, turnstileID, cardID, readingTime);
+            return cardReadingID;
         }
 
         public async Task<bool> CheckCardReadingIdExistsAsync(uint recordID)
@@ -73,11 +73,11 @@ namespace TestsBL.IoCRepositories
             return counter;
         }
 
-        public async Task DeleteCardReadingAsync(CardReading cardReading)
+        public async Task DeleteCardReadingAsync(uint recordID)
         {
             foreach (var cardReadingFromDB in data)
             {
-                if (cardReadingFromDB.RecordID == cardReading.RecordID)
+                if (cardReadingFromDB.RecordID == recordID)
                 {
                     data.Remove(cardReadingFromDB);
                     return;
@@ -86,15 +86,6 @@ namespace TestsBL.IoCRepositories
             throw new Exception();
         }
 
-        public async Task<CardReading> GetCardReadingByIdAsync(uint recordID)
-        {
-            foreach (var obj in data)
-            {
-                if (obj.RecordID == recordID)
-                    return obj;
-            }
-            throw new Exception();
-        }
 
         public async Task<List<CardReading>> GetCardReadingsAsync(uint offset = 0, uint limit = Facade.UNLIMITED)
         {
@@ -105,20 +96,6 @@ namespace TestsBL.IoCRepositories
         }
 
 
-        public async Task UpdateCardReadingAsync(CardReading cardReading)
-        {
-            for (int i = 0; i < data.Count; i++)
-            {
-                CardReading cardReadingFromDB = data[i];
-                if (cardReadingFromDB.RecordID == cardReading.RecordID)
-                {
-                    data.Remove(cardReadingFromDB);
-                    data.Insert(i, cardReading);
-                    return;
-                }
-            }
-            throw new Exception();
-        }
     }
 }
 

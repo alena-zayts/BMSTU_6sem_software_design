@@ -52,41 +52,41 @@ namespace AccessToDB.RepositoriesTarantool
                 throw new CardReadingException($"Error: couldn't count amount of car_readings for LiftID={LiftID} from {dateFrom}");
             }
         }
-        public async Task<CardReading> AddCardReadingAutoIncrementAsync(CardReading obj)
+        public async Task<uint> AddCardReadingAutoIncrementAsync(uint turnstileID, uint cardID, DateTimeOffset readingTime)
         {
             try
             {
-                var result = await _box.Call_1_6<CardReadingDBNoIndex, CardReadingDB>("auto_increment_card_readings", (CardReadingConverter.BLToDBNoIndex(obj)));
-                return CardReadingConverter.DBToBL(result.Data[0]);
+                var result = await _box.Call_1_6<CardReadingDBNoIndex, CardReadingDB>("auto_increment_card_readings", (new CardReadingDBNoIndex(turnstileID, cardID, (uint) readingTime.ToUnixTimeSeconds())));
+                return CardReadingConverter.DBToBL(result.Data[0]).RecordID;
             }
             catch (Exception ex)
             {
-                throw new CardReadingException($"Error: couldn't auto increment car_reading {obj}");
+                throw new CardReadingException($"Error: couldn't auto increment car_reading");
             }
         }
 
 
-        public async Task AddCardReadingAsync(CardReading cardReading)
+        public async Task AddCardReadingAsync(uint recordID, uint turnstileID, uint cardID, DateTimeOffset readingTime)
         {
             try
             {
-                await _space.Insert(CardReadingConverter.BLToDB(cardReading));
+                await _space.Insert(new CardReadingDB(recordID, turnstileID, cardID, (uint)readingTime.ToUnixTimeSeconds()));
             }
             catch (Exception ex)
             {
-                throw new CardReadingException($"Error: adding cardReading {cardReading}");
+                throw new CardReadingException($"Error: adding cardReading");
             }
         }
 
 
-        public async Task DeleteCardReadingAsync(CardReading cardReading)
+        public async Task DeleteCardReadingAsync(uint recordID)
         {
             var response = await _indexPrimary.Delete<ValueTuple<uint>, CardReadingDB>
-                (ValueTuple.Create(cardReading.RecordID));
+                (ValueTuple.Create(recordID));
 
             if (response.Data.Length != 1)
             {
-                throw new CardReadingException($"Error: deleting cardReading {cardReading}");
+                throw new CardReadingException($"Error: deleting cardReading");
             }
 
         }
