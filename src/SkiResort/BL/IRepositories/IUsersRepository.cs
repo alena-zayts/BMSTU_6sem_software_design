@@ -9,9 +9,9 @@ namespace BL.IRepositories
         Task<User> GetUserByIdAsync(uint userID);
         Task<bool> CheckUserIdExistsAsync(uint userID);
         Task<bool> CheckUserEmailExistsAsync(string userEmail);
-        Task AddUserAsync(User user);
-        Task<User> AddUserAutoIncrementAsync(User user);
-        Task UpdateUserAsync(User user); 
-        Task DeleteUserAsync(User user); 
+        Task AddUserAsync(uint userID, uint cardID, string UserEmail, string password, PermissionsEnum permissions);
+        Task<uint> AddUserAutoIncrementAsync( uint cardID, string UserEmail, string password, PermissionsEnum permissions);
+        Task UpdateUserByIDAsync(uint userID, uint newCardID, string newUserEmail, string newPassword, PermissionsEnum newPermissions); 
+        Task DeleteUserByIDAsync(uint userID); 
     }
 }

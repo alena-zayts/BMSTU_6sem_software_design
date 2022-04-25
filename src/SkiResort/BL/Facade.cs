@@ -26,7 +26,7 @@ namespace BL
             }
 
             User newUser = new(requesterUserID, User.UniversalCardID, $"unauthorized_email_{requesterUserID}", $"unauthorized_password_{requesterUserID}", PermissionsEnum.UNAUTHORIZED);
-            await usersRepository.AddUserAsync(newUser);
+            await usersRepository.AddUserAsync(newUser.UserID, newUser.CardID, newUser.UserEmail, newUser.Password, newUser.Permissions);
             return newUser;
         }
 
@@ -47,7 +47,7 @@ namespace BL
             }
 
             User authorizedUser = new(requesterUserID, cardID, email, password, PermissionsEnum.AUTHORIZED);
-            await usersRepository.UpdateUserAsync(authorizedUser);
+            await usersRepository.UpdateUserByIDAsync(authorizedUser.UserID, authorizedUser.CardID, authorizedUser.UserEmail, authorizedUser.Password, authorizedUser.Permissions);
             return authorizedUser;
         }
 
@@ -65,7 +65,7 @@ namespace BL
             }
 
             User authorizedUser = new(userFromDB.UserID, userFromDB.CardID, userFromDB.UserEmail, userFromDB.Password, PermissionsEnum.AUTHORIZED);
-            await usersRepository.UpdateUserAsync(authorizedUser);
+            await usersRepository.UpdateUserByIDAsync(authorizedUser.UserID, authorizedUser.CardID, authorizedUser.UserEmail, authorizedUser.Password, authorizedUser.Permissions);
             return authorizedUser;
         }
 
@@ -78,7 +78,7 @@ namespace BL
             User userFromDB = await usersRepository.GetUserByIdAsync(requesterUserID);
 
             User unauthorizedUser = new(userFromDB.UserID, userFromDB.CardID, userFromDB.UserEmail, userFromDB.Password, PermissionsEnum.UNAUTHORIZED);
-            await usersRepository.UpdateUserAsync(unauthorizedUser);
+            await usersRepository.UpdateUserByIDAsync(unauthorizedUser.UserID, unauthorizedUser.CardID, unauthorizedUser.UserEmail, unauthorizedUser.Password, unauthorizedUser.Permissions);
             return unauthorizedUser;
         }
 
@@ -94,21 +94,21 @@ namespace BL
             await CheckPermissionsService.CheckPermissionsAsync(RepositoriesFactory.CreateUsersRepository(), requesterUserID);
 
             IUsersRepository usersRepository = RepositoriesFactory.CreateUsersRepository();
-            await usersRepository.AddUserAsync(user);
+            await usersRepository.AddUserAsync(user.UserID, user.CardID, user.UserEmail, user.Password, user.Permissions);
         }
 
-        public async Task<User> AdminAddAutoIncrementUserAsync(uint requesterUserID, User user)
+        public async Task<uint> AdminAddAutoIncrementUserAsync(uint requesterUserID, User user)
         {
             await CheckPermissionsService.CheckPermissionsAsync(RepositoriesFactory.CreateUsersRepository(), requesterUserID);
             IUsersRepository usersRepository = RepositoriesFactory.CreateUsersRepository();
-            return await usersRepository.AddUserAutoIncrementAsync(user);
+            return await usersRepository.AddUserAutoIncrementAsync(user.CardID, user.UserEmail, user.Password, user.Permissions);
         }
 
         public async Task AdminUpdateUserAsync(uint requesterUserID, User user)
         {
             await CheckPermissionsService.CheckPermissionsAsync(RepositoriesFactory.CreateUsersRepository(), requesterUserID);
             IUsersRepository usersRepository = RepositoriesFactory.CreateUsersRepository();
-            await usersRepository.UpdateUserAsync(user);
+            await usersRepository.UpdateUserByIDAsync(user.UserID, user.CardID, user.UserEmail, user.Password, user.Permissions);
         }
 
         public async Task AdminDeleteUserAsync(uint requesterUserID, uint userToDeleteID)
@@ -117,7 +117,7 @@ namespace BL
             IUsersRepository usersRepository = RepositoriesFactory.CreateUsersRepository();
 
             User userFromDB = await usersRepository.GetUserByIdAsync(userToDeleteID);  
-            await usersRepository.DeleteUserAsync(userFromDB);
+            await usersRepository.DeleteUserByIDAsync(userFromDB.UserID);
         }
 
         public async Task<User> AdminGetUserByIDAsync(uint requesterUserID, uint userID)

@@ -40,22 +40,22 @@ namespace Tests
 
             // add correct
             User added_user = new User(1, 1, "qwe", "rty", (PermissionsEnum) 1);
-            await rep.AddUserAsync(added_user);
+            await rep.AddUserAsync(added_user.UserID, added_user.CardID, added_user.UserEmail, added_user.Password, added_user.Permissions);
             // add already existing
-            await Assert.ThrowsAsync<UserException>(() => rep.AddUserAsync(added_user));
+            await Assert.ThrowsAsync<UserException>(() => rep.AddUserAsync(added_user.UserID, added_user.CardID, added_user.UserEmail, added_user.Password, added_user.Permissions));
 
 			// get_by_id correct
 			User got_user = await rep.GetUserByIdAsync(added_user.UserID);
             Assert.Equal(added_user, got_user);
 
 			// delete correct
-			await rep.DeleteUserAsync(added_user);
+			await rep.DeleteUserByIDAsync(added_user.UserID);
 
 			// get_by_id not existing
 			await Assert.ThrowsAsync<UserException>(() => rep.GetUserByIdAsync(added_user.UserID));
 
 			// delete not existing
-			await Assert.ThrowsAsync<UserException>(() => rep.DeleteUserAsync(added_user));
+			await Assert.ThrowsAsync<UserException>(() => rep.DeleteUserByIDAsync(added_user.UserID));
 
             // end tests - empty getlist
             Assert.Empty(await rep.GetUsersAsync());
@@ -72,29 +72,29 @@ namespace Tests
             Assert.Empty(await rep.GetUsersAsync());
 
             User added_user1 = new User(1, 1, "qwe", "rty", (PermissionsEnum)1);
-            await rep.AddUserAsync(added_user1);
+            await rep.AddUserAsync(added_user1.UserID, added_user1.CardID, added_user1.UserEmail, added_user1.Password, added_user1.Permissions);
 
             User added_user2 = new User(2, 9, "rt", "dfd", (PermissionsEnum)2);
-            await rep.AddUserAsync(added_user2);
+            await rep.AddUserAsync(added_user2.UserID, added_user2.CardID, added_user2.UserEmail, added_user2.Password, added_user2.Permissions);
 
             added_user2 = new User(added_user2.UserID, added_user2.CardID, "dfd", "pop", (PermissionsEnum)1);
 
             // updates correct
-            await rep.UpdateUserAsync(added_user1);
-            await rep.UpdateUserAsync(added_user2);
+            await rep.UpdateUserByIDAsync(added_user1.UserID, added_user1.CardID, added_user1.UserEmail, added_user1.Password, added_user1.Permissions);
+            await rep.UpdateUserByIDAsync(added_user2.UserID, added_user2.CardID, added_user2.UserEmail, added_user2.Password, added_user2.Permissions);
 
             var list = await rep.GetUsersAsync();
             Assert.Equal(2, list.Count);
             Assert.Equal(added_user1, list[0]);
             Assert.Equal(added_user2, list[1]);
 
-            await rep.DeleteUserAsync(added_user1);
-            await rep.DeleteUserAsync(added_user2);
+            await rep.DeleteUserByIDAsync(added_user1.UserID);
+            await rep.DeleteUserByIDAsync(added_user2.UserID);
 
 
             // updates not existing
-            await Assert.ThrowsAsync<UserException>(() => rep.UpdateUserAsync(added_user1));
-            await Assert.ThrowsAsync<UserException>(() => rep.UpdateUserAsync(added_user2));
+            await Assert.ThrowsAsync<UserException>(() => rep.UpdateUserByIDAsync(added_user1.UserID, added_user1.CardID, added_user1.UserEmail, added_user1.Password, added_user1.Permissions));
+            await Assert.ThrowsAsync<UserException>(() => rep.UpdateUserByIDAsync(added_user2.UserID, added_user2.CardID, added_user2.UserEmail, added_user2.Password, added_user2.Permissions));
 
 
             // end tests - empty getlist
@@ -102,12 +102,12 @@ namespace Tests
 
 
 
-            User tmp2 = await rep.AddUserAutoIncrementAsync(added_user1);
-            Assert.True(1 == tmp2.UserID);
-            User tmp3 = await rep.AddUserAutoIncrementAsync(added_user2);
-            Assert.True(2 == tmp3.UserID);
-            await rep.DeleteUserAsync(tmp2);
-            await rep.DeleteUserAsync(tmp3);
+            uint tmpUserID2 = await rep.AddUserAutoIncrementAsync(added_user1.CardID, added_user1.UserEmail, added_user1.Password, added_user1.Permissions);
+            Assert.True(1 == tmpUserID2);
+            uint tmpUserID3 = await rep.AddUserAutoIncrementAsync(added_user2.CardID, added_user2.UserEmail, added_user2.Password, added_user2.Permissions);
+            Assert.True(2 == tmpUserID3);
+            await rep.DeleteUserByIDAsync(tmpUserID2);
+            await rep.DeleteUserByIDAsync(tmpUserID3);
             Assert.Empty(await rep.GetUsersAsync());
         }
     }

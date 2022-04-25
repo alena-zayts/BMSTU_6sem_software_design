@@ -20,7 +20,8 @@ namespace TestsBL
             // для создания первого пользователя-администратора
             IRepositoriesFactory repositoriesFactory = ninjectKernel.Get<IRepositoriesFactory>();
             var tmpUsersRepository = repositoriesFactory.CreateUsersRepository();
-            User adminUser = await tmpUsersRepository.AddUserAutoIncrementAsync(new User(0, User.UniversalCardID, "admin_email", "admin_password", PermissionsEnum.ADMIN));
+            uint adminUserID = await tmpUsersRepository.AddUserAutoIncrementAsync(User.UniversalCardID, "admin_email", "admin_password", PermissionsEnum.ADMIN);
+            User adminUser = new(adminUserID, User.UniversalCardID, "admin_email", "admin_password", PermissionsEnum.ADMIN);
             tmpUsersRepository = null;
             //
 
@@ -64,7 +65,8 @@ namespace TestsBL
             Assert.Equal(PermissionsEnum.AUTHORIZED, loggedInUser.Permissions);
 
             User addedByAdminUser = new(User.UniversalUserID, User.UniversalCardID, "qwe", "rty", PermissionsEnum.ADMIN);
-            User addedByAdminUserWithNewId = await facade.AdminAddAutoIncrementUserAsync(adminUser.UserID, addedByAdminUser);
+            uint newID = await facade.AdminAddAutoIncrementUserAsync(adminUser.UserID, addedByAdminUser);
+            User addedByAdminUserWithNewId = new(newID, addedByAdminUser.CardID, addedByAdminUser.UserEmail, addedByAdminUser.Password, addedByAdminUser.Permissions);
             Assert.Equal(addedByAdminUser.Password, addedByAdminUserWithNewId.Password);
             Assert.NotEqual(addedByAdminUser.UserID, addedByAdminUserWithNewId.UserID);
 

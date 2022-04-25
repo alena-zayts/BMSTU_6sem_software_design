@@ -24,7 +24,7 @@ namespace TestsBL
             IRepositoriesFactory repositoriesFactory = ninjectKernel.Get<IRepositoriesFactory>();
             var tmpUsersRepository = repositoriesFactory.CreateUsersRepository();
             User adminUser = new (adminID, User.UniversalCardID, "admin_email", "admin_password", PermissionsEnum.ADMIN);
-            await tmpUsersRepository.AddUserAsync(adminUser);
+            await tmpUsersRepository.AddUserAsync(adminUser.UserID, adminUser.CardID, adminUser.UserEmail, adminUser.Password, adminUser.Permissions);
             tmpUsersRepository = null;
 
             Facade facade = new(repositoriesFactory);

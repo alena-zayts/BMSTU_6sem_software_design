@@ -14,16 +14,16 @@ namespace TestsBL.IoCRepositories
     {
         private static readonly List<User> data = new();
 
-        public async Task AddUserAsync(User user)
+        public async Task AddUserAsync(uint userID, uint cardID, string userEmail, string password, PermissionsEnum permissions)
         {
-            if (await CheckUserIdExistsAsync(user.UserID) || await CheckUserEmailExistsAsync(user.UserEmail))
+            if (await CheckUserIdExistsAsync(userID) || await CheckUserEmailExistsAsync(userEmail))
             {
                 throw new Exception();
             }
-            data.Add(user);
+            data.Add(new User(userID, cardID, userEmail, password, permissions));
         }
 
-        public async Task<User> AddUserAutoIncrementAsync(User user)
+        public async Task<uint> AddUserAutoIncrementAsync(uint cardID, string userEmail, string password, PermissionsEnum permissions)
         {
             uint maxUserID = 0;
             foreach (var userFromDB in data)
@@ -31,9 +31,9 @@ namespace TestsBL.IoCRepositories
                 if (userFromDB.UserID > maxUserID)
                     maxUserID = userFromDB.UserID;
             }
-            User userWithCorrectId = new(maxUserID + 1, user.CardID, user.UserEmail, user.Password, user.Permissions);
-            await AddUserAsync(userWithCorrectId);
-            return userWithCorrectId;
+            User userWithCorrectId = new(maxUserID + 1, cardID, userEmail, password, permissions);
+            await AddUserAsync(userWithCorrectId.UserID, userWithCorrectId.CardID, userWithCorrectId.UserEmail, userWithCorrectId.Password, userWithCorrectId.Permissions);
+            return userWithCorrectId.UserID;
         }
 
         public async Task<bool> CheckUserEmailExistsAsync(string userEmail)
@@ -60,11 +60,11 @@ namespace TestsBL.IoCRepositories
             return false;
         }
 
-        public async Task DeleteUserAsync(User user)
+        public async Task DeleteUserByIDAsync(uint userID)
         {
             foreach (var obj in data)
             {
-                if (obj.UserID == user.UserID)
+                if (obj.UserID == userID)
                 {
                     data.Remove(obj);
                     return;
@@ -91,15 +91,15 @@ namespace TestsBL.IoCRepositories
                 return data.GetRange((int)offset, (int) data.Count);
         }
 
-        public async Task UpdateUserAsync(User user)
+        public async Task UpdateUserByIDAsync(uint userID, uint newCardID, string newUserEmail, string newPassword, PermissionsEnum newPermissions)
         {
             for(int i = 0; i < data.Count; i++)
             { 
                 User userFromDB = data[i];
-                if (userFromDB.UserID == user.UserID)
+                if (userFromDB.UserID == userID)
                 {
                     data.Remove(userFromDB);
-                    data.Insert(i, user);
+                    data.Insert(i, new User(userID, newCardID, newUserEmail, newPassword, newPermissions));
                     return;
                 }
             }

@@ -57,55 +57,55 @@ namespace AccessToDB.RepositoriesTarantool
             return UserConverter.DBToBL(data.Data[0]);
         }
 
-        public async Task AddUserAsync(User user)
+        public async Task AddUserAsync(uint userID, uint cardID, string UserEmail, string password, PermissionsEnum permissions)
         {
             try
             {
-                await _space.Insert(UserConverter.BLToDB(user));
+                await _space.Insert(new UserDB(userID, cardID, UserEmail, password, (uint) permissions));
             }
             catch (Exception ex)
             {
-                throw new UserException($"Error: adding user {user}");
+                throw new UserException($"Error: adding user");
             }
         }
 
-        public async Task<User> AddUserAutoIncrementAsync(User obj)
+        public async Task<uint> AddUserAutoIncrementAsync(uint cardID, string UserEmail, string password, PermissionsEnum permissions)
         {
             try
             {
-                var result = await _box.Call_1_6<UserDBNoIndex, UserDB>("auto_increment_users", (UserConverter.BLToDBNoIndex(obj)));
-                return UserConverter.DBToBL(result.Data[0]);
+                var result = await _box.Call_1_6<UserDBNoIndex, UserDB>("auto_increment_users", (new UserDBNoIndex(cardID, UserEmail, password, (uint)permissions)));
+                return UserConverter.DBToBL(result.Data[0]).UserID;
             }
             catch (Exception ex)
             {
-                throw new UserException($"Error: couldn't auto increment {obj}");
+                throw new UserException($"Error: couldn't auto increment");
             }
         }
 
-        public async Task UpdateUserAsync(User user)
+        public async Task UpdateUserByIDAsync(uint userID, uint newCardID, string newUserEmail, string newPassword, PermissionsEnum newPermissions)
         {
             var response = await _space.Update<ValueTuple<uint>, UserDB>(
-                ValueTuple.Create(user.UserID), new UpdateOperation[] {
-                    UpdateOperation.CreateAssign<uint>(1, user.CardID),
-                    UpdateOperation.CreateAssign<string>(2, user.UserEmail),
-                    UpdateOperation.CreateAssign<string>(3, user.Password),
-                    UpdateOperation.CreateAssign<uint>(4, (uint)user.Permissions),
+                ValueTuple.Create(userID), new UpdateOperation[] {
+                    UpdateOperation.CreateAssign<uint>(1, newCardID),
+                    UpdateOperation.CreateAssign<string>(2, newUserEmail),
+                    UpdateOperation.CreateAssign<string>(3, newPassword),
+                    UpdateOperation.CreateAssign<uint>(4, (uint)newPermissions),
                 });
 
             if (response.Data.Length != 1)
             {
-                throw new UserException($"Error: updating user {user}");
+                throw new UserException($"Error: updating user");
             }
         }
 
-        public async Task DeleteUserAsync(User user)
+        public async Task DeleteUserByIDAsync(uint userID)
         {
             var response = await _indexPrimary.Delete<ValueTuple<uint>,UserDB>
-                (ValueTuple.Create(user.UserID));
+                (ValueTuple.Create(userID));
 
             if (response.Data.Length != 1)
             {
-                throw new UserException($"Error: deleting user {user}");
+                throw new UserException($"Error: deleting user");
             }
 
         }
