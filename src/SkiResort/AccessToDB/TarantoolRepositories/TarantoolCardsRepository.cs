@@ -52,51 +52,51 @@ namespace AccessToDB.RepositoriesTarantool
             return CardConverter.DBToBL(data.Data[0]);
         }
 
-        public async Task AddCardAsync(Card card)
+        public async Task AddCardAsync(uint cardID, DateTimeOffset activationTime, string type)
         {
             try
             {
-                await _space.Insert(CardConverter.BLToDB(card));
+                await _space.Insert(new CardDB(cardID, (uint) activationTime.ToUnixTimeSeconds(), type));
             }
             catch (Exception ex)
             {
-                throw new CardException($"Error: adding card {card}");
+                throw new CardException($"Error: adding card");
             }
         }
-        public async Task<Card> AddCardAutoIncrementAsync(Card obj)
+        public async Task<uint> AddCardAutoIncrementAsync(DateTimeOffset activationTime, string type)
         {
             try
             {
-                var result = await _box.Call_1_6<CardDBNoIndex, CardDB>("auto_increment_cards", (CardConverter.BLToDBNoIndex(obj)));
-                return CardConverter.DBToBL(result.Data[0]);
+                var result = await _box.Call_1_6<CardDBNoIndex, CardDB>("auto_increment_cards", (new CardDBNoIndex((uint) activationTime.ToUnixTimeSeconds(), type)));
+                return CardConverter.DBToBL(result.Data[0]).CardID;
             }
             catch (Exception ex)
             {
-                throw new CardException($"Error: couldn't auto increment {obj}");
+                throw new CardException($"Error: couldn't auto incremen");
             }
         }
-        public async Task UpdateCardAsync(Card card)
+        public async Task UpdateCardByIDAsync(uint cardID, DateTimeOffset newActivationTime, string newType)
         {
             var response = await _space.Update<ValueTuple<uint>, CardDB>(
-                ValueTuple.Create(card.CardID), new UpdateOperation[] {
-                    UpdateOperation.CreateAssign<uint>(1, (uint) card.ActivationTime.ToUnixTimeSeconds()),
-                    UpdateOperation.CreateAssign<string>(2, card.Type),
+                ValueTuple.Create(cardID), new UpdateOperation[] {
+                    UpdateOperation.CreateAssign<uint>(1, (uint) newActivationTime.ToUnixTimeSeconds()),
+                    UpdateOperation.CreateAssign<string>(2, newType),
                 });
 
             if (response.Data.Length != 1)
             {
-                throw new CardException($"Error: updating card {card}");
+                throw new CardException($"Error: updating card");
             }
         }
 
-        public async Task DeleteCardAsync(Card card)
+        public async Task DeleteCarByIDdAsync(uint cardID)
         {
             var response = await _indexPrimary.Delete<ValueTuple<uint>, CardDB>
-                (ValueTuple.Create(card.CardID));
+                (ValueTuple.Create(cardID));
 
             if (response.Data.Length != 1)
             {
-                throw new CardException($"Error: deleting card {card}");
+                throw new CardException($"Error: deleting card {cardID}");
             }
 
         }

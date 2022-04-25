@@ -12,16 +12,16 @@ namespace TestsBL.IoCRepositories
     {
         private static readonly List<Card> data = new();
 
-        public async Task AddCardAsync(Card card)
+        public async Task AddCardAsync(uint cardID, DateTimeOffset activationTime, string type)
         {
-            if (await CheckCardIdExistsAsync(card.CardID))
+            if (await CheckCardIdExistsAsync(cardID))
             {
                 throw new Exception();
             }
-            data.Add(card);
+            data.Add(new Card(cardID, activationTime, type));
         }
 
-        public async Task<Card> AddCardAutoIncrementAsync(Card card)
+        public async Task<uint> AddCardAutoIncrementAsync(DateTimeOffset activationTime, string type)
         {
             uint maxCardID = 0;
             foreach (var obj in data)
@@ -29,9 +29,9 @@ namespace TestsBL.IoCRepositories
                 if (obj.CardID > maxCardID)
                     maxCardID = obj.CardID;
             }
-            Card cardWithCorrectId = new(maxCardID + 1, card.ActivationTime, card.Type);
-            await AddCardAsync(cardWithCorrectId);
-            return cardWithCorrectId;
+            Card cardWithCorrectId = new(maxCardID + 1, activationTime, type);
+            await AddCardAsync(cardWithCorrectId.CardID, cardWithCorrectId.ActivationTime, cardWithCorrectId.Type);
+            return cardWithCorrectId.CardID;
         }
 
         public async Task<bool> CheckCardIdExistsAsync(uint cardID)
@@ -46,11 +46,11 @@ namespace TestsBL.IoCRepositories
             return false;
         }
 
-        public async Task DeleteCardAsync(Card card)
+        public async Task DeleteCarByIDdAsync(uint cardID)
         {
             foreach (var cardFromDB in data)
             {
-                if (cardFromDB.CardID == card.CardID)
+                if (cardFromDB.CardID == cardID)
                 {
                     data.Remove(cardFromDB);
                     return;
@@ -77,15 +77,15 @@ namespace TestsBL.IoCRepositories
                 return data.GetRange((int)offset, (int)data.Count);
         }
 
-        public async Task UpdateCardAsync(Card card)
+        public async Task UpdateCardByIDAsync(uint cardID, DateTimeOffset newActivationTime, string newType)
         {
             for (int i = 0; i < data.Count; i++)
             {
                 Card cardFromDB = data[i];
-                if (cardFromDB.CardID == card.CardID)
+                if (cardFromDB.CardID == cardID)
                 {
                     data.Remove(cardFromDB);
-                    data.Insert(i, card);
+                    data.Insert(i, new Card(cardID, newActivationTime, newType));
                     return;
                 }
             }

@@ -429,7 +429,7 @@ namespace BL
             await CheckPermissionsService.CheckPermissionsAsync(RepositoriesFactory.CreateUsersRepository(), requesterUserID);
 
             ICardsRepository rep = RepositoriesFactory.CreateCardsRepository();
-            await rep.UpdateCardAsync(card);
+            await rep.UpdateCardByIDAsync(card.CardID, card.ActivationTime, card.Type);
         }
 
         public async Task AdminDeleteCardAsync(uint requesterUserID, Card card)
@@ -437,7 +437,7 @@ namespace BL
             await CheckPermissionsService.CheckPermissionsAsync(RepositoriesFactory.CreateUsersRepository(), requesterUserID);
 
             ICardsRepository rep = RepositoriesFactory.CreateCardsRepository();
-            await rep.DeleteCardAsync(card);
+            await rep.DeleteCarByIDdAsync(card.CardID);
         }
 
         public async Task AdminAddCardAsync(uint requesterUserID, Card card)
@@ -445,15 +445,15 @@ namespace BL
             await CheckPermissionsService.CheckPermissionsAsync(RepositoriesFactory.CreateUsersRepository(), requesterUserID);
 
             ICardsRepository rep = RepositoriesFactory.CreateCardsRepository();
-            await rep.AddCardAsync(card);
+            await rep.AddCardAsync(card.CardID, card.ActivationTime, card.Type);
         }
 
-        public async Task<Card> AdminAddAutoIncrementCardAsync(uint requesterUserID, Card card)
+        public async Task<uint> AdminAddAutoIncrementCardAsync(uint requesterUserID, Card card)
         {
             await CheckPermissionsService.CheckPermissionsAsync(RepositoriesFactory.CreateUsersRepository(), requesterUserID);
 
             ICardsRepository rep = RepositoriesFactory.CreateCardsRepository();
-            return await rep.AddCardAutoIncrementAsync(card);
+            return await rep.AddCardAutoIncrementAsync(card.ActivationTime, card.Type);
         }
 
 
