@@ -46,7 +46,7 @@ namespace AccessToDB.RepositoriesTarantool
 
             if (data.Data.Length != 1)
             {
-                throw new CardException($"Error: couldn't find card with CardID={CardID}");
+                throw new CardNotFoundException(CardID);
             }
 
             return CardConverter.DBToBL(data.Data[0]);
@@ -60,7 +60,7 @@ namespace AccessToDB.RepositoriesTarantool
             }
             catch (Exception ex)
             {
-                throw new CardException($"Error: adding card");
+                throw new CardAddingException(cardID, activationTime, type);
             }
         }
         public async Task<uint> AddCardAutoIncrementAsync(DateTimeOffset activationTime, string type)
@@ -72,7 +72,7 @@ namespace AccessToDB.RepositoriesTarantool
             }
             catch (Exception ex)
             {
-                throw new CardException($"Error: couldn't auto incremen");
+                throw new CardAddingAutoIncrementException(activationTime, type);
             }
         }
         public async Task UpdateCardByIDAsync(uint cardID, DateTimeOffset newActivationTime, string newType)
@@ -85,7 +85,7 @@ namespace AccessToDB.RepositoriesTarantool
 
             if (response.Data.Length != 1)
             {
-                throw new CardException($"Error: updating card");
+                throw new CardUpdateException(cardID, newActivationTime, newType);
             }
         }
 
@@ -96,7 +96,7 @@ namespace AccessToDB.RepositoriesTarantool
 
             if (response.Data.Length != 1)
             {
-                throw new CardException($"Error: deleting card {cardID}");
+                throw new CardDeleteException(cardID);
             }
 
         }

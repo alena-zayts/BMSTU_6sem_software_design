@@ -40,7 +40,7 @@ namespace Tests
             Card added_card = new Card(1, DateTimeOffset.FromUnixTimeSeconds(1), "child");
             await rep.AddCardAsync(added_card.CardID, added_card.ActivationTime, added_card.Type);
             // add already existing
-            await Assert.ThrowsAsync<CardException>(() => rep.AddCardAsync(added_card.CardID, added_card.ActivationTime, added_card.Type));
+            await Assert.ThrowsAsync<CardAddingException>(() => rep.AddCardAsync(added_card.CardID, added_card.ActivationTime, added_card.Type));
 
             // get_by_id correct
             Card got_card = await rep.GetCardByIdAsync(added_card.CardID);
@@ -50,10 +50,10 @@ namespace Tests
             await rep.DeleteCarByIDdAsync(added_card.CardID);
 
             // get_by_id not existing
-            await Assert.ThrowsAsync<CardException>(() => rep.GetCardByIdAsync(added_card.CardID));
+            await Assert.ThrowsAsync<CardNotFoundException>(() => rep.GetCardByIdAsync(added_card.CardID));
 
             // delete not existing
-            await Assert.ThrowsAsync<CardException>(() => rep.DeleteCarByIDdAsync(added_card.CardID));
+            await Assert.ThrowsAsync<CardDeleteException>(() => rep.DeleteCarByIDdAsync(added_card.CardID));
 
             // end tests - empty getlist
             Assert.Empty(await rep.GetCardsAsync());
@@ -94,8 +94,8 @@ namespace Tests
 
 
             // updates not existing
-            await Assert.ThrowsAsync<CardException>(() => rep.UpdateCardByIDAsync(added_card1.CardID, added_card1.ActivationTime, added_card1.Type));
-            await Assert.ThrowsAsync<CardException>(() => rep.UpdateCardByIDAsync(added_card2.CardID, added_card2.ActivationTime, added_card2.Type));
+            await Assert.ThrowsAsync<CardUpdateException>(() => rep.UpdateCardByIDAsync(added_card1.CardID, added_card1.ActivationTime, added_card1.Type));
+            await Assert.ThrowsAsync<CardUpdateException>(() => rep.UpdateCardByIDAsync(added_card2.CardID, added_card2.ActivationTime, added_card2.Type));
 
 
             // end tests - empty getlist
