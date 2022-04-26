@@ -38,13 +38,13 @@ namespace Tests
             CardReading added_card_reading = new CardReading(1, 1, 1, DateTimeOffset.FromUnixTimeSeconds(1));
             await rep.AddCardReadingAsync(added_card_reading.RecordID, added_card_reading.TurnstileID, added_card_reading.CardID, added_card_reading.ReadingTime);
             // add already existing
-            await Assert.ThrowsAsync<CardReadingException>(() => rep.AddCardReadingAsync(added_card_reading.RecordID, added_card_reading.TurnstileID, added_card_reading.CardID, added_card_reading.ReadingTime));
+            await Assert.ThrowsAsync<CardReadingAddException>(() => rep.AddCardReadingAsync(added_card_reading.RecordID, added_card_reading.TurnstileID, added_card_reading.CardID, added_card_reading.ReadingTime));
 
 
             // delete correct
             await rep.DeleteCardReadingAsync(added_card_reading.RecordID);
             // delete not existing
-            await Assert.ThrowsAsync<CardReadingException>(() => rep.DeleteCardReadingAsync(added_card_reading.RecordID));
+            await Assert.ThrowsAsync<CardReadingDeleteException>(() => rep.DeleteCardReadingAsync(added_card_reading.RecordID));
 
             // end tests - empty getlist
             Assert.Empty(await rep.GetCardReadingsAsync());
@@ -67,11 +67,11 @@ namespace Tests
 
             ITurnstilesRepository turnstiles_rep = new TarantoolTurnstilesRepository(_context);
             Assert.Empty(await turnstiles_rep.GetTurnstilesAsync());
-            // не тот подъемник
+            // пїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
             Turnstile added_turnstile1 = new Turnstile(1, added_lift1.LiftID, true);
             await turnstiles_rep.AddTurnstileAsync(added_turnstile1.TurnstileID, added_turnstile1.LiftID, added_turnstile1.IsOpen);
 
-            // тот подъеммник
+            // пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
             Turnstile added_turnstile2 = new Turnstile(2, added_lift2.LiftID, false);
             await turnstiles_rep.AddTurnstileAsync(added_turnstile2.TurnstileID, added_turnstile2.LiftID, added_turnstile2.IsOpen);
             Turnstile added_turnstile3 = new Turnstile(3, added_lift2.LiftID, false);
@@ -79,17 +79,17 @@ namespace Tests
 
             uint exact_time = 10;
 
-            // не тот подъемник
+            // пїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
             CardReading added_card_reading1 = new CardReading(1, added_turnstile1.TurnstileID, 9, DateTimeOffset.FromUnixTimeSeconds(exact_time - 1));
             await rep.AddCardReadingAsync(added_card_reading1.RecordID, added_card_reading1.TurnstileID, added_card_reading1.CardID,  added_card_reading1.ReadingTime);
             CardReading added_card_reading2 = new CardReading(2, added_turnstile1.TurnstileID, 9, DateTimeOffset.FromUnixTimeSeconds(exact_time + 1));
             await rep.AddCardReadingAsync(added_card_reading2.RecordID, added_card_reading2.TurnstileID, added_card_reading2.CardID, added_card_reading2.ReadingTime);
 
-            // тот подъемник но не то время
+            // пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
             CardReading added_card_reading3 = new CardReading(3, added_turnstile2.TurnstileID, 9, DateTimeOffset.FromUnixTimeSeconds(exact_time - 1));
             await rep.AddCardReadingAsync(added_card_reading3.RecordID, added_card_reading3.TurnstileID, added_card_reading3.CardID, added_card_reading3.ReadingTime);
 
-            // подходят
+            // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
             CardReading added_card_reading4 = new CardReading(4, added_turnstile2.TurnstileID, 9, DateTimeOffset.FromUnixTimeSeconds(exact_time + 1));
             await rep.AddCardReadingAsync(added_card_reading4.RecordID, added_card_reading4.TurnstileID, added_card_reading4.CardID, added_card_reading4.ReadingTime);
             CardReading added_card_reading5 = new CardReading(5, added_turnstile3.TurnstileID, 9, DateTimeOffset.FromUnixTimeSeconds(exact_time));

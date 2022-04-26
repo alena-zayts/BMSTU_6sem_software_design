@@ -49,7 +49,7 @@ namespace AccessToDB.RepositoriesTarantool
             }
             catch (Exception ex)
             {
-                throw new CardReadingException($"Error: couldn't count amount of car_readings for LiftID={LiftID} from {dateFrom}");
+                throw new CountCardReadingsException();
             }
         }
         public async Task<uint> AddCardReadingAutoIncrementAsync(uint turnstileID, uint cardID, DateTimeOffset readingTime)
@@ -61,7 +61,7 @@ namespace AccessToDB.RepositoriesTarantool
             }
             catch (Exception ex)
             {
-                throw new CardReadingException($"Error: couldn't auto increment car_reading");
+                throw new CardReadingAddAutoIncrementException();
             }
         }
 
@@ -74,7 +74,7 @@ namespace AccessToDB.RepositoriesTarantool
             }
             catch (Exception ex)
             {
-                throw new CardReadingException($"Error: adding cardReading");
+                throw new CardReadingAddException();
             }
         }
 
@@ -86,7 +86,7 @@ namespace AccessToDB.RepositoriesTarantool
 
             if (response.Data.Length != 1)
             {
-                throw new CardReadingException($"Error: deleting cardReading");
+                throw new CardReadingDeleteException();
             }
 
         }
