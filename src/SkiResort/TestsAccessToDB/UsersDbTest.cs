@@ -42,7 +42,7 @@ namespace Tests
             User added_user = new User(1, 1, "qwe", "rty", (PermissionsEnum) 1);
             await rep.AddUserAsync(added_user.UserID, added_user.CardID, added_user.UserEmail, added_user.Password, added_user.Permissions);
             // add already existing
-            await Assert.ThrowsAsync<UserException>(() => rep.AddUserAsync(added_user.UserID, added_user.CardID, added_user.UserEmail, added_user.Password, added_user.Permissions));
+            await Assert.ThrowsAsync<UserAddException>(() => rep.AddUserAsync(added_user.UserID, added_user.CardID, added_user.UserEmail, added_user.Password, added_user.Permissions));
 
 			// get_by_id correct
 			User got_user = await rep.GetUserByIdAsync(added_user.UserID);
@@ -52,10 +52,10 @@ namespace Tests
 			await rep.DeleteUserByIDAsync(added_user.UserID);
 
 			// get_by_id not existing
-			await Assert.ThrowsAsync<UserException>(() => rep.GetUserByIdAsync(added_user.UserID));
+			await Assert.ThrowsAsync<UserNotFoundException>(() => rep.GetUserByIdAsync(added_user.UserID));
 
 			// delete not existing
-			await Assert.ThrowsAsync<UserException>(() => rep.DeleteUserByIDAsync(added_user.UserID));
+			await Assert.ThrowsAsync<UserDeleteException>(() => rep.DeleteUserByIDAsync(added_user.UserID));
 
             // end tests - empty getlist
             Assert.Empty(await rep.GetUsersAsync());
@@ -93,8 +93,8 @@ namespace Tests
 
 
             // updates not existing
-            await Assert.ThrowsAsync<UserException>(() => rep.UpdateUserByIDAsync(added_user1.UserID, added_user1.CardID, added_user1.UserEmail, added_user1.Password, added_user1.Permissions));
-            await Assert.ThrowsAsync<UserException>(() => rep.UpdateUserByIDAsync(added_user2.UserID, added_user2.CardID, added_user2.UserEmail, added_user2.Password, added_user2.Permissions));
+            await Assert.ThrowsAsync<UserUpdateException>(() => rep.UpdateUserByIDAsync(added_user1.UserID, added_user1.CardID, added_user1.UserEmail, added_user1.Password, added_user1.Permissions));
+            await Assert.ThrowsAsync<UserUpdateException>(() => rep.UpdateUserByIDAsync(added_user2.UserID, added_user2.CardID, added_user2.UserEmail, added_user2.Password, added_user2.Permissions));
 
 
             // end tests - empty getlist
