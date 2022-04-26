@@ -32,7 +32,7 @@ namespace TestsBL
 
             Message readMessage1 = await facade.MarkMessageReadByUserAsync(TestUsersCreator.skiPatrolID, sentMessage1.MessageID);
             Assert.Equal(TestUsersCreator.skiPatrolID, readMessage1.CheckedByID);
-            await Assert.ThrowsAsync<MessageException>(() => facade.MarkMessageReadByUserAsync(TestUsersCreator.skiPatrolID, sentMessage1.MessageID));
+            await Assert.ThrowsAsync<MessageCheckingException>(() => facade.MarkMessageReadByUserAsync(TestUsersCreator.skiPatrolID, sentMessage1.MessageID));
             await Assert.ThrowsAsync<PermissionsException>(() => facade.MarkMessageReadByUserAsync(TestUsersCreator.authorizedID, sentMessage2.MessageID));
             await Assert.ThrowsAsync<PermissionsException>(() => facade.MarkMessageReadByUserAsync(TestUsersCreator.unauthorizedID, sentMessage2.MessageID));
 

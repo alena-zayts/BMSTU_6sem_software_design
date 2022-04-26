@@ -22,7 +22,7 @@ namespace BL
 
             if (await usersRepository.CheckUserIdExistsAsync(requesterUserID))
             {
-                throw new UserException($"Could't add new unauthorized user with userID={requesterUserID} because it already exists");
+                throw new UserDuplicateException();
             }
 
             User newUser = new(requesterUserID, User.UniversalCardID, $"unauthorized_email_{requesterUserID}", $"unauthorized_password_{requesterUserID}", PermissionsEnum.UNAUTHORIZED);
@@ -36,14 +36,14 @@ namespace BL
 
             if (email.Length == 0  || password.Length == 0)
             {
-                throw new UserException($"Could't register new user {requesterUserID} because of incorrect password or email");
+                throw new UserRegistrationException($"Could't register new user {requesterUserID} because of incorrect password or email");
             }
 
             IUsersRepository usersRepository = RepositoriesFactory.CreateUsersRepository();
 
             if (await usersRepository.CheckUserEmailExistsAsync(email))
             {
-                throw new UserException($"Could't register new user {requesterUserID} because such email already exists");
+                throw new UserRegistrationException($"Could't register new user {requesterUserID} because such email already exists");
             }
 
             User authorizedUser = new(requesterUserID, cardID, email, password, PermissionsEnum.AUTHORIZED);
@@ -60,7 +60,7 @@ namespace BL
 
             if (email != userFromDB.UserEmail || password != userFromDB.Password)
             {
-                throw new UserException($"Could't authorize user {requesterUserID} because of wrong email " +
+                throw new UserAuthorizationException($"Could't authorize user {requesterUserID} because of wrong email " +
                     $"(expected {userFromDB.UserEmail}) or password (expected {userFromDB.Password})");
             }
 
@@ -162,7 +162,7 @@ namespace BL
             
             if (message.CheckedByID != Message.MessageCheckedByNobody)
             {
-                throw new MessageException("Couldn't mark message checked because it is alredy checked", message);
+                throw new MessageCheckingException("Couldn't mark message checked because it is alredy checked", message);
             }
 
             Message checkedMessage = new(message.MessageID, message.SenderID, requesterUserID, message.Text);
@@ -235,7 +235,7 @@ namespace BL
             List<Turnstile> connected_turnstiles = await turnstiles_rep.GetTurnstilesByLiftIdAsync(lift.LiftID);
             if (connected_turnstiles == null)
             {
-                throw new LiftException("Cannot delete lift because it has connected turnstiles", lift);
+                throw new LiftDeleteException("Cannot delete lift because it has connected turnstiles", lift);
             }
 
             ILiftsSlopesRepository lifts_slopesRepository = RepositoriesFactory.CreateLiftsSlopesRepository();

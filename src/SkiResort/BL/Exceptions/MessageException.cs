@@ -15,4 +15,12 @@ namespace BL.Exceptions
             this.MessageModel = messageModel;
         }
     }
+    public class MessageCheckingException: MessageException
+    {
+
+    }
+    public class MessageCreationException: MessageException
+    {
+        
+    }
 }

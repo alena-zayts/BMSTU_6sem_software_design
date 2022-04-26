@@ -16,7 +16,7 @@ namespace BL.Models
         {
             if (text.Length == 0)
             {
-                throw new MessageException("Text of message cannot be empty");
+                throw new MessageCreationException("Text of message cannot be empty");
             }
 
             this.MessageID = messageID;

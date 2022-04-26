@@ -17,7 +17,7 @@ namespace TestsBL
             IKernel ninjectKernel = new StandardKernel();
             ninjectKernel.Bind<IRepositoriesFactory>().To<IoCRepositoriesFactory>();
 
-            // для создания первого пользователя-администратора
+            // пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ-пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
             IRepositoriesFactory repositoriesFactory = ninjectKernel.Get<IRepositoriesFactory>();
             var tmpUsersRepository = repositoriesFactory.CreateUsersRepository();
             uint adminUserID = await tmpUsersRepository.AddUserAutoIncrementAsync(User.UniversalCardID, "admin_email", "admin_password", PermissionsEnum.ADMIN);
@@ -41,7 +41,7 @@ namespace TestsBL
 
             uint unauthorizedUser1ID = 3;
             await facade.LogInAsUnauthorizedAsync(unauthorizedUser1ID);
-            await Assert.ThrowsAsync<UserException>(() => facade.LogInAsUnauthorizedAsync(unauthorizedUser1ID));
+            await Assert.ThrowsAsync<UserDuplicateException>(() => facade.LogInAsUnauthorizedAsync(unauthorizedUser1ID));
     
             User unauthorizedUser1FromDB = await facade.AdminGetUserByIDAsync(adminUser.UserID, unauthorizedUser1ID);
             Assert.Equal(unauthorizedUser1ID, unauthorizedUser1FromDB.UserID);
@@ -56,7 +56,7 @@ namespace TestsBL
             Assert.Equal(PermissionsEnum.AUTHORIZED, registeredUser.Permissions);
 
             User userToRegister2 = new(unauthorizedUser2FromDB.UserID, unauthorizedUser2FromDB.CardID, "registration_email", "registration_password2", unauthorizedUser2FromDB.Permissions);
-            await Assert.ThrowsAsync<UserException>(() => facade.RegisterAsync(userToRegister2.UserID, userToRegister2.CardID, userToRegister2.UserEmail, userToRegister2.Password));
+            await Assert.ThrowsAsync<UserRegistrationException>(() => facade.RegisterAsync(userToRegister2.UserID, userToRegister2.CardID, userToRegister2.UserEmail, userToRegister2.Password));
 
             User loggedOutUser = await facade.LogOutAsync(registeredUser.UserID);
             Assert.Equal(PermissionsEnum.UNAUTHORIZED, loggedOutUser.Permissions);

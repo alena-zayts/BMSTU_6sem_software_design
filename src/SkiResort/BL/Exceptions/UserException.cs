@@ -15,4 +15,19 @@ namespace BL.Exceptions
             this.User = user;
         }
     }
+    public class UserDuplicateException: UserException
+    {
+
+    }
+
+    public class UserRegistrationException: UserException
+    {
+        
+    }
+
+    public class UserAuthorizationException: UserException
+    {
+        
+    } 
 }
+

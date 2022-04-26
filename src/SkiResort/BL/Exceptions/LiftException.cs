@@ -15,5 +15,9 @@ namespace BL.Exceptions
             this.Lift = lift;
         }
     }
+    public class LiftDeleteException: LiftException
+    {
+        
+    }
 }
 
