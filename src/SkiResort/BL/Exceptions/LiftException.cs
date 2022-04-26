@@ -10,14 +10,14 @@ namespace BL.Exceptions
         public LiftException(string? message) : base(message) { }
         public LiftException(string? message, Exception? innerException) : base(message, innerException) { }
 
-        public LiftException(string? message, Lift? lift)
+        public LiftException(string? message, Lift? lift): base(message)
         {
             this.Lift = lift;
         }
     }
     public class LiftDeleteException: LiftException
     {
-        
+
     }
 }
 
