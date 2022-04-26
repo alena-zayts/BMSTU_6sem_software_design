@@ -41,7 +41,7 @@ namespace Tests
             Turnstile added_turnstile = new Turnstile(1, 2, true);
             await rep.AddTurnstileAsync(added_turnstile.TurnstileID, added_turnstile.LiftID, added_turnstile.IsOpen);
             // add already existing
-            await Assert.ThrowsAsync<TurnstileException>(() => rep.AddTurnstileAsync(added_turnstile.TurnstileID, added_turnstile.LiftID, added_turnstile.IsOpen));
+            await Assert.ThrowsAsync<TurnstileAddException>(() => rep.AddTurnstileAsync(added_turnstile.TurnstileID, added_turnstile.LiftID, added_turnstile.IsOpen));
 
             // get_by_id correct
             Turnstile got_turnstile = await rep.GetTurnstileByIdAsync(added_turnstile.TurnstileID);
@@ -51,10 +51,10 @@ namespace Tests
             await rep.DeleteTurnstileByIDAsync(added_turnstile.TurnstileID);
 
             // get_by_id not existing
-            await Assert.ThrowsAsync<TurnstileException>(() => rep.GetTurnstileByIdAsync(added_turnstile.TurnstileID));
+            await Assert.ThrowsAsync<TurnstileNotFoundException>(() => rep.GetTurnstileByIdAsync(added_turnstile.TurnstileID));
 
             // delete not existing
-            await Assert.ThrowsAsync<TurnstileException>(() => rep.DeleteTurnstileByIDAsync(added_turnstile.TurnstileID));
+            await Assert.ThrowsAsync<TurnstileDeleteException>(() => rep.DeleteTurnstileByIDAsync(added_turnstile.TurnstileID));
 
             // end tests - empty getlist
             Assert.Empty(await rep.GetTurnstilesAsync());
@@ -108,8 +108,8 @@ namespace Tests
 
 
             // updates not existing
-            await Assert.ThrowsAsync<TurnstileException>(() => rep.UpdateTurnstileByIDAsync(added_turnstile1.TurnstileID, added_turnstile1.LiftID, added_turnstile1.IsOpen));
-            await Assert.ThrowsAsync<TurnstileException>(() => rep.UpdateTurnstileByIDAsync(added_turnstile2.TurnstileID, added_turnstile2.LiftID, added_turnstile2.IsOpen));
+            await Assert.ThrowsAsync<TurnstileUpdateException>(() => rep.UpdateTurnstileByIDAsync(added_turnstile1.TurnstileID, added_turnstile1.LiftID, added_turnstile1.IsOpen));
+            await Assert.ThrowsAsync<TurnstileUpdateException>(() => rep.UpdateTurnstileByIDAsync(added_turnstile2.TurnstileID, added_turnstile2.LiftID, added_turnstile2.IsOpen));
 
 
             // end tests - empty getlist

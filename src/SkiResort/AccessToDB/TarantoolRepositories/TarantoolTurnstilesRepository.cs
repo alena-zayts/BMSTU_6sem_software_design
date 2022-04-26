@@ -68,7 +68,7 @@ namespace AccessToDB.RepositoriesTarantool
 
             if (data.Data.Length != 1)
             {
-                throw new TurnstileException($"Error: couldn't find turnstile with TurnstileID={TurnstileID}");
+                throw new TurnstileNotFoundException();
             }
 
             return TurnstileConverter.DBToBL(data.Data[0]);
@@ -82,7 +82,7 @@ namespace AccessToDB.RepositoriesTarantool
             }
             catch (Exception ex)
             {
-                throw new TurnstileException($"Error: adding turnstile");
+                throw new TurnstileAddException();
             }
         }
 
@@ -95,7 +95,7 @@ namespace AccessToDB.RepositoriesTarantool
             }
             catch (Exception ex)
             {
-                throw new TurnstileException($"Error: couldn't auto increment");
+                throw new TurnstileAddAutoIncrementException();
             }
         }
 
@@ -109,7 +109,7 @@ namespace AccessToDB.RepositoriesTarantool
 
             if (response.Data.Length != 1)
             {
-                throw new TurnstileException($"Error: updating turnstile ");
+                throw new TurnstileUpdateException();
             }
         }
 
@@ -120,7 +120,7 @@ namespace AccessToDB.RepositoriesTarantool
 
             if (response.Data.Length != 1)
             {
-                throw new TurnstileException($"Error: deleting turnstile");
+                throw new TurnstileDeleteException();
             }
 
         }
