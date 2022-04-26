@@ -58,7 +58,7 @@ namespace AccessToDB.RepositoriesTarantool
 
             if (data.Data.Length != 1)
             {
-                throw new LiftSlopeException($"Error: couldn't find lift_slope with RecordID={RecordID}");
+                throw new LiftSlopeNotFoundException();
             }
 
             return LiftSlopeConverter.DBToBL(data.Data[0]);
@@ -92,7 +92,7 @@ namespace AccessToDB.RepositoriesTarantool
                 }
                 catch (LiftNotFoundException)
                 {
-                    throw new LiftSlopeException($"Error: couldn't find LiftID={LiftID} (for SlopeID={SlopeID})");
+                    throw new LiftSlopeLiftNotFoundException();
                 }
             }
             return result;
@@ -128,7 +128,7 @@ namespace AccessToDB.RepositoriesTarantool
                 }
                 catch (SlopeNotFoundException)
                 {
-                    throw new LiftSlopeException($"Error: couldn't find SlopeID={SlopeID} (for LiftID={LiftID})");
+                    throw new LiftSlopeSlopeNotFoundException();
                 }
             }
             return result;
@@ -143,7 +143,7 @@ namespace AccessToDB.RepositoriesTarantool
             }
             catch (Exception ex)
             {
-                throw new LiftSlopeException($"Error: adding lift_slope");
+                throw new LiftSlopeAddException();
             }
         }
 
@@ -156,7 +156,7 @@ namespace AccessToDB.RepositoriesTarantool
             }
             catch (Exception ex)
             {
-                throw new LiftSlopeException($"Error: couldn't auto increment ");
+                throw new LiftSlopeAddAutoIncrementException();
             }
         }
 
@@ -170,7 +170,7 @@ namespace AccessToDB.RepositoriesTarantool
 
             if (response.Data.Length != 1)
             {
-                throw new LiftSlopeException($"Error: updating lift_slope");
+                throw new LiftSlopeUpdateException();
             }
         }
 
@@ -181,7 +181,7 @@ namespace AccessToDB.RepositoriesTarantool
 
             if (response.Data.Length != 1)
             {
-                throw new LiftSlopeException($"Error: deleting lift_slope");
+                throw new LiftSlopeDeleteException();
             }
 
         }

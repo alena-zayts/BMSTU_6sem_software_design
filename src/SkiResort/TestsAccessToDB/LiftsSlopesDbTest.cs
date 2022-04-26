@@ -42,7 +42,7 @@ namespace Tests
             LiftSlope added_lift_slope = new LiftSlope(1, 1, 1);
             await rep.AddLiftSlopeAsync(added_lift_slope.RecordID, added_lift_slope.LiftID, added_lift_slope.SlopeID);
             // add already existing
-            await Assert.ThrowsAsync<LiftSlopeException>(() => rep.AddLiftSlopeAsync(added_lift_slope.RecordID, added_lift_slope.LiftID, added_lift_slope.SlopeID));
+            await Assert.ThrowsAsync<LiftSlopeAddException>(() => rep.AddLiftSlopeAsync(added_lift_slope.RecordID, added_lift_slope.LiftID, added_lift_slope.SlopeID));
 
             // get_by_id correct
             LiftSlope got_lift_slope = await rep.GetLiftSlopeByIdAsync(added_lift_slope.RecordID);
@@ -52,10 +52,10 @@ namespace Tests
             await rep.DeleteLiftSlopesByIDAsync(added_lift_slope.RecordID);
 
             // get_by_id not existing
-            await Assert.ThrowsAsync<LiftSlopeException>(() => rep.GetLiftSlopeByIdAsync(added_lift_slope.RecordID));
+            await Assert.ThrowsAsync<LiftSlopeNotFoundException>(() => rep.GetLiftSlopeByIdAsync(added_lift_slope.RecordID));
 
             // DeleteLiftSlopeAsync not existing
-            await Assert.ThrowsAsync<LiftSlopeException>(() => rep.DeleteLiftSlopesByIDAsync(added_lift_slope.RecordID));
+            await Assert.ThrowsAsync<LiftSlopeDeleteException>(() => rep.DeleteLiftSlopesByIDAsync(added_lift_slope.RecordID));
 
             // end tests - empty getlist
             Assert.Empty(await rep.GetLiftsSlopesAsync());
@@ -94,8 +94,8 @@ namespace Tests
 
 
             // updates not existing
-            await Assert.ThrowsAsync<LiftSlopeException>(() => rep.UpdateLiftSlopesByIDAsync(added_lift_slope1.RecordID, added_lift_slope1.LiftID, added_lift_slope1.SlopeID));
-            await Assert.ThrowsAsync<LiftSlopeException>(() => rep.UpdateLiftSlopesByIDAsync(added_lift_slope2.RecordID, added_lift_slope2.LiftID, added_lift_slope2.SlopeID));
+            await Assert.ThrowsAsync<LiftSlopeUpdateException>(() => rep.UpdateLiftSlopesByIDAsync(added_lift_slope1.RecordID, added_lift_slope1.LiftID, added_lift_slope1.SlopeID));
+            await Assert.ThrowsAsync<LiftSlopeUpdateException>(() => rep.UpdateLiftSlopesByIDAsync(added_lift_slope2.RecordID, added_lift_slope2.LiftID, added_lift_slope2.SlopeID));
 
 
             // end tests - empty getlist
