@@ -8,5 +8,29 @@
         public LiftException(string? message, Exception? innerException) : base(message, innerException) { }
 
     }
+    public class LiftNotFoundException: LiftException
+    {
+
+    }
+
+    public class LiftAddException: LiftException
+    {
+        
+    }
+
+    public class LiftAddAutoIncrementException: LiftException
+    {
+        
+    }
+
+    public class LiftUpdateException: LiftException
+    {
+        
+    }
+
+    public class LiftDeleteException: LiftException
+    {
+        
+    }
 }
 

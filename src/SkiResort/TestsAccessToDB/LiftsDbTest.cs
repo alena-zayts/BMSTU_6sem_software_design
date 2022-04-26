@@ -41,7 +41,7 @@ namespace Tests
             Lift added_lift = new Lift(1, "A1", true , 10, 100, 1000);
             await rep.AddLiftAsync(added_lift.LiftID, added_lift.LiftName, added_lift.IsOpen, added_lift.SeatsAmount, added_lift.LiftingTime, added_lift.QueueTime);
             // add already existing
-            await Assert.ThrowsAsync<LiftException>(() => rep.AddLiftAsync(added_lift.LiftID, added_lift.LiftName, added_lift.IsOpen, added_lift.SeatsAmount, added_lift.LiftingTime, added_lift.QueueTime));
+            await Assert.ThrowsAsync<LiftAddException>(() => rep.AddLiftAsync(added_lift.LiftID, added_lift.LiftName, added_lift.IsOpen, added_lift.SeatsAmount, added_lift.LiftingTime, added_lift.QueueTime));
 
             // get_by_id correct
             Lift got_lift = await rep.GetLiftByIdAsync(added_lift.LiftID);
@@ -54,12 +54,12 @@ namespace Tests
             await rep.DeleteLiftByIDAsync(added_lift.LiftID);
 
             // get_by_id not existing
-            await Assert.ThrowsAsync<LiftException>(() => rep.GetLiftByIdAsync(added_lift.LiftID));
+            await Assert.ThrowsAsync<LiftNotFoundException>(() => rep.GetLiftByIdAsync(added_lift.LiftID));
             // get_by_id incorrect
-            await Assert.ThrowsAsync<LiftException>(() => rep.GetLiftByNameAsync(added_lift.LiftName));
+            await Assert.ThrowsAsync<LiftNotFoundException>(() => rep.GetLiftByNameAsync(added_lift.LiftName));
 
             // delete not existing
-            await Assert.ThrowsAsync<LiftException>(() => rep.DeleteLiftByIDAsync(added_lift.LiftID));
+            await Assert.ThrowsAsync<LiftDeleteException>(() => rep.DeleteLiftByIDAsync(added_lift.LiftID));
 
             // end tests - empty getlist
             Assert.Empty(await rep.GetLiftsAsync());
@@ -97,8 +97,8 @@ namespace Tests
 
 
             // updates not existing
-            await Assert.ThrowsAsync<LiftException>(() => rep.UpdateLiftByIDAsync(added_lift1.LiftID, added_lift1.LiftName, added_lift1.IsOpen, added_lift1.SeatsAmount, added_lift1.LiftingTime, added_lift1.QueueTime));
-            await Assert.ThrowsAsync<LiftException>(() => rep.UpdateLiftByIDAsync(added_lift2.LiftID, added_lift2.LiftName, added_lift2.IsOpen, added_lift2.SeatsAmount, added_lift2.LiftingTime, added_lift2.QueueTime));
+            await Assert.ThrowsAsync<LiftUpdateException>(() => rep.UpdateLiftByIDAsync(added_lift1.LiftID, added_lift1.LiftName, added_lift1.IsOpen, added_lift1.SeatsAmount, added_lift1.LiftingTime, added_lift1.QueueTime));
+            await Assert.ThrowsAsync<LiftUpdateException>(() => rep.UpdateLiftByIDAsync(added_lift2.LiftID, added_lift2.LiftName, added_lift2.IsOpen, added_lift2.SeatsAmount, added_lift2.LiftingTime, added_lift2.QueueTime));
 
 
             // end tests - empty getlist

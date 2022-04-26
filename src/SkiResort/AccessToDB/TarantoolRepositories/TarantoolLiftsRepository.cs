@@ -52,7 +52,7 @@ namespace AccessToDB.RepositoriesTarantool
 
             if (data.Data.Length != 1)
             {
-                throw new LiftException($"Error: couldn't find lift with LiftID={LiftID}");
+                throw new LiftNotFoundException();
             }
 
             return LiftConverter.DBToBL(data.Data[0]);
@@ -65,7 +65,7 @@ namespace AccessToDB.RepositoriesTarantool
 
             if (data.Data.Length != 1)
             {
-                throw new LiftException($"Error: couldn't find lift with name={name}");
+                throw new LiftNotFoundException();
             }
 
             return LiftConverter.DBToBL(data.Data[0]);
@@ -79,7 +79,7 @@ namespace AccessToDB.RepositoriesTarantool
             }
             catch (Exception ex)
             {
-                throw new LiftException($"Error: adding lift");
+                throw new LiftAddException();
             }
         }
 
@@ -92,7 +92,7 @@ namespace AccessToDB.RepositoriesTarantool
             }
             catch (Exception ex)
             {
-                throw new LiftException($"Error: couldn't auto increment");
+                throw new LiftAddAutoIncrementException($"Error: couldn't auto increment");
             }
         }
         public async Task UpdateLiftByIDAsync(uint liftID, string newLiftName, bool newIsOpen, uint newSeatsAmount, uint newLiftingTime, uint newQueueTime)
@@ -108,7 +108,7 @@ namespace AccessToDB.RepositoriesTarantool
 
             if (response.Data.Length != 1)
             {
-                throw new LiftException($"Error: updating lift");
+                throw new LiftUpdateException();
             }
         }
 
@@ -119,7 +119,7 @@ namespace AccessToDB.RepositoriesTarantool
 
             if (response.Data.Length != 1)
             {
-                throw new LiftException($"Error: deleting lift");
+                throw new LiftDeleteException();
             }
 
         }
