@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AccessToDB", "AccessToDB\Ac
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BL", "BL\BL.csproj", "{FAA9BAD8-2FE9-4F74-B4EB-E665FB469B91}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Workers", "TelegramWorker\Workers.csproj", "{3ECBF0B7-A0E3-44A1-B6EB-6E9E536E8929}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Workers", "Workers\Workers.csproj", "{3ECBF0B7-A0E3-44A1-B6EB-6E9E536E8929}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

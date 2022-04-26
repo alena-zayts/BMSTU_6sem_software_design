@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "mpmOXTp5Jar/6zmxherVozy4dknlUkQijD+kfcBINvkswXawjL3WfnK7z2d6DAYdxGJ4aq9WrbseC9SLvzlGDQ==",
+  "dgSpecHash": "WgMzddkl60VmNw1RTxRMg2AxCwgcm0+p1uaZlmjzc7HsZrtD52h+me5xX9ifyKcYbzLv7HUgWgSne6ZnG78QiQ==",
   "success": true,
-  "projectFilePath": "C:\\BMSTU_6sem_software_design\\src\\SkiResort\\TelegramWorker\\Workers.csproj",
+  "projectFilePath": "C:\\BMSTU_6sem_software_design\\src\\SkiResort\\Workers\\Workers.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\alena\\.nuget\\packages\\microsoft.extensions.configuration\\6.0.0\\microsoft.extensions.configuration.6.0.0.nupkg.sha512",
     "C:\\Users\\alena\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\6.0.0\\microsoft.extensions.configuration.abstractions.6.0.0.nupkg.sha512",
