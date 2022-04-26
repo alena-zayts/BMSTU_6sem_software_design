@@ -235,7 +235,7 @@ namespace BL
             List<Turnstile> connected_turnstiles = await turnstiles_rep.GetTurnstilesByLiftIdAsync(lift.LiftID);
             if (connected_turnstiles == null)
             {
-                throw new LiftDeleteException("Cannot delete lift because it has connected turnstiles", lift);
+                throw new LiftDeleteException("Cannot delete lift because it has connected turnstiles");
             }
 
             ILiftsSlopesRepository lifts_slopesRepository = RepositoriesFactory.CreateLiftsSlopesRepository();

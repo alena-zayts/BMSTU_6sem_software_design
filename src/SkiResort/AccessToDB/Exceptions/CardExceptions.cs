@@ -1,13 +1,13 @@
 ﻿namespace AccessToDB.Exceptions
 {
-    public class CardException : Exception
+    public class CardExceptions : Exception
     { 
-        public CardException() : base() { }
-        public CardException(string? message) : base(message) { }
-        public CardException(string? message, Exception? innerException) : base(message, innerException) { }
+        public CardExceptions() : base() { }
+        public CardExceptions(string? message) : base(message) { }
+        public CardExceptions(string? message, Exception? innerException) : base(message, innerException) { }
     }
 
-    public class CardNotFoundException: CardException
+    public class CardNotFoundException: CardExceptions
     {
         public uint? cardID;
         public CardNotFoundException(uint cardID)
@@ -16,7 +16,7 @@
         }
     }
 
-    public class CardAddingException: CardException
+    public class CardAddingException: CardExceptions
     {
         public uint? cardID;
         public DateTimeOffset? activationTime;
@@ -29,7 +29,7 @@
         }
     }
 
-    public class CardAddingAutoIncrementException: CardException
+    public class CardAddingAutoIncrementException: CardExceptions
     {
         public DateTimeOffset? activationTime;
         public string? type;
@@ -39,7 +39,7 @@
             this.type = type;
         }
     }
-    public class CardUpdateException: CardException
+    public class CardUpdateException: CardExceptions
     {
         public uint? cardID;
         public DateTimeOffset? activationTime;
@@ -51,7 +51,7 @@
             this.type = newType;
         }
     }
-    public class CardDeleteException: CardException
+    public class CardDeleteException: CardExceptions
     {
         public uint? cardID;
         public CardDeleteException(uint cardID)

@@ -135,7 +135,7 @@ namespace AccessToDB.RepositoriesTarantool
                 }
             }
 
-            catch (UserException ex) { }
+            catch (UserExceptions ex) { }
 
             return false;
         }

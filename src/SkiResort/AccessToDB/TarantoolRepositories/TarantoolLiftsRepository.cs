@@ -92,7 +92,7 @@ namespace AccessToDB.RepositoriesTarantool
             }
             catch (Exception ex)
             {
-                throw new LiftAddAutoIncrementException($"Error: couldn't auto increment");
+                throw new LiftAddAutoIncrementException();
             }
         }
         public async Task UpdateLiftByIDAsync(uint liftID, string newLiftName, bool newIsOpen, uint newSeatsAmount, uint newLiftingTime, uint newQueueTime)
