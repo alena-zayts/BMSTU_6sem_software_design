@@ -126,7 +126,7 @@ namespace AccessToDB.RepositoriesTarantool
                     result.Add(slope);
 
                 }
-                catch (SlopeException)
+                catch (SlopeNotFoundException)
                 {
                     throw new LiftSlopeException($"Error: couldn't find SlopeID={SlopeID} (for LiftID={LiftID})");
                 }

@@ -41,7 +41,7 @@ namespace Tests
             Slope added_slope = new Slope(1, "A1", true, 10);
             await rep.AddSlopeAsync(added_slope.SlopeID, added_slope.SlopeName, added_slope.IsOpen, added_slope.DifficultyLevel);
             // add already existing
-            await Assert.ThrowsAsync<SlopeException>(() => rep.AddSlopeAsync(added_slope.SlopeID, added_slope.SlopeName, added_slope.IsOpen, added_slope.DifficultyLevel));
+            await Assert.ThrowsAsync<SlopeAddException>(() => rep.AddSlopeAsync(added_slope.SlopeID, added_slope.SlopeName, added_slope.IsOpen, added_slope.DifficultyLevel));
 
             // get_by_id correct
             Slope got_slope = await rep.GetSlopeByIdAsync(added_slope.SlopeID);
@@ -54,12 +54,12 @@ namespace Tests
             await rep.DeleteSlopeByIDAsync(added_slope.SlopeID);
 
             // get_by_id not existing
-            await Assert.ThrowsAsync<SlopeException>(() => rep.GetSlopeByIdAsync(added_slope.SlopeID));
+            await Assert.ThrowsAsync<SlopeNotFoundException>(() => rep.GetSlopeByIdAsync(added_slope.SlopeID));
             // get_by_id incorrect
-            await Assert.ThrowsAsync<SlopeException>(() => rep.GetSlopeByNameAsync(added_slope.SlopeName));
+            await Assert.ThrowsAsync<SlopeNotFoundException>(() => rep.GetSlopeByNameAsync(added_slope.SlopeName));
 
             // delete not existing
-            await Assert.ThrowsAsync<SlopeException>(() => rep.DeleteSlopeByIDAsync(added_slope.SlopeID));
+            await Assert.ThrowsAsync<SlopeDeleteException>(() => rep.DeleteSlopeByIDAsync(added_slope.SlopeID));
 
             // end tests - empty getlist
             Assert.Empty(await rep.GetSlopesAsync());
@@ -97,8 +97,8 @@ namespace Tests
 
 
             // updates not existing
-            await Assert.ThrowsAsync<SlopeException>(() => rep.UpdateSlopeByIDAsync(added_slope1.SlopeID, added_slope1.SlopeName, added_slope1.IsOpen, added_slope1.DifficultyLevel));
-            await Assert.ThrowsAsync<SlopeException>(() => rep.UpdateSlopeByIDAsync(added_slope2.SlopeID, added_slope2.SlopeName, added_slope2.IsOpen, added_slope2.DifficultyLevel));
+            await Assert.ThrowsAsync<SlopeUpdateException>(() => rep.UpdateSlopeByIDAsync(added_slope1.SlopeID, added_slope1.SlopeName, added_slope1.IsOpen, added_slope1.DifficultyLevel));
+            await Assert.ThrowsAsync<SlopeUpdateException>(() => rep.UpdateSlopeByIDAsync(added_slope2.SlopeID, added_slope2.SlopeName, added_slope2.IsOpen, added_slope2.DifficultyLevel));
 
 
             // end tests - empty getlist

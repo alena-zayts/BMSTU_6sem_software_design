@@ -53,7 +53,7 @@ namespace AccessToDB.RepositoriesTarantool
 
             if (data.Data.Length != 1)
             {
-                throw new SlopeException($"Error: couldn't find slope with SlopeID={SlopeID}");
+                throw new SlopeNotFoundException();
             }
 
             return SlopeConverter.DBToBL(data.Data[0]);
@@ -66,7 +66,7 @@ namespace AccessToDB.RepositoriesTarantool
 
             if (data.Data.Length != 1)
             {
-                throw new SlopeException($"Error: couldn't find slope with name={name}");
+                throw new SlopeNotFoundException($"Error: couldn't find slope with name={name}");
             }
 
             return SlopeConverter.DBToBL(data.Data[0]);
@@ -80,7 +80,7 @@ namespace AccessToDB.RepositoriesTarantool
             }
             catch (Exception ex)
             {
-                throw new SlopeException($"Error: adding slope");
+                throw new SlopeAddException();
             }
         }
 
@@ -93,7 +93,7 @@ namespace AccessToDB.RepositoriesTarantool
             }
             catch (Exception ex)
             {
-                throw new SlopeException($"Error: couldn't auto increment ");
+                throw new SlopeAddAutoIncrementException();
             }
         }
 
@@ -108,7 +108,7 @@ namespace AccessToDB.RepositoriesTarantool
 
             if (response.Data.Length != 1)
             {
-                throw new SlopeException($"Error: updating slope");
+                throw new SlopeUpdateException();
             }
         }
 
@@ -119,7 +119,7 @@ namespace AccessToDB.RepositoriesTarantool
 
             if (response.Data.Length != 1)
             {
-                throw new SlopeException($"Error: deleting slope");
+                throw new SlopeDeleteException();
             }
 
         }
