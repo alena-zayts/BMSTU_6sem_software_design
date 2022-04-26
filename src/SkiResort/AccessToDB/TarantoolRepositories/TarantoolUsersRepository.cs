@@ -51,7 +51,7 @@ namespace AccessToDB.RepositoriesTarantool
 
             if (data.Data.Length != 1)
             {
-                throw new UserException($"Error: couldn't find user with UserID={UserID}");
+                throw new UserNotFoundException();
             }
 
             return UserConverter.DBToBL(data.Data[0]);
@@ -65,7 +65,7 @@ namespace AccessToDB.RepositoriesTarantool
             }
             catch (Exception ex)
             {
-                throw new UserException($"Error: adding user");
+                throw new UserAddException();
             }
         }
 
@@ -78,7 +78,7 @@ namespace AccessToDB.RepositoriesTarantool
             }
             catch (Exception ex)
             {
-                throw new UserException($"Error: couldn't auto increment");
+                throw new UserAddAutoIncrementException();
             }
         }
 
@@ -94,7 +94,7 @@ namespace AccessToDB.RepositoriesTarantool
 
             if (response.Data.Length != 1)
             {
-                throw new UserException($"Error: updating user");
+                throw new UserUpdateException();
             }
         }
 
@@ -105,7 +105,7 @@ namespace AccessToDB.RepositoriesTarantool
 
             if (response.Data.Length != 1)
             {
-                throw new UserException($"Error: deleting user");
+                throw new UserDeleteException();
             }
 
         }
@@ -116,7 +116,7 @@ namespace AccessToDB.RepositoriesTarantool
                 User user_tmp = await GetUserByIdAsync(UserID);
                 return true;
             }
-            catch (UserException ex)
+            catch (UserNotFoundException ex)
             {
                 return false;
             }
