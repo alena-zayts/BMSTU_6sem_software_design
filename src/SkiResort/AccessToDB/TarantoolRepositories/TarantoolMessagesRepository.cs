@@ -87,7 +87,7 @@ namespace AccessToDB.RepositoriesTarantool
 
             if (data.Data.Length != 1)
             {
-                throw new MessageException($"Error: couldn't find message with MessageID={MessageID}");
+                throw new MessageNotFoundException();
             }
 
             return MessageConverter.DBToBL(data.Data[0]);
@@ -101,7 +101,7 @@ namespace AccessToDB.RepositoriesTarantool
             }
             catch (Exception ex)
             {
-                throw new MessageException($"Error: adding message");
+                throw new MessageAddException();
             }
         }
 
@@ -114,7 +114,7 @@ namespace AccessToDB.RepositoriesTarantool
             }
             catch (Exception ex)
             {
-                throw new MessageException($"Error: couldn't auto increment ");
+                throw new MessageAddAutoIncrementException();
             }
         }
         public async Task UpdateMessageByIDAsync(uint messageID, uint newSenderID, uint newCheckedByID, string newText)
@@ -128,7 +128,7 @@ namespace AccessToDB.RepositoriesTarantool
 
             if (response.Data.Length != 1)
             {
-                throw new MessageException($"Error: updating message");
+                throw new MessageUpdateException();
             }
         }
 
@@ -139,7 +139,7 @@ namespace AccessToDB.RepositoriesTarantool
 
             if (response.Data.Length != 1)
             {
-                throw new MessageException($"Error: deleting message");
+                throw new MessageDeleteException();
             }
 
         }

@@ -8,4 +8,29 @@
         public MessageException(string? message, Exception? innerException) : base(message, innerException) { }
 
     }
+    public class MessageNotFoundException: MessageException
+    {
+
+    }
+
+    public class MessageDeleteException: MessageException
+    {
+        
+    }
+
+    public class MessageUpdateException: MessageException
+    {
+        
+    }
+
+    public class MessageAddAutoIncrementException: MessageException
+    {
+        
+    }
+
+    public class MessageAddException: MessageException
+    {
+        
+    }
+    
 }

@@ -36,7 +36,7 @@ namespace Tests
 
             //start testing 
             Assert.Empty(await rep.GetMessagesAsync());
-            Task.Delay(1000).GetAwaiter().GetResult(); //вариант 2
+            Task.Delay(1000).GetAwaiter().GetResult(); //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ 2
 
 
             // add correct
@@ -49,7 +49,7 @@ namespace Tests
 
 
             // add already existing
-            await Assert.ThrowsAsync<MessageException>(() => rep.AddMessageAsync(added_message1.MessageID, added_message1.SenderID, added_message1.CheckedByID, added_message1.Text));
+            await Assert.ThrowsAsync<MessageAddException>(() => rep.AddMessageAsync(added_message1.MessageID, added_message1.SenderID, added_message1.CheckedByID, added_message1.Text));
 
 			// get_by_ids correct
 			var got_by_sender_id = await rep.GetMessagesBySenderIdAsync(added_message1.SenderID);
@@ -83,7 +83,7 @@ namespace Tests
 
 
 			// delete not existing
-			await Assert.ThrowsAsync<MessageException>(() => rep.DeleteMessageByIDAsync(added_message1.MessageID));
+			await Assert.ThrowsAsync<MessageDeleteException>(() => rep.DeleteMessageByIDAsync(added_message1.MessageID));
 
             // end tests - empty getlist
             Assert.Empty(await rep.GetMessagesAsync());
