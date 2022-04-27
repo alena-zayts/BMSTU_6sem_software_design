@@ -11,7 +11,7 @@ using BL;
 using BL.Models;
 using BL.IRepositories;
 using AccessToDB.Converters;
-using AccessToDB.Exceptions;
+using AccessToDB.Exceptions.LiftExceptions;
 
 namespace AccessToDB.RepositoriesTarantool
 {

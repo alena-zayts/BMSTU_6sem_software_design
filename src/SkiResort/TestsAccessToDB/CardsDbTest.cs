@@ -8,7 +8,7 @@ using BL.IRepositories;
 
 
 using AccessToDB.RepositoriesTarantool;
-using AccessToDB.Exceptions;
+using AccessToDB.Exceptions.CardExceptions;
 using AccessToDB;
 
 
@@ -40,7 +40,7 @@ namespace Tests
             Card added_card = new Card(1, DateTimeOffset.FromUnixTimeSeconds(1), "child");
             await rep.AddCardAsync(added_card.CardID, added_card.ActivationTime, added_card.Type);
             // add already existing
-            await Assert.ThrowsAsync<CardAddingException>(() => rep.AddCardAsync(added_card.CardID, added_card.ActivationTime, added_card.Type));
+            await Assert.ThrowsAsync<CardAddException>(() => rep.AddCardAsync(added_card.CardID, added_card.ActivationTime, added_card.Type));
 
             // get_by_id correct
             Card got_card = await rep.GetCardByIdAsync(added_card.CardID);

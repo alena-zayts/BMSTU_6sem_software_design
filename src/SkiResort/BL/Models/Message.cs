@@ -1,4 +1,4 @@
-using BL.Exceptions;
+using BL.Exceptions.MessageExceptions;
 
 namespace BL.Models
 {

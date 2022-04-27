@@ -7,7 +7,7 @@ using BL;
 using BL.Models;
 using BL.IRepositories;
 using AccessToDB.Converters;
-using AccessToDB.Exceptions;
+using AccessToDB.Exceptions.CardExceptions;
 
 namespace AccessToDB.RepositoriesTarantool
 {
@@ -60,7 +60,7 @@ namespace AccessToDB.RepositoriesTarantool
             }
             catch (Exception ex)
             {
-                throw new CardAddingException(cardID, activationTime, type);
+                throw new CardAddException(cardID, activationTime, type);
             }
         }
         public async Task<uint> AddCardAutoIncrementAsync(DateTimeOffset activationTime, string type)
@@ -72,7 +72,7 @@ namespace AccessToDB.RepositoriesTarantool
             }
             catch (Exception ex)
             {
-                throw new CardAddingAutoIncrementException(activationTime, type);
+                throw new CardAddAutoIncrementException(activationTime, type);
             }
         }
         public async Task UpdateCardByIDAsync(uint cardID, DateTimeOffset newActivationTime, string newType)

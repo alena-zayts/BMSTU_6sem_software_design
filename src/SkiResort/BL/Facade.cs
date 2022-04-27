@@ -1,7 +1,10 @@
 ﻿using BL.Models;
 using BL.IRepositories;
 using BL.Services;
-using BL.Exceptions;
+using BL.Exceptions.UserExceptions;
+using BL.Exceptions.LiftExceptions;
+using BL.Exceptions.MessageExceptions;
+
 
 namespace BL
 {

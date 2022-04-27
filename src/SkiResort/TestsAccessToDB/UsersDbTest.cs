@@ -10,7 +10,7 @@ using BL.IRepositories;
 
 
 using AccessToDB.RepositoriesTarantool;
-using AccessToDB.Exceptions;
+using AccessToDB.Exceptions.UserExceptions;
 using AccessToDB;
 
 

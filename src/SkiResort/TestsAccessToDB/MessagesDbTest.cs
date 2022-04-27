@@ -9,7 +9,7 @@ using BL.IRepositories;
 
 
 using AccessToDB.RepositoriesTarantool;
-using AccessToDB.Exceptions;
+using AccessToDB.Exceptions.MessageExceptions;
 using AccessToDB;
 
 
@@ -36,7 +36,7 @@ namespace Tests
 
             //start testing 
             Assert.Empty(await rep.GetMessagesAsync());
-            Task.Delay(1000).GetAwaiter().GetResult(); //������� 2
+            await Task.Delay(1000); //������� 2
 
 
             // add correct

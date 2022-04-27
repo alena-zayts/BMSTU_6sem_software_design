@@ -3,7 +3,7 @@ using BL;
 using Ninject;
 using BL.Models;
 using System.Threading.Tasks;
-using BL.Exceptions;
+using BL.Exceptions.UserExceptions;
 using System.Collections.Generic;
 
 

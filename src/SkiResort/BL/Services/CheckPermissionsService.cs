@@ -1,6 +1,6 @@
 ﻿using BL.IRepositories;
 using BL.Models;
-using BL.Exceptions;
+using BL.Exceptions.PermissionExceptions;
 
 namespace BL.Services
 {
@@ -16,7 +16,7 @@ namespace BL.Services
                 // admin only
                 if (memberName.Contains("Admin"))
                 {
-                    throw new PermissionsException("", userID, memberName);
+                    throw new PermissionException("", userID, memberName);
                 }
 
                 // ski_patrol
@@ -26,7 +26,7 @@ namespace BL.Services
                 {
                     if (permissions != PermissionsEnum.SKI_PATROL)
                     {
-                        throw new PermissionsException("", userID, memberName);
+                        throw new PermissionException("", userID, memberName);
                     }
                 }
 
@@ -38,25 +38,25 @@ namespace BL.Services
                         // authorized but not ski patrol
                         case "SendMessageAsync":
                             if (permissions == PermissionsEnum.AUTHORIZED) { return; }
-                            throw new PermissionsException("", userID, memberName);
+                            throw new PermissionException("", userID, memberName);
 
 
                         case "LogInAsync":
                             if (permissions == PermissionsEnum.UNAUTHORIZED) { return; }
-                            throw new PermissionsException("", userID, memberName);
+                            throw new PermissionException("", userID, memberName);
 
 
                         case "RegisterAsync":
                             if (permissions == PermissionsEnum.UNAUTHORIZED) { return; }
-                            throw new PermissionsException("", userID, memberName);
+                            throw new PermissionException("", userID, memberName);
 
 
                         case "LogOutAsync":
                             if (permissions != PermissionsEnum.UNAUTHORIZED) { return; }
-                            throw new PermissionsException("", userID, memberName);
+                            throw new PermissionException("", userID, memberName);
                     }
 
-                    throw new PermissionsException($"unknown function {memberName}", userID, memberName);
+                    throw new PermissionException($"unknown function {memberName}", userID, memberName);
                 }
             }
         }

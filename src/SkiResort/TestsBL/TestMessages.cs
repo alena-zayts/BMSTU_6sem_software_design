@@ -3,7 +3,8 @@ using BL;
 using Ninject;
 using BL.Models;
 using System.Threading.Tasks;
-using BL.Exceptions;
+using BL.Exceptions.PermissionExceptions;
+using BL.Exceptions.MessageExceptions;
 using System.Collections.Generic;
 
 
@@ -27,14 +28,14 @@ namespace TestsBL
 
             Assert.Equal(Message.MessageCheckedByNobody, sentMessage1.CheckedByID);
             Assert.Equal(Message.MessageCheckedByNobody, sentMessage2.CheckedByID);
-            await Assert.ThrowsAsync<PermissionsException>(() => facade.SendMessageAsync(TestUsersCreator.unauthorizedID, "test text 0"));
+            await Assert.ThrowsAsync<PermissionException>(() => facade.SendMessageAsync(TestUsersCreator.unauthorizedID, "test text 0"));
 
 
             Message readMessage1 = await facade.MarkMessageReadByUserAsync(TestUsersCreator.skiPatrolID, sentMessage1.MessageID);
             Assert.Equal(TestUsersCreator.skiPatrolID, readMessage1.CheckedByID);
             await Assert.ThrowsAsync<MessageCheckingException>(() => facade.MarkMessageReadByUserAsync(TestUsersCreator.skiPatrolID, sentMessage1.MessageID));
-            await Assert.ThrowsAsync<PermissionsException>(() => facade.MarkMessageReadByUserAsync(TestUsersCreator.authorizedID, sentMessage2.MessageID));
-            await Assert.ThrowsAsync<PermissionsException>(() => facade.MarkMessageReadByUserAsync(TestUsersCreator.unauthorizedID, sentMessage2.MessageID));
+            await Assert.ThrowsAsync<PermissionException>(() => facade.MarkMessageReadByUserAsync(TestUsersCreator.authorizedID, sentMessage2.MessageID));
+            await Assert.ThrowsAsync<PermissionException>(() => facade.MarkMessageReadByUserAsync(TestUsersCreator.unauthorizedID, sentMessage2.MessageID));
 
             Message updatedMessage2 = new(sentMessage2.MessageID, sentMessage2.SenderID, sentMessage2.CheckedByID, "another text");
             await facade.AdminUpdateMessageAsync(TestUsersCreator.adminID, updatedMessage2);
