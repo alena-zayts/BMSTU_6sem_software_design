@@ -38,34 +38,44 @@ What is a REST API? - Red Hat [Электронный ресурс].
   \url{https://www.redhat.com/en/topics/api/what-is-a-rest-api} (дата
   обращения: 07.06.2021).
 
-\bibitem{standard}
-\selectlanguageifdefined{russian}
-Образовательные стандарты | МГТУ им. Н. Э.
-  Баумана [Электронный ресурс].
-\newblock Режим доступа: \url{https://bmstu.ru/plain/eduStandarts/}
-  (дата обращения: 07.06.2021).
-
-\bibitem{bmstu}
-\selectlanguageifdefined{russian}
-МГТУ им. Н. Э. Баумана -- Официальный сайт
-  [Электронный ресурс].
-\newblock Режим доступа: \url{https://bmstu.ru/} (дата
-  обращения: 07.06.2021).
-
 \bibitem{database}
 \selectlanguageifdefined{russian}
 Что такое база данных | Oracle Россия и СНГ
   [Электронный ресурс].
 \newblock Режим доступа:
   \url{https://www.oracle.com/ru/database/what-is-database/} (дата
-  обращения: 07.06.2021).
+  обращения: 29.04.2022).
 
-\bibitem{subd}
+\bibitem{inmemory}
 \selectlanguageifdefined{russian}
-Что такое СУБД - RU-CENTER [Электронный ресурс].
+Системы и технологии баз данных в памяти |
+  Microsoft [Электронный ресурс].
 \newblock Режим доступа:
-  \url{https://www.nic.ru/help/chto-takoe-subd_8580.html} (дата
-  обращения: 07.06.2021).
+  \url{https://docs.microsoft.com/ru-ru/sql/relational-databases/in-memory-database?view=sql-server-ver15}
+  (дата обращения: 29.04.2022).
+
+\bibitem{why}
+\selectlanguageifdefined{russian}
+In-Memory. База данных в оперативной памяти
+  |ECM-Journal [Электронный ресурс].
+\newblock Режим доступа:
+  \url{https://ecm-journal.ru/material/In-Memory-Baza-dannykh-v-operativnojj-pamjati}
+  (дата обращения: 29.04.2022).
+
+\bibitem{adv}
+\selectlanguageifdefined{russian}
+In-Memory Database [Электронный ресурс].
+\newblock Режим доступа:
+  \url{https://ru.bmstu.wiki/IMDB_(In-memory_Database)} (дата
+  обращения: 29.04.2022).
+
+\bibitem{lookslike}
+\selectlanguageifdefined{russian}
+4 крупных примера внедрения Tarantool | Big Data School
+  [Электронный ресурс].
+\newblock Режим доступа:
+  \url{https://www.bigdataschool.ru/blog/tarantool-use-cases-and-advantages.html}
+  (дата обращения: 29.04.2022).
 
 \bibitem{microservice}
 \selectlanguageifdefined{russian}

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.6) (preloaded format=pdflatex 2021.9.4)  28 APR 2022 23:08
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.6) (preloaded format=pdflatex 2021.9.4)  29 APR 2022 21:18
 entering extended mode
 **./report.tex
 (report.tex
@@ -1473,8 +1473,7 @@ Package shellesc Info: Restricted shell escape enabled on input line 77.
 \c@csvcol=\count344
 \csv@out=\write4
 )) (report.aux
-(01-contents.aux) (02-intro.aux) (10-analysis.aux) (20-design.aux) (30-impl.aux
-) (40-research.aux) (50-conclusion.aux) (51-biblio.aux))
+(01-contents.aux) (10-analysis.aux) (51-biblio.aux))
 \openout1 = `report.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 5.
@@ -1592,15 +1591,19 @@ LaTeX Info: Redefining \nameref on input line 5.
 \openout2 = `01-contents.aux'.
 
  (01-contents.tex (report.toc<<ot1.cmap>><<oml.cmap>><<oms.cmap>><<omx.cmap>>
-LaTeX Font Info:    Trying to load font information for U+msa on input line 4.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 3.
 
 (C:\Program Files\MiKTeX\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 4.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 3.
 
 (C:\Program Files\MiKTeX\tex/latex/amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+))
+\tf@toc=\write6
+\openout6 = `report.toc'.
+
 ) [1
 
 
@@ -1608,30 +1611,12 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 
 
 
-{C:/Users/alena/AppData/Local/MiKTeX/pdftex/config/pdftex.map}])
-\tf@toc=\write6
-\openout6 = `report.toc'.
-
-) [2]
-\openout2 = `02-intro.aux'.
-
- (02-intro.tex
-Overfull \hbox (1.54553pt too wide) in paragraph at lines 16--17
-[]\T2A/cmr/m/n/14.4 проанализировать си-сте-мы управ-ле-ни€ ба-за-ми дан-ных и 
-вы-брать под-
- []
-
-) [3
-
-
-
-
-]
+{C:/Users/alena/AppData/Local/MiKTeX/pdftex/config/pdftex.map}]
 \openout2 = `10-analysis.aux'.
 
  (10-analysis.tex
 {\cyrillictext \CYRG \cyrl \cyra \cyrv \cyra } 1.
-[4
+[2
 
 
 
@@ -1642,303 +1627,98 @@ Overfull \hbox (4.37938pt too wide) in paragraph at lines 48--49
 ван-ный (обыч-ный) поль-
  []
 
-[5] [6]
-Underfull \hbox (badness 10000) in paragraph at lines 102--103
-
- []
-
-LaTeX Font Info:    Trying to load font information for T2A+cmtt on input line 
-104.
-(C:\Users\alena\AppData\Roaming\MiKTeX\tex/latex/cyrillic\t2acmtt.fd
-File: t2acmtt.fd 2001/08/11 v1.0a Computer Modern Cyrillic font definitions
-) [7]
-Underfull \hbox (badness 10000) in paragraph at lines 108--109
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 110--111
-
- []
-
-
-Overfull \hbox (0.77972pt too wide) in paragraph at lines 114--115
-[]\T2A/cmr/m/n/14.4 OLAP-системы ши-ро-ко ис-поль-зу-ют-с€ ме-то-да-ми ин-тел-л
-ек-ту-аль-но-го ана-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 128--129
-
- []
-
-[8]
-Underfull \hbox (badness 10000) in paragraph at lines 130--131
-
- []
-
-
-Overfull \hbox (1.40134pt too wide) in paragraph at lines 132--133
-[]\T2A/cmr/m/n/14.4 PostgreSQL [[]] -- это сво-бод-но рас-про-стра-н€-е-ма€ объ
-ектно-рел€ционна€
- []
-
-
+[3] [4] [5] [6]
 Underfull \hbox (badness 10000) in paragraph at lines 136--137
 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 138--139
+LaTeX Font Info:    Trying to load font information for T2A+cmtt on input line 
+138.
+(C:\Users\alena\AppData\Roaming\MiKTeX\tex/latex/cyrillic\t2acmtt.fd
+File: t2acmtt.fd 2001/08/11 v1.0a Computer Modern Cyrillic font definitions
+)
+Underfull \hbox (badness 10000) in paragraph at lines 142--143
 
  []
 
-[9]
+
 Underfull \hbox (badness 10000) in paragraph at lines 144--145
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 146--147
+Overfull \hbox (0.77972pt too wide) in paragraph at lines 148--149
+[]\T2A/cmr/m/n/14.4 OLAP-системы ши-ро-ко ис-поль-зу-ют-с€ ме-то-да-ми ин-тел-л
+ек-ту-аль-но-го ана-
+ []
+
+[7]
+Underfull \hbox (badness 10000) in paragraph at lines 162--163
 
  []
 
-[10]
+
 Underfull \hbox (badness 10000) in paragraph at lines 164--165
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 166--168
+Overfull \hbox (1.40134pt too wide) in paragraph at lines 166--167
+[]\T2A/cmr/m/n/14.4 PostgreSQL [[]] -- это сво-бод-но рас-про-стра-н€-е-ма€ объ
+ектно-рел€ционна€
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 170--171
+
+ []
+
+[8]
+Underfull \hbox (badness 10000) in paragraph at lines 172--173
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 169--170
+Underfull \hbox (badness 10000) in paragraph at lines 178--179
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 175--176
+Underfull \hbox (badness 10000) in paragraph at lines 180--181
 
  []
 
-[11]
-Underfull \hbox (badness 10000) in paragraph at lines 187--188
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 189--190
-
- []
-
-[12]
-
-LaTeX Warning: Reference `sec:rpd-structure' on page 13 undefined on input line
- 215.
-
-[13]) [14]
-\openout2 = `20-design.aux'.
-
- (20-design.tex
-{\cyrillictext \CYRG \cyrl \cyra \cyrv \cyra } 2.
-<img/arch.jpg, id=315, 447.6725pt x 228.855pt>
-File: img/arch.jpg Graphic file (type jpg)
-<use img/arch.jpg>
-Package pdftex.def Info: img/arch.jpg  used on input line 11.
-(pdftex.def)             Requested size: 223.8357pt x 114.42722pt.
-
-Underfull \hbox (badness 10000) in paragraph at lines 20--21
-
- []
-
-<img/er-chen.jpg, id=317, 1346.02875pt x 974.64125pt>
-File: img/er-chen.jpg Graphic file (type jpg)
-<use img/er-chen.jpg>
-Package pdftex.def Info: img/er-chen.jpg  used on input line 24.
-(pdftex.def)             Requested size: 471.11713pt x 341.12955pt.
-
-Overfull \hbox (1.64664pt too wide) in paragraph at lines 24--25
- [] 
- []
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-[15
-
-
-
-
- <./img/arch.jpg>]
-Underfull \hbox (badness 10000) in paragraph at lines 40--41
+[9]
+Underfull \hbox (badness 10000) in paragraph at lines 198--199
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 49--50
-
- []
-
-[16 <./img/er-chen.jpg>]
-Overfull \hbox (20.96237pt too wide) in paragraph at lines 55--56
-[]\T2A/cmtt/m/n/14.4 discipline_id \T2A/cmr/m/n/14.4 -- внеш-ний ключ дл€ таб-л
-и-цы \T2A/cmtt/m/n/14.4 discipline_work_program\T2A/cmr/m/n/14.4 ; 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 62--63
+Underfull \hbox (badness 10000) in paragraph at lines 200--202
 
  []
 
 
-Overfull \hbox (20.96237pt too wide) in paragraph at lines 68--69
-[]\T2A/cmtt/m/n/14.4 discipline_id \T2A/cmr/m/n/14.4 -- внеш-ний ключ дл€ таб-л
-и-цы \T2A/cmtt/m/n/14.4 discipline_work_program\T2A/cmr/m/n/14.4 ; 
+Underfull \hbox (badness 10000) in paragraph at lines 203--204
+
  []
 
-
-Overfull \hbox (0.47592pt too wide) in paragraph at lines 72--73
-[]\T2A/cmtt/m/n/14.4 lectures_hours \T2A/cmr/m/n/14.4 -- ко-ли-че-ство ча-сов, 
-вы-де-лен-ных дл€ про-ве-де-ни€ лек-
- []
-
-[17]
-Underfull \hbox (badness 10000) in paragraph at lines 79--80
+[10]
+Underfull \hbox (badness 10000) in paragraph at lines 209--210
 
  []
 
 
-Overfull \hbox (20.96237pt too wide) in paragraph at lines 85--86
-[]\T2A/cmtt/m/n/14.4 discipline_id \T2A/cmr/m/n/14.4 -- внеш-ний ключ дл€ таб-л
-и-цы \T2A/cmtt/m/n/14.4 discipline_work_program\T2A/cmr/m/n/14.4 ; 
- []
-
-
-Overfull \hbox (0.47592pt too wide) in paragraph at lines 90--91
-[]\T2A/cmtt/m/n/14.4 lectures_hours \T2A/cmr/m/n/14.4 -- ко-ли-че-ство ча-сов, 
-вы-де-лен-ных дл€ про-ве-де-ни€ лек-
- []
-
-[18]
-Underfull \hbox (badness 10000) in paragraph at lines 99--100
+Underfull \hbox (badness 10000) in paragraph at lines 221--222
 
  []
 
 
-Overfull \hbox (20.96237pt too wide) in paragraph at lines 105--106
-[]\T2A/cmtt/m/n/14.4 discipline_id \T2A/cmr/m/n/14.4 -- внеш-ний ключ дл€ таб-л
-и-цы \T2A/cmtt/m/n/14.4 discipline_work_program\T2A/cmr/m/n/14.4 ; 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 109--110
+Underfull \hbox (badness 10000) in paragraph at lines 223--224
 
  []
 
-[19]) [20]
-\openout2 = `30-impl.aux'.
-
- (30-impl.tex
-{\cyrillictext \CYRG \cyrl \cyra \cyrv \cyra } 3.
-
-Overfull \hbox (0.57263pt too wide) in paragraph at lines 3--4
-[]\T2A/cmr/m/n/14.4 ¬ дан-ном раз-де-ле пред-став-ле-ны ар-хи-тек-ту-ра при-ло-
-же-ни€, сред-ства раз-
- []
-
-<img/app-arch.jpg, id=346, 581.17125pt x 192.72pt>
-File: img/app-arch.jpg Graphic file (type jpg)
-<use img/app-arch.jpg>
-Package pdftex.def Info: img/app-arch.jpg  used on input line 15.
-(pdftex.def)             Requested size: 464.93764pt x 154.1762pt.
-[21
-
-
-
-
- <./img/app-arch.jpg>]
-Overfull \hbox (2.87463pt too wide) in paragraph at lines 30--31
-[]\T2A/cmr/m/n/14.4 “естирование про-грамм-но-го про-дук-та про-из-во-ди-лось с
- по-мо-щью фрейм-
- []
-
-(C:\Program Files\MiKTeX\tex/latex/listings\lstlang1.sty
-File: lstlang1.sty 2020/03/24 1.8d listings language file
-)
-LaTeX Font Info:    Font shape `T2A/cmtt/bx/n' in size <10> not available
-(Font)              Font shape `T2A/cmtt/m/n' tried instead on input line 37.
- [22] [23] [24]
-[25] [26] [27] [28] [29] [30] [31] [32] [33]
-<img/save_example.jpg, id=936, 554.07pt x 513.41812pt>
-File: img/save_example.jpg Graphic file (type jpg)
-<use img/save_example.jpg>
-Package pdftex.def Info: img/save_example.jpg  used on input line 565.
-(pdftex.def)             Requested size: 443.2566pt x 410.73505pt.
-<img/delete_example.jpg, id=937, 703.12688pt x 123.46124pt>
-File: img/delete_example.jpg Graphic file (type jpg)
-<use img/delete_example.jpg>
-Package pdftex.def Info: img/delete_example.jpg  used on input line 574.
-(pdftex.def)             Requested size: 457.02705pt x 80.24884pt.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-<img/get_example.jpg, id=938, 669.2503pt x 963.6pt>
-File: img/get_example.jpg Graphic file (type jpg)
-<use img/get_example.jpg>
-Package pdftex.def Info: img/get_example.jpg  used on input line 584.
-(pdftex.def)             Requested size: 401.55328pt x 578.16447pt.
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-) [34 <./img/save_example.jpg>] [35 <./img/delete_example.jpg>] [36 <./img/get_
-example.jpg>]
-\openout2 = `40-research.aux'.
-
- (40-research.tex
-{\cyrillictext \CYRG \cyrl \cyra \cyrv \cyra } 4.
-[37
-
-
-
-
-]
-PGFPlots: reading {csv/cache_01.csv}
-PGFPlots: reading {csv/storage_01.csv}
- [38]
-PGFPlots: reading {csv/cache_02.csv}
-PGFPlots: reading {csv/storage_02.csv}
-PGFPlots: reading {csv/cache_03.csv}
-PGFPlots: reading {csv/storage_03.csv}
- [39]
-Overfull \hbox (4.21558pt too wide) in paragraph at lines 150--151
-[]\T2A/cmr/m/n/14.4 Ёффективность кэ-ши-ро-ва-ни€ дан-ных в раз-ра-бо-тан-ном п
-ри-ло-же-нии пол-
- []
-
-[40]) [41]
-\openout2 = `50-conclusion.aux'.
-
- (50-conclusion.tex
-Overfull \hbox (5.13849pt too wide) in paragraph at lines 9--10
-\T2A/cmr/m/n/14.4 пе-че-ние, де-мон-стри-ру-ю-щее уско-ре-ние от-кли-ка при-ло-
-же-ни€ с по-мо-щью внед-
- []
-
-)
-Overfull \hbox (3.02855pt too wide) in paragraph at lines 11--15
-\T2A/cmr/m/n/14.4 уста-нов-ле-но, что при-ло-же-ние с кэ-ши-ро-ва-ни-ем дан-ных
- все-гда ра-бо-та-ет быст-
- []
-
-[42
-
-
-
-
-]
+[11] [12]) [13]
 \openout2 = `51-biblio.aux'.
 
  (51-biblio.tex (report.bbl
@@ -1954,115 +1734,135 @@ rogrammy _
  []
 
 
-Underfull \hbox (badness 2134) in paragraph at lines 57--62
+Underfull \hbox (badness 2134) in paragraph at lines 43--48
 []\T2A/cmr/m/n/14.4 „то та-кое ба-за дан-ных | Oracle –ос-си€ и —Ќ√ [Ёлек-трон-
 ный
  []
 
 
-Underfull \hbox (badness 1132) in paragraph at lines 57--62
+Underfull \hbox (badness 1132) in paragraph at lines 43--48
 \T2A/cmr/m/n/14.4 ре-сурс].  –е-жим до-сту-па: []$\T2A/cmtt/m/n/14.4 https : / 
 / www . oracle . com / ru / database /
  []
 
 
-Underfull \hbox (badness 6708) in paragraph at lines 81--86
-\T2A/cmtt/m/n/14.4 dotnet / visual-[]basic / race-[]conditions-[]deadlocks$[] \
-T2A/cmr/m/n/14.4 (да-та об-ра-ще-
+Underfull \hbox (badness 1226) in paragraph at lines 51--56
+[]\T2A/cmr/m/n/14.4 —истемы и тех-но-ло-гии баз дан-ных в па-м€-ти | Microsoft 
+[Ёлек-
  []
 
-[43
+
+Underfull \hbox (badness 10000) in paragraph at lines 51--56
+\T2A/cmtt/m/n/14.4 ru-[]ru / sql / relational-[]databases / in-[]memory-[]datab
+ase ? view =
+ []
+
+
+Underfull \hbox (badness 5431) in paragraph at lines 59--64
+[]\T2A/cmr/m/n/14.4 In-Memory. Ѕа-за дан-ных в опе-ра-тив-ной па-м€-ти |ECM-Jou
+rnal
+ []
+
+
+Underfull \hbox (badness 1596) in paragraph at lines 59--64
+\T2A/cmtt/m/n/14.4 material / In-[]Memory-[]Baza-[]dannykh-[]v-[]operativnojj-[
+]pamjati$[] \T2A/cmr/m/n/14.4 (да-та
+ []
+
+
+Underfull \hbox (badness 5592) in paragraph at lines 67--71
+[]\T2A/cmr/m/n/14.4 In-Memory Database [Ёлек-трон-ный ре-сурс].  –е-жим до-сту-
+па:
+ []
+
+[14
 
 
 
 
 ]
-Underfull \hbox (badness 2181) in paragraph at lines 101--105
+Underfull \hbox (badness 6708) in paragraph at lines 91--96
+\T2A/cmtt/m/n/14.4 dotnet / visual-[]basic / race-[]conditions-[]deadlocks$[] \
+T2A/cmr/m/n/14.4 (да-та об-ра-ще-
+ []
+
+
+Underfull \hbox (badness 2181) in paragraph at lines 111--115
 \T2A/cmr/m/n/14.4 па: []$\T2A/cmtt/m/n/14.4 https : / / postgrespro . ru / docs
  / postgresql/$[] \T2A/cmr/m/n/14.4 (да-та об-ра-ще-ни€:
  []
 
 
-Underfull \hbox (badness 1253) in paragraph at lines 124--129
+Underfull \hbox (badness 1253) in paragraph at lines 134--139
 []\T2A/cmr/m/n/14.4 Documentation: 12: 13.1. Introduction - PostgreSQL [Ёлек-тр
 он-ный
  []
 
 
-Underfull \hbox (badness 1132) in paragraph at lines 124--129
+Underfull \hbox (badness 1132) in paragraph at lines 134--139
 \T2A/cmr/m/n/14.4 ре-сурс].  –е-жим до-сту-па: []$\T2A/cmtt/m/n/14.4 https : / 
 / www . postgresql . org / docs / 12 /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 132--137
+Underfull \hbox (badness 10000) in paragraph at lines 142--147
 \T2A/cmr/m/n/14.4 –е-жим до-сту-па: []$\T2A/cmtt/m/n/14.4 https : / / www . ibm
  . com / docs / ru / aix / 7 . 2 ? topic =
  []
 
-[44]
-Underfull \hbox (badness 1019) in paragraph at lines 160--164
+[15]
+Underfull \hbox (badness 1019) in paragraph at lines 170--174
 \T2A/cmr/m/n/14.4 cloud-native applications. [Ёлек-трон-ный ре-сурс].  –е-жим д
 о-сту-па:
  []
 
-
-Underfull \hbox (badness 6284) in paragraph at lines 222--227
+[16]
+Underfull \hbox (badness 6284) in paragraph at lines 232--237
 []\T2A/cmr/m/n/14.4 Tech Confronts Its Use of the Labels <<Master>> and <<Slave
 >>
  []
 
 
-Underfull \hbox (badness 5681) in paragraph at lines 222--227
+Underfull \hbox (badness 5681) in paragraph at lines 232--237
 \T2A/cmtt/m/n/14.4 story / tech-[]confronts-[]use-[]labels-[]master-[]slave/$[]
  \T2A/cmr/m/n/14.4 (да-та об-ра-ще-
  []
 
 
-Underfull \hbox (badness 2521) in paragraph at lines 230--235
+Underfull \hbox (badness 2521) in paragraph at lines 240--245
 \T2A/cmtt/m/n/14.4 tutorials / how-[]to-[]set-[]up-[]mysql-[]master-[]master-[]
 replication$[] \T2A/cmr/m/n/14.4 (да-
  []
 
-[45]
-Underfull \hbox (badness 2512) in paragraph at lines 238--243
+
+Underfull \hbox (badness 2512) in paragraph at lines 248--253
 []\T2A/cmr/m/n/14.4 ƒвижки ба-зы дан-ных | Tarantool [Ёлек-трон-ный ре-сурс].  
 –е-
  []
 
-[46])) [47] (report.aux (01-contents.aux) (02-intro.aux) (10-analysis.aux)
-(20-design.aux) (30-impl.aux) (40-research.aux) (50-conclusion.aux)
-(51-biblio.aux))
-
-LaTeX Warning: There were undefined references.
-
+[17])) [18] (report.aux (01-contents.aux) (10-analysis.aux) (51-biblio.aux))
 Package rerunfilecheck Info: File `report.out' has not changed.
-(rerunfilecheck)             Checksum: BA889D41DB628CE6702FB4CC51C8FC56;9015.
+(rerunfilecheck)             Checksum: 5D96EE00195D00C04FC2F493AF4458D7;4782.
  ) 
 Here is how much of TeX's memory you used:
- 41542 strings out of 478864
- 927317 string characters out of 2858518
- 1834851 words of memory out of 10000000
- 58050 multiletter control sequences out of 15000+600000
- 414291 words of font info for 50 fonts, out of 8000000 for 9000
+ 39740 strings out of 478864
+ 895029 string characters out of 2858518
+ 1305567 words of memory out of 10000000
+ 56888 multiletter control sequences out of 15000+600000
+ 413184 words of font info for 48 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 106i,19n,108p,1073b,2377s stack positions out of 5000i,500n,10000p,200000b,80000s
- <C:\Users\alena\AppData\Local\MiKTeX\fonts/pk/ljfour/lh/lh-t2a/dpi600\latt10
-00.pk> <C:\Users\alena\AppData\Local\MiKTeX\fonts/pk/ljfour/lh/lh-t2a/dpi600\la
-rm1000.pk> <C:\Users\alena\AppData\Local\MiKTeX\fonts/pk/ljfour/lh/lh-t2a/dpi60
-0\latt1440.pk> <C:\Users\alena\AppData\Local\MiKTeX\fonts/pk/ljfour/lh/lh-t2a/d
-pi600\labx1728.pk> <C:\Users\alena\AppData\Local\MiKTeX\fonts/pk/ljfour/lh/lh-t
-2a/dpi600\labx2074.pk> <C:\Users\alena\AppData\Local\MiKTeX\fonts/pk/ljfour/jkn
-appen/ec/dpi600\tcrm1440.pk> <C:\Users\alena\AppData\Local\MiKTeX\fonts/pk/ljfo
-ur/lh/lh-t2a/dpi600\larm1440.pk> <C:\Users\alena\AppData\Local\MiKTeX\fonts/pk/
-ljfour/lh/lh-t2a/dpi600\labx1440.pk> <C:\Users\alena\AppData\Local\MiKTeX\fonts
-/pk/ljfour/lh/lh-t2a/dpi600\labx2488.pk><C:/Program Files/MiKTeX/fonts/type1/pu
-blic/amsfonts/cm/cmr10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts
-/cm/cmr12.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pf
-b>
-Output written on report.pdf (47 pages, 851065 bytes).
+ 106i,14n,108p,1073b,609s stack positions out of 5000i,500n,10000p,200000b,80000s
+ <C:\Users\alena\AppData\Local\MiKTeX\fonts/pk/ljfour/lh/lh-t2a/dpi600\latt14
+40.pk> <C:\Users\alena\AppData\Local\MiKTeX\fonts/pk/ljfour/lh/lh-t2a/dpi600\la
+bx1728.pk> <C:\Users\alena\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi
+600\tcrm1440.pk> <C:\Users\alena\AppData\Local\MiKTeX\fonts/pk/ljfour/lh/lh-t2a
+/dpi600\labx2074.pk> <C:\Users\alena\AppData\Local\MiKTeX\fonts/pk/ljfour/lh/lh
+-t2a/dpi600\larm1440.pk> <C:\Users\alena\AppData\Local\MiKTeX\fonts/pk/ljfour/l
+h/lh-t2a/dpi600\labx1440.pk> <C:\Users\alena\AppData\Local\MiKTeX\fonts/pk/ljfo
+ur/lh/lh-t2a/dpi600\labx2488.pk>
+Output written on report.pdf (18 pages, 218606 bytes).
 PDF statistics:
- 1735 PDF objects out of 2073 (max. 8388607)
- 652 named destinations out of 1000 (max. 500000)
- 335 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 711 PDF objects out of 1000 (max. 8388607)
+ 78 named destinations out of 1000 (max. 500000)
+ 161 words of extra memory for PDF output out of 10000 (max. 10000000)
 
