@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.6) (preloaded format=pdflatex 2021.9.4)  29 APR 2022 21:18
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.6) (preloaded format=pdflatex 2021.9.4)  29 APR 2022 23:04
 entering extended mode
 **./report.tex
 (report.tex
@@ -1627,101 +1627,16 @@ Overfull \hbox (4.37938pt too wide) in paragraph at lines 48--49
 ван-ный (обыч-ный) поль-
  []
 
-[3] [4] [5] [6]
-Underfull \hbox (badness 10000) in paragraph at lines 136--137
-
- []
-
-LaTeX Font Info:    Trying to load font information for T2A+cmtt on input line 
-138.
-(C:\Users\alena\AppData\Roaming\MiKTeX\tex/latex/cyrillic\t2acmtt.fd
-File: t2acmtt.fd 2001/08/11 v1.0a Computer Modern Cyrillic font definitions
-)
-Underfull \hbox (badness 10000) in paragraph at lines 142--143
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 144--145
-
- []
-
-
-Overfull \hbox (0.77972pt too wide) in paragraph at lines 148--149
-[]\T2A/cmr/m/n/14.4 OLAP-системы ши-ро-ко ис-поль-зу-ют-с€ ме-то-да-ми ин-тел-л
-ек-ту-аль-но-го ана-
- []
-
-[7]
-Underfull \hbox (badness 10000) in paragraph at lines 162--163
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 164--165
-
- []
-
-
-Overfull \hbox (1.40134pt too wide) in paragraph at lines 166--167
-[]\T2A/cmr/m/n/14.4 PostgreSQL [[]] -- это сво-бод-но рас-про-стра-н€-е-ма€ объ
-ектно-рел€ционна€
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 170--171
-
- []
-
-[8]
-Underfull \hbox (badness 10000) in paragraph at lines 172--173
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 178--179
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 180--181
-
- []
-
-[9]
-Underfull \hbox (badness 10000) in paragraph at lines 198--199
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 200--202
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 203--204
-
- []
-
-[10]
-Underfull \hbox (badness 10000) in paragraph at lines 209--210
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 221--222
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 223--224
-
- []
-
-[11] [12]) [13]
+[3] [4] [5] [6] [7]) [8]
 \openout2 = `51-biblio.aux'.
 
  (51-biblio.tex (report.bbl
+LaTeX Font Info:    Trying to load font information for T2A+cmtt on input line 
+16.
+
+(C:\Users\alena\AppData\Roaming\MiKTeX\tex/latex/cyrillic\t2acmtt.fd
+File: t2acmtt.fd 2001/08/11 v1.0a Computer Modern Cyrillic font definitions
+)
 Underfull \hbox (badness 10000) in paragraph at lines 12--18
 \T2A/cmtt/m/n/14.4 / / www . volgmed . ru / uploads / files / 2010-[]11 / 1180-
 []polozhenie _
@@ -1775,7 +1690,7 @@ Underfull \hbox (badness 5592) in paragraph at lines 67--71
 па:
  []
 
-[14
+[9
 
 
 
@@ -1810,13 +1725,13 @@ Underfull \hbox (badness 10000) in paragraph at lines 142--147
  . com / docs / ru / aix / 7 . 2 ? topic =
  []
 
-[15]
+[10]
 Underfull \hbox (badness 1019) in paragraph at lines 170--174
 \T2A/cmr/m/n/14.4 cloud-native applications. [Ёлек-трон-ный ре-сурс].  –е-жим д
 о-сту-па:
  []
 
-[16]
+[11]
 Underfull \hbox (badness 6284) in paragraph at lines 232--237
 []\T2A/cmr/m/n/14.4 Tech Confronts Its Use of the Labels <<Master>> and <<Slave
 >>
@@ -1840,18 +1755,24 @@ Underfull \hbox (badness 2512) in paragraph at lines 248--253
 –е-
  []
 
-[17])) [18] (report.aux (01-contents.aux) (10-analysis.aux) (51-biblio.aux))
-Package rerunfilecheck Info: File `report.out' has not changed.
-(rerunfilecheck)             Checksum: 5D96EE00195D00C04FC2F493AF4458D7;4782.
+[12])) [13] (report.aux (01-contents.aux) (10-analysis.aux) (51-biblio.aux))
+
+Package rerunfilecheck Warning: File `report.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `report.out':
+(rerunfilecheck)             Before: 3623FCDD27BF960FF14FB802C8D2C5CA;2589
+(rerunfilecheck)             After:  4F2A07C7ADDDC41FA6C5F63AD534B034;2556.
  ) 
 Here is how much of TeX's memory you used:
- 39740 strings out of 478864
- 895029 string characters out of 2858518
- 1305567 words of memory out of 10000000
- 56888 multiletter control sequences out of 15000+600000
+ 39725 strings out of 478864
+ 894834 string characters out of 2858518
+ 1305566 words of memory out of 10000000
+ 56883 multiletter control sequences out of 15000+600000
  413184 words of font info for 48 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 106i,14n,108p,1073b,609s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 106i,14n,108p,961b,609s stack positions out of 5000i,500n,10000p,200000b,80000s
  <C:\Users\alena\AppData\Local\MiKTeX\fonts/pk/ljfour/lh/lh-t2a/dpi600\latt14
 40.pk> <C:\Users\alena\AppData\Local\MiKTeX\fonts/pk/ljfour/lh/lh-t2a/dpi600\la
 bx1728.pk> <C:\Users\alena\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi
@@ -1860,9 +1781,9 @@ bx1728.pk> <C:\Users\alena\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi
 -t2a/dpi600\larm1440.pk> <C:\Users\alena\AppData\Local\MiKTeX\fonts/pk/ljfour/l
 h/lh-t2a/dpi600\labx1440.pk> <C:\Users\alena\AppData\Local\MiKTeX\fonts/pk/ljfo
 ur/lh/lh-t2a/dpi600\labx2488.pk>
-Output written on report.pdf (18 pages, 218606 bytes).
+Output written on report.pdf (13 pages, 184489 bytes).
 PDF statistics:
- 711 PDF objects out of 1000 (max. 8388607)
- 78 named destinations out of 1000 (max. 500000)
- 161 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 602 PDF objects out of 1000 (max. 8388607)
+ 68 named destinations out of 1000 (max. 500000)
+ 121 words of extra memory for PDF output out of 10000 (max. 10000000)
 
