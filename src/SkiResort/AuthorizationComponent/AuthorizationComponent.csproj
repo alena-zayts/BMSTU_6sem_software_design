@@ -9,11 +9,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.VisualStudio.Threading" Version="17.1.46" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AccessToDB\AccessToDB.csproj" />
     <ProjectReference Include="..\BL\BL.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="AuthorizationForm.cs">
+    <Compile Update="ProfileView.cs">
       <SubType>Form</SubType>
     </Compile>
   </ItemGroup>

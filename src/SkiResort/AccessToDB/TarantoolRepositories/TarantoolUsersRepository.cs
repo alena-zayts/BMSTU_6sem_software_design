@@ -26,6 +26,7 @@ namespace AccessToDB.RepositoriesTarantool
         {
             _space = context.usersSpace;
             _indexPrimary = context.users_indexPrimary;
+            _indexEmail = context.users_index_email;
             _box = context.box;
         }
 
@@ -71,6 +72,7 @@ namespace AccessToDB.RepositoriesTarantool
 
         public async Task<uint> AddUserAutoIncrementAsync(uint cardID, string UserEmail, string password, PermissionsEnum permissions)
         {
+            var tmp = await CheckUserEmailExistsAsync(UserEmail);
             try
             {
                 var result = await _box.Call_1_6<UserDBNoIndex, UserDB>("auto_increment_users", (new UserDBNoIndex(cardID, UserEmail, password, (uint)permissions)));

@@ -1,4 +1,7 @@
-namespace AuthorizationForm
+using AccessToDB;
+using BL;
+
+namespace AuthorizationComponent
 {
     internal static class Program
     {
@@ -11,7 +14,13 @@ namespace AuthorizationForm
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            Application.Run(new AuthorizationForm());
+
+
+            IViewsFactory viewsFactory = new ViewsFactory();
+            Facade  facade = new(new TarantoolRepositoriesFactory());
+            Presenter presenter = new(viewsFactory, facade);
+            presenter.RunAsync();
+            //Application.Run(mainView);
         }
     }
 }
