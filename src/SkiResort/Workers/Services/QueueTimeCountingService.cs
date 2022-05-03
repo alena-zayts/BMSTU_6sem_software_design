@@ -1,6 +1,11 @@
 using BL.IRepositories;
 using BL.Models;
 
+
+using Ninject;
+using BL;
+using AccessToDB;
+
 namespace Workers
 {
     public class QueueTimeCountingService : BackgroundService
@@ -10,12 +15,19 @@ namespace Workers
         private readonly ILiftsRepository _liftsRepository;
         private readonly ICardReadingsRepository _cardReadingsRepository;
 
-        public QueueTimeCountingService(ILogger<QueueTimeCountingService> logger, ILiftsRepository liftsRepository, ICardReadingsRepository cardReadingsRepository, uint timeDelta)
+        public QueueTimeCountingService(ILogger<QueueTimeCountingService> logger)//, ILiftsRepository liftsRepository, ICardReadingsRepository cardReadingsRepository, uint timeDelta)
         {
             _logger = logger;
-            _timeDelta = timeDelta;
-            _liftsRepository = liftsRepository;
-            _cardReadingsRepository = cardReadingsRepository;
+
+            
+
+            IKernel ninjectKernel = new StandardKernel();
+            ninjectKernel.Bind<IRepositoriesFactory>().To<TarantoolRepositoriesFactory>();
+            IRepositoriesFactory repositoriesFactory = ninjectKernel.Get<IRepositoriesFactory>();
+
+            _timeDelta = 1000;
+            _liftsRepository = repositoriesFactory.CreateLiftsRepository();
+            _cardReadingsRepository = repositoriesFactory.CreateCardReadingsRepository();
         }
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)

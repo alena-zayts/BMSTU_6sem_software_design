@@ -7,7 +7,8 @@ namespace AccessToDB
 {
     public class TarantoolRepositoriesFactory: IRepositoriesFactory
     {
-        private TarantoolContext _tarantool_context;
+        private static string connection_string = "ski_admin:Tty454r293300@localhost:3301";
+        private static TarantoolContext _tarantool_context = new(connection_string);
 
         public IMessagesRepository CreateMessagesRepository()
         {

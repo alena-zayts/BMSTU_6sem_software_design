@@ -3,62 +3,57 @@ Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
 The top-level auxiliary file: report.aux
 Reallocating 'name_of_file' (item size: 1) to 16 items.
 A level-1 auxiliary file: 01-contents.aux
-Reallocating 'name_of_file' (item size: 1) to 13 items.
-A level-1 auxiliary file: 02-intro.aux
 Reallocating 'name_of_file' (item size: 1) to 16 items.
 A level-1 auxiliary file: 10-analysis.aux
-Reallocating 'name_of_file' (item size: 1) to 14 items.
-A level-1 auxiliary file: 20-design.aux
-Reallocating 'name_of_file' (item size: 1) to 12 items.
-A level-1 auxiliary file: 30-impl.aux
-Reallocating 'name_of_file' (item size: 1) to 16 items.
-A level-1 auxiliary file: 40-research.aux
-Reallocating 'name_of_file' (item size: 1) to 18 items.
-A level-1 auxiliary file: 50-conclusion.aux
 Reallocating 'name_of_file' (item size: 1) to 14 items.
 A level-1 auxiliary file: 51-biblio.aux
 Reallocating 'name_of_file' (item size: 1) to 13 items.
 The style file: utf8gost705u.bst
 Reallocating 'name_of_file' (item size: 1) to 10 items.
 Database file #1: 51-biblio.bib
-You've used 41 entries,
+Repeated entry---line 299 of file 51-biblio.bib
+ : @misc{acid
+ :           ,
+I'm skipping whatever remains of this entry
+You've used 12 entries,
             2958 wiz_defined-function locations,
-            798 strings with 14534 characters,
-and the built_in function-call counts, 4468 in all, are:
-= -- 451
-> -- 41
+            704 strings with 7878 characters,
+and the built_in function-call counts, 1336 in all, are:
+= -- 132
+> -- 12
 < -- 0
-+ -- 41
++ -- 12
 - -- 0
-* -- 43
-:= -- 384
-add.period$ -- 82
-call.type$ -- 41
+* -- 14
+:= -- 123
+add.period$ -- 24
+call.type$ -- 12
 change.case$ -- 0
 chr.to.int$ -- 0
-cite$ -- 41
-duplicate$ -- 287
-empty$ -- 657
+cite$ -- 12
+duplicate$ -- 84
+empty$ -- 193
 format.name$ -- 0
-if$ -- 1149
+if$ -- 337
 int.to.chr$ -- 0
-int.to.str$ -- 41
+int.to.str$ -- 12
 missing$ -- 0
-newline$ -- 215
+newline$ -- 70
 num.names$ -- 0
-pop$ -- 246
+pop$ -- 72
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 122
+skip$ -- 35
 stack$ -- 0
 substring$ -- 0
-swap$ -- 123
+swap$ -- 36
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
 warning$ -- 0
 while$ -- 0
-width$ -- 43
-write$ -- 460
+width$ -- 14
+write$ -- 141
+(There was 1 error message)

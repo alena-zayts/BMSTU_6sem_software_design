@@ -2,6 +2,9 @@ using BL.IRepositories;
 using BL.Models;
 using Newtonsoft.Json.Linq;
 
+using Ninject;
+using BL;
+using AccessToDB;
 
 namespace Workers
 {
@@ -11,12 +14,17 @@ namespace Workers
         private readonly ICardReadingsRepository _cardReadingsRepository;
         private readonly string _path;
 
-        public CardReadingReceivingService(ILogger<CardReadingReceivingService> logger, ICardReadingsRepository cardReadingsRepository, string path)
+        public CardReadingReceivingService(ILogger<CardReadingReceivingService> logger)//, ICardReadingsRepository cardReadingsRepository, string path)
         {
             _logger = logger;
-            _cardReadingsRepository = cardReadingsRepository;
-            _path = path;
-            //string path = "C:/BMSTU_6sem_software_design/src/tarantool/app/json_data/card_readings/";
+
+
+            IKernel ninjectKernel = new StandardKernel();
+            ninjectKernel.Bind<IRepositoriesFactory>().To<TarantoolRepositoriesFactory>();
+            IRepositoriesFactory repositoriesFactory = ninjectKernel.Get<IRepositoriesFactory>();
+
+            _cardReadingsRepository = repositoriesFactory.CreateCardReadingsRepository();
+            _path = "C:/BMSTU_6sem_software_design/src/tarantool/app/json_data/card_readings/";
         }
 
         public static CardReading LoadCardReadingFromJson(string filename)

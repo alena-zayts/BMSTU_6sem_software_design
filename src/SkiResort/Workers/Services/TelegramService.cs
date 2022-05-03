@@ -16,9 +16,9 @@ namespace Workers
         {
             TelegramBotClient Bot = new(Configuration.BotToken);
 
-            ReceiverOptions receiverOptions = new() { AllowedUpdates = { } };
-            Bot.StartReceiving(Handlers.HandleUpdateAsync,
-                               Handlers.HandleErrorAsync,
+            ReceiverOptions receiverOptions = new() { AllowedUpdates = { } }; // receive all update types
+            Bot.StartReceiving(Handler.HandleUpdateAsync,
+                               Handler.HandleErrorAsync,
                                receiverOptions,
                                stoppingToken);
 
