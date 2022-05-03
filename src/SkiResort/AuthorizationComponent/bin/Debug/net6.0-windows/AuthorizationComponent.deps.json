@@ -1,0 +1,36 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v6.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v6.0": {
+      "AuthorizationComponent/1.0.0": {
+        "dependencies": {
+          "BL": "1.0.0"
+        },
+        "runtime": {
+          "AuthorizationComponent.dll": {}
+        }
+      },
+      "BL/1.0.0": {
+        "runtime": {
+          "BL.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "AuthorizationComponent/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "BL/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
