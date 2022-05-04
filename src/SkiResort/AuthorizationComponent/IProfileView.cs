@@ -20,6 +20,7 @@ namespace AuthorizationComponent
         event AsyncEventHandler LogInClicked;
         event AsyncEventHandler LogOutClicked;
         event AsyncEventHandler RegisterClicked;
+        event EventHandler CloseClicked;
 
 
         void Open();

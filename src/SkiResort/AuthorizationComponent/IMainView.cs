@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.VisualStudio.Threading;
 
 namespace AuthorizationComponent
 {
@@ -20,6 +21,7 @@ namespace AuthorizationComponent
         event EventHandler UserClicked;
         event EventHandler TurnstileClicked;
         event EventHandler CardReadingClicked;
+        event AsyncEventHandler CloseClicked;
 
 
         void Open();

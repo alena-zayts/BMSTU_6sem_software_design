@@ -97,10 +97,10 @@
             this.userButton.UseVisualStyleBackColor = true;
             this.userButton.Click += new System.EventHandler(this.userButton_Click);
             // 
-            // ccardReadingButton
+            // cardReadingButton
             // 
             this.cardReadingButton.Location = new System.Drawing.Point(386, 227);
-            this.cardReadingButton.Name = "ccardReadingButton";
+            this.cardReadingButton.Name = "cardReadingButton";
             this.cardReadingButton.Size = new System.Drawing.Size(189, 63);
             this.cardReadingButton.TabIndex = 6;
             this.cardReadingButton.Text = "Чтения карт";
@@ -121,6 +121,7 @@
             this.Controls.Add(this.profileButton);
             this.Name = "MainView";
             this.Text = "MainForm";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainView_FormClosing);
             this.ResumeLayout(false);
 
         }

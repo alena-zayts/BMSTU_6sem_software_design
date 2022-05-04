@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Microsoft.VisualStudio.Threading;
 
 namespace AuthorizationComponent
 {
@@ -40,6 +41,7 @@ namespace AuthorizationComponent
         public event EventHandler UserClicked;
         public event EventHandler TurnstileClicked;
         public event EventHandler CardReadingClicked;
+        public event AsyncEventHandler CloseClicked;
 
         public void Open()
         {
@@ -79,6 +81,11 @@ namespace AuthorizationComponent
         private void ccardReadingButton_Click(object sender, EventArgs e)
         {
             CardReadingClicked?.Invoke(this, new EventArgs());
+        }
+
+        private void MainView_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            CloseClicked?.Invoke(this, new EventArgs());
         }
     }
 }

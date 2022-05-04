@@ -160,6 +160,7 @@
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "ProfileView";
             this.Text = "Вход";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ProfileView_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -104,7 +104,9 @@ namespace Tests
 
             uint tmpUserID2 = await rep.AddUserAutoIncrementAsync(added_user1.CardID, added_user1.UserEmail, added_user1.Password, added_user1.Permissions);
             Assert.True(1 == tmpUserID2);
-            uint tmpUserID3 = await rep.AddUserAutoIncrementAsync(added_user2.CardID, added_user2.UserEmail, added_user2.Password, added_user2.Permissions);
+
+            uint tmpUserID3 = await rep.AddUserAutoIncrementAsync(1, "tmp1", "tmp2", PermissionsEnum.UNAUTHORIZED);
+            //uint tmpUserID3 = await rep.AddUserAutoIncrementAsync(added_user2.CardID, added_user2.UserEmail, added_user2.Password, added_user2.Permissions);
             Assert.True(2 == tmpUserID3);
             await rep.DeleteUserByIDAsync(tmpUserID2);
             await rep.DeleteUserByIDAsync(tmpUserID3);

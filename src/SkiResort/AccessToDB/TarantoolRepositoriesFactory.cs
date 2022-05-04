@@ -8,9 +8,19 @@ namespace AccessToDB
     public class TarantoolRepositoriesFactory: IRepositoriesFactory
     {
         private static string connection_string = "ski_admin:Tty454r293300@localhost:3301";
-        private static TarantoolContext _tarantool_context = new(connection_string);
+        
+        private TarantoolContext _tarantool_context;
 
-        public IMessagesRepository CreateMessagesRepository()
+        public TarantoolRepositoriesFactory() => (_tarantool_context) = Initialize().GetAwaiter().GetResult();
+
+        private static async Task<TarantoolContext> Initialize()
+        {
+            return new TarantoolContext(connection_string);
+
+        }
+
+
+            public IMessagesRepository CreateMessagesRepository()
         {
             return new TarantoolMessagesRepository(_tarantool_context);
         }

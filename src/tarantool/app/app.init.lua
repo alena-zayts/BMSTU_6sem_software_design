@@ -394,3 +394,5 @@ init()
 --load__data()
 --print(count_card_readings(2, 0))
 --print(dump(count_card_readings(2, 0)))
+box.space.users:insert{777, 0, "tmp_email", "tmp_password", 0}
+box.space.users:insert{1, 0, "admin_email", "admin_password", 3}

@@ -85,9 +85,17 @@ namespace TestsBL
             }
             
             usersFromDB = await facade.AdminGetUsersAsync(adminUser.UserID, 0u, Facade.UNLIMITED);
+
+
+            uint tmpUserID = await facade.AddUnauthorizedUserAsync();
+            await facade.AdminDeleteUserAsync(adminUser.UserID, tmpUserID);
+
+
             Assert.Single(usersFromDB);
 
             await facade.AdminDeleteUserAsync(adminUser.UserID, adminUser.UserID);
+
+
 
         }
     }

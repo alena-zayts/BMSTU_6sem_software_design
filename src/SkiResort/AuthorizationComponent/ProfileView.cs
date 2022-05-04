@@ -15,11 +15,11 @@ namespace AuthorizationComponent
 {
     public partial class ProfileView : Form, IProfileView
     {
-        private Facade _facade;
 
         public event AsyncEventHandler LogInClicked;
         public event AsyncEventHandler LogOutClicked;
         public event AsyncEventHandler RegisterClicked;
+        public event EventHandler CloseClicked;
 
         public bool LogInEnabled
         {
@@ -41,9 +41,16 @@ namespace AuthorizationComponent
             get { return emailTextBox.Text; }
             set { emailTextBox.Text = value; }
         }
-        public string Password { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public string cardID { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-
+        public string Password
+        {
+            get { return passwordTextBox.Text; }
+            set { passwordTextBox.Text = value; }
+        }
+        public string cardID
+        {
+            get { return cardIDTextBox.Text; }
+            set { cardIDTextBox.Text = value; }
+        }
         public ProfileView()
         {
             InitializeComponent();
@@ -53,10 +60,7 @@ namespace AuthorizationComponent
 
         private void logInButton_Click(object sender, EventArgs e)
         {
-            string email = emailTextBox.Text;
-            string password = passwordTextBox.Text;
-            string cardID = cardIDTextBox.Text;
-
+            LogInClicked?.Invoke(this, new EventArgs());
         }
 
         private void registerButton_Click(object sender, EventArgs e)
@@ -69,12 +73,14 @@ namespace AuthorizationComponent
             LogOutClicked?.Invoke(this, new EventArgs());
         }
 
-
         public void Open()
         {
             base.ShowDialog();
         }
 
-
+        private void ProfileView_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            CloseClicked?.Invoke(this, new EventArgs());
+        }
     }
 }

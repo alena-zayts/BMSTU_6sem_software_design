@@ -110,7 +110,7 @@ namespace BL
         public async Task<uint> AddUnauthorizedUserAsync()
         {
             IUsersRepository usersRepository = RepositoriesFactory.CreateUsersRepository();
-            return await usersRepository.AddUserAutoIncrementAsync(User.UniversalCardID, "", "", PermissionsEnum.UNAUTHORIZED);
+            return await usersRepository.AddUserAutoIncrementAsync(1, "tmp1", "tmp2", PermissionsEnum.UNAUTHORIZED);
         }
 
         public async Task AdminUpdateUserAsync(uint requesterUserID, User user)
