@@ -141,5 +141,18 @@ namespace AccessToDB.RepositoriesTarantool
 
             return false;
         }
+
+        public async Task<User> GetUserByEmailAsync(string userEmail)
+        {
+            var data = await _indexEmail.Select<ValueTuple<string>, UserDB>
+                (ValueTuple.Create(userEmail));
+
+            if (data.Data.Length != 1)
+            {
+                throw new UserNotFoundException();
+            }
+
+            return UserConverter.DBToBL(data.Data[0]);
+        }
     }
 }

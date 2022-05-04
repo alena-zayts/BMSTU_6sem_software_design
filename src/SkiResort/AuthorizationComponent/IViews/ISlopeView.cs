@@ -11,6 +11,7 @@ namespace UI.IViews
     public interface ISlopeView
     {
         public bool GetInfoEnabled { get; set; }
+        public bool GetInfosEnabled { get; set; }
         public bool UpdateEnabled { get; set; }
         public bool AddEnabled { get; set; }
         public bool DeleteEnabled { get; set; }
@@ -24,6 +25,7 @@ namespace UI.IViews
 
 
         event AsyncEventHandler GetInfoClicked;
+        event AsyncEventHandler GetInfosClicked;
         event AsyncEventHandler UpdateClicked;
         event AsyncEventHandler AddClicked;
         event AsyncEventHandler DeleteClicked;

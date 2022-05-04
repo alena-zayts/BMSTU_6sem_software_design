@@ -58,11 +58,11 @@ class User(Table):
     def generate_data(cls, n_unauthorized=1000, n_authorized=500, n_ski_patrol=10):
         data = []
 
-        data.append(User(1, 0, 'admin_email', 'admin_password',
+        data.append(User(1, 0, 'q', 'q',
                          PERMISSIONS['admin']).to_json())
 
         for cur_id in range(n_unauthorized):
-            data.append(User(cur_id + 2, 0, "", "", PERMISSIONS['unauthorized_user']).to_json())
+            data.append(User(cur_id + 2, 0, f"a{cur_id + 2}", f"a{cur_id + 2}", PERMISSIONS['unauthorized_user']).to_json())
 
         for cur_id in range(n_authorized):
             data.append(User(cur_id + 2 + n_unauthorized, 0,
@@ -345,7 +345,7 @@ def infinite_card_readings_generator():
         time.sleep(sleep_time)
 
 if __name__ == "__main__":
-    # generate_all_data_to_json_file()
+    generate_all_data_to_json_file()
     infinite_card_readings_generator()
 
 

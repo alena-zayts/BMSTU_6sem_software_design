@@ -73,6 +73,16 @@ namespace TestsBL.IoCRepositories
             throw new Exception();
         }
 
+        public async Task<User> GetUserByEmailAsync(string userEmail)
+        {
+            foreach (var obj in data)
+            {
+                if (obj.UserEmail == userEmail)
+                    return obj;
+            }
+            throw new Exception();
+        }
+
         public async Task<User> GetUserByIdAsync(uint userID)
         {
             foreach (var obj in data)

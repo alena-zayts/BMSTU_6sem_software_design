@@ -1,7 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="37e3b93f-dec6-4655-8fd4-69c45ec7c196" name="Changes" comment="" />
+    <list default="true" id="37e3b93f-dec6-4655-8fd4-69c45ec7c196" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../../docs/imgs/uml/ui.drawio" beforeDir="false" afterPath="$PROJECT_DIR$/../../docs/imgs/uml/ui.drawio" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SkiResort/.vs/SkiResort/v17/.suo" beforeDir="false" afterPath="$PROJECT_DIR$/../SkiResort/.vs/SkiResort/v17/.suo" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SkiResort/.vs/SkiResort/v17/TestStore/0/055.testlog" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SkiResort/AccessToDB/TarantoolRepositories/TarantoolUsersRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../SkiResort/AccessToDB/TarantoolRepositories/TarantoolUsersRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SkiResort/AccessToDB/bin/Debug/net6.0/AccessToDB.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/../SkiResort/AccessToDB/bin/Debug/net6.0/AccessToDB.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SkiResort/AccessToDB/bin/Debug/net6.0/BL.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/../SkiResort/AccessToDB/bin/Debug/net6.0/BL.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SkiResort/AccessToDB/obj/Debug/net6.0/AccessToDB.csproj.AssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/../SkiResort/AccessToDB/obj/Debug/net6.0/AccessToDB.csproj.AssemblyReference.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SkiResort/AccessToDB/obj/Debug/net6.0/AccessToDB.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/../SkiResort/AccessToDB/obj/Debug/net6.0/AccessToDB.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SkiResort/AuthorizationComponent/IViews/ISlopeView.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../SkiResort/AuthorizationComponent/IViews/ISlopeView.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SkiResort/AuthorizationComponent/Presenter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../SkiResort/AuthorizationComponent/Presenter.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SkiResort/AuthorizationComponent/WinFormsViews/SlopeView.Designer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../SkiResort/AuthorizationComponent/WinFormsViews/SlopeView.Designer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SkiResort/AuthorizationComponent/WinFormsViews/SlopeView.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../SkiResort/AuthorizationComponent/WinFormsViews/SlopeView.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SkiResort/AuthorizationComponent/bin/Debug/net6.0-windows/AccessToDB.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/../SkiResort/AuthorizationComponent/bin/Debug/net6.0-windows/AccessToDB.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SkiResort/AuthorizationComponent/bin/Debug/net6.0-windows/BL.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/../SkiResort/AuthorizationComponent/bin/Debug/net6.0-windows/BL.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SkiResort/AuthorizationComponent/bin/Debug/net6.0-windows/UI.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/../SkiResort/AuthorizationComponent/bin/Debug/net6.0-windows/UI.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SkiResort/AuthorizationComponent/obj/Debug/net6.0-windows/UI.csproj.AssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/../SkiResort/AuthorizationComponent/obj/Debug/net6.0-windows/UI.csproj.AssemblyReference.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SkiResort/AuthorizationComponent/obj/Debug/net6.0-windows/UI.csproj.GenerateResource.cache" beforeDir="false" afterPath="$PROJECT_DIR$/../SkiResort/AuthorizationComponent/obj/Debug/net6.0-windows/UI.csproj.GenerateResource.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SkiResort/AuthorizationComponent/obj/Debug/net6.0-windows/UI.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/../SkiResort/AuthorizationComponent/obj/Debug/net6.0-windows/UI.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SkiResort/BL/Facade.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../SkiResort/BL/Facade.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SkiResort/BL/IRepositories/IUsersRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../SkiResort/BL/IRepositories/IUsersRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SkiResort/BL/bin/Debug/net6.0/BL.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/../SkiResort/BL/bin/Debug/net6.0/BL.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SkiResort/BL/obj/Debug/net6.0/BL.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/../SkiResort/BL/obj/Debug/net6.0/BL.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SkiResort/TestsBL/IoCRepositories/IoCUsersRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../SkiResort/TestsBL/IoCRepositories/IoCUsersRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/app.init.lua" beforeDir="false" afterPath="$PROJECT_DIR$/app/app.init.lua" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/generate_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/generate_data.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/json_data/users.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/json_data/users.json" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />

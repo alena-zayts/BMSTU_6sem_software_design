@@ -7,6 +7,7 @@ namespace BL.IRepositories
     {
         Task<List<User>> GetUsersAsync(uint offset = 0, uint limit = 0);
         Task<User> GetUserByIdAsync(uint userID);
+        Task<User> GetUserByEmailAsync(string userEmail);
         Task<bool> CheckUserIdExistsAsync(uint userID);
         Task<bool> CheckUserEmailExistsAsync(string userEmail);
         Task AddUserAsync(uint userID, uint cardID, string UserEmail, string password, PermissionsEnum permissions);

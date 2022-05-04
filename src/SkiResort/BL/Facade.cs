@@ -59,17 +59,16 @@ namespace BL
             await CheckPermissionsService.CheckPermissionsAsync(RepositoriesFactory.CreateUsersRepository(), requesterUserID);
 
             IUsersRepository usersRepository = RepositoriesFactory.CreateUsersRepository();
-            User userFromDB = await usersRepository.GetUserByIdAsync(requesterUserID);
+            User userFromDB = await usersRepository.GetUserByEmailAsync(email);
 
-            if (email != userFromDB.UserEmail || password != userFromDB.Password)
+            if (password != userFromDB.Password)
             {
-                throw new UserAuthorizationException($"Could't authorize user {requesterUserID} because of wrong email " +
-                    $"(expected {userFromDB.UserEmail}) or password (expected {userFromDB.Password})");
+                throw new UserAuthorizationException($"Could't authorize user {requesterUserID} because of wrong password");
             }
 
-            User authorizedUser = new(userFromDB.UserID, userFromDB.CardID, userFromDB.UserEmail, userFromDB.Password, PermissionsEnum.AUTHORIZED);
-            await usersRepository.UpdateUserByIDAsync(authorizedUser.UserID, authorizedUser.CardID, authorizedUser.UserEmail, authorizedUser.Password, authorizedUser.Permissions);
-            return authorizedUser;
+            //User authorizedUser = new(userFromDB.UserID, userFromDB.CardID, userFromDB.UserEmail, userFromDB.Password, PermissionsEnum.AUTHORIZED);
+            //await usersRepository.UpdateUserByIDAsync(authorizedUser.UserID, authorizedUser.CardID, authorizedUser.UserEmail, authorizedUser.Password, authorizedUser.Permissions);
+            return userFromDB;
         }
 
         public async Task<User> LogOutAsync(uint requesterUserID)
@@ -310,16 +309,16 @@ namespace BL
             {
                 slopesFull.Add(new Slope(slope, await help_rep.GetLiftsBySlopeIdAsync(slope.SlopeID)));
             }
-            return slopes;
+            return slopesFull;
         }
 
-        public async Task UpdateSlopeInfoAsync(uint requesterUserID, Slope slope)
+        public async Task UpdateSlopeInfoAsync(uint requesterUserID, string slopeName, bool newIsOpen, uint newDifficultyLevel)
         {
             await CheckPermissionsService.CheckPermissionsAsync(RepositoriesFactory.CreateUsersRepository(), requesterUserID);
 
             ISlopesRepository rep = RepositoriesFactory.CreateSlopesRepository();
-            await rep.UpdateSlopeByIDAsync(slope.SlopeID, slope.SlopeName, slope.IsOpen, slope.DifficultyLevel);
-
+            uint slopeID = (await rep.GetSlopeByNameAsync(slopeName)).SlopeID;
+            await rep.UpdateSlopeByIDAsync(slopeID, slopeName, newIsOpen, newDifficultyLevel);
         }
 
         public async Task AdminDeleteSlopeAsync(uint requesterUserID, Slope slope)

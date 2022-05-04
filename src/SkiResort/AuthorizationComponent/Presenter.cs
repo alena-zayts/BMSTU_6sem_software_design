@@ -7,6 +7,8 @@ using AccessToDB;
 using BL;
 using BL.Models;
 
+using AccessToDB.Exceptions.SlopeExceptions;
+
 using UI.IViews;
 
 namespace UI
@@ -37,7 +39,7 @@ namespace UI
 
         public async Task RunAsync()
         {
-            _userID = 777;
+            _userID = 7777;
             //_userID = await _facade.AddUnauthorizedUserAsync();
             //try
             //{
@@ -76,6 +78,10 @@ namespace UI
             if (_profileView != null)
             {
                 _changeVisibilityForProfileView();
+            }
+            if (_slopeView != null)
+            {
+                _changeVisibilityForSlopeView();
             }
 
             void _changeVisibilityForProfileView()
@@ -128,6 +134,29 @@ namespace UI
                     _mainView.CardReadingEnabled = true;
                 }
                 _mainView.Refresh();
+            }
+            void _changeVisibilityForSlopeView()
+            {
+                _slopeView.GetInfoEnabled = true;
+                _slopeView.GetInfosEnabled = true;
+
+                if (_permissions == PermissionsEnum.UNAUTHORIZED || _permissions == PermissionsEnum.AUTHORIZED)
+                {
+                    _slopeView.UpdateEnabled = false;
+                    _slopeView.AddEnabled = false;
+                    _slopeView.DeleteEnabled = false;
+                    _slopeView.AddConnectedLiftEnabled = false;
+                    _slopeView.DeleteConnectedLiftEnabled = false;
+                }
+                else 
+                {
+                    _slopeView.UpdateEnabled = true;
+                    _slopeView.AddEnabled = true;
+                    _slopeView.DeleteEnabled = true;
+                    _slopeView.AddConnectedLiftEnabled = true;
+                    _slopeView.DeleteConnectedLiftEnabled = true;
+                }
+                _slopeView.Refresh();
             }
         }
 
@@ -196,17 +225,19 @@ namespace UI
         {
             await _facade.LogOutAsync(_userID);
             _permissions = PermissionsEnum.UNAUTHORIZED;
-            _changeVisibilityForViews();
+            _userID = 7777;
+            _changeVisibilityForViews(); 
         }
 
         public async Task LogInAsync(object sender, EventArgs e)
         {
             string email = _profileView.Email;
             string password = _profileView.Password;
+            User user;
 
             try
             {
-                await _facade.LogInAsync(_userID, email, password);
+                user = await _facade.LogInAsync(_userID, email, password);
             }
             catch (Exception ex)
             {
@@ -214,7 +245,8 @@ namespace UI
                 return;
             }
 
-            _permissions = PermissionsEnum.AUTHORIZED;
+            _permissions = user.Permissions;
+            _userID = user.UserID;
             _changeVisibilityForViews();
         }
 
@@ -227,8 +259,14 @@ namespace UI
             }
             _slopeView = _viewsFactory.CreateSlopeView();
             _slopeView.CloseClicked += OnSlopeCloseClicked;
+            _slopeView.GetInfoClicked += GetSlopeInfoAsync;
+            _slopeView.GetInfosClicked += GetSlopesInfoAsync;
+            _slopeView.UpdateClicked += UpdateSlopeAsync;
+            _slopeView.AddClicked += AddSlopeAsync;
+            _slopeView.DeleteClicked += DeleteSlopeAsync;
+            _slopeView.AddConnectedLiftClicked += AddConnectedLiftAsync;
+            _slopeView.DeleteConnectedLiftClicked += DeleteConnectedLiftAsync;
             _changeVisibilityForViews();
-            _setSlopesInfo();
             _slopeView.Open();
         }
 
@@ -237,10 +275,76 @@ namespace UI
             _slopeView = null;
         }
 
-        private async void _setSlopesInfo()
+        private async Task GetSlopesInfoAsync(object sender, EventArgs e)
         {
             List<Slope> slopes = await _facade.GetSlopesInfoAsync(_userID);
             _slopeView.Slopes = slopes;
+        }
+
+        private async Task GetSlopeInfoAsync(object sender, EventArgs e)
+        {
+            string name = _slopeView.Name;
+            try
+            {
+                Slope slope = await _facade.GetSlopeInfoAsync(_userID, name);
+                _slopeView.Slopes = new List<Slope>() { slope };
+            }
+            catch (SlopeNotFoundException ex)
+            {
+                _exceptionView.ShowException(ex, "Спуск с таким именем не найден");
+            }
+        }
+
+        private async Task UpdateSlopeAsync(object sender, EventArgs e)
+        {
+            string name = _slopeView.Name;
+            bool isOpen;
+            try
+            {
+                isOpen = Convert.ToBoolean(_slopeView.IsOpen);
+            }
+            catch (Exception ex)
+            {
+                _exceptionView.ShowException(ex, "Для поля \"Открыта\" возможны значения \"True\" или \"False\"");
+                return;
+            }
+            uint difficultyLevel;
+            try
+            {
+                difficultyLevel = Convert.ToUInt32(_slopeView.DifficultyLevel);
+            }
+            catch (Exception ex)
+            {
+                _exceptionView.ShowException(ex, "Уровень сложности должен быть целым неотрицательным числом");
+                return;
+            }
+
+            try
+            {
+                await _facade.UpdateSlopeInfoAsync(_userID, name, isOpen, difficultyLevel);
+            }
+            catch (SlopeNotFoundException ex)
+            {
+                _exceptionView.ShowException(ex, "Спуск с таким именем не найден");
+            }
+            await GetSlopeInfoAsync(sender, e);
+        }
+        private async Task AddSlopeAsync(object sender, EventArgs e)
+        {
+
+        }
+        private async Task DeleteSlopeAsync(object sender, EventArgs e)
+        {
+
+        }
+        private async Task AddConnectedLiftAsync(object sender, EventArgs e)
+        {
+
+        }
+
+        private async Task DeleteConnectedLiftAsync(object sender, EventArgs e)
+        {
+
         }
     }
 }

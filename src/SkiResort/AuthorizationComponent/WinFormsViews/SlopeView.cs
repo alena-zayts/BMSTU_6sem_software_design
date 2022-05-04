@@ -25,6 +25,12 @@ namespace UI.WinFormsViews
             get { return GetInfoButton.Enabled; }
             set { GetInfoButton.Enabled = value; }
         }
+        public bool GetInfosEnabled
+        {
+            get { return GetInfosButton.Enabled; }
+            set { GetInfosButton.Enabled = value; }
+        }
+
         public bool UpdateEnabled
         {
             get { return UpdateButton.Enabled; }
@@ -75,7 +81,8 @@ namespace UI.WinFormsViews
         public List<Slope> Slopes 
         { set
             {
-                foreach(Slope slope in value)
+                SlopesDataGridView.Rows.Clear();
+                foreach (Slope slope in value)
                 {
                     string[] row = new string[5];
                     row[0] = slope.SlopeID.ToString();
@@ -83,18 +90,27 @@ namespace UI.WinFormsViews
                     row[2] = slope.IsOpen.ToString();
                     row[3] = slope.DifficultyLevel.ToString();
 
-                    string[] connectedLiftNames = new string[0];
-
-                    foreach(Lift lift in slope.ConnectedLifts!)
+                    
+                    if (slope.ConnectedLifts != null)
                     {
-                        connectedLiftNames.Append(lift.LiftName);
+                        string[] connectedLiftNames = new string[slope.ConnectedLifts.Count];
+                        for (int i = 0; i < slope.ConnectedLifts.Count; i++)
+                        {
+                            Lift lift = slope.ConnectedLifts[i];
+                            connectedLiftNames[i] = lift.LiftName;
+                        }
+                        row[4] = string.Join(", ", connectedLiftNames);
                     }
-                    row[4] = string.Join(" ,", connectedLiftNames);
+                    else
+                    {
+                        row[4] = "";
+                    }
 
                     SlopesDataGridView.Rows.Add(row);
                 }
             }
         }
+
 
         public event AsyncEventHandler GetInfoClicked;
         public event AsyncEventHandler UpdateClicked;
@@ -103,6 +119,7 @@ namespace UI.WinFormsViews
         public event AsyncEventHandler AddConnectedLiftClicked;
         public event AsyncEventHandler DeleteConnectedLiftClicked;
         public event EventHandler CloseClicked;
+        public event AsyncEventHandler GetInfosClicked;
 
         public void Open()
         {
@@ -142,6 +159,11 @@ namespace UI.WinFormsViews
         private void SlopeView_FormClosing(object sender, FormClosingEventArgs e)
         {
             CloseClicked?.Invoke(this, new EventArgs());
+        }
+
+        private void GetSlopesInfoButton_Click(object sender, EventArgs e)
+        {
+            GetInfosClicked?.Invoke(this, new EventArgs());
         }
     }
 }
