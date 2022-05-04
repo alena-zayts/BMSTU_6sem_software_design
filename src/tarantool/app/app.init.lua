@@ -41,7 +41,7 @@ local function init()
 		{name = 'permissions', type = 'unsigned'}
 	})
 	users:create_index('primary')
-	users:create_index('index_email', {parts = {'user_email'}})
+	users:create_index('index_email', {unique = false, parts = {'user_email'}})
 	print('users created!')
 
 	--- cards
@@ -391,8 +391,8 @@ box.cfg {
 }
 
 init()
---load__data()
+load__data()
 --print(count_card_readings(2, 0))
 --print(dump(count_card_readings(2, 0)))
-box.space.users:insert{777, 0, "tmp_email", "tmp_password", 0}
-box.space.users:insert{1, 0, "admin_email", "admin_password", 3}
+box.space.users:insert{777, 0, "tmp_email10", "tmp_password10", 0}
+--box.space.users:insert{7771, 0, "admin_email20", "admin_password20", 3}

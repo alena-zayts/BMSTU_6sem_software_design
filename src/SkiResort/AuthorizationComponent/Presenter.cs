@@ -23,6 +23,7 @@ namespace UI
         private IMainView _mainView;
 
         private IProfileView? _profileView;
+        private ISlopeView? _slopeView;
 
         public Presenter(IViewsFactory viewsFactory, Facade facade)
         {
@@ -55,6 +56,7 @@ namespace UI
             _mainView.UserEnabled = false;
 
             _mainView.ProfileClicked += OnProfileClicked;
+            _mainView.SlopeClicked += OnSlopeClicked;
             _mainView.CloseClicked += OnMainCloseClicked;
 
             _mainView.Open();
@@ -68,25 +70,6 @@ namespace UI
                 await LogOutAsync(sender, e);
             }
         }
-
-
-        // PROFILE
-        public void OnProfileClicked(object sender, EventArgs e)
-        {
-            if (_profileView is not null)
-            {
-                return;
-            }
-            _profileView = _viewsFactory.CreateProfileView();
-            _profileView.RegisterClicked += RegisterAsync;
-            _profileView.LogOutClicked += LogOutAsync;
-            _profileView.LogInClicked += LogInAsync;
-            _profileView.CloseClicked += OnProfileCloseClicked;
-            _changeVisibilityForViews();
-            _profileView.Open();
-        }
-
-        
         private void _changeVisibilityForViews()
         {
             _changeVisibilityForMainView();
@@ -94,9 +77,6 @@ namespace UI
             {
                 _changeVisibilityForProfileView();
             }
-            
-
-
 
             void _changeVisibilityForProfileView()
             {
@@ -149,6 +129,23 @@ namespace UI
                 }
                 _mainView.Refresh();
             }
+        }
+
+
+        // PROFILE
+        public void OnProfileClicked(object sender, EventArgs e)
+        {
+            if (_profileView is not null)
+            {
+                return;
+            }
+            _profileView = _viewsFactory.CreateProfileView();
+            _profileView.RegisterClicked += RegisterAsync;
+            _profileView.LogOutClicked += LogOutAsync;
+            _profileView.LogInClicked += LogInAsync;
+            _profileView.CloseClicked += OnProfileCloseClicked;
+            _changeVisibilityForViews();
+            _profileView.Open();
         }
 
         private void OnProfileCloseClicked(object sender, EventArgs e)
@@ -219,6 +216,31 @@ namespace UI
 
             _permissions = PermissionsEnum.AUTHORIZED;
             _changeVisibilityForViews();
+        }
+
+        //SLOPE
+        public void OnSlopeClicked(object sender, EventArgs e)
+        {
+            if (_slopeView is not null)
+            {
+                return;
+            }
+            _slopeView = _viewsFactory.CreateSlopeView();
+            _slopeView.CloseClicked += OnSlopeCloseClicked;
+            _changeVisibilityForViews();
+            _setSlopesInfo();
+            _slopeView.Open();
+        }
+
+        private void OnSlopeCloseClicked(object sender, EventArgs e)
+        {
+            _slopeView = null;
+        }
+
+        private async void _setSlopesInfo()
+        {
+            List<Slope> slopes = await _facade.GetSlopesInfoAsync(_userID);
+            _slopeView.Slopes = slopes;
         }
     }
 }

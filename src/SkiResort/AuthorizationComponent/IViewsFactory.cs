@@ -14,5 +14,6 @@ namespace UI
 
         public IMainView CreateMainView();
         public IProfileView CreateProfileView();
+        public ISlopeView CreateSlopeView();
     }
 }

@@ -120,7 +120,7 @@
             this.Controls.Add(this.slopeButton);
             this.Controls.Add(this.profileButton);
             this.Name = "MainView";
-            this.Text = "MainForm";
+            this.Text = "Главная страница";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainView_FormClosing);
             this.ResumeLayout(false);
 

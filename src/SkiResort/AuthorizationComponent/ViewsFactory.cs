@@ -25,5 +25,10 @@ namespace UI
         {
             return new ProfileView();
         }
+
+        public ISlopeView CreateSlopeView()
+        {
+            return new SlopeView();
+        }
     }
 }
