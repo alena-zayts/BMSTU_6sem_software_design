@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Pt14B50t/U0eU5IqFzgFgR4QJS56E5OsWLnSDj4VWUdWpKFPXo0kfqX65StcqBAhNyodp8/2R71us0PAuhooQw==",
+  "dgSpecHash": "6Jws6NOsXkOOP1yZmXS0vKF+38u6U6511vC49CxeUG/cqAsNBIRRUCzE+RXT34Zxq3tiBT4kppxWVj00kXANmQ==",
   "success": true,
-  "projectFilePath": "C:\\BMSTU_6sem_software_design\\src\\SkiResort\\AuthorizationComponent\\UI.csproj",
+  "projectFilePath": "C:\\BMSTU_6sem_software_design\\src\\SkiResort\\WinFormsViews\\WinFormsViews.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\alena\\.nuget\\packages\\jetbrains.annotations\\11.0.0\\jetbrains.annotations.11.0.0.nupkg.sha512",
     "C:\\Users\\alena\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\6.0.0\\microsoft.bcl.asyncinterfaces.6.0.0.nupkg.sha512",

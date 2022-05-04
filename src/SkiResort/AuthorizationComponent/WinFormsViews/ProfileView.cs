@@ -10,8 +10,9 @@ using System.Windows.Forms;
 using BL;
 using AccessToDB;
 using Microsoft.VisualStudio.Threading;
+using UI.IViews;
 
-namespace AuthorizationComponent
+namespace UI.WinFormsViews
 {
     public partial class ProfileView : Form, IProfileView
     {

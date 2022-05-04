@@ -13,7 +13,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BL", "BL\BL.csproj", "{FAA9
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Workers", "Workers\Workers.csproj", "{3ECBF0B7-A0E3-44A1-B6EB-6E9E536E8929}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuthorizationComponent", "AuthorizationComponent\AuthorizationComponent.csproj", "{62EA1CF8-3CDB-4D5E-A6DF-58270134522A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UI", "AuthorizationComponent\UI.csproj", "{62EA1CF8-3CDB-4D5E-A6DF-58270134522A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinFormsViews", "WinFormsViews\WinFormsViews.csproj", "{7BF1089B-2784-4F4C-840B-2847792C30BC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{62EA1CF8-3CDB-4D5E-A6DF-58270134522A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{62EA1CF8-3CDB-4D5E-A6DF-58270134522A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{62EA1CF8-3CDB-4D5E-A6DF-58270134522A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7BF1089B-2784-4F4C-840B-2847792C30BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7BF1089B-2784-4F4C-840B-2847792C30BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7BF1089B-2784-4F4C-840B-2847792C30BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7BF1089B-2784-4F4C-840B-2847792C30BC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

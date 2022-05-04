@@ -9,7 +9,9 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.VisualStudio.Threading;
 
-namespace AuthorizationComponent
+using UI.IViews;
+
+namespace UI.WinFormsViews
 {
     public partial class MainView : Form, IMainView
     {

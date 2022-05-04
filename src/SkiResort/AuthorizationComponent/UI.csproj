@@ -18,7 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="ProfileView.cs">
+    <Compile Update="WinFormsViews\ProfileView.cs">
       <SubType>Form</SubType>
     </Compile>
   </ItemGroup>

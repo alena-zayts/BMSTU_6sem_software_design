@@ -1,4 +1,4 @@
-﻿namespace AuthorizationComponent
+﻿namespace UI.WinFormsViews
 {
     partial class MainView
     {

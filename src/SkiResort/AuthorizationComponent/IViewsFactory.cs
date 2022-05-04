@@ -4,7 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AuthorizationComponent
+using UI.IViews;
+
+namespace UI
 {
     public interface IViewsFactory
     {

@@ -1,7 +1,7 @@
 using AccessToDB;
 using BL;
 
-namespace AuthorizationComponent
+namespace UI
 {
     internal static class Program
     {
@@ -20,6 +20,7 @@ namespace AuthorizationComponent
             Facade  facade = new(new TarantoolRepositoriesFactory());
             Presenter presenter = new(viewsFactory, facade);
             presenter.RunAsync();
+
             //Application.Run(mainView);
         }
     }

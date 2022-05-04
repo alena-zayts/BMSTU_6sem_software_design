@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.Threading;
 
-namespace AuthorizationComponent
+namespace UI.IViews
 {
     public interface IMainView
     {

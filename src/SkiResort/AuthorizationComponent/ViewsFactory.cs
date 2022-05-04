@@ -4,7 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AuthorizationComponent
+using UI.IViews;
+using UI.WinFormsViews;
+
+namespace UI
 {
     public class ViewsFactory : IViewsFactory
     {

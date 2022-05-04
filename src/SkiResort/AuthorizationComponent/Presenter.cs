@@ -7,7 +7,9 @@ using AccessToDB;
 using BL;
 using BL.Models;
 
-namespace AuthorizationComponent
+using UI.IViews;
+
+namespace UI
 {
     public class Presenter
     {
