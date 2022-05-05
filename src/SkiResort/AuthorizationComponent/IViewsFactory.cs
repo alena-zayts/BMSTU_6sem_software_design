@@ -15,5 +15,10 @@ namespace UI
         public IMainView CreateMainView();
         public IProfileView CreateProfileView();
         public ISlopeView CreateSlopeView();
+        public ILiftView CreateLiftView();
+        public IMessageView CreateMessageView();
+        public IUserView CreateUserView();
+        public ICardReadingView CreateCardReadingView();
+        public ITurnstileView CreateTurnstileView();
     }
 }

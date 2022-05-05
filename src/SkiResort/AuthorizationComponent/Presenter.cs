@@ -26,6 +26,11 @@ namespace UI
 
         private IProfileView? _profileView;
         private ISlopeView? _slopeView;
+        private ILiftView? _liftView;
+        private IMessageView? _messageView;
+        private IturnstileView? _turnstileView;
+        private ICardReadingView? _cardReadingView;
+        private IUserView? _userView;
 
         public Presenter(IViewsFactory viewsFactory, Facade facade)
         {
