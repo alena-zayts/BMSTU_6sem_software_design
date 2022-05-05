@@ -1,6 +1,6 @@
 ﻿namespace UI.WinFormsViews
 {
-    partial class SlopeView
+    partial class SlopeViewWinForm
     {
         /// <summary>
         /// Required designer variable.

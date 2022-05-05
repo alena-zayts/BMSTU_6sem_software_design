@@ -1,6 +1,6 @@
 ﻿namespace UI.WinFormsViews
 {
-    partial class MainView
+    partial class MainViewWinForm
     {
         /// <summary>
         /// Required designer variable.

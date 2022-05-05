@@ -13,9 +13,9 @@ using UI.IViews;
 
 namespace UI.WinFormsViews
 {
-    public partial class MainView : Form, IMainView
+    public partial class MainViewWinForm : Form, IMainView
     {
-        public MainView()
+        public MainViewWinForm()
         {
             InitializeComponent();
         }

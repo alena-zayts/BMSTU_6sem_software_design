@@ -1,6 +1,6 @@
 ﻿namespace UI.WinFormsViews
 {
-    partial class ProfileView
+    partial class ProfileViewWinForm
     {
         /// <summary>
         /// Обязательная переменная конструктора.

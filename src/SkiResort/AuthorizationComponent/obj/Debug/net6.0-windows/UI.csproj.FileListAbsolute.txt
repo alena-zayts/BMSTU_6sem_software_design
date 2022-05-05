@@ -1,7 +1,4 @@
 C:\BMSTU_6sem_software_design\src\SkiResort\AuthorizationComponent\obj\Debug\net6.0-windows\UI.csproj.AssemblyReference.cache
-C:\BMSTU_6sem_software_design\src\SkiResort\AuthorizationComponent\obj\Debug\net6.0-windows\UI.WinFormsViews.MainView.resources
-C:\BMSTU_6sem_software_design\src\SkiResort\AuthorizationComponent\obj\Debug\net6.0-windows\UI.WinFormsViews.ProfileView.resources
-C:\BMSTU_6sem_software_design\src\SkiResort\AuthorizationComponent\obj\Debug\net6.0-windows\UI.WinFormsViews.SlopeView.resources
 C:\BMSTU_6sem_software_design\src\SkiResort\AuthorizationComponent\obj\Debug\net6.0-windows\UI.csproj.GenerateResource.cache
 C:\BMSTU_6sem_software_design\src\SkiResort\AuthorizationComponent\obj\Debug\net6.0-windows\UI.GeneratedMSBuildEditorConfig.editorconfig
 C:\BMSTU_6sem_software_design\src\SkiResort\AuthorizationComponent\obj\Debug\net6.0-windows\UI.AssemblyInfoInputs.cache
@@ -54,3 +51,6 @@ C:\BMSTU_6sem_software_design\src\SkiResort\AuthorizationComponent\obj\Debug\net
 C:\BMSTU_6sem_software_design\src\SkiResort\AuthorizationComponent\obj\Debug\net6.0-windows\UI.pdb
 C:\BMSTU_6sem_software_design\src\SkiResort\AuthorizationComponent\obj\Debug\net6.0-windows\UI.genruntimeconfig.cache
 C:\BMSTU_6sem_software_design\src\SkiResort\AuthorizationComponent\obj\Debug\net6.0-windows\ref\UI.dll
+C:\BMSTU_6sem_software_design\src\SkiResort\AuthorizationComponent\obj\Debug\net6.0-windows\UI.WinFormsViews.MainViewWinForm.resources
+C:\BMSTU_6sem_software_design\src\SkiResort\AuthorizationComponent\obj\Debug\net6.0-windows\UI.WinFormsViews.ProfileViewWinForm.resources
+C:\BMSTU_6sem_software_design\src\SkiResort\AuthorizationComponent\obj\Debug\net6.0-windows\UI.WinFormsViews.SlopeViewWinForm.resources

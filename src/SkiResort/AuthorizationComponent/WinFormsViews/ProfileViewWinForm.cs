@@ -14,7 +14,7 @@ using UI.IViews;
 
 namespace UI.WinFormsViews
 {
-    public partial class ProfileView : Form, IProfileView
+    public partial class ProfileViewWinForm : Form, IProfileView
     {
 
         public event AsyncEventHandler LogInClicked;
@@ -52,7 +52,7 @@ namespace UI.WinFormsViews
             get { return cardIDTextBox.Text; }
             set { cardIDTextBox.Text = value; }
         }
-        public ProfileView()
+        public ProfileViewWinForm()
         {
             InitializeComponent();
 

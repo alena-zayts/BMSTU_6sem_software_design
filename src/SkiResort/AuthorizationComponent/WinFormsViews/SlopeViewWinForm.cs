@@ -13,9 +13,9 @@ using UI.IViews;
 
 namespace UI.WinFormsViews
 {
-    public partial class SlopeView : Form, ISlopeView
+    public partial class SlopeViewWinForm : Form, ISlopeView
     {
-        public SlopeView()
+        public SlopeViewWinForm()
         {
             InitializeComponent();
         }

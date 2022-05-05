@@ -28,7 +28,7 @@ namespace UI
 
         public IMainView CreateMainView()
         {
-            return new MainView();
+            return new MainViewWinForm();
         }
 
         public IMessageView CreateMessageView()
@@ -38,12 +38,12 @@ namespace UI
 
         public IProfileView CreateProfileView()
         {
-            return new ProfileView();
+            return new ProfileViewWinForm();
         }
 
         public ISlopeView CreateSlopeView()
         {
-            return new SlopeView();
+            return new SlopeViewWinForm();
         }
 
         public ITurnstileView CreateTurnstileView()
