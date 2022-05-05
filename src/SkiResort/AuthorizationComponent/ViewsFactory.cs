@@ -11,14 +11,29 @@ namespace UI
 {
     public class ViewsFactory : IViewsFactory
     {
+        public ICardReadingView CreateCardReadingView()
+        {
+            throw new NotImplementedException();
+        }
+
         public IExceptionView CreateExceptionView()
         {
             return new ExceptionView();
         }
 
+        public ILiftView CreateLiftView()
+        {
+            throw new NotImplementedException();
+        }
+
         public IMainView CreateMainView()
         {
             return new MainView();
+        }
+
+        public IMessageView CreateMessageView()
+        {
+            throw new NotImplementedException();
         }
 
         public IProfileView CreateProfileView()
@@ -29,6 +44,16 @@ namespace UI
         public ISlopeView CreateSlopeView()
         {
             return new SlopeView();
+        }
+
+        public ITurnstileView CreateTurnstileView()
+        {
+            throw new NotImplementedException();
+        }
+
+        public IUserView CreateUserView()
+        {
+            throw new NotImplementedException();
         }
     }
 }

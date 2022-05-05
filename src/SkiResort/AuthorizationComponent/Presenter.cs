@@ -8,6 +8,10 @@ using BL;
 using BL.Models;
 
 using AccessToDB.Exceptions.SlopeExceptions;
+using AccessToDB.Exceptions.LiftExceptions;
+using AccessToDB.Exceptions.LiftSlopeExceptions;
+using AccessToDB.Exceptions.UserExceptions;
+using BL.Exceptions.UserExceptions;
 
 using UI.IViews;
 
@@ -28,7 +32,7 @@ namespace UI
         private ISlopeView? _slopeView;
         private ILiftView? _liftView;
         private IMessageView? _messageView;
-        private IturnstileView? _turnstileView;
+        private ITurnstileView? _turnstileView;
         private ICardReadingView? _cardReadingView;
         private IUserView? _userView;
 
@@ -44,7 +48,21 @@ namespace UI
 
         public async Task RunAsync()
         {
-            _userID = 7777;
+            //CHANGEIT
+
+            //unauthorized
+            //_userID = 7777;
+
+            //admin q q
+            _userID = 1; 
+            _permissions = PermissionsEnum.ADMIN;
+            //skipatrol ski_patrol_email9 ski_patrol_password9
+            _userID = 1511;
+            _permissions = PermissionsEnum.SKI_PATROL;
+            //authorized authorized_email0 authorized_password0
+            //_userID = 1002;
+            //_permissions = PermissionsEnum.AUTHORIZED;
+
             //_userID = await _facade.AddUnauthorizedUserAsync();
             //try
             //{
@@ -89,54 +107,53 @@ namespace UI
                 _changeVisibilityForSlopeView();
             }
 
+
             void _changeVisibilityForProfileView()
             {
-                if (_permissions == PermissionsEnum.UNAUTHORIZED)
+                switch (_permissions)
                 {
-                    _profileView.LogOutEnabled = false;
-
-                    _profileView.LogInEnabled = true;
-                    _profileView.RegisterEnabled = true;
-                }
-                else
-                {
-                    _profileView.LogOutEnabled = true;
-
-                    _profileView.LogInEnabled = false;
-                    _profileView.RegisterEnabled = false;
+                    case PermissionsEnum.UNAUTHORIZED:
+                        _profileView.LogOutEnabled = false;
+                        _profileView.LogInEnabled = true;
+                        _profileView.RegisterEnabled = true;
+                        break;
+                    default:
+                        _profileView.LogOutEnabled = true;
+                        _profileView.LogInEnabled = false;
+                        _profileView.RegisterEnabled = false;
+                        break;
                 }
                 _profileView.Refresh();
             }
 
             void _changeVisibilityForMainView()
             {
-                if (_permissions == PermissionsEnum.UNAUTHORIZED)
+                switch (_permissions)
                 {
-                    _mainView.MessageEnabled = false;
-                    _mainView.UserEnabled = false;
-                    _mainView.TurnstileEnabled = false;
-                    _mainView.CardReadingEnabled = false;
-                }
-                else if (_permissions == PermissionsEnum.AUTHORIZED)
-                {
-                    _mainView.MessageEnabled = true;
-                    _mainView.UserEnabled = false;
-                    _mainView.TurnstileEnabled = false;
-                    _mainView.CardReadingEnabled = false;
-                }
-                else if (_permissions == PermissionsEnum.SKI_PATROL)
-                {
-                    _mainView.MessageEnabled = true;
-                    _mainView.UserEnabled = false;
-                    _mainView.TurnstileEnabled = true;
-                    _mainView.CardReadingEnabled = false;
-                }
-                else
-                {
-                    _mainView.MessageEnabled = true;
-                    _mainView.UserEnabled = true;
-                    _mainView.TurnstileEnabled = true;
-                    _mainView.CardReadingEnabled = true;
+                    case PermissionsEnum.UNAUTHORIZED:
+                        _mainView.MessageEnabled = false;
+                        _mainView.UserEnabled = false;
+                        _mainView.TurnstileEnabled = false;
+                        _mainView.CardReadingEnabled = false;
+                        break;
+                    case PermissionsEnum.AUTHORIZED:
+                        _mainView.MessageEnabled = true;
+                        _mainView.UserEnabled = false;
+                        _mainView.TurnstileEnabled = false;
+                        _mainView.CardReadingEnabled = false;
+                        break;
+                    case PermissionsEnum.SKI_PATROL:
+                        _mainView.MessageEnabled = true;
+                        _mainView.UserEnabled = false;
+                        _mainView.TurnstileEnabled = true;
+                        _mainView.CardReadingEnabled = false;
+                        break;
+                    default:
+                        _mainView.MessageEnabled = true;
+                        _mainView.UserEnabled = true;
+                        _mainView.TurnstileEnabled = true;
+                        _mainView.CardReadingEnabled = true;
+                        break;
                 }
                 _mainView.Refresh();
             }
@@ -145,21 +162,30 @@ namespace UI
                 _slopeView.GetInfoEnabled = true;
                 _slopeView.GetInfosEnabled = true;
 
-                if (_permissions == PermissionsEnum.UNAUTHORIZED || _permissions == PermissionsEnum.AUTHORIZED)
+                switch (_permissions)
                 {
-                    _slopeView.UpdateEnabled = false;
-                    _slopeView.AddEnabled = false;
-                    _slopeView.DeleteEnabled = false;
-                    _slopeView.AddConnectedLiftEnabled = false;
-                    _slopeView.DeleteConnectedLiftEnabled = false;
-                }
-                else 
-                {
-                    _slopeView.UpdateEnabled = true;
-                    _slopeView.AddEnabled = true;
-                    _slopeView.DeleteEnabled = true;
-                    _slopeView.AddConnectedLiftEnabled = true;
-                    _slopeView.DeleteConnectedLiftEnabled = true;
+                    case PermissionsEnum.UNAUTHORIZED:
+                    case PermissionsEnum.AUTHORIZED:
+                        _slopeView.UpdateEnabled = false;
+                        _slopeView.AddEnabled = false;
+                        _slopeView.DeleteEnabled = false;
+                        _slopeView.AddConnectedLiftEnabled = false;
+                        _slopeView.DeleteConnectedLiftEnabled = false;
+                        break;
+                    case PermissionsEnum.SKI_PATROL:
+                        _slopeView.UpdateEnabled = true;
+                        _slopeView.AddEnabled = false;
+                        _slopeView.DeleteEnabled = false;
+                        _slopeView.AddConnectedLiftEnabled = false;
+                        _slopeView.DeleteConnectedLiftEnabled = false;
+                        break;
+                    default:
+                        _slopeView.UpdateEnabled = true;
+                        _slopeView.AddEnabled = true;
+                        _slopeView.DeleteEnabled = true;
+                        _slopeView.AddConnectedLiftEnabled = true;
+                        _slopeView.DeleteConnectedLiftEnabled = true;
+                        break;
                 }
                 _slopeView.Refresh();
             }
@@ -244,9 +270,14 @@ namespace UI
             {
                 user = await _facade.LogInAsync(_userID, email, password);
             }
-            catch (Exception ex)
+            catch (UserNotFoundException ex)
             {
-                _exceptionView.ShowException(ex, "Не удалось выполнить вход");
+                _exceptionView.ShowException(ex, "Пользователь с таким email не найден");
+                return;
+            }
+            catch (UserAuthorizationException ex)
+            {
+                _exceptionView.ShowException(ex, "Неверный пароль");
                 return;
             }
 
@@ -336,20 +367,98 @@ namespace UI
         }
         private async Task AddSlopeAsync(object sender, EventArgs e)
         {
+            string name = _slopeView.Name;
+            bool isOpen;
+            try
+            {
+                isOpen = Convert.ToBoolean(_slopeView.IsOpen);
+            }
+            catch (Exception ex)
+            {
+                _exceptionView.ShowException(ex, "Для поля \"Открыта\" возможны значения \"True\" или \"False\"");
+                return;
+            }
+            uint difficultyLevel;
+            try
+            {
+                difficultyLevel = Convert.ToUInt32(_slopeView.DifficultyLevel);
+            }
+            catch (Exception ex)
+            {
+                _exceptionView.ShowException(ex, "Уровень сложности должен быть целым неотрицательным числом");
+                return;
+            }
 
+            try
+            {
+                await _facade.AdminAddAutoIncrementSlopeAsync(_userID, name, isOpen, difficultyLevel);
+            }
+            catch (SlopeAddAutoIncrementException ex)
+            {
+                _exceptionView.ShowException(ex, "Спуск с таким именем уже существует");
+            }
+            await GetSlopeInfoAsync(sender, e);
         }
         private async Task DeleteSlopeAsync(object sender, EventArgs e)
         {
+            string name = _slopeView.Name;
+            try
+            {
 
+                await _facade.AdminDeleteSlopeAsync(_userID, name);
+            }
+            catch (SlopeDeleteException ex)
+            {
+                _exceptionView.ShowException(ex, "Спуск с таким именем не найден");
+            }
+            await GetSlopesInfoAsync(sender, e);
         }
         private async Task AddConnectedLiftAsync(object sender, EventArgs e)
         {
+            string slopeName = _slopeView.Name;
+            string liftName = _slopeView.LiftName;
 
+            try
+            {
+                await _facade.AdminAddAutoIncrementLiftSlopeAsync(_userID, liftName, slopeName);
+            }
+            catch (SlopeNotFoundException ex)
+            {
+                _exceptionView.ShowException(ex, "Спуск с таким именем не найден");
+            }
+            catch (LiftNotFoundException ex)
+            {
+                _exceptionView.ShowException(ex, "Подъемник с таким именем не найден");
+            }
+            catch (LiftSlopeAddAutoIncrementException ex)
+            {
+                _exceptionView.ShowException(ex, "Данный спуск уже связан с указанным подъемником");
+            }
+            await GetSlopeInfoAsync(sender, e);
         }
 
         private async Task DeleteConnectedLiftAsync(object sender, EventArgs e)
         {
+            string slopeName = _slopeView.Name;
+            string liftName = _slopeView.LiftName;
 
+            try
+            {
+                await _facade.AdminDeleteLiftSlopeAsync(_userID, liftName, slopeName);
+            }
+            catch (SlopeNotFoundException ex)
+            {
+                _exceptionView.ShowException(ex, "Спуск с таким именем не найден");
+            }
+            catch (LiftNotFoundException ex)
+            {
+                _exceptionView.ShowException(ex, "Подъемник с таким именем не найден");
+            }
+            catch (LiftSlopeNotFoundException ex)
+            {
+                _exceptionView.ShowException(ex, "Данный спуск не связан с указанным подъемником");
+            }
+            await GetSlopeInfoAsync(sender, e);
         }
     }
 }

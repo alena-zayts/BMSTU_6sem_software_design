@@ -321,9 +321,11 @@ namespace BL
             await rep.UpdateSlopeByIDAsync(slopeID, slopeName, newIsOpen, newDifficultyLevel);
         }
 
-        public async Task AdminDeleteSlopeAsync(uint requesterUserID, Slope slope)
+        public async Task AdminDeleteSlopeAsync(uint requesterUserID, string slopeName)
         {
             await CheckPermissionsService.CheckPermissionsAsync(RepositoriesFactory.CreateUsersRepository(), requesterUserID);
+            ISlopesRepository rep = RepositoriesFactory.CreateSlopesRepository();
+            Slope slope = await rep.GetSlopeByNameAsync(slopeName);
 
             ILiftsSlopesRepository lifts_slopesRepository = RepositoriesFactory.CreateLiftsSlopesRepository();
             List<LiftSlope> lifts_slopes = await lifts_slopesRepository.GetLiftsSlopesAsync();
@@ -334,18 +336,16 @@ namespace BL
                     await lifts_slopesRepository.DeleteLiftSlopesByIDAsync(lift_slope.RecordID);
                 }
             }
-
-            ISlopesRepository rep = RepositoriesFactory.CreateSlopesRepository();
             await rep.DeleteSlopeByIDAsync(slope.SlopeID);
         }
 
 
-        public async Task<uint> AdminAddAutoIncrementSlopeAsync(uint requesterUserID, Slope slope)
+        public async Task<uint> AdminAddAutoIncrementSlopeAsync(uint requesterUserID, string slopeName, bool isOpen, uint difficultyLevel)
         {
             await CheckPermissionsService.CheckPermissionsAsync(RepositoriesFactory.CreateUsersRepository(), requesterUserID);
 
             ISlopesRepository rep = RepositoriesFactory.CreateSlopesRepository();
-            return await rep.AddSlopeAutoIncrementAsync(slope.SlopeName, slope.IsOpen, slope.DifficultyLevel);
+            return await rep.AddSlopeAutoIncrementAsync(slopeName, isOpen, difficultyLevel);
         }
 
         public async Task AdminAddSlopeAsync(uint requesterUserID, Slope slope)
@@ -372,12 +372,18 @@ namespace BL
             await rep.UpdateLiftSlopesByIDAsync(lift_slope.RecordID, lift_slope.LiftID, lift_slope.SlopeID);
         }
 
-        public async Task AdminDeleteLiftSlopeAsync(uint requesterUserID, LiftSlope lift_slope)
+        public async Task AdminDeleteLiftSlopeAsync(uint requesterUserID, string liftName, string slopeName)
         {
             await CheckPermissionsService.CheckPermissionsAsync(RepositoriesFactory.CreateUsersRepository(), requesterUserID);
 
+            ILiftsRepository liftsRepository = RepositoriesFactory.CreateLiftsRepository();
+            Lift lift = await liftsRepository.GetLiftByNameAsync(liftName);
+
+            ISlopesRepository slopesRepository = RepositoriesFactory.CreateSlopesRepository();
+            Slope slope = await slopesRepository.GetSlopeByNameAsync(slopeName);
+
             ILiftsSlopesRepository rep = RepositoriesFactory.CreateLiftsSlopesRepository();
-            await rep.DeleteLiftSlopesByIDAsync(lift_slope.RecordID);
+            await rep.DeleteLiftSlopesByIDsAsync(lift.LiftID, slope.SlopeID);
         }
 
         public async Task AdminAddLiftSlopeAsync(uint requesterUserID, LiftSlope lift_slope)
@@ -388,12 +394,19 @@ namespace BL
             await rep.AddLiftSlopeAsync(lift_slope.RecordID, lift_slope.LiftID, lift_slope.SlopeID);
         }
 
-        public async Task<uint> AdminAddAutoIncrementLiftSlopeAsync(uint requesterUserID, LiftSlope lift_slope)
+        public async Task<uint> AdminAddAutoIncrementLiftSlopeAsync(uint requesterUserID, string liftName, string slopeName)
         {
             await CheckPermissionsService.CheckPermissionsAsync(RepositoriesFactory.CreateUsersRepository(), requesterUserID);
 
+
+            ILiftsRepository liftsRepository = RepositoriesFactory.CreateLiftsRepository();
+            Lift lift = await liftsRepository.GetLiftByNameAsync(liftName);
+
+            ISlopesRepository slopesRepository = RepositoriesFactory.CreateSlopesRepository();
+            Slope slope = await slopesRepository.GetSlopeByNameAsync(slopeName);
+
             ILiftsSlopesRepository rep = RepositoriesFactory.CreateLiftsSlopesRepository();
-            return await rep.AddLiftSlopeAutoIncrementAsync(lift_slope.LiftID, lift_slope.SlopeID);
+            return await rep.AddLiftSlopeAutoIncrementAsync(lift.LiftID, slope.SlopeID);
         }
 
 

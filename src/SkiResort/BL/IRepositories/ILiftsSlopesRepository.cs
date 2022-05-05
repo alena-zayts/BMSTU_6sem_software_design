@@ -12,5 +12,6 @@ namespace BL.IRepositories
         Task<uint> AddLiftSlopeAutoIncrementAsync(uint liftID, uint slopeID);
         Task UpdateLiftSlopesByIDAsync(uint recordID, uint newLiftID, uint newSlopeID);
         Task DeleteLiftSlopesByIDAsync(uint recordID); 
+        Task DeleteLiftSlopesByIDsAsync(uint liftID, uint slopeID); 
     }
 }

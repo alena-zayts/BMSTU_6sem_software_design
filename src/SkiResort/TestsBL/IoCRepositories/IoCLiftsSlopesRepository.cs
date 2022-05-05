@@ -59,6 +59,19 @@ namespace TestsBL.IoCRepositories
             throw new Exception();
         }
 
+        public async Task DeleteLiftSlopesByIDsAsync(uint liftID, uint slopeID)
+        {
+            foreach (var liftSlope in data)
+            {
+                if (liftSlope.LiftID == liftID && liftSlope.SlopeID == slopeID)
+                {
+                    data.Remove(liftSlope);
+                    return;
+                }
+            }
+            throw new Exception();
+        }
+
         public async Task<List<Lift>> GetLiftsBySlopeIdAsync(uint slopeID)
         {
             List<uint> connectedLiftsIDs = new();

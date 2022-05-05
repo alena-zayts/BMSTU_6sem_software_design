@@ -187,6 +187,20 @@ namespace AccessToDB.RepositoriesTarantool
             }
 
         }
+
+        public async Task DeleteLiftSlopesByIDsAsync(uint liftID, uint slopeID)
+        {
+            List<LiftSlope> liftSlopes = await GetLiftsSlopesAsync();
+            foreach (LiftSlope liftSlope in liftSlopes)
+            {
+                if (liftSlope.LiftID == liftID && liftSlope.SlopeID == slopeID)
+                {
+                    await DeleteLiftSlopesByIDAsync(liftSlope.RecordID);
+                    return;
+                }
+            }
+            throw new LiftSlopeNotFoundException();
+        }
     }
 }
 

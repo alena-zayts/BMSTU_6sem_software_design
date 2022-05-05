@@ -20,7 +20,7 @@ namespace UI.IViews
         public string Text { get; set; }
         public string SenderID { get; set; }
         public string CheckedByID { get; set; }
-        public List<Message> Messages { set; }
+        public List<BL.Models.Message> Messages { set; }
 
 
         event AsyncEventHandler GetMessageClicked;

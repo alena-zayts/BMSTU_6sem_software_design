@@ -116,6 +116,7 @@ local function init()
 	lifts_slopes:create_index('primary')
 	lifts_slopes:create_index('index_lift_id', {unique = false, parts = {'lift_id'}})
 	lifts_slopes:create_index('index_slope_id', {unique = false, parts = {'slope_id'}})
+	lifts_slopes:create_index('index_lift_slope', {parts = {'lift_id', 'slope_id'}})
 	print('lifts_slopes created!')
 	
 	
