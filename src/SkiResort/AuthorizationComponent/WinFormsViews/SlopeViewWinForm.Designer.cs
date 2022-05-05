@@ -30,6 +30,11 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.SlopesDataGridView = new System.Windows.Forms.DataGridView();
+            this.IDColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IsOpenColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DifficultyLevelColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ConnectedLiftsColumns = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NameTextBox = new System.Windows.Forms.TextBox();
             this.GetInfoButton = new System.Windows.Forms.Button();
             this.IsOpenTextBox = new System.Windows.Forms.TextBox();
@@ -44,11 +49,6 @@
             this.label4 = new System.Windows.Forms.Label();
             this.DeleteConnectedLiftButton = new System.Windows.Forms.Button();
             this.GetInfosButton = new System.Windows.Forms.Button();
-            this.IDColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.IsOpenColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DifficultyLevelColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ConnectedLiftsColumns = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.SlopesDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -76,6 +76,41 @@
             this.SlopesDataGridView.RowTemplate.Height = 37;
             this.SlopesDataGridView.Size = new System.Drawing.Size(977, 438);
             this.SlopesDataGridView.TabIndex = 1;
+            // 
+            // IDColumn
+            // 
+            this.IDColumn.HeaderText = "ID";
+            this.IDColumn.MinimumWidth = 9;
+            this.IDColumn.Name = "IDColumn";
+            this.IDColumn.Width = 175;
+            // 
+            // NameColumn
+            // 
+            this.NameColumn.HeaderText = "Название";
+            this.NameColumn.MinimumWidth = 9;
+            this.NameColumn.Name = "NameColumn";
+            this.NameColumn.Width = 175;
+            // 
+            // IsOpenColumn
+            // 
+            this.IsOpenColumn.HeaderText = "Открыта";
+            this.IsOpenColumn.MinimumWidth = 9;
+            this.IsOpenColumn.Name = "IsOpenColumn";
+            this.IsOpenColumn.Width = 175;
+            // 
+            // DifficultyLevelColumn
+            // 
+            this.DifficultyLevelColumn.HeaderText = "Уровень сложности";
+            this.DifficultyLevelColumn.MinimumWidth = 9;
+            this.DifficultyLevelColumn.Name = "DifficultyLevelColumn";
+            this.DifficultyLevelColumn.Width = 175;
+            // 
+            // ConnectedLiftsColumns
+            // 
+            this.ConnectedLiftsColumns.HeaderText = "На чем добраться";
+            this.ConnectedLiftsColumns.MinimumWidth = 9;
+            this.ConnectedLiftsColumns.Name = "ConnectedLiftsColumns";
+            this.ConnectedLiftsColumns.Width = 175;
             // 
             // NameTextBox
             // 
@@ -202,42 +237,7 @@
             this.GetInfosButton.UseVisualStyleBackColor = true;
             this.GetInfosButton.Click += new System.EventHandler(this.GetSlopesInfoButton_Click);
             // 
-            // IDColumn
-            // 
-            this.IDColumn.HeaderText = "ID";
-            this.IDColumn.MinimumWidth = 9;
-            this.IDColumn.Name = "IDColumn";
-            this.IDColumn.Width = 175;
-            // 
-            // NameColumn
-            // 
-            this.NameColumn.HeaderText = "Название";
-            this.NameColumn.MinimumWidth = 9;
-            this.NameColumn.Name = "NameColumn";
-            this.NameColumn.Width = 175;
-            // 
-            // IsOpenColumn
-            // 
-            this.IsOpenColumn.HeaderText = "Открыта";
-            this.IsOpenColumn.MinimumWidth = 9;
-            this.IsOpenColumn.Name = "IsOpenColumn";
-            this.IsOpenColumn.Width = 175;
-            // 
-            // DifficultyLevelColumn
-            // 
-            this.DifficultyLevelColumn.HeaderText = "Уровень сложности";
-            this.DifficultyLevelColumn.MinimumWidth = 9;
-            this.DifficultyLevelColumn.Name = "DifficultyLevelColumn";
-            this.DifficultyLevelColumn.Width = 175;
-            // 
-            // ConnectedLiftsColumns
-            // 
-            this.ConnectedLiftsColumns.HeaderText = "На чем добраться";
-            this.ConnectedLiftsColumns.MinimumWidth = 9;
-            this.ConnectedLiftsColumns.Name = "ConnectedLiftsColumns";
-            this.ConnectedLiftsColumns.Width = 175;
-            // 
-            // SlopeView
+            // SlopeViewWinForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 30F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -258,7 +258,7 @@
             this.Controls.Add(this.NameTextBox);
             this.Controls.Add(this.SlopesDataGridView);
             this.Controls.Add(this.label1);
-            this.Name = "SlopeView";
+            this.Name = "SlopeViewWinForm";
             this.Text = "Спуски";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.SlopeView_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.SlopesDataGridView)).EndInit();

@@ -7,7 +7,7 @@ using UI.IViews;
 
 namespace UI.WinFormsViews
 {
-    public class ExceptionView : IExceptionView
+    public class ExceptionViewWinForm : IExceptionView
     {
         public void ShowException(Exception exception, string message)
         {

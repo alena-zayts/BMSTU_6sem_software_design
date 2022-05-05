@@ -23,7 +23,7 @@ namespace TestsBL.IoCRepositories
             data.Add(new Lift(liftID, liftName, isOpen, seatsAmount, liftingTime, queueTime));
         }
 
-        public async Task<uint> AddLiftAutoIncrementAsync(string liftName, bool isOpen, uint seatsAmount, uint liftingTime, uint queueTime)
+        public async Task<uint> AddLiftAutoIncrementAsync(string liftName, bool isOpen, uint seatsAmount, uint liftingTime)
         {
             uint maxLiftID = 0;
             foreach (var liftFromDB in data)
@@ -31,7 +31,7 @@ namespace TestsBL.IoCRepositories
                 if (liftFromDB.LiftID > maxLiftID)
                     maxLiftID = liftFromDB.LiftID;
             }
-            Lift liftWithCorrectId = new(maxLiftID + 1, liftName, isOpen, seatsAmount, liftingTime, queueTime);
+            Lift liftWithCorrectId = new(maxLiftID + 1, liftName, isOpen, seatsAmount, liftingTime, 0);
             await AddLiftAsync(liftWithCorrectId.LiftID, liftWithCorrectId.LiftName, liftWithCorrectId.IsOpen, liftWithCorrectId.SeatsAmount, liftWithCorrectId.LiftingTime, liftWithCorrectId.QueueTime);
             return liftWithCorrectId.LiftID;
         }
@@ -91,7 +91,7 @@ namespace TestsBL.IoCRepositories
 
 
 
-        public async Task UpdateLiftByIDAsync(uint liftID, string newLiftName, bool newIsOpen, uint newSeatsAmount, uint newLiftingTime, uint newQueueTime)
+        public async Task UpdateLiftByIDAsync(uint liftID, string LiftName, bool newIsOpen, uint newSeatsAmount, uint newLiftingTime)
         {
             for (int i = 0; i < data.Count; i++)
             {
@@ -99,7 +99,7 @@ namespace TestsBL.IoCRepositories
                 if (liftFromDB.LiftID == liftID)
                 {
                     data.Remove(liftFromDB);
-                    data.Insert(i, new Lift(liftID, newLiftName, newIsOpen, newSeatsAmount, newLiftingTime, newQueueTime));
+                    data.Insert(i, new Lift(liftID, LiftName, newIsOpen, newSeatsAmount, newLiftingTime, 0));
                     return;
                 }
             }

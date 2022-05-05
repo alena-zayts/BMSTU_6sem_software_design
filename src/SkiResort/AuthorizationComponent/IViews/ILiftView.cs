@@ -20,7 +20,7 @@ namespace UI.IViews
         public string Name { get; set; }
         public string IsOpen { get; set; }
         public string SeatsAmount { get; set; }
-        public string QueueTime { get; set; }
+        public string QueueTime { set; }
         public string LiftingTime { get; set; }
         public string SlopeName { get; set; }
         public List<Lift> Lifts { set; }

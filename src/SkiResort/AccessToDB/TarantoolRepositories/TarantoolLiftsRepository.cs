@@ -83,11 +83,11 @@ namespace AccessToDB.RepositoriesTarantool
             }
         }
 
-        public async Task<uint> AddLiftAutoIncrementAsync(string liftName, bool isOpen, uint seatsAmount, uint liftingTime, uint queueTime)
+        public async Task<uint> AddLiftAutoIncrementAsync(string liftName, bool isOpen, uint seatsAmount, uint liftingTime)
         {
             try
             {
-                var result = await _box.Call_1_6<LiftDBNoIndex, LiftDB>("auto_increment_lifts", (new LiftDBNoIndex(liftName, isOpen, seatsAmount, liftingTime, queueTime)));
+                var result = await _box.Call_1_6<LiftDBNoIndex, LiftDB>("auto_increment_lifts", (new LiftDBNoIndex(liftName, isOpen, seatsAmount, liftingTime, 0)));
                 return LiftConverter.DBToBL(result.Data[0]).LiftID;
             }
             catch (Exception ex)
@@ -95,15 +95,15 @@ namespace AccessToDB.RepositoriesTarantool
                 throw new LiftAddAutoIncrementException();
             }
         }
-        public async Task UpdateLiftByIDAsync(uint liftID, string newLiftName, bool newIsOpen, uint newSeatsAmount, uint newLiftingTime, uint newQueueTime)
+        public async Task UpdateLiftByIDAsync(uint liftID, string liftName, bool newIsOpen, uint newSeatsAmount, uint newLiftingTime)
         {
             var response = await _space.Update<ValueTuple<uint>, LiftDB>(
                 ValueTuple.Create(liftID), new UpdateOperation[] {
-                    UpdateOperation.CreateAssign<string>(1, newLiftName),
+                    UpdateOperation.CreateAssign<string>(1, liftName),
                     UpdateOperation.CreateAssign<bool>(2, newIsOpen),
                     UpdateOperation.CreateAssign<uint>(3, newSeatsAmount),
                     UpdateOperation.CreateAssign<uint>(4, newLiftingTime),
-                    UpdateOperation.CreateAssign<uint>(5, newQueueTime),
+                    UpdateOperation.CreateAssign<uint>(5, 0),
                 });
 
             if (response.Data.Length != 1)

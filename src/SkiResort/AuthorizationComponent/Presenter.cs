@@ -57,8 +57,8 @@ namespace UI
             _userID = 1; 
             _permissions = PermissionsEnum.ADMIN;
             //skipatrol ski_patrol_email9 ski_patrol_password9
-            _userID = 1511;
-            _permissions = PermissionsEnum.SKI_PATROL;
+            //_userID = 1511;
+            //_permissions = PermissionsEnum.SKI_PATROL;
             //authorized authorized_email0 authorized_password0
             //_userID = 1002;
             //_permissions = PermissionsEnum.AUTHORIZED;
@@ -82,8 +82,9 @@ namespace UI
 
             _mainView.ProfileClicked += OnProfileClicked;
             _mainView.SlopeClicked += OnSlopeClicked;
+            _mainView.LiftClicked += OnLiftClicked;
             _mainView.CloseClicked += OnMainCloseClicked;
-
+            _changeVisibilityForViews();
             _mainView.Open();
         }
 
@@ -105,6 +106,10 @@ namespace UI
             if (_slopeView != null)
             {
                 _changeVisibilityForSlopeView();
+            }
+            if (_liftView != null)
+            {
+                _changeVisibilityForLiftView();
             }
 
 
@@ -188,6 +193,39 @@ namespace UI
                         break;
                 }
                 _slopeView.Refresh();
+            }
+
+            void _changeVisibilityForLiftView()
+            {
+                _liftView.GetInfoEnabled = true;
+                _liftView.GetInfosEnabled = true;
+
+                switch (_permissions)
+                {
+                    case PermissionsEnum.UNAUTHORIZED:
+                    case PermissionsEnum.AUTHORIZED:
+                        _liftView.UpdateEnabled = false;
+                        _liftView.AddEnabled = false;
+                        _liftView.DeleteEnabled = false;
+                        _liftView.AddConnectedSlopeEnabled = false;
+                        _liftView.DeleteConnectedSlopeEnabled = false;
+                        break;
+                    case PermissionsEnum.SKI_PATROL:
+                        _liftView.UpdateEnabled = true;
+                        _liftView.AddEnabled = false;
+                        _liftView.DeleteEnabled = false;
+                        _liftView.AddConnectedSlopeEnabled = false;
+                        _liftView.DeleteConnectedSlopeEnabled = false;
+                        break;
+                    default:
+                        _liftView.UpdateEnabled = true;
+                        _liftView.AddEnabled = true;
+                        _liftView.DeleteEnabled = true;
+                        _liftView.AddConnectedSlopeEnabled = true;
+                        _liftView.DeleteConnectedSlopeEnabled = true;
+                        break;
+                }
+                _liftView.Refresh();
             }
         }
 
@@ -285,6 +323,23 @@ namespace UI
             _userID = user.UserID;
             _changeVisibilityForViews();
         }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         //SLOPE
         public void OnSlopeClicked(object sender, EventArgs e)
@@ -459,6 +514,203 @@ namespace UI
                 _exceptionView.ShowException(ex, "Данный спуск не связан с указанным подъемником");
             }
             await GetSlopeInfoAsync(sender, e);
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        //LIFT
+        public void OnLiftClicked(object sender, EventArgs e)
+        {
+            if (_liftView is not null)
+            {
+                return;
+            }
+            _liftView = _viewsFactory.CreateLiftView();
+            _liftView.CloseClicked += OnLiftCloseClicked;
+            _liftView.GetInfoClicked += GetLiftInfoAsync;
+            _liftView.GetInfosClicked += GetLiftsInfoAsync;
+            _liftView.UpdateClicked += UpdateLiftAsync;
+            _liftView.AddClicked += AddLiftAsync;
+            _liftView.DeleteClicked += DeleteLiftAsync;
+            _liftView.AddConnectedSlopeClicked += AddConnectedSlopeAsync;
+            _liftView.DeleteConnectedSlopeClicked += DeleteConnectedSlopeAsync;
+            _changeVisibilityForViews();
+            _liftView.Open();
+        }
+
+        private void OnLiftCloseClicked(object sender, EventArgs e)
+        {
+            _liftView = null;
+        }
+
+        private async Task GetLiftsInfoAsync(object sender, EventArgs e)
+        {
+            List<Lift> lifts = await _facade.GetLiftsInfoAsync(_userID);
+            _liftView.Lifts = lifts;
+        }
+
+        private async Task GetLiftInfoAsync(object sender, EventArgs e)
+        {
+            string name = _liftView.Name;
+            try
+            {
+                Lift lift = await _facade.GetLiftInfoAsync(_userID, name);
+                _liftView.Lifts = new List<Lift>() { lift };
+            }
+            catch (LiftNotFoundException ex)
+            {
+                _exceptionView.ShowException(ex, "Подъемник с таким именем не найден");
+            }
+        }
+
+        private async Task UpdateLiftAsync(object sender, EventArgs e)
+        {
+            string name = _liftView.Name;
+            bool isOpen;
+            try
+            {
+                isOpen = Convert.ToBoolean(_liftView.IsOpen);
+            }
+            catch (Exception ex)
+            {
+                _exceptionView.ShowException(ex, "Для поля \"Открыт\" возможны значения \"True\" или \"False\"");
+                return;
+            }
+            uint seatsAmount, liftingTime;
+            try
+            {
+                seatsAmount = Convert.ToUInt32(_liftView.SeatsAmount);
+                liftingTime = Convert.ToUInt32(_liftView.LiftingTime);
+            }
+            catch (Exception ex)
+            {
+                _exceptionView.ShowException(ex, "Количество мест и время подъема должны быть целыми неотрицательными числами");
+                return;
+            }
+
+            try
+            {
+                await _facade.UpdateLiftInfoAsync(_userID, name, isOpen, seatsAmount, liftingTime);
+            }
+            catch (LiftNotFoundException ex)
+            {
+                _exceptionView.ShowException(ex, "Подъемник с таким именем не найден");
+            }
+            await GetLiftInfoAsync(sender, e);
+        }
+        private async Task AddLiftAsync(object sender, EventArgs e)
+        {
+            string name = _liftView.Name;
+            bool isOpen;
+            try
+            {
+                isOpen = Convert.ToBoolean(_liftView.IsOpen);
+            }
+            catch (Exception ex)
+            {
+                _exceptionView.ShowException(ex, "Для поля \"Открыта\" возможны значения \"True\" или \"False\"");
+                return;
+            }
+            uint seatsAmount, liftingTime;
+            try
+            {
+                seatsAmount = Convert.ToUInt32(_liftView.SeatsAmount);
+                liftingTime = Convert.ToUInt32(_liftView.LiftingTime);
+            }
+            catch (Exception ex)
+            {
+                _exceptionView.ShowException(ex, "Количество мест и время подъема должны быть целыми неотрицательными числами");
+                return;
+            }
+
+            try
+            {
+                await _facade.AdminAddAutoIncrementLiftAsync(_userID, name, isOpen, seatsAmount, liftingTime);
+            }
+            catch (LiftAddAutoIncrementException ex)
+            {
+                _exceptionView.ShowException(ex, "Подъемник с таким именем уже существует");
+            }
+            await GetLiftInfoAsync(sender, e);
+        }
+
+        private async Task DeleteLiftAsync(object sender, EventArgs e)
+        {
+            string name = _liftView.Name;
+            try
+            {
+
+                await _facade.AdminDeleteLiftAsync(_userID, name);
+            }
+            catch (LiftDeleteException ex)
+            {
+                _exceptionView.ShowException(ex, "Подъемник с таким именем не найден или найдены связанные с ним турникеты");
+            }
+            await GetLiftsInfoAsync(sender, e);
+        }
+        private async Task AddConnectedSlopeAsync(object sender, EventArgs e)
+        {
+            string liftName = _liftView.Name;
+            string slopeName = _liftView.SlopeName;
+
+            try
+            {
+                await _facade.AdminAddAutoIncrementLiftSlopeAsync(_userID, liftName, slopeName);
+            }
+            catch (SlopeNotFoundException ex)
+            {
+                _exceptionView.ShowException(ex, "Спуск с таким именем не найден");
+            }
+            catch (LiftNotFoundException ex)
+            {
+                _exceptionView.ShowException(ex, "Подъемник с таким именем не найден");
+            }
+            catch (LiftSlopeAddAutoIncrementException ex)
+            {
+                _exceptionView.ShowException(ex, "Данный подъемник уже связан с указанным спуском");
+            }
+            await GetLiftInfoAsync(sender, e);
+        }
+
+        private async Task DeleteConnectedSlopeAsync(object sender, EventArgs e)
+        {
+            string liftName = _liftView.Name;
+            string slopeName = _liftView.SlopeName;
+
+            try
+            {
+                await _facade.AdminDeleteLiftSlopeAsync(_userID, liftName, slopeName);
+            }
+            catch (SlopeNotFoundException ex)
+            {
+                _exceptionView.ShowException(ex, "Спуск с таким именем не найден");
+            }
+            catch (LiftNotFoundException ex)
+            {
+                _exceptionView.ShowException(ex, "Подъемник с таким именем не найден");
+            }
+            catch (LiftSlopeNotFoundException ex)
+            {
+                _exceptionView.ShowException(ex, "Данный подъемник не связан с указанным спуском");
+            }
+            await GetLiftInfoAsync(sender, e);
         }
     }
 }

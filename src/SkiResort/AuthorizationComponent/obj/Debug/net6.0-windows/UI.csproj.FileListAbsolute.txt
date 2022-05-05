@@ -54,3 +54,4 @@ C:\BMSTU_6sem_software_design\src\SkiResort\AuthorizationComponent\obj\Debug\net
 C:\BMSTU_6sem_software_design\src\SkiResort\AuthorizationComponent\obj\Debug\net6.0-windows\UI.WinFormsViews.MainViewWinForm.resources
 C:\BMSTU_6sem_software_design\src\SkiResort\AuthorizationComponent\obj\Debug\net6.0-windows\UI.WinFormsViews.ProfileViewWinForm.resources
 C:\BMSTU_6sem_software_design\src\SkiResort\AuthorizationComponent\obj\Debug\net6.0-windows\UI.WinFormsViews.SlopeViewWinForm.resources
+C:\BMSTU_6sem_software_design\src\SkiResort\AuthorizationComponent\obj\Debug\net6.0-windows\UI.WinFormsViews.LiftViewWinForm.resources

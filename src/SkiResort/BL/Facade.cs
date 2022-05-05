@@ -227,17 +227,21 @@ namespace BL
             return liftsFull;
         }
 
-        public async Task UpdateLiftInfoAsync(uint requesterUserID, Lift lift)
+        public async Task UpdateLiftInfoAsync(uint requesterUserID, string liftName, bool isOpen, uint seatsAmount, uint liftingTime)
         {
             await CheckPermissionsService.CheckPermissionsAsync(RepositoriesFactory.CreateUsersRepository(), requesterUserID);
 
             ILiftsRepository rep = RepositoriesFactory.CreateLiftsRepository();
-            await rep.UpdateLiftByIDAsync(lift.LiftID, lift.LiftName, lift.IsOpen, lift.SeatsAmount, lift.LiftingTime, lift.QueueTime);
+            uint liftID = (await rep.GetLiftByNameAsync(liftName)).LiftID;
+            await rep.UpdateLiftByIDAsync(liftID, liftName, isOpen, seatsAmount, liftingTime);
         }
 
-        public async Task AdminDeleteLiftAsync(uint requesterUserID, Lift lift)
+        public async Task AdminDeleteLiftAsync(uint requesterUserID, string liftName)
         {
             await CheckPermissionsService.CheckPermissionsAsync(RepositoriesFactory.CreateUsersRepository(), requesterUserID);
+
+            ILiftsRepository liftsRepository = RepositoriesFactory.CreateLiftsRepository();
+            Lift lift = await liftsRepository.GetLiftByNameAsync(liftName);
 
             ITurnstilesRepository turnstiles_rep = RepositoriesFactory.CreateTurnstilesRepository();
             List<Turnstile> connected_turnstiles = await turnstiles_rep.GetTurnstilesByLiftIdAsync(lift.LiftID);
@@ -256,17 +260,17 @@ namespace BL
                 }
             }
 
-            ILiftsRepository rep = RepositoriesFactory.CreateLiftsRepository();
-            await rep.DeleteLiftByIDAsync(lift.LiftID);
+            
+            await liftsRepository.DeleteLiftByIDAsync(lift.LiftID);
         }
 
 
-        public async Task<uint> AdminAddAutoIncrementLiftAsync(uint requesterUserID, Lift lift)
+        public async Task<uint> AdminAddAutoIncrementLiftAsync(uint requesterUserID, string liftName, bool isOpen, uint seatsAmount, uint liftingTime)
         {
             await CheckPermissionsService.CheckPermissionsAsync(RepositoriesFactory.CreateUsersRepository(), requesterUserID);
 
             ILiftsRepository rep = RepositoriesFactory.CreateLiftsRepository();
-            return await rep.AddLiftAutoIncrementAsync(lift.LiftName, lift.IsOpen, lift.SeatsAmount, lift.LiftingTime, lift.QueueTime);
+            return await rep.AddLiftAutoIncrementAsync(liftName, isOpen, seatsAmount, liftingTime);
         }
 
         public async Task AdminAddLiftAsync(uint requesterUserID, Lift lift)

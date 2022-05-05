@@ -18,12 +18,12 @@ namespace UI
 
         public IExceptionView CreateExceptionView()
         {
-            return new ExceptionView();
+            return new ExceptionViewWinForm();
         }
 
         public ILiftView CreateLiftView()
         {
-            throw new NotImplementedException();
+            return new LiftViewWinForm();
         }
 
         public IMainView CreateMainView()
