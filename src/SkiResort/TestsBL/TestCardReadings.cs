@@ -25,7 +25,7 @@ namespace TestsBL
             Lift added_lift1 = new(1, "A1", true, 100, 60, 360);
             await facade.AdminAddLiftAsync(TestUsersCreator.adminID, added_lift1);
             Lift added_lift2 = new Lift(2, "A2", false, 20, 10, 30);
-            uint added_lift2_id = await facade.AdminAddAutoIncrementLiftAsync(TestUsersCreator.adminID, added_lift2);
+            uint added_lift2_id = await facade.AdminAddAutoIncrementLiftAsync(TestUsersCreator.adminID, added_lift2.LiftName, added_lift2.IsOpen, added_lift2.SeatsAmount, added_lift2.LiftingTime);
             added_lift2 = new Lift(added_lift2_id, added_lift2.LiftName, added_lift2.IsOpen, added_lift2.SeatsAmount, added_lift2.LiftingTime, added_lift2.QueueTime);
 
 
@@ -74,8 +74,8 @@ namespace TestsBL
             await facade.AdminDeleteCardReadingAsync(TestUsersCreator.adminID, added_card_reading4);
             await facade.AdminDeleteCardReadingAsync(TestUsersCreator.adminID, added_card_reading5);
 
-            await facade.AdminDeleteLiftAsync(TestUsersCreator.adminID, added_lift1);
-            await facade.AdminDeleteLiftAsync(TestUsersCreator.adminID, added_lift2);
+            await facade.AdminDeleteLiftAsync(TestUsersCreator.adminID, added_lift1.LiftName);
+            await facade.AdminDeleteLiftAsync(TestUsersCreator.adminID, added_lift2.LiftName);
             Assert.Empty(await facade.GetLiftsInfoAsync(TestUsersCreator.authorizedID));
 
             await facade.AdminDeleteTurnstileAsync(TestUsersCreator.adminID, added_turnstile1);

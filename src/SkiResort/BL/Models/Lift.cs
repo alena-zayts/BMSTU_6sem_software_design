@@ -46,11 +46,10 @@ namespace BL.Models
         public bool EqualWithoutConnectedSlopes(Lift otherLift)
         {
             return LiftID == otherLift.LiftID &&
-                this.LiftName == otherLift.LiftName && 
+                this.LiftName == otherLift.LiftName &&
                 this.IsOpen == otherLift.IsOpen &&
                 this.SeatsAmount == otherLift.SeatsAmount &&
-                this.LiftingTime == otherLift.LiftingTime &&
-                this.QueueTime == otherLift.QueueTime;
+                this.LiftingTime == otherLift.LiftingTime;
         }
     }
 }

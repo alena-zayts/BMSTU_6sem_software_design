@@ -25,12 +25,12 @@ namespace TestsBL
 
 
             Lift added_lift1 = new Lift(100000, "A1", true, 100, 60, 360);
-            uint added_lift1_id = await facade.AdminAddAutoIncrementLiftAsync(TestUsersCreator.adminID, added_lift1);
+            uint added_lift1_id = await facade.AdminAddAutoIncrementLiftAsync(TestUsersCreator.adminID, added_lift1.LiftName, added_lift1.IsOpen, added_lift1.SeatsAmount, added_lift1.LiftingTime);
             added_lift1 = new Lift(added_lift1_id, added_lift1.LiftName, added_lift1.IsOpen, added_lift1.SeatsAmount, added_lift1.LiftingTime, added_lift1.QueueTime);
             Lift added_lift2 = new Lift(200000, "A2", false, 20, 10, 30);
             await facade.AdminAddLiftAsync(TestUsersCreator.adminID, added_lift2);
             added_lift2 = new Lift(added_lift2.LiftID, added_lift2.LiftName, !added_lift2.IsOpen, added_lift2.SeatsAmount + 1, added_lift2.LiftingTime, added_lift2.QueueTime);
-            await facade.UpdateLiftInfoAsync(TestUsersCreator.adminID, added_lift2);
+            await facade.UpdateLiftInfoAsync(TestUsersCreator.adminID, added_lift2.LiftName, !added_lift2.IsOpen, added_lift2.SeatsAmount + 1, added_lift2.LiftingTime);
             Assert.True(added_lift2.EqualWithoutConnectedSlopes(await facade.GetLiftInfoAsync(TestUsersCreator.skiPatrolID, added_lift2.LiftName)));
 
 
@@ -38,14 +38,14 @@ namespace TestsBL
             Assert.Empty(await facade.GetSlopesInfoAsync(TestUsersCreator.skiPatrolID));
 
             Slope added_slope1 = new Slope(1, "A1", true, 1);
-            uint newID = await facade.AdminAddAutoIncrementSlopeAsync(TestUsersCreator.adminID, added_slope1);
+            uint newID = await facade.AdminAddAutoIncrementSlopeAsync(TestUsersCreator.adminID, added_slope1.SlopeName, added_slope1.IsOpen, added_slope1.DifficultyLevel);
             added_slope1 = new(newID, added_slope1.SlopeName, added_slope1.IsOpen, added_slope1.DifficultyLevel);
             Slope added_slope2 = new Slope(2, "A2", false, 20);
             await facade.AdminAddSlopeAsync(TestUsersCreator.adminID, added_slope2);
             Slope added_slope3 = new Slope(3, "A3", true, 5);
             await facade.AdminAddSlopeAsync(TestUsersCreator.adminID, added_slope3);
             added_slope3 = new Slope(added_slope3.SlopeID, "A33", added_slope3.IsOpen, added_slope3.DifficultyLevel);
-            await facade.UpdateSlopeInfoAsync(TestUsersCreator.skiPatrolID, added_slope3);
+            await facade.UpdateSlopeInfoAsync(TestUsersCreator.skiPatrolID, added_slope3.SlopeName, added_slope3.IsOpen, added_slope3.DifficultyLevel);
             Assert.True(added_slope3.EqualWithoutConnectedLifts(await facade.GetSlopeInfoAsync(TestUsersCreator.skiPatrolID, added_slope3.SlopeName)));
 
 
@@ -54,7 +54,7 @@ namespace TestsBL
             LiftSlope added_lift_slope2 = new LiftSlope(2, added_lift1.LiftID, added_slope2.SlopeID);
             LiftSlope added_lift_slope4 = new LiftSlope(4, added_lift2.LiftID, added_slope2.SlopeID);
 
-            uint liftSlopeID1 = await facade.AdminAddAutoIncrementLiftSlopeAsync(TestUsersCreator.adminID, added_lift_slope1);
+            uint liftSlopeID1 = await facade.AdminAddAutoIncrementLiftSlopeAsync(TestUsersCreator.adminID, added_lift1.LiftName, added_slope1.SlopeName);
             added_lift_slope1 = new LiftSlope(liftSlopeID1, added_lift_slope1.LiftID, added_lift_slope1.SlopeID);
             await facade.AdminAddLiftSlopeAsync(TestUsersCreator.adminID, added_lift_slope2);
             await facade.AdminAddLiftSlopeAsync(TestUsersCreator.adminID, added_lift_slope4);
@@ -85,12 +85,12 @@ namespace TestsBL
             Assert.Equal(1, from_lift2.Count);
             Assert.True(added_slope2.EqualWithoutConnectedLifts(from_lift2[0]));
 
-            await facade.AdminDeleteLiftAsync(TestUsersCreator.adminID, added_lift1);
-            await facade.AdminDeleteLiftAsync(TestUsersCreator.adminID, added_lift2);
+            await facade.AdminDeleteLiftAsync(TestUsersCreator.adminID, added_lift1.LiftName);
+            await facade.AdminDeleteLiftAsync(TestUsersCreator.adminID, added_lift2.LiftName);
 
-            await facade.AdminDeleteSlopeAsync(TestUsersCreator.adminID, added_slope1);
-            await facade.AdminDeleteSlopeAsync(TestUsersCreator.adminID, added_slope2);
-            await facade.AdminDeleteSlopeAsync(TestUsersCreator.adminID, added_slope3);
+            await facade.AdminDeleteSlopeAsync(TestUsersCreator.adminID, added_slope1.SlopeName);
+            await facade.AdminDeleteSlopeAsync(TestUsersCreator.adminID, added_slope2.SlopeName);
+            await facade.AdminDeleteSlopeAsync(TestUsersCreator.adminID, added_slope3.SlopeName);
 
             Assert.Empty(await facade.GetLiftsInfoAsync(TestUsersCreator.adminID));
             Assert.Empty(await facade.GetSlopesInfoAsync(TestUsersCreator.adminID));
