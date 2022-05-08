@@ -17,7 +17,7 @@ namespace UI.IViews
         public bool UpdateEnabled { get; set; }
         public bool DeleteEnabled { get; set; }
         public string MessageID { get; set; }
-        public string Text { get; set; }
+        public string MessageText { get; set; }
         public string SenderID { get; set; }
         public string CheckedByID { get; set; }
         public List<BL.Models.Message> Messages { set; }

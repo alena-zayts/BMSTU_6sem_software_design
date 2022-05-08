@@ -113,3 +113,4 @@ C:\BMSTU_6sem_software_design\src\SkiResort\UI\obj\Debug\net6.0-windows\UI.pdb
 C:\BMSTU_6sem_software_design\src\SkiResort\UI\obj\Debug\net6.0-windows\UI.genruntimeconfig.cache
 C:\BMSTU_6sem_software_design\src\SkiResort\UI\obj\Debug\net6.0-windows\ref\UI.dll
 C:\BMSTU_6sem_software_design\src\SkiResort\UI\obj\Debug\net6.0-windows\UI.WinFormsViews.MessageViewWinForm.resources
+C:\BMSTU_6sem_software_design\src\SkiResort\UI\obj\Debug\net6.0-windows\UI.WinFormsViews.CardReadingViewWinForm.resources

@@ -95,7 +95,31 @@ namespace TestsBL.IoCRepositories
                 return data.GetRange((int)offset, (int)data.Count);
         }
 
-
+        public async Task<CardReading> GetCardReadingByIDAsync(uint recordID)
+        {
+            foreach (var cardReadingFromDB in data)
+            {
+                if (cardReadingFromDB.RecordID == recordID)
+                {
+                    return cardReadingFromDB;
+                }
+            }
+            throw new Exception();
+        }
+        public async Task UpdateCardReadingByIDAsync(uint recordID, uint newTurnstileID, uint newCardID, DateTimeOffset newReadingTime)
+        {
+            for (int i = 0; i < data.Count; i++)
+            {
+                CardReading cardReadingFromDB = data[i];
+                if (cardReadingFromDB.RecordID == recordID)
+                {
+                    data.Remove(cardReadingFromDB);
+                    data.Insert(i, new CardReading(recordID, newTurnstileID, newCardID, newReadingTime));
+                    return;
+                }
+            }
+            throw new Exception();
+        }
     }
 }
 

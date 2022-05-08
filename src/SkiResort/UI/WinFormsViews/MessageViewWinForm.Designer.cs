@@ -238,7 +238,7 @@
             this.Controls.Add(this.GetMessagesButton);
             this.Controls.Add(this.MessagesDataGridView);
             this.Name = "MessageViewWinForm";
-            this.Text = "MessageViewWinForm";
+            this.Text = "Сообщеня";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MessageViewWinForm_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.MessagesDataGridView)).EndInit();
             this.ResumeLayout(false);

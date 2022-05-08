@@ -13,7 +13,7 @@ namespace UI
     {
         public ICardReadingView CreateCardReadingView()
         {
-            throw new NotImplementedException();
+            return new CardReadingViewWinForm();
         }
 
         public IExceptionView CreateExceptionView()

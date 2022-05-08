@@ -44,6 +44,11 @@ namespace UI.WinFormsViews
             get { return DeleteButton.Enabled; }
             set { DeleteButton.Enabled = value; }
         }
+        public string MessageText
+        {
+            get { return TextTextBox.Text; }
+            set { TextTextBox.Text = value; }
+        }
         public string MessageID
         {
             get { return MessageIDTextBox.Text; }
@@ -69,7 +74,7 @@ namespace UI.WinFormsViews
                     string[] row = new string[4];
                     row[0] = message.MessageID.ToString();
                     row[1] = message.SenderID.ToString();
-                    if (message.SenderID != BL.Models.Message.MessageCheckedByNobody)
+                    if (message.CheckedByID != BL.Models.Message.MessageCheckedByNobody)
                     {
                         row[2] = message.CheckedByID.ToString();
                     }

@@ -19,7 +19,7 @@ namespace UI.IViews
         public string RecordID { get; set; }
         public string TurnstileID { get; set; }
         public string CardID { get; set; }
-        public string ReadingTime { get; set; }
+        public DateTimeOffset ReadingTime { get; set; }
         public List<CardReading> CardReadings { set; }
 
 

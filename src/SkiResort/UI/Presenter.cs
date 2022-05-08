@@ -11,7 +11,11 @@ using AccessToDB.Exceptions.SlopeExceptions;
 using AccessToDB.Exceptions.LiftExceptions;
 using AccessToDB.Exceptions.LiftSlopeExceptions;
 using AccessToDB.Exceptions.UserExceptions;
+using AccessToDB.Exceptions.MessageExceptions;
+using AccessToDB.Exceptions.CardReadingExceptions;
+using AccessToDB.Exceptions.CardExceptions;
 using BL.Exceptions.UserExceptions;
+using BL.Exceptions.MessageExceptions;
 
 using UI.IViews;
 
@@ -40,7 +44,7 @@ namespace UI
         {
             _facade = facade;
             _viewsFactory = viewsFactory;
-            
+
             _permissions = PermissionsEnum.UNAUTHORIZED;
 
             _exceptionView = _viewsFactory.CreateExceptionView();
@@ -52,9 +56,10 @@ namespace UI
 
             //unauthorized
             //_userID = 7777;
+            //_permissions = PermissionsEnum.UNAUTHORIZED;
 
             //admin q q
-            _userID = 1; 
+            _userID = 1;
             _permissions = PermissionsEnum.ADMIN;
             //skipatrol ski_patrol_email9 ski_patrol_password9
             //_userID = 1511;
@@ -83,6 +88,8 @@ namespace UI
             _mainView.ProfileClicked += OnProfileClicked;
             _mainView.SlopeClicked += OnSlopeClicked;
             _mainView.LiftClicked += OnLiftClicked;
+            _mainView.MessageClicked += OnMessageClicked;
+            _mainView.CardReadingClicked += OnCardReadingClicked;
             _mainView.CloseClicked += OnMainCloseClicked;
             _changeVisibilityForViews();
             _mainView.Open();
@@ -110,6 +117,10 @@ namespace UI
             if (_liftView != null)
             {
                 _changeVisibilityForLiftView();
+            }
+            if (_messageView != null)
+            {
+                _changeVisibilityForMessageView();
             }
 
 
@@ -227,6 +238,47 @@ namespace UI
                 }
                 _liftView.Refresh();
             }
+
+            void _changeVisibilityForMessageView()
+            {
+                _messageView.Messages = new List<BL.Models.Message> { };
+                switch (_permissions)
+                {
+                    case PermissionsEnum.UNAUTHORIZED:
+                        _messageView.GetMessageEnabled = false;
+                        _messageView.GetMessagesEnabled = false;
+                        _messageView.SendEnabled = false;
+                        _messageView.UpdateEnabled = false;
+                        _messageView.DeleteEnabled = false;
+                        _messageView.MarkCheckedEnabled = false;
+                        break;
+                    case PermissionsEnum.AUTHORIZED:
+                        _messageView.GetMessageEnabled = false;
+                        _messageView.GetMessagesEnabled = false;
+                        _messageView.SendEnabled = true;
+                        _messageView.UpdateEnabled = false;
+                        _messageView.DeleteEnabled = false;
+                        _messageView.MarkCheckedEnabled = false;
+                        break;
+                    case PermissionsEnum.SKI_PATROL:
+                        _messageView.GetMessageEnabled = true;
+                        _messageView.GetMessagesEnabled = true;
+                        _messageView.SendEnabled = false;
+                        _messageView.UpdateEnabled = false;
+                        _messageView.DeleteEnabled = false;
+                        _messageView.MarkCheckedEnabled = true;
+                        break;
+                    default:
+                        _messageView.GetMessageEnabled = true;
+                        _messageView.GetMessagesEnabled = true;
+                        _messageView.SendEnabled = true;
+                        _messageView.UpdateEnabled = true;
+                        _messageView.DeleteEnabled = true;
+                        _messageView.MarkCheckedEnabled = false;
+                        break;
+                }
+                _messageView.Refresh();
+            }
         }
 
 
@@ -292,10 +344,10 @@ namespace UI
 
         public async Task LogOutAsync(object sender, EventArgs e)
         {
-            await _facade.LogOutAsync(_userID);
+            //await _facade.LogOutAsync(_userID);
             _permissions = PermissionsEnum.UNAUTHORIZED;
             _userID = 7777;
-            _changeVisibilityForViews(); 
+            _changeVisibilityForViews();
         }
 
         public async Task LogInAsync(object sender, EventArgs e)
@@ -712,5 +764,329 @@ namespace UI
             }
             await GetLiftInfoAsync(sender, e);
         }
+
+
+
+
+
+
+
+
+
+        // Message
+        public void OnMessageClicked(object sender, EventArgs e)
+        {
+            if (_messageView is not null)
+            {
+                return;
+            }
+            _messageView = _viewsFactory.CreateMessageView();
+
+            _messageView.GetMessageClicked += GetMessageAsync;
+            _messageView.GetMessagesClicked += GetMessagesAsync;
+            _messageView.MarkCheckedClicked += MarkMessageCheckedAsync;
+            _messageView.SendClicked += SendMessageAsync;
+            _messageView.DeleteClicked += DeleteMessageAsync;
+            _messageView.UpdateClicked += UpdateMessageAsync;
+            _messageView.CloseClicked += OnMessageCloseClicked;
+
+
+            _changeVisibilityForViews();
+            _messageView.Open();
     }
+
+        private void OnMessageCloseClicked(object sender, EventArgs e)
+        {
+            _messageView = null;
+        }
+
+        private async Task GetMessagesAsync(object sender, EventArgs e)
+        {
+            List<BL.Models.Message> messages = await _facade.GetMessagesAsync(_userID);
+            _messageView.Messages = messages;
+        }
+
+        private async Task GetMessageAsync(object sender, EventArgs e)
+        {
+            string stringMessageID = _messageView.MessageID;
+            uint messageID;
+            try
+            {
+                messageID = Convert.ToUInt32(stringMessageID);
+            }
+            catch (Exception ex)
+            {
+                _exceptionView.ShowException(ex, "ID сообщения должно быть целым неотрицательным числом");
+                return;
+            }
+
+            try
+            {
+                BL.Models.Message message = await _facade.GetMessageAsync(_userID, messageID);
+                _messageView.Messages = new List<BL.Models.Message>() { message };
+            }
+            catch (MessageNotFoundException ex)
+            {
+                _exceptionView.ShowException(ex, "Сообщение с таким ID не найдено");
+            }
+        }
+
+        private async Task UpdateMessageAsync(object sender, EventArgs e)
+        {
+            string text = _messageView.MessageText;
+            string stringMessageID = _messageView.MessageID;
+            string stringCheckedByID = _messageView.CheckedByID;
+            string stringSenderID = _messageView.SenderID;
+            uint messageID, checkedByID, senderID;
+            try
+            {
+                messageID = Convert.ToUInt32(stringMessageID);
+                checkedByID = Convert.ToUInt32(stringCheckedByID);
+                senderID = Convert.ToUInt32(stringSenderID);
+            }
+            catch (Exception ex)
+            {
+                _exceptionView.ShowException(ex, "ID сообщения, отправителя, прочитавшего должны быть целыми неотрицательными числами");
+                return;
+            }
+
+            try
+            {
+                await _facade.AdminUpdateMessageAsync(_userID, messageID, senderID, checkedByID, text);
+            }
+            catch (MessageNotFoundException ex)
+            {
+                _exceptionView.ShowException(ex, "Сообщение с таким ID не найдено");
+            }
+            await GetMessageAsync(sender, e);
+        }
+        private async Task SendMessageAsync(object sender, EventArgs e)
+        {
+            string text = _messageView.MessageText;
+
+            try
+            {
+                uint messageID = await _facade.SendMessageAsync(_userID, text);
+                _messageView.MessageID = Convert.ToString(messageID);
+                await GetMessageAsync(sender, e);
+            }
+            catch (MessageAddAutoIncrementException ex)
+            {
+                _exceptionView.ShowException(ex, "Не удалось отправить сообщение");
+            }
+        }
+
+        private async Task DeleteMessageAsync(object sender, EventArgs e)
+        {
+            string stringMessageID = _messageView.MessageID;
+            uint messageID;
+            try
+            {
+                messageID = Convert.ToUInt32(stringMessageID);
+            }
+            catch (Exception ex)
+            {
+                _exceptionView.ShowException(ex, "ID сообщения должно быть целым неотрицательным числом");
+                return;
+            }
+
+            try
+            {
+                await _facade.AdminDeleteMessageAsync(_userID, messageID);
+            }
+            catch (MessageDeleteException ex)
+            {
+                _exceptionView.ShowException(ex, "Сообщение с таким ID не найдено");
+            }
+            await GetMessagesAsync(sender, e);
+        }
+
+        private async Task MarkMessageCheckedAsync(object sender, EventArgs e)
+        {
+            string stringMessageID = _messageView.MessageID;
+            uint messageID;
+            try
+            {
+                messageID = Convert.ToUInt32(stringMessageID);
+            }
+            catch (Exception ex)
+            {
+                _exceptionView.ShowException(ex, "ID сообщения должно быть целым неотрицательным числом");
+                return;
+            }
+
+            try
+            {
+                await _facade.MarkMessageReadByUserAsync(_userID, messageID);
+            }
+            catch (MessageNotFoundException ex)
+            {
+                _exceptionView.ShowException(ex, "Сообщение с таким ID не найдено");
+            }
+            catch (MessageCheckingException ex)
+            {
+                _exceptionView.ShowException(ex, "Это сообщение уже проверено другим пользователем");
+            }
+            await GetMessagesAsync(sender, e);
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        // CardReading
+        public void OnCardReadingClicked(object sender, EventArgs e)
+        {
+            if (_cardReadingView is not null)
+            {
+                return;
+            }
+            _cardReadingView = _viewsFactory.CreateCardReadingView();
+
+            _cardReadingView.GetCardReadingClicked += GetCardReadingAsync;
+            _cardReadingView.GetCardReadingsClicked += GetCardReadingsAsync;
+            _cardReadingView.UpdateClicked += UpdateCardReadingAsync;
+            _cardReadingView.AddClicked += AddCardReadingAsync;
+            _cardReadingView.DeleteClicked += DeleteCardReadingAsync;
+            _cardReadingView.CloseClicked += OnCardReadingCloseClicked;
+        _changeVisibilityForViews();
+            _cardReadingView.Open();
+        }
+
+        private void OnCardReadingCloseClicked(object sender, EventArgs e)
+        {
+            _cardReadingView = null;
+        }
+
+        private async Task GetCardReadingsAsync(object sender, EventArgs e)
+        {
+            List<CardReading> cardReadings = await _facade.AdminGetCardReadingsAsync(_userID);
+            _cardReadingView.CardReadings = cardReadings;
+        }
+
+        private async Task GetCardReadingAsync(object sender, EventArgs e)
+        {
+            string stringRecordID = _cardReadingView.RecordID;
+            uint recordID;
+            try
+            {
+                recordID = Convert.ToUInt32(stringRecordID);
+            }
+            catch (Exception ex)
+            {
+                _exceptionView.ShowException(ex, "ID записи должно быть целым неотрицательным числом");
+                return;
+            }
+
+            try
+            {
+                CardReading cardReading = await _facade.AdminGetCardReadingAsync(_userID, recordID);
+                _cardReadingView.CardReadings = new List<CardReading>() { cardReading };
+            }
+            catch (CardReadingNotFoundException ex)
+            {
+                _exceptionView.ShowException(ex, "Чтение с таким ID не найдено");
+            }
+        }
+
+        private async Task UpdateCardReadingAsync(object sender, EventArgs e)
+        {
+            string stringRecordID = _cardReadingView.RecordID;
+            string stringTurnstileID = _cardReadingView.TurnstileID;
+            string stringCardID = _cardReadingView.CardID;
+            uint recordID, turnstileID, cardID;
+            try
+            {
+                recordID = Convert.ToUInt32(stringRecordID);
+                turnstileID = Convert.ToUInt32(stringTurnstileID);
+                cardID = Convert.ToUInt32(stringCardID);
+            }
+            catch (Exception ex)
+            {
+                _exceptionView.ShowException(ex, "ID записи, турникета и карты должны быть целыми неотрицательными числами");
+                return;
+            }
+
+            DateTimeOffset readingTime = _cardReadingView.ReadingTime;
+
+            try
+            {
+                await _facade.AdminUpdateCardReadingAsync(_userID, recordID, turnstileID, cardID, readingTime);
+            }
+            catch (CardReadingNotFoundException ex)
+            {
+                _exceptionView.ShowException(ex, "Чтение с таким ID не найдено");
+            }
+            await GetCardReadingAsync(sender, e);
+        }
+        private async Task AddCardReadingAsync(object sender, EventArgs e)
+        {
+            string stringTurnstileID = _cardReadingView.TurnstileID;
+            string stringCardID = _cardReadingView.CardID;
+            uint recordID, turnstileID, cardID;
+            try
+            {
+                turnstileID = Convert.ToUInt32(stringTurnstileID);
+                cardID = Convert.ToUInt32(stringCardID);
+            }
+            catch (Exception ex)
+            {
+                _exceptionView.ShowException(ex, "ID турникета и карты должны быть целыми неотрицательными числами");
+                return;
+            }
+
+            DateTimeOffset readingTime = _cardReadingView.ReadingTime;
+
+            try
+            {
+                uint cardReadingID = await _facade.AdminAddAutoIncrementCardReadingAsync(_userID, turnstileID, cardID, readingTime);
+                _cardReadingView.RecordID = Convert.ToString(cardReadingID);
+                await GetCardReadingAsync(sender, e);
+            }
+            catch (CardReadingAddAutoIncrementException ex)
+            {
+                _exceptionView.ShowException(ex, "Не удалось добавить чтение");
+            }
+        }
+
+        private async Task DeleteCardReadingAsync(object sender, EventArgs e)
+        {
+            string stringRecordID = _cardReadingView.RecordID;
+            uint recordID;
+            try
+            {
+                recordID = Convert.ToUInt32(stringRecordID);
+            }
+            catch (Exception ex)
+            {
+                _exceptionView.ShowException(ex, "ID чтения должно быть целым неотрицательным числом");
+                return;
+            }
+
+            try
+            {
+                await _facade.AdminDeleteCardReadingAsync(_userID, recordID);
+            }
+            catch (CardReadingDeleteException ex)
+            {
+                _exceptionView.ShowException(ex, "Чтение с таким ID не найдено");
+            }
+            await GetCardReadingsAsync(sender, e);
+        }
+
+    }
+
 }

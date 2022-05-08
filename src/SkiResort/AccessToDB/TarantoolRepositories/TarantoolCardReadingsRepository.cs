@@ -1,6 +1,7 @@
 using ProGaudi.Tarantool.Client;
 using ProGaudi.Tarantool.Client.Model;
 using ProGaudi.Tarantool.Client.Model.Enums;
+using ProGaudi.Tarantool.Client.Model.UpdateOperations;
 
 using BL;
 using BL.Models;
@@ -89,6 +90,35 @@ namespace AccessToDB.RepositoriesTarantool
                 throw new CardReadingDeleteException();
             }
 
+        }
+
+        public async Task<CardReading> GetCardReadingByIDAsync(uint recordID)
+        {
+            var data = await _indexPrimary.Select<ValueTuple<uint>, CardReadingDB>
+                (ValueTuple.Create(recordID));
+
+            if (data.Data.Length != 1)
+            {
+                throw new CardReadingNotFoundException(recordID);
+            }
+
+            return CardReadingConverter.DBToBL(data.Data[0]);
+        }
+
+        public async Task UpdateCardReadingByIDAsync(uint recordID, uint newTurnstileID, uint newCardID, DateTimeOffset newReadingTime)
+        { 
+            var response = await _space.Update<ValueTuple<uint>, CardReadingDB>(
+                ValueTuple.Create(recordID), new UpdateOperation[] {
+                    UpdateOperation.CreateAssign<uint>(1, newTurnstileID),
+                    UpdateOperation.CreateAssign<uint>(2, newCardID),
+                    UpdateOperation.CreateAssign<uint>(3, (uint) newReadingTime.ToUnixTimeSeconds()),
+                    
+                });
+
+            if (response.Data.Length != 1)
+            {
+                throw new CardReadingUpdateException(recordID, newTurnstileID, newCardID, newReadingTime);
+            }
         }
     }
 }
