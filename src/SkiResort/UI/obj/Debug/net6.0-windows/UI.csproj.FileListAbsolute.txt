@@ -114,3 +114,6 @@ C:\BMSTU_6sem_software_design\src\SkiResort\UI\obj\Debug\net6.0-windows\UI.genru
 C:\BMSTU_6sem_software_design\src\SkiResort\UI\obj\Debug\net6.0-windows\ref\UI.dll
 C:\BMSTU_6sem_software_design\src\SkiResort\UI\obj\Debug\net6.0-windows\UI.WinFormsViews.MessageViewWinForm.resources
 C:\BMSTU_6sem_software_design\src\SkiResort\UI\obj\Debug\net6.0-windows\UI.WinFormsViews.CardReadingViewWinForm.resources
+C:\BMSTU_6sem_software_design\src\SkiResort\UI\obj\Debug\net6.0-windows\UI.WinFormsViews.CardViewWinForm.resources
+C:\BMSTU_6sem_software_design\src\SkiResort\UI\obj\Debug\net6.0-windows\UI.WinFormsViews.TurnstileViewWinForm.resources
+C:\BMSTU_6sem_software_design\src\SkiResort\UI\obj\Debug\net6.0-windows\UI.WinFormsViews.UserViewWinForm.resources

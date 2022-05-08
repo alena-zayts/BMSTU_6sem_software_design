@@ -60,7 +60,7 @@
             // 
             // GetInfosButton
             // 
-            this.GetInfosButton.Location = new System.Drawing.Point(817, 713);
+            this.GetInfosButton.Location = new System.Drawing.Point(551, 489);
             this.GetInfosButton.Name = "GetInfosButton";
             this.GetInfosButton.Size = new System.Drawing.Size(382, 42);
             this.GetInfosButton.TabIndex = 30;
@@ -240,7 +240,7 @@
             this.LiftsDataGridView.Name = "LiftsDataGridView";
             this.LiftsDataGridView.RowHeadersWidth = 72;
             this.LiftsDataGridView.RowTemplate.Height = 37;
-            this.LiftsDataGridView.Size = new System.Drawing.Size(1326, 438);
+            this.LiftsDataGridView.Size = new System.Drawing.Size(1305, 438);
             this.LiftsDataGridView.TabIndex = 16;
             // 
             // IDColumn
@@ -296,7 +296,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 30F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1911, 794);
+            this.ClientSize = new System.Drawing.Size(1853, 794);
             this.Controls.Add(this.LiftsDataGridView);
             this.Controls.Add(this.QueueTimeTextBox);
             this.Controls.Add(this.label5);

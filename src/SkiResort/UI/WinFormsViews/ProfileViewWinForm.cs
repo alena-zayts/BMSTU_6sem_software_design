@@ -76,7 +76,7 @@ namespace UI.WinFormsViews
 
         public void Open()
         {
-            base.ShowDialog();
+            Show();
         }
 
         private void ProfileView_FormClosing(object sender, FormClosingEventArgs e)

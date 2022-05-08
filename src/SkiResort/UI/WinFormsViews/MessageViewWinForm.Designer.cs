@@ -62,7 +62,7 @@
             this.MessagesDataGridView.Name = "MessagesDataGridView";
             this.MessagesDataGridView.RowHeadersWidth = 72;
             this.MessagesDataGridView.RowTemplate.Height = 37;
-            this.MessagesDataGridView.Size = new System.Drawing.Size(1326, 282);
+            this.MessagesDataGridView.Size = new System.Drawing.Size(1106, 282);
             this.MessagesDataGridView.TabIndex = 17;
             // 
             // MessageIDColumn
@@ -95,7 +95,7 @@
             // 
             // GetMessagesButton
             // 
-            this.GetMessagesButton.Location = new System.Drawing.Point(23, 344);
+            this.GetMessagesButton.Location = new System.Drawing.Point(23, 336);
             this.GetMessagesButton.Name = "GetMessagesButton";
             this.GetMessagesButton.Size = new System.Drawing.Size(292, 42);
             this.GetMessagesButton.TabIndex = 19;
@@ -221,7 +221,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 30F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1284, 1012);
+            this.ClientSize = new System.Drawing.Size(1137, 1012);
             this.Controls.Add(this.DeleteButton);
             this.Controls.Add(this.UpdateButton);
             this.Controls.Add(this.CheckedByIDTextBox);

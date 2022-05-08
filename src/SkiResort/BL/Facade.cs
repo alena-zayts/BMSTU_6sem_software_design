@@ -99,11 +99,11 @@ namespace BL
             await usersRepository.AddUserAsync(user.UserID, user.CardID, user.UserEmail, user.Password, user.Permissions);
         }
 
-        public async Task<uint> AdminAddAutoIncrementUserAsync(uint requesterUserID, User user)
+        public async Task<uint> AdminAddAutoIncrementUserAsync(uint requesterUserID, uint cardID, string userEmail, string password, PermissionsEnum permissions)
         {
             await CheckPermissionsService.CheckPermissionsAsync(RepositoriesFactory.CreateUsersRepository(), requesterUserID);
             IUsersRepository usersRepository = RepositoriesFactory.CreateUsersRepository();
-            return await usersRepository.AddUserAutoIncrementAsync(user.CardID, user.UserEmail, user.Password, user.Permissions);
+            return await usersRepository.AddUserAutoIncrementAsync(cardID, userEmail, password, permissions);
         }
 
         public async Task<uint> AddUnauthorizedUserAsync()
@@ -112,11 +112,11 @@ namespace BL
             return await usersRepository.AddUserAutoIncrementAsync(1, "tmp1", "tmp2", PermissionsEnum.UNAUTHORIZED);
         }
 
-        public async Task AdminUpdateUserAsync(uint requesterUserID, User user)
+        public async Task AdminUpdateUserAsync(uint requesterUserID, uint userID, uint newCardID, string newUserEmail, string newPassword, PermissionsEnum newPermissions)
         {
             await CheckPermissionsService.CheckPermissionsAsync(RepositoriesFactory.CreateUsersRepository(), requesterUserID);
             IUsersRepository usersRepository = RepositoriesFactory.CreateUsersRepository();
-            await usersRepository.UpdateUserByIDAsync(user.UserID, user.CardID, user.UserEmail, user.Password, user.Permissions);
+            await usersRepository.UpdateUserByIDAsync(userID, newCardID, newUserEmail, newPassword, newPermissions);
         }
 
         public async Task AdminDeleteUserAsync(uint requesterUserID, uint userToDeleteID)
@@ -425,36 +425,49 @@ namespace BL
 
 
 
-        public async Task AdminUpdateTurnstileAsync(uint requesterUserID, Turnstile turnstile)
+        public async Task AdminUpdateTurnstileAsync(uint requesterUserID, uint turnstileID, uint newLiftID, bool newIsOpen)
         {
             await CheckPermissionsService.CheckPermissionsAsync(RepositoriesFactory.CreateUsersRepository(), requesterUserID);
 
             ITurnstilesRepository rep = RepositoriesFactory.CreateTurnstilesRepository();
-            await rep.UpdateTurnstileByIDAsync(turnstile.TurnstileID, turnstile.LiftID, turnstile.IsOpen);
+            await rep.UpdateTurnstileByIDAsync(turnstileID, newLiftID, newIsOpen);
         }
 
-        public async Task AdminDeleteTurnstileAsync(uint requesterUserID, Turnstile turnstile)
+        public async Task AdminDeleteTurnstileAsync(uint requesterUserID, uint turnstileID)
         {
             await CheckPermissionsService.CheckPermissionsAsync(RepositoriesFactory.CreateUsersRepository(), requesterUserID);
 
             ITurnstilesRepository rep = RepositoriesFactory.CreateTurnstilesRepository();
-            await rep.DeleteTurnstileByIDAsync(turnstile.TurnstileID);
+            await rep.DeleteTurnstileByIDAsync(turnstileID);
         }
 
-        public async Task AdminAddTurnstileAsync(uint requesterUserID, Turnstile turnstile)
+        public async Task AdminAddTurnstileAsync(uint requesterUserID, uint turnstileID, uint liftID, bool isOpen)
         {
             await CheckPermissionsService.CheckPermissionsAsync(RepositoriesFactory.CreateUsersRepository(), requesterUserID);
 
             ITurnstilesRepository rep = RepositoriesFactory.CreateTurnstilesRepository();
-            await rep.AddTurnstileAsync(turnstile.TurnstileID,  turnstile.LiftID, turnstile.IsOpen);
+            await rep.AddTurnstileAsync(turnstileID,  liftID, isOpen);
         }
 
-        public async Task<uint> AdminAddAutoIncrementTurnstileAsync(uint requesterUserID, Turnstile turnstile)
+        public async Task<uint> AdminAddAutoIncrementTurnstileAsync(uint requesterUserID, uint liftID, bool isOpen)
         {
             await CheckPermissionsService.CheckPermissionsAsync(RepositoriesFactory.CreateUsersRepository(), requesterUserID);
 
             ITurnstilesRepository rep = RepositoriesFactory.CreateTurnstilesRepository();
-            return await rep.AddTurnstileAutoIncrementAsync(turnstile.TurnstileID, turnstile.IsOpen);
+            return await rep.AddTurnstileAutoIncrementAsync(liftID, isOpen);
+        }
+
+        public async Task<Turnstile> AdminGetTurnstileAsync(uint requesterUserID, uint turnstileID)
+        {
+            await CheckPermissionsService.CheckPermissionsAsync(RepositoriesFactory.CreateUsersRepository(), requesterUserID);
+            ITurnstilesRepository rep = RepositoriesFactory.CreateTurnstilesRepository();
+            return await rep.GetTurnstileByIdAsync(turnstileID);
+        }
+        public async Task<List<Turnstile>> AdminGetTurnstilesAsync(uint requesterUserID, uint offset = 0, uint limit = UNLIMITED)
+        {
+            await CheckPermissionsService.CheckPermissionsAsync(RepositoriesFactory.CreateUsersRepository(), requesterUserID);
+            ITurnstilesRepository rep = RepositoriesFactory.CreateTurnstilesRepository();
+            return await rep.GetTurnstilesAsync(offset, limit);
         }
 
 
@@ -492,18 +505,23 @@ namespace BL
             return await rep.AddCardAutoIncrementAsync(activationTime, type);
         }
 
-
-
-
-
-
-        public async Task AdminDeleteCardReadingAsync(uint requesterUserID, CardReading card_readding)
+        public async Task<Card> AdminGetCardAsync(uint requesterUserID, uint messageID)
         {
             await CheckPermissionsService.CheckPermissionsAsync(RepositoriesFactory.CreateUsersRepository(), requesterUserID);
-
-            ICardReadingsRepository rep = RepositoriesFactory.CreateCardReadingsRepository();
-            await rep.DeleteCardReadingAsync(card_readding.RecordID);
+            ICardsRepository rep = RepositoriesFactory.CreateCardsRepository();
+            return await rep.GetCardByIdAsync(messageID);
         }
+        public async Task<List<Card>> AdminGetCardsAsync(uint requesterUserID, uint offset = 0, uint limit = UNLIMITED)
+        {
+            await CheckPermissionsService.CheckPermissionsAsync(RepositoriesFactory.CreateUsersRepository(), requesterUserID);
+            ICardsRepository rep = RepositoriesFactory.CreateCardsRepository();
+            return await rep.GetCardsAsync(offset, limit);
+        }
+
+
+
+
+
 
         public async Task AdminAddCardReadingAsync(uint requesterUserID, CardReading card_readding)
         {

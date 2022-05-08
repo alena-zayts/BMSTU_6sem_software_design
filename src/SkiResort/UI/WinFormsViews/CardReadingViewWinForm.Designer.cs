@@ -36,7 +36,7 @@
             this.GetCardReadingButton = new System.Windows.Forms.Button();
             this.RecordIDTextBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.ReadingTimeDateTimePicker = new System.Windows.Forms.DateTimePicker();
+            this.DatePicker = new System.Windows.Forms.DateTimePicker();
             this.TurnstileIDTextBox = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.CardIDTextBox = new System.Windows.Forms.TextBox();
@@ -46,6 +46,8 @@
             this.UpdateButton = new System.Windows.Forms.Button();
             this.AddButton = new System.Windows.Forms.Button();
             this.DeleteButton = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
+            this.TimePicker = new System.Windows.Forms.DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)(this.СardReadingsDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -58,11 +60,11 @@
             this.TurnstileIDColumn,
             this.CardIDColumn,
             this.ReadingTimeColumn});
-            this.СardReadingsDataGridView.Location = new System.Drawing.Point(538, 24);
+            this.СardReadingsDataGridView.Location = new System.Drawing.Point(566, 24);
             this.СardReadingsDataGridView.Name = "СardReadingsDataGridView";
             this.СardReadingsDataGridView.RowHeadersWidth = 72;
             this.СardReadingsDataGridView.RowTemplate.Height = 37;
-            this.СardReadingsDataGridView.Size = new System.Drawing.Size(1326, 438);
+            this.СardReadingsDataGridView.Size = new System.Drawing.Size(1047, 438);
             this.СardReadingsDataGridView.TabIndex = 19;
             // 
             // recordIDColumn
@@ -119,12 +121,12 @@
             this.label1.TabIndex = 20;
             this.label1.Text = "ID записи";
             // 
-            // ReadingTimeDateTimePicker
+            // DatePicker
             // 
-            this.ReadingTimeDateTimePicker.Location = new System.Drawing.Point(244, 315);
-            this.ReadingTimeDateTimePicker.Name = "ReadingTimeDateTimePicker";
-            this.ReadingTimeDateTimePicker.Size = new System.Drawing.Size(265, 35);
-            this.ReadingTimeDateTimePicker.TabIndex = 23;
+            this.DatePicker.Location = new System.Drawing.Point(244, 315);
+            this.DatePicker.Name = "DatePicker";
+            this.DatePicker.Size = new System.Drawing.Size(229, 35);
+            this.DatePicker.TabIndex = 23;
             // 
             // TurnstileIDTextBox
             // 
@@ -138,9 +140,9 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(15, 188);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(158, 30);
+            this.label2.Size = new System.Drawing.Size(136, 30);
             this.label2.TabIndex = 24;
-            this.label2.Text = "ID подъемника";
+            this.label2.Text = "ID турникета";
             // 
             // CardIDTextBox
             // 
@@ -163,9 +165,9 @@
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(19, 320);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(195, 30);
+            this.label4.Size = new System.Drawing.Size(180, 30);
             this.label4.TabIndex = 28;
-            this.label4.Text = "Время считывания";
+            this.label4.Text = "Дата считывания";
             // 
             // GetCardReadingsButton
             // 
@@ -179,7 +181,7 @@
             // 
             // UpdateButton
             // 
-            this.UpdateButton.Location = new System.Drawing.Point(19, 394);
+            this.UpdateButton.Location = new System.Drawing.Point(19, 439);
             this.UpdateButton.Name = "UpdateButton";
             this.UpdateButton.Size = new System.Drawing.Size(180, 42);
             this.UpdateButton.TabIndex = 30;
@@ -189,7 +191,7 @@
             // 
             // AddButton
             // 
-            this.AddButton.Location = new System.Drawing.Point(19, 466);
+            this.AddButton.Location = new System.Drawing.Point(19, 511);
             this.AddButton.Name = "AddButton";
             this.AddButton.Size = new System.Drawing.Size(180, 42);
             this.AddButton.TabIndex = 31;
@@ -199,7 +201,7 @@
             // 
             // DeleteButton
             // 
-            this.DeleteButton.Location = new System.Drawing.Point(265, 466);
+            this.DeleteButton.Location = new System.Drawing.Point(265, 511);
             this.DeleteButton.Name = "DeleteButton";
             this.DeleteButton.Size = new System.Drawing.Size(180, 42);
             this.DeleteButton.TabIndex = 32;
@@ -207,11 +209,30 @@
             this.DeleteButton.UseVisualStyleBackColor = true;
             this.DeleteButton.Click += new System.EventHandler(this.DeleteButton_Click);
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(19, 380);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(195, 30);
+            this.label5.TabIndex = 34;
+            this.label5.Text = "Время считывания";
+            // 
+            // TimePicker
+            // 
+            this.TimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+            this.TimePicker.Location = new System.Drawing.Point(244, 375);
+            this.TimePicker.Name = "TimePicker";
+            this.TimePicker.Size = new System.Drawing.Size(229, 35);
+            this.TimePicker.TabIndex = 33;
+            // 
             // CardReadingViewWinForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 30F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1422, 751);
+            this.ClientSize = new System.Drawing.Size(1616, 566);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.TimePicker);
             this.Controls.Add(this.DeleteButton);
             this.Controls.Add(this.AddButton);
             this.Controls.Add(this.UpdateButton);
@@ -221,7 +242,7 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.TurnstileIDTextBox);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.ReadingTimeDateTimePicker);
+            this.Controls.Add(this.DatePicker);
             this.Controls.Add(this.СardReadingsDataGridView);
             this.Controls.Add(this.GetCardReadingButton);
             this.Controls.Add(this.RecordIDTextBox);
@@ -245,7 +266,7 @@
         private DataGridViewTextBoxColumn TurnstileIDColumn;
         private DataGridViewTextBoxColumn CardIDColumn;
         private DataGridViewTextBoxColumn ReadingTimeColumn;
-        private DateTimePicker ReadingTimeDateTimePicker;
+        private DateTimePicker DatePicker;
         private TextBox TurnstileIDTextBox;
         private Label label2;
         private TextBox CardIDTextBox;
@@ -255,5 +276,7 @@
         private Button UpdateButton;
         private Button AddButton;
         private Button DeleteButton;
+        private Label label5;
+        private DateTimePicker TimePicker;
     }
 }

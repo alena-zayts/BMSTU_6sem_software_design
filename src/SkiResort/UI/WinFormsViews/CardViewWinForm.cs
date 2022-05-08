@@ -13,18 +13,19 @@ using UI.IViews;
 
 namespace UI.WinFormsViews
 {
-    public partial class CardReadingViewWinForm : Form, ICardReadingView
+    public partial class CardViewWinForm : Form, ICardView
     {
-        public bool GetCardReadingEnabled
+        public bool GetCardEnabled
         {
-            get { return GetCardReadingButton.Enabled; }
-            set { GetCardReadingButton.Enabled = value; }
+            get { return GetCardButton.Enabled; }
+            set { GetCardButton.Enabled = value; }
         }
-        public bool GetCardReadingsEnabled
+        public bool GetCardsEnabled
         {
-            get { return GetCardReadingsButton.Enabled; }
-            set { GetCardReadingsButton.Enabled = value; }
+            get { return GetCardsButton.Enabled; }
+            set { GetCardsButton.Enabled = value; }
         }
+
         public bool UpdateEnabled
         {
             get { return UpdateButton.Enabled; }
@@ -40,65 +41,64 @@ namespace UI.WinFormsViews
             get { return DeleteButton.Enabled; }
             set { DeleteButton.Enabled = value; }
         }
-        public string RecordID
-        {
-            get { return RecordIDTextBox.Text; }
-            set { RecordIDTextBox.Text = value; }
-        }
-        public string TurnstileID
-        {
-            get { return TurnstileIDTextBox.Text; }
-            set { TurnstileIDTextBox.Text = value; }
-        }
         public string CardID
         {
             get { return CardIDTextBox.Text; }
             set { CardIDTextBox.Text = value; }
         }
-        public DateTimeOffset ReadingTime
+        string ICardView.Type
         {
-            get 
+            get { return TypeTextBox.Text; }
+            set { TypeTextBox.Text = value; }
+        }
+        public DateTimeOffset ActivationTime
+        {
+            get
             {
                 DateTimeOffset date = DatePicker.Value;
                 DateTimeOffset time = TimePicker.Value;
                 DateTimeOffset dateTime = new(date.Year, date.Month, date.Day, time.Hour, time.Minute, time.Second, new TimeSpan());
-                return dateTime; 
+                return dateTime;
             }
-            set 
-            { 
-                DatePicker.Value = value.DateTime; 
-                TimePicker.Value = value.DateTime; 
+            set
+            {
+                DatePicker.Value = value.DateTime;
+                TimePicker.Value = value.DateTime;
             }
         }
-        public List<CardReading> CardReadings
+        public List<Card> Cards
         {
             set
             {
-                СardReadingsDataGridView.Rows.Clear();
-                foreach (CardReading cardReading in value)
+                СardsDataGridView.Rows.Clear();
+                foreach (Card card in value)    
                 {
-                    string[] row = new string[4];
-                    row[0] = cardReading.RecordID.ToString();
-                    row[1] = cardReading.TurnstileID.ToString();
-                    row[2] = cardReading.CardID.ToString();
-                    row[3] = cardReading.ReadingTime.ToString();
+                    string[] row = new string[3];
+                    row[0] = card.CardID.ToString();
+                    row[1] = card.Type.ToString();
+                    row[2] = card.ActivationTime.ToString();
 
-                    СardReadingsDataGridView.Rows.Add(row);
+                    СardsDataGridView.Rows.Add(row);
                 }
             }
         }
 
-        public CardReadingViewWinForm()
+        public CardViewWinForm()
         {
             InitializeComponent();
         }
 
-        public event AsyncEventHandler GetCardReadingClicked;
-        public event AsyncEventHandler GetCardReadingsClicked;
+        public event AsyncEventHandler GetCardClicked;
+        public event AsyncEventHandler GetCardsClicked;
         public event AsyncEventHandler UpdateClicked;
         public event AsyncEventHandler AddClicked;
         public event AsyncEventHandler DeleteClicked;
         public event EventHandler CloseClicked;
+
+        private void GetCardButton_Click(object sender, EventArgs e)
+        {
+            GetCardClicked?.Invoke(this, new EventArgs());
+        }
 
         private void UpdateButton_Click(object sender, EventArgs e)
         {
@@ -115,17 +115,12 @@ namespace UI.WinFormsViews
             DeleteClicked?.Invoke(this, new EventArgs());
         }
 
-        private void GetCardReadingButton_Click(object sender, EventArgs e)
+        private void GetCardsButton_Click(object sender, EventArgs e)
         {
-            GetCardReadingClicked?.Invoke(this, new EventArgs());
+            GetCardsClicked?.Invoke(this, new EventArgs());
         }
 
-        private void GetCardReadingsButton_Click(object sender, EventArgs e)
-        {
-            GetCardReadingsClicked?.Invoke(this, new EventArgs());
-        }
-
-        private void CardReadingViewWinForm_FormClosing(object sender, FormClosingEventArgs e)
+        private void CardViewWinForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             CloseClicked?.Invoke(this, new EventArgs());
         }

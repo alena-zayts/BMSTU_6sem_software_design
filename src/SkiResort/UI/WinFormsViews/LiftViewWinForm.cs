@@ -132,7 +132,7 @@ namespace UI.WinFormsViews
 
         public void Open()
         {
-            base.ShowDialog();
+            Show();
         }
 
         private void GetInfoButton_Click(object sender, EventArgs e)

@@ -4,6 +4,9 @@
     <Compile Update="WinFormsViews\CardReadingViewWinForm.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="WinFormsViews\CardViewWinForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="WinFormsViews\LiftViewWinForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -17,6 +20,12 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="WinFormsViews\SlopeViewWinForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="WinFormsViews\TurnstileViewWinForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="WinFormsViews\UserViewWinForm.cs">
       <SubType>Form</SubType>
     </Compile>
   </ItemGroup>

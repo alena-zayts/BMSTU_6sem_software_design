@@ -16,6 +16,11 @@ namespace UI
             return new CardReadingViewWinForm();
         }
 
+        public ICardView CreateCardView()
+        {
+            return new CardViewWinForm();
+        }
+
         public IExceptionView CreateExceptionView()
         {
             return new ExceptionViewWinForm();
@@ -48,12 +53,12 @@ namespace UI
 
         public ITurnstileView CreateTurnstileView()
         {
-            throw new NotImplementedException();
+            return new TurnstileViewWinForm();
         }
 
         public IUserView CreateUserView()
         {
-            throw new NotImplementedException();
+            return new UserViewWinForm();
         }
     }
 }

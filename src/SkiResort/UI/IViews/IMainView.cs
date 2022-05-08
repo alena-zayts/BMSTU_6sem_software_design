@@ -13,6 +13,7 @@ namespace UI.IViews
         public bool UserEnabled { get; set; }
         public bool TurnstileEnabled { get; set; }
         public bool CardReadingEnabled { get; set; }
+        public bool CardEnabled { get; set; }
 
         event EventHandler ProfileClicked;
         event EventHandler LiftClicked;
@@ -21,6 +22,7 @@ namespace UI.IViews
         event EventHandler UserClicked;
         event EventHandler TurnstileClicked;
         event EventHandler CardReadingClicked;
+        event EventHandler CardClicked;
         event AsyncEventHandler CloseClicked;
 
 

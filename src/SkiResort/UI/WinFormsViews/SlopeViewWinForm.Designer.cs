@@ -70,11 +70,11 @@
             this.IsOpenColumn,
             this.DifficultyLevelColumn,
             this.ConnectedLiftsColumns});
-            this.SlopesDataGridView.Location = new System.Drawing.Point(471, 36);
+            this.SlopesDataGridView.Location = new System.Drawing.Point(494, 37);
             this.SlopesDataGridView.Name = "SlopesDataGridView";
             this.SlopesDataGridView.RowHeadersWidth = 72;
             this.SlopesDataGridView.RowTemplate.Height = 37;
-            this.SlopesDataGridView.Size = new System.Drawing.Size(977, 438);
+            this.SlopesDataGridView.Size = new System.Drawing.Size(960, 438);
             this.SlopesDataGridView.TabIndex = 1;
             // 
             // IDColumn
@@ -229,7 +229,7 @@
             // 
             // GetInfosButton
             // 
-            this.GetInfosButton.Location = new System.Drawing.Point(946, 518);
+            this.GetInfosButton.Location = new System.Drawing.Point(494, 498);
             this.GetInfosButton.Name = "GetInfosButton";
             this.GetInfosButton.Size = new System.Drawing.Size(292, 42);
             this.GetInfosButton.TabIndex = 15;
@@ -241,7 +241,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 30F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1475, 638);
+            this.ClientSize = new System.Drawing.Size(1463, 638);
             this.Controls.Add(this.GetInfosButton);
             this.Controls.Add(this.DeleteConnectedLiftButton);
             this.Controls.Add(this.AddConnectedLiftButton);

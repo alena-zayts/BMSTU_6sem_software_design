@@ -20,5 +20,6 @@ namespace UI
         public IUserView CreateUserView();
         public ICardReadingView CreateCardReadingView();
         public ITurnstileView CreateTurnstileView();
+        public ICardView CreateCardView();
     }
 }

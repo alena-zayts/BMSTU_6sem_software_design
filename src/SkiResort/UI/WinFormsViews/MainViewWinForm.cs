@@ -36,6 +36,13 @@ namespace UI.WinFormsViews
             get { return cardReadingButton.Enabled; }
             set { cardReadingButton.Enabled = value; }
         }
+
+        public bool CardEnabled
+        {
+            get { return CardButton.Enabled; }
+            set { CardButton.Enabled = value; }
+        }
+
         public event EventHandler ProfileClicked;
         public event EventHandler LiftClicked;
         public event EventHandler SlopeClicked;
@@ -44,6 +51,7 @@ namespace UI.WinFormsViews
         public event EventHandler TurnstileClicked;
         public event EventHandler CardReadingClicked;
         public event AsyncEventHandler CloseClicked;
+        public event EventHandler CardClicked;
 
         public void Open()
         {
@@ -88,6 +96,11 @@ namespace UI.WinFormsViews
         private void MainView_FormClosing(object sender, FormClosingEventArgs e)
         {
             CloseClicked?.Invoke(this, new EventArgs());
+        }
+
+        private void CardButton_Click(object sender, EventArgs e)
+        {
+            CardClicked?.Invoke(this, new EventArgs());
         }
     }
 }

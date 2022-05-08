@@ -136,7 +136,7 @@ namespace UI.WinFormsViews
 
         public void Open()
         {
-            base.ShowDialog();
+            Show();
         }
 
         private void MessageViewWinForm_FormClosing(object sender, FormClosingEventArgs e)
