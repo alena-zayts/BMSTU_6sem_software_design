@@ -34,7 +34,7 @@ namespace TestsBL
             Assert.Equal(skiPatrolUser, skiPatrolUserFromDB);
 
             User updatedSkiPatrolUser = new(skiPatrolUserID, User.UniversalCardID, "ski_patrol_email_updated", "ski_patrol_password", PermissionsEnum.SKI_PATROL);
-            await facade.AdminUpdateUserAsync(adminUser.UserID, updatedSkiPatrolUser);
+            await facade.AdminUpdateUserAsync(adminUser.UserID, updatedSkiPatrolUser.UserID, updatedSkiPatrolUser.CardID, updatedSkiPatrolUser.UserEmail, updatedSkiPatrolUser.Password, updatedSkiPatrolUser.Permissions);
             User updatedSkiPatrolUserFromDB = await facade.AdminGetUserByIDAsync(adminUser.UserID, skiPatrolUserID);
             Assert.Equal(updatedSkiPatrolUser, updatedSkiPatrolUserFromDB);  
 

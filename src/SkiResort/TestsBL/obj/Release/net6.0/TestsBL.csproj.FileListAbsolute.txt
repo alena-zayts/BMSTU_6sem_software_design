@@ -1,0 +1,6 @@
+C:\BMSTU_6sem_software_design\src\SkiResort\TestsBL\bin\Release\net6.0\CoverletSourceRootsMapping
+C:\BMSTU_6sem_software_design\src\SkiResort\TestsBL\obj\Release\net6.0\TestsBL.csproj.AssemblyReference.cache
+C:\BMSTU_6sem_software_design\src\SkiResort\TestsBL\obj\Release\net6.0\TestsBL.GeneratedMSBuildEditorConfig.editorconfig
+C:\BMSTU_6sem_software_design\src\SkiResort\TestsBL\obj\Release\net6.0\TestsBL.AssemblyInfoInputs.cache
+C:\BMSTU_6sem_software_design\src\SkiResort\TestsBL\obj\Release\net6.0\TestsBL.AssemblyInfo.cs
+C:\BMSTU_6sem_software_design\src\SkiResort\TestsBL\obj\Release\net6.0\TestsBL.csproj.CoreCompileInputs.cache

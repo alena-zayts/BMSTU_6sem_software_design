@@ -7,4 +7,9 @@
 \contentsline {subsection}{\numberline {1.4.1}Классификация баз данных по месту хранения информации}{5}{subsection.1.4.1}%
 \contentsline {subsection}{\numberline {1.4.2}Обзор in-memory СУБД}{6}{subsection.1.4.2}%
 \contentsline {subsection}{\numberline {1.4.3}Выбор СУБД для решения задачи}{9}{subsection.1.4.3}%
-\contentsline {chapter}{Литература}{10}{subsection.1.4.3}%
+\contentsline {chapter}{\numberline {2}Конструкторская часть}{10}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Функциональная модель}{10}{section.2.1}%
+\contentsline {section}{\numberline {2.2}Сценарии использования}{10}{section.2.2}%
+\contentsline {section}{\numberline {2.3}Проектирование базы данных}{12}{section.2.3}%
+\contentsline {section}{\numberline {2.4}Проектирование базы данных кэширования}{17}{section.2.4}%
+\contentsline {chapter}{Литература}{18}{section.2.4}%

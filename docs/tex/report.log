@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.6) (preloaded format=pdflatex 2021.9.4)  1 MAY 2022 11:10
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.6) (preloaded format=pdflatex 2021.9.4)  11 MAY 2022 11:12
 entering extended mode
 **./report.tex
 (report.tex
@@ -1473,7 +1473,7 @@ Package shellesc Info: Restricted shell escape enabled on input line 77.
 \c@csvcol=\count344
 \csv@out=\write4
 )) (report.aux
-(01-contents.aux) (10-analysis.aux) (51-biblio.aux))
+(01-contents.aux) (10-analysis.aux) (20-design.aux) (51-biblio.aux))
 \openout1 = `report.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 5.
@@ -1665,15 +1665,147 @@ rantool, по-это-му имен-
  []
 
 ) [9]
-\openout2 = `51-biblio.aux'.
+\openout2 = `20-design.aux'.
 
- (51-biblio.tex (report.bbl
+ (20-design.tex
+{\cyrillictext \CYRG \cyrl \cyra \cyrv \cyra } 2.
+<../imgs/func_model.jpg, id=157, 337.26pt x 216.81pt>
+File: ../imgs/func_model.jpg Graphic file (type jpg)
+<use ../imgs/func_model.jpg>
+Package pdftex.def Info: ../imgs/func_model.jpg  used on input line 10.
+(pdftex.def)             Requested size: 236.08038pt x 151.76596pt.
+[10
+
+
+
+
+ <../imgs/func_model.jpg>]
+<../imgs/use_case/use-case1.png, id=164, 573.14125pt x 352.31625pt>
+File: ../imgs/use_case/use-case1.png Graphic file (type png)
+<use ../imgs/use_case/use-case1.png>
+Package pdftex.def Info: ../imgs/use_case/use-case1.png  used on input line 32.
+
+(pdftex.def)             Requested size: 401.19614pt x 246.61969pt.
+<../imgs/use_case/use-case2.png, id=167, 844.15375pt x 261.97874pt>
+File: ../imgs/use_case/use-case2.png Graphic file (type png)
+<use ../imgs/use_case/use-case2.png>
+Package pdftex.def Info: ../imgs/use_case/use-case2.png  used on input line 44.
+
+(pdftex.def)             Requested size: 506.49615pt x 157.18845pt.
+
+Overfull \hbox (37.02567pt too wide) in paragraph at lines 44--45
+ [] 
+ []
+
+[11
+
+ <../imgs/use_case/use-case1.png> <../imgs/use_case/use-case2.png>]
+<../imgs/use_case/use-case3.png, id=177, 824.07875pt x 261.97874pt>
+File: ../imgs/use_case/use-case3.png Graphic file (type png)
+<use ../imgs/use_case/use-case3.png>
+Package pdftex.def Info: ../imgs/use_case/use-case3.png  used on input line 57.
+
+(pdftex.def)             Requested size: 494.45107pt x 157.18845pt.
+
+Overfull \hbox (24.98058pt too wide) in paragraph at lines 57--58
+ [] 
+ []
+
+<../imgs/use_case/use-case4.png, id=179, 914.41624pt x 397.485pt>
+File: ../imgs/use_case/use-case4.png Graphic file (type png)
+<use ../imgs/use_case/use-case4.png>
+Package pdftex.def Info: ../imgs/use_case/use-case4.png  used on input line 69.
+
+(pdftex.def)             Requested size: 457.207pt x 198.742pt.
+[12
+
+ <../imgs/use_case/use-case3.png> <../imgs/use_case/use-case4.png>]
+<../imgs/er/er.png, id=191, 1235.61626pt x 620.3175pt>
+File: ../imgs/er/er.png Graphic file (type png)
+<use ../imgs/er/er.png>
+Package pdftex.def Info: ../imgs/er/er.png  used on input line 86.
+(pdftex.def)             Requested size: 494.23775pt x 248.1226pt.
+
+Overfull \hbox (24.76726pt too wide) in paragraph at lines 86--87
+ [] 
+ []
+
 LaTeX Font Info:    Trying to load font information for T2A+cmtt on input line 
-15.
-
+133.
 (C:\Users\alena\AppData\Roaming\MiKTeX\tex/latex/cyrillic\t2acmtt.fd
 File: t2acmtt.fd 2001/08/11 v1.0a Computer Modern Cyrillic font definitions
 )
+Underfull \hbox (badness 10000) in paragraph at lines 142--143
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 151--152
+
+ []
+
+[13
+
+ <../imgs/er/er.png>]
+Overfull \hbox (20.96237pt too wide) in paragraph at lines 157--158
+[]\T2A/cmtt/m/n/14.4 discipline_id \T2A/cmr/m/n/14.4 -- внеш-ний ключ для таб-л
+и-цы \T2A/cmtt/m/n/14.4 discipline_work_program\T2A/cmr/m/n/14.4 ; 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 164--165
+
+ []
+
+
+Overfull \hbox (20.96237pt too wide) in paragraph at lines 170--171
+[]\T2A/cmtt/m/n/14.4 discipline_id \T2A/cmr/m/n/14.4 -- внеш-ний ключ для таб-л
+и-цы \T2A/cmtt/m/n/14.4 discipline_work_program\T2A/cmr/m/n/14.4 ; 
+ []
+
+
+Overfull \hbox (0.47592pt too wide) in paragraph at lines 174--175
+[]\T2A/cmtt/m/n/14.4 lectures_hours \T2A/cmr/m/n/14.4 -- ко-ли-че-ство ча-сов, 
+вы-де-лен-ных для про-ве-де-ния лек-
+ []
+
+[14]
+Underfull \hbox (badness 10000) in paragraph at lines 181--182
+
+ []
+
+
+Overfull \hbox (20.96237pt too wide) in paragraph at lines 187--188
+[]\T2A/cmtt/m/n/14.4 discipline_id \T2A/cmr/m/n/14.4 -- внеш-ний ключ для таб-л
+и-цы \T2A/cmtt/m/n/14.4 discipline_work_program\T2A/cmr/m/n/14.4 ; 
+ []
+
+
+Overfull \hbox (0.47592pt too wide) in paragraph at lines 192--193
+[]\T2A/cmtt/m/n/14.4 lectures_hours \T2A/cmr/m/n/14.4 -- ко-ли-че-ство ча-сов, 
+вы-де-лен-ных для про-ве-де-ния лек-
+ []
+
+[15]
+Underfull \hbox (badness 10000) in paragraph at lines 201--202
+
+ []
+
+
+Overfull \hbox (20.96237pt too wide) in paragraph at lines 207--208
+[]\T2A/cmtt/m/n/14.4 discipline_id \T2A/cmr/m/n/14.4 -- внеш-ний ключ для таб-л
+и-цы \T2A/cmtt/m/n/14.4 discipline_work_program\T2A/cmr/m/n/14.4 ; 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 211--212
+
+ []
+
+[16]) [17]
+\openout2 = `51-biblio.aux'.
+
+ (51-biblio.tex (report.bbl
 Underfull \hbox (badness 2134) in paragraph at lines 12--17
 []\T2A/cmr/m/n/14.4 Что та-кое ба-за дан-ных | Oracle Рос-сия и СНГ [Элек-трон-
 ный
@@ -1727,20 +1859,21 @@ Underfull \hbox (badness 5817) in paragraph at lines 58--62
 A/cmtt/m/n/14.4 https : / /
  []
 
-[10
+[18
 
 
 
 
-])) [11] (report.aux (01-contents.aux) (10-analysis.aux) (51-biblio.aux))
+])) [19] (report.aux (01-contents.aux) (10-analysis.aux) (20-design.aux)
+(51-biblio.aux))
 Package rerunfilecheck Info: File `report.out' has not changed.
-(rerunfilecheck)             Checksum: A6B7024C6ABEBD7211F094AAFED51BD4;2369.
+(rerunfilecheck)             Checksum: CCEA3986D19CB6AC33012402E1E20B0A;3652.
  ) 
 Here is how much of TeX's memory you used:
- 39663 strings out of 478864
- 894108 string characters out of 2858518
- 1303790 words of memory out of 10000000
- 56854 multiletter control sequences out of 15000+600000
+ 39755 strings out of 478864
+ 896066 string characters out of 2858518
+ 1305056 words of memory out of 10000000
+ 56909 multiletter control sequences out of 15000+600000
  413184 words of font info for 48 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  106i,14n,108p,1119b,609s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1752,9 +1885,9 @@ bx1728.pk> <C:\Users\alena\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi
 -t2a/dpi600\larm1440.pk> <C:\Users\alena\AppData\Local\MiKTeX\fonts/pk/ljfour/l
 h/lh-t2a/dpi600\labx1440.pk> <C:\Users\alena\AppData\Local\MiKTeX\fonts/pk/ljfo
 ur/lh/lh-t2a/dpi600\labx2488.pk>
-Output written on report.pdf (11 pages, 158717 bytes).
+Output written on report.pdf (19 pages, 343350 bytes).
 PDF statistics:
- 491 PDF objects out of 1000 (max. 8388607)
- 35 named destinations out of 1000 (max. 500000)
- 105 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 591 PDF objects out of 1000 (max. 8388607)
+ 54 named destinations out of 1000 (max. 500000)
+ 175 words of extra memory for PDF output out of 10000 (max. 10000000)
 

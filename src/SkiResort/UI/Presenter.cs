@@ -354,7 +354,7 @@ namespace UI
         public async Task LogOutAsync(object sender, EventArgs e)
         {
             //await _facade.LogOutAsync(_userID);
-            _userID = await _facade.AddUnauthorizedUserAsync();
+            _userID = 3; //await _facade.AddUnauthorizedUserAsync();
             _permissions = PermissionsEnum.UNAUTHORIZED;
             _changeVisibilityForViews();
         }

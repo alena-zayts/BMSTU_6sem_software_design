@@ -1,32 +1,134 @@
 \chapter{Конструкторская часть}
 
-В данном разделе представлены этапы проектирования выделенных в предыдущем разделе баз данных, нужных для решения задачи.
+% В данном разделе представлены этапы проектирования выделенных в предыдущем разделе баз данных, нужных для решения задачи.
+\section{Функциональная модель}
 
-\section{Проектирование отношений сущностей}
-
-На рисунке \ref{img:arch} представлена схема сущностей, необходимых для реализации приложения.
-
-\begin{figure}[h!]
-	\begin{center}
-		\includegraphics[scale=0.5]{img/arch.jpg}
-	\end{center}
-	\captionsetup{justification=centering}
-	\caption{Схема сущностей приложения}
-	\label{img:arch}
-\end{figure}
-
-\section{Проектирование базы данных рабочих программ дисциплин}
-
-База данных рабочих программ дисциплин будет реализована с использованием СУБД PostgreSQL. В базе данных будет существовать 6 сущностей и 7 таблиц, одна из которых является развязочной. ER-диаграма сущностей этой базы данных представлена на рисунке \ref{img:er-storage}.\\
+На рисунке \ref{img:func_model} изображена функциональная модель, отображающая структуру и функции системы.
 
 \begin{figure}[h!]
 	\begin{center}
-		\includegraphics[scale=0.35]{img/er-chen.jpg}
+		\includegraphics[scale=0.7]{../imgs/func_model.jpg}
 	\end{center}
 	\captionsetup{justification=centering}
-	\caption{ER-диаграмма сущностей базы данных рабочих программ дисциплин в нотации Чена}
-	\label{img:er-storage}
+	\caption{Функциональная модель приложения}
+	\label{img:func_model}
 \end{figure}
+
+
+
+
+
+
+\section{Сценарии использования}
+
+Сценарии использования описываются с помощью Use Case Diagram (диаграммы прецедентов). Она состоит из графической диаграммы, описывающей действующие лица и прецеденты – конкретные действия, которые выполняет пользователь при работе с системой.
+
+\clearpage
+На рисунке \ref{img:use_case1} представлена Use Case Diagram для действий неавторизованного пользователя.
+
+
+\begin{figure}[h!]
+	\begin{center}
+		\includegraphics[scale=0.7]{../imgs/use_case/use-case1.png}
+	\end{center}
+	\captionsetup{justification=centering}
+	\caption{Use Case Diagram действий неавторизованного пользователя}
+	\label{img:use_case1}
+\end{figure}
+
+
+На рисунке \ref{img:use_case2} представлена Use Case Diagram для действий авторизованного пользователя.
+
+\begin{figure}[h!]
+	\begin{center}
+		\includegraphics[scale=0.6]{../imgs/use_case/use-case2.png}
+	\end{center}
+	\captionsetup{justification=centering}
+	\caption{Use Case Diagram действий авторизованного пользователя}
+	\label{img:use_case2}
+\end{figure}
+
+
+\clearpage
+На рисунке \ref{img:use_case3} представлена Use Case Diagram для действий сотрудника лыжного патруля.
+
+\begin{figure}[h!]
+	\begin{center}
+		\includegraphics[scale=0.6]{../imgs/use_case/use-case3.png}
+	\end{center}
+	\captionsetup{justification=centering}
+	\caption{Use Case Diagram действий сотрудника лыжного патруля}
+	\label{img:use_case3}
+\end{figure}
+
+
+На рисунке \ref{img:use_case4} представлена Use Case Diagram для действий администратора.
+
+\begin{figure}[h!]
+	\begin{center}
+		\includegraphics[scale=0.5]{../imgs/use_case/use-case4.png}
+	\end{center}
+	\captionsetup{justification=centering}
+	\caption{Use Case Diagram действий администратора}
+	\label{img:use_case4}
+\end{figure}
+
+
+
+\section{Проектирование базы данных}
+
+
+На рисунке \ref{img:er} отображена диаграмма сущностей системы. Данная схема построена на основе категорий и сведений о данных, отображенных в таблице \ref{tbl:1}.
+
+\clearpage
+\begin{figure}[h!]
+	\begin{center}
+		\includegraphics[scale=0.4]{../imgs/er/er.png}
+	\end{center}
+	\captionsetup{justification=centering}
+	\caption{Диаграмма сущностей системы}
+	\label{img:er}
+\end{figure}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 Поля таблицы \texttt{discipline\_work\_program} означают:
 

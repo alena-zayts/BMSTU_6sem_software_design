@@ -38,7 +38,7 @@ namespace TestsBL
             await Assert.ThrowsAsync<PermissionException>(() => facade.MarkMessageReadByUserAsync(TestUsersCreator.unauthorizedID, sentMessage2.MessageID));
 
             Message updatedMessage2 = new(sentMessage2.MessageID, sentMessage2.SenderID, sentMessage2.CheckedByID, "another text");
-            await facade.AdminUpdateMessageAsync(TestUsersCreator.adminID, updatedMessage2);
+            await facade.AdminUpdateMessageAsync(TestUsersCreator.adminID, updatedMessage2.MessageID, updatedMessage2.SenderID, updatedMessage2.CheckedByID, updatedMessage2.Text);
 
             List<Message> messages = await facade.GetMessagesAsync(TestUsersCreator.skiPatrolID, 0u, Facade.UNLIMITED);
             Assert.Equal(2, messages.Count);
