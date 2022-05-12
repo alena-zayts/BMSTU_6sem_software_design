@@ -11,6 +11,8 @@ local function init()
 
 
 	print('in init!')
+	box.schema.upgrade()
+	print(box.info.version)
 	--
 	--box.schema.user.create('ski_admin', {if_not_exists = true}, {password = 'Tty454r293300'})
 	--box.schema.user.passwd('ski_admin', 'Tty454r293300')
@@ -53,7 +55,7 @@ local function init()
 	})
 	cards:create_index('primary')
 	print('cards created!')
-	
+
 	--- card_readings
 	card_readings = box.schema.space.create('card_readings', {field_count=4})
 	card_readings:format({
@@ -66,7 +68,7 @@ local function init()
 	card_readings:create_index('index_turnstile', {unique = false, parts = {'turnstile_id'}})
 	card_readings:create_index('index_time', {unique = false, parts = {'reading_time'}})
 	print('card_readings created!')
-	
+
 	--- turnstiles
 	turnstiles = box.schema.space.create('turnstiles', {field_count=3})
 	turnstiles:format({
@@ -77,8 +79,8 @@ local function init()
 	turnstiles:create_index('primary')
 	turnstiles:create_index('index_lift_id', {unique = false, parts = {'lift_id'}})
 	print('turnstiles created!')
-	
-	
+
+
 	--- messages
 	messages = box.schema.space.create('messages', {field_count=4})
 	messages:format({
@@ -91,8 +93,8 @@ local function init()
 	messages:create_index('index_sender_id', {unique = false, parts = {'sender_id'}})
 	messages:create_index('index_checked_by_id', {unique = false, parts = {'checked_by_id'}})
 	print('messages created!')
-	
-	
+
+
 	--- lifts
 	lifts = box.schema.space.create('lifts', {field_count=6})
 	lifts:format({
@@ -126,19 +128,21 @@ local function init()
 	lifts_slopes:format({
 		{name = 'record_id', type = 'unsigned'},
 		{name = 'lift_id', type = 'unsigned'},
-		{name = 'slope_id', type = 'unsigned'},
+		{name = 'slope_id', type = 'unsigned', foreign_key={slope_fk={space='slopes', field='slope_id'}}},
 	})
 	lifts_slopes:create_index('primary')
 	lifts_slopes:create_index('index_lift_id', {unique = false, parts = {'lift_id'}})
 	lifts_slopes:create_index('index_slope_id', {unique = false, parts = {'slope_id'}})
 	lifts_slopes:create_index('index_lift_slope', {parts = {'lift_id', 'slope_id'}})
+
+	--lifts_slopes:alter{foreign_key={space_fk={space=user_accounts’, field={user_id=’user_id’, account_id=’id’}}}, ..}
 	--lifts_slopes:alter({foreign_key={}})
 	--lifts_slopes:alter({foreign_key={slope_fk={space='slopes', field={slope_id='slope_id'}},      lift_fk={space='lifts', field={lift_id='lift_id'}}}})
 	print('lifts_slopes created!')
-	
-	
 
-	
+
+
+
 end
 
 
@@ -154,7 +158,7 @@ end
 --function lifts_to_slope(slope_id)
 --	local result = {}
 --   for k,v in box.space.lifts_slopes:pairs() do
---       box.space.users:update(v[1], {{'+', 5, 1}}) 
+--       box.space.users:update(v[1], {{'+', 5, 1}})
 --    end
 --end
 
@@ -196,13 +200,13 @@ json_data_dir = "/usr/local/share/tarantool/json_data/"
 local function load_users_data()
     local cur_space = box.space.users
 	local cur_filename = "users.json"
-	
+
 	local file = io.open(json_data_dir .. cur_filename, "r")
 	a = file:read("*a")
 	file:close()
 
 	cur_table = json.decode(a)
-	
+
 	for k,v in pairs(cur_table) do
 		cur_space:insert{v["user_id"], v["card_id"], v["user_email"], v["password"], v["permissions"]}
     end
@@ -211,13 +215,13 @@ end
 local function load_cards_data()
     local cur_space = box.space.cards
 	local cur_filename = "cards.json"
-	
+
 	local file = io.open(json_data_dir .. cur_filename, "r")
 	a = file:read("*a")
 	file:close()
 
 	cur_table = json.decode(a)
-	
+
 	for k,v in pairs(cur_table) do
 		cur_space:insert{v["card_id"], v["activation_time"], v["type"]}
     end
@@ -226,13 +230,13 @@ end
 local function load_turnstiles_data()
     local cur_space = box.space.turnstiles
 	local cur_filename = "turnstiles.json"
-	
+
 	local file = io.open(json_data_dir .. cur_filename, "r")
 	a = file:read("*a")
 	file:close()
 
 	cur_table = json.decode(a)
-	
+
 	for k,v in pairs(cur_table) do
 		cur_space:insert{v["turnstile_id"], v["lift_id"], v["is_open"]}
     end
@@ -241,13 +245,13 @@ end
 local function load_lifts_data()
     local cur_space = box.space.lifts
 	local cur_filename = "lifts.json"
-	
+
 	local file = io.open(json_data_dir .. cur_filename, "r")
 	a = file:read("*a")
 	file:close()
 
 	cur_table = json.decode(a)
-	
+
 	for k,v in pairs(cur_table) do
 		cur_space:insert{v["lift_id"], v["lift_name"], v["is_open"], v["seats_amount"], v["lifting_time"], v["queue_time"]}
     end
@@ -257,13 +261,13 @@ end
 local function load_slopes_data()
     local cur_space = box.space.slopes
 	local cur_filename = "slopes.json"
-	
+
 	local file = io.open(json_data_dir .. cur_filename, "r")
 	a = file:read("*a")
 	file:close()
 
 	cur_table = json.decode(a)
-	
+
 	for k,v in pairs(cur_table) do
 		cur_space:insert{v["slope_id"], v["slope_name"], v["is_open"], v["difficulty_level"]}
     end
@@ -272,13 +276,13 @@ end
 local function load_lifts_slopes_data()
     local cur_space = box.space.lifts_slopes
 	local cur_filename = "lifts_slopes.json"
-	
+
 	local file = io.open(json_data_dir .. cur_filename, "r")
 	a = file:read("*a")
 	file:close()
 
 	cur_table = json.decode(a)
-	
+
 	for k,v in pairs(cur_table) do
 		cur_space:insert{v["record_id"], v["lift_id"], v["slope_id"]}
     end
@@ -287,13 +291,13 @@ end
 local function load_messages_data()
     local cur_space = box.space.messages
 	local cur_filename = "messages.json"
-	
+
 	local file = io.open(json_data_dir .. cur_filename, "r")
 	a = file:read("*a")
 	file:close()
 
 	cur_table = json.decode(a)
-	
+
 	for k,v in pairs(cur_table) do
 		cur_space:insert{v["message_id"], v["sender_id"], v["checked_by_id"], v["text"]}
     end
@@ -303,13 +307,13 @@ end
 local function load_card_readings_data()
     local cur_space = box.space.card_readings
 	local cur_filename = "card_readings.json"
-	
+
 	local file = io.open(json_data_dir .. cur_filename, "r")
 	a = file:read("*a")
 	file:close()
 
 	cur_table = json.decode(a)
-	
+
 	for k,v in pairs(cur_table) do
 		cur_space:insert{v["record_id"], v["turnstile_id"], v["card_id"], v["reading_time"]}
     end
@@ -333,21 +337,21 @@ end
 function count_card_readings(lift_id, date_from)
 	-- select turnstiles
 	connected_turnstiles = turnstiles.index.index_lift_id:select({lift_id})
-	
+
 	counter = 0
-	
+
 	for k,v in pairs(connected_turnstiles) do
 		cur_turnstile_id = v["turnstile_id"]
-		
+
 		card_readings_on_turnstile = card_readings.index.index_turnstile:select({cur_turnstile_id})
-		
+
 		for k,v in pairs(card_readings_on_turnstile) do
 			if v["reading_time"] >= date_from then
 				counter = counter + 1
 			end
-		end 
+		end
 	end
-	
+
 	return counter
 end
 
@@ -405,7 +409,7 @@ init()
 
 
 print('a')
---box.space.lifts_slopes:insert{10000, 100000, 100000}
+box.space.lifts_slopes:insert{10000, 100000, 100000}
 print('b')
 --box.space.slopes:delete{0}
 print('c')
