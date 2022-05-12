@@ -30,7 +30,7 @@ namespace TestsBL
             Facade facade = new(repositoriesFactory);
 
             User skiPatrolUser = new(skiPatrolID, User.UniversalCardID, "ski_patrol_email", "ski_patrol_password", PermissionsEnum.SKI_PATROL);
-            await facade.AdminAddUserAsync(adminUser.UserID, skiPatrolUser);
+            await facade.AdminAddUserAsync(adminUser.UserID, skiPatrolUser.UserID, skiPatrolUser.CardID, skiPatrolUser.UserEmail, skiPatrolUser.Password, skiPatrolUser.Permissions);
 
             
             await facade.LogInAsUnauthorizedAsync(unauthorizedID);

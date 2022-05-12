@@ -91,12 +91,12 @@ namespace BL
             return await usersRepository.GetUsersAsync(offset, limit);
         }
 
-        public async Task AdminAddUserAsync(uint requesterUserID, User user)
+        public async Task AdminAddUserAsync(uint requesterUserID, uint userID, uint cardID, string userEmail, string password, PermissionsEnum permissions)
         {
             await CheckPermissionsService.CheckPermissionsAsync(RepositoriesFactory.CreateUsersRepository(), requesterUserID);
 
             IUsersRepository usersRepository = RepositoriesFactory.CreateUsersRepository();
-            await usersRepository.AddUserAsync(user.UserID, user.CardID, user.UserEmail, user.Password, user.Permissions);
+            await usersRepository.AddUserAsync(userID, cardID, userEmail, password, permissions);
         }
 
         public async Task<uint> AdminAddAutoIncrementUserAsync(uint requesterUserID, uint cardID, string userEmail, string password, PermissionsEnum permissions)
@@ -357,12 +357,12 @@ namespace BL
             return await rep.AddSlopeAutoIncrementAsync(slopeName, isOpen, difficultyLevel);
         }
 
-        public async Task AdminAddSlopeAsync(uint requesterUserID, Slope slope)
+        public async Task AdminAddSlopeAsync(uint requesterUserID, uint slopeID, string slopeName, bool isOpen, uint difficultyLevel)
         {
             await CheckPermissionsService.CheckPermissionsAsync(RepositoriesFactory.CreateUsersRepository(), requesterUserID);
 
             ISlopesRepository rep = RepositoriesFactory.CreateSlopesRepository();
-            await rep.AddSlopeAsync(slope.SlopeID, slope.SlopeName, slope.IsOpen, slope.DifficultyLevel);
+            await rep.AddSlopeAsync(slopeID, slopeName, isOpen, difficultyLevel);
         }
         
         public async Task<List<LiftSlope>> GetLiftsSlopesInfoAsync(uint requesterUserID, uint offset=0, uint limit=UNLIMITED)
@@ -371,14 +371,6 @@ namespace BL
 
             ILiftsSlopesRepository rep = RepositoriesFactory.CreateLiftsSlopesRepository();
             return await rep.GetLiftsSlopesAsync(offset, limit);
-        }
-
-        public async Task UpdateLiftSlopeAsync(uint requesterUserID, LiftSlope lift_slope)
-        {
-            await CheckPermissionsService.CheckPermissionsAsync(RepositoriesFactory.CreateUsersRepository(), requesterUserID);
-
-            ILiftsSlopesRepository rep = RepositoriesFactory.CreateLiftsSlopesRepository();
-            await rep.UpdateLiftSlopesByIDAsync(lift_slope.RecordID, lift_slope.LiftID, lift_slope.SlopeID);
         }
 
         public async Task AdminDeleteLiftSlopeAsync(uint requesterUserID, string liftName, string slopeName)
@@ -395,12 +387,12 @@ namespace BL
             await rep.DeleteLiftSlopesByIDsAsync(lift.LiftID, slope.SlopeID);
         }
 
-        public async Task AdminAddLiftSlopeAsync(uint requesterUserID, LiftSlope lift_slope)
+        public async Task AdminAddLiftSlopeAsync(uint requesterUserID, uint recordID, uint liftID, uint slopeID)
         {
             await CheckPermissionsService.CheckPermissionsAsync(RepositoriesFactory.CreateUsersRepository(), requesterUserID);
 
             ILiftsSlopesRepository rep = RepositoriesFactory.CreateLiftsSlopesRepository();
-            await rep.AddLiftSlopeAsync(lift_slope.RecordID, lift_slope.LiftID, lift_slope.SlopeID);
+            await rep.AddLiftSlopeAsync(recordID, liftID, slopeID);
         }
 
         public async Task<uint> AdminAddAutoIncrementLiftSlopeAsync(uint requesterUserID, string liftName, string slopeName)
@@ -489,13 +481,6 @@ namespace BL
             await rep.DeleteCarByIDdAsync(cardID);
         }
 
-        public async Task AdminAddCardAsync(uint requesterUserID, Card card)
-        {
-            await CheckPermissionsService.CheckPermissionsAsync(RepositoriesFactory.CreateUsersRepository(), requesterUserID);
-
-            ICardsRepository rep = RepositoriesFactory.CreateCardsRepository();
-            await rep.AddCardAsync(card.CardID, card.ActivationTime, card.Type);
-        }
 
         public async Task<uint> AdminAddAutoIncrementCardAsync(uint requesterUserID, DateTimeOffset activationTime, string type)
         {
@@ -523,12 +508,12 @@ namespace BL
 
 
 
-        public async Task AdminAddCardReadingAsync(uint requesterUserID, CardReading card_readding)
+        public async Task AdminAddCardReadingAsync(uint requesterUserID, uint recordID, uint turnstileID, uint cardID, DateTimeOffset readingTime)
         {
             await CheckPermissionsService.CheckPermissionsAsync(RepositoriesFactory.CreateUsersRepository(), requesterUserID);
 
             ICardReadingsRepository rep = RepositoriesFactory.CreateCardReadingsRepository();
-            await rep.AddCardReadingAsync(card_readding.RecordID, card_readding.TurnstileID, card_readding.CardID, card_readding.ReadingTime);
+            await rep.AddCardReadingAsync(recordID, turnstileID, cardID, readingTime);
         }
 
         public async Task<List<CardReading>> AdminGetCardReadingsAsync(uint requesterUserID, uint offset = 0, uint limit = UNLIMITED)

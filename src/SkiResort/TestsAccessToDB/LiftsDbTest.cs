@@ -89,8 +89,8 @@ namespace Tests
 
             var list = await rep.GetLiftsAsync();
             Assert.Equal(2, list.Count);
-            Assert.Equal(added_lift1, list[0]);
-            Assert.Equal(added_lift2, list[1]);
+            Assert.True(added_lift1.EqualWithoutConnectedSlopes(list[0]));
+            Assert.True(added_lift2.EqualWithoutConnectedSlopes(list[1]));
 
             await rep.DeleteLiftByIDAsync(added_lift1.LiftID);
             await rep.DeleteLiftByIDAsync(added_lift2.LiftID);

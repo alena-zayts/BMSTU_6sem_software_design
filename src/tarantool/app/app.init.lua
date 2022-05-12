@@ -78,6 +78,21 @@ local function init()
 	turnstiles:create_index('index_lift_id', {unique = false, parts = {'lift_id'}})
 	print('turnstiles created!')
 	
+	
+	--- messages
+	messages = box.schema.space.create('messages', {field_count=4})
+	messages:format({
+		{name = 'message_id', type = 'unsigned'},
+		{name = 'sender_id', type = 'unsigned'},
+		{name = 'checked_by_id', type = 'unsigned'},
+		{name = 'text', type = 'string'},
+	})
+	messages:create_index('primary')
+	messages:create_index('index_sender_id', {unique = false, parts = {'sender_id'}})
+	messages:create_index('index_checked_by_id', {unique = false, parts = {'checked_by_id'}})
+	print('messages created!')
+	
+	
 	--- lifts
 	lifts = box.schema.space.create('lifts', {field_count=6})
 	lifts:format({
@@ -117,21 +132,11 @@ local function init()
 	lifts_slopes:create_index('index_lift_id', {unique = false, parts = {'lift_id'}})
 	lifts_slopes:create_index('index_slope_id', {unique = false, parts = {'slope_id'}})
 	lifts_slopes:create_index('index_lift_slope', {parts = {'lift_id', 'slope_id'}})
+	--lifts_slopes:alter({foreign_key={}})
+	--lifts_slopes:alter({foreign_key={slope_fk={space='slopes', field={slope_id='slope_id'}},      lift_fk={space='lifts', field={lift_id='lift_id'}}}})
 	print('lifts_slopes created!')
 	
 	
-	--- messages
-	messages = box.schema.space.create('messages', {field_count=4})
-	messages:format({
-		{name = 'message_id', type = 'unsigned'},
-		{name = 'sender_id', type = 'unsigned'},
-		{name = 'checked_by_id', type = 'unsigned'},
-		{name = 'text', type = 'string'},
-	})
-	messages:create_index('primary')
-	messages:create_index('index_sender_id', {unique = false, parts = {'sender_id'}})
-	messages:create_index('index_checked_by_id', {unique = false, parts = {'checked_by_id'}})
-	print('messages created!')
 
 	
 end
@@ -392,8 +397,15 @@ box.cfg {
 }
 
 init()
-load__data()
+--load__data()
 --print(count_card_readings(2, 0))
 --print(dump(count_card_readings(2, 0)))
-box.space.users:insert{7777, 0, "tmp_email10", "tmp_password10", 0}
+--box.space.users:insert{7777, 0, "tmp_email10", "tmp_password10", 0}
 --box.space.users:insert{7771, 0, "admin_email20", "admin_password20", 3}
+
+
+print('a')
+--box.space.lifts_slopes:insert{10000, 100000, 100000}
+print('b')
+--box.space.slopes:delete{0}
+print('c')

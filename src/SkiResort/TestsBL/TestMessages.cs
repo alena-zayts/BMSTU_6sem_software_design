@@ -47,7 +47,7 @@ namespace TestsBL
 
             foreach (var message in messages)
             {
-                await facade.AdminDeleteMessageAsync(TestUsersCreator.adminID, message);
+                await facade.AdminDeleteMessageAsync(TestUsersCreator.adminID, message.MessageID);
             }
 
             messages = await facade.GetMessagesAsync(TestUsersCreator.adminID, 0u, Facade.UNLIMITED);

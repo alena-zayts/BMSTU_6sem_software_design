@@ -45,42 +45,42 @@ namespace TestsBL
 
             // не тот подъемник
             CardReading added_card_reading1 = new CardReading(1, added_turnstile1.TurnstileID, 9, DateTimeOffset.FromUnixTimeSeconds(exact_time - 1));
-            await facade.AdminAddCardReadingAsync(TestUsersCreator.adminID, added_card_reading1);
+            await facade.AdminAddCardReadingAsync(TestUsersCreator.adminID, added_card_reading1.RecordID, added_card_reading1.TurnstileID, added_card_reading1.CardID, added_card_reading1.ReadingTime);
             CardReading added_card_reading2 = new CardReading(2, added_turnstile1.TurnstileID, 9, DateTimeOffset.FromUnixTimeSeconds(exact_time + 1));
             uint tmpCardID;
-            tmpCardID = await facade.AdminAddAutoIncrementCardReadingAsync(TestUsersCreator.adminID, added_card_reading2);
+            tmpCardID = await facade.AdminAddAutoIncrementCardReadingAsync(TestUsersCreator.adminID, added_card_reading2.TurnstileID, added_card_reading2.CardID, added_card_reading2.ReadingTime);
             added_card_reading2 = new CardReading(tmpCardID, added_card_reading2.TurnstileID, added_card_reading2.CardID, added_card_reading2.ReadingTime);
 
 
             // тот подъемник но не то время
             CardReading added_card_reading3 = new CardReading(3, added_turnstile2.TurnstileID, 9, DateTimeOffset.FromUnixTimeSeconds(exact_time - 1));
-            tmpCardID = await facade.AdminAddAutoIncrementCardReadingAsync(TestUsersCreator.adminID, added_card_reading3);
+            tmpCardID = await facade.AdminAddAutoIncrementCardReadingAsync(TestUsersCreator.adminID, added_card_reading3.TurnstileID, added_card_reading3.CardID, added_card_reading3.ReadingTime);
             added_card_reading3 = new CardReading(tmpCardID, added_card_reading3.TurnstileID, added_card_reading3.CardID, added_card_reading3.ReadingTime);
 
 
             // подходят
             CardReading added_card_reading4 = new CardReading(4, added_turnstile2.TurnstileID, 9, DateTimeOffset.FromUnixTimeSeconds(exact_time + 1));
-            tmpCardID = await facade.AdminAddAutoIncrementCardReadingAsync(TestUsersCreator.adminID, added_card_reading3);
+            tmpCardID = await facade.AdminAddAutoIncrementCardReadingAsync(TestUsersCreator.adminID, added_card_reading4.TurnstileID, added_card_reading4.CardID, added_card_reading4.ReadingTime);
             added_card_reading4 = new CardReading(tmpCardID, added_card_reading4.TurnstileID, added_card_reading4.CardID, added_card_reading4.ReadingTime);
 
             CardReading added_card_reading5 = new CardReading(5, added_turnstile3.TurnstileID, 9, DateTimeOffset.FromUnixTimeSeconds(exact_time));
-            tmpCardID = await facade.AdminAddAutoIncrementCardReadingAsync(TestUsersCreator.adminID, added_card_reading3);
+            tmpCardID = await facade.AdminAddAutoIncrementCardReadingAsync(TestUsersCreator.adminID, added_card_reading5.TurnstileID, added_card_reading5.CardID, added_card_reading5.ReadingTime);
             added_card_reading5 = new CardReading(tmpCardID, added_card_reading5.TurnstileID, added_card_reading5.CardID, added_card_reading5.ReadingTime);
 
 
-            await facade.AdminDeleteCardReadingAsync(TestUsersCreator.adminID, added_card_reading1);
-            await facade.AdminDeleteCardReadingAsync(TestUsersCreator.adminID, added_card_reading2);
-            await facade.AdminDeleteCardReadingAsync(TestUsersCreator.adminID, added_card_reading3);
-            await facade.AdminDeleteCardReadingAsync(TestUsersCreator.adminID, added_card_reading4);
-            await facade.AdminDeleteCardReadingAsync(TestUsersCreator.adminID, added_card_reading5);
+            await facade.AdminDeleteCardReadingAsync(TestUsersCreator.adminID, added_card_reading1.RecordID);
+            await facade.AdminDeleteCardReadingAsync(TestUsersCreator.adminID, added_card_reading2.RecordID);
+            await facade.AdminDeleteCardReadingAsync(TestUsersCreator.adminID, added_card_reading3.RecordID);
+            await facade.AdminDeleteCardReadingAsync(TestUsersCreator.adminID, added_card_reading4.RecordID);
+            await facade.AdminDeleteCardReadingAsync(TestUsersCreator.adminID, added_card_reading5.RecordID);
 
             await facade.AdminDeleteLiftAsync(TestUsersCreator.adminID, added_lift1.LiftName);
             await facade.AdminDeleteLiftAsync(TestUsersCreator.adminID, added_lift2.LiftName);
             Assert.Empty(await facade.GetLiftsInfoAsync(TestUsersCreator.authorizedID));
 
-            await facade.AdminDeleteTurnstileAsync(TestUsersCreator.adminID, added_turnstile1);
-            await facade.AdminDeleteTurnstileAsync(TestUsersCreator.adminID, added_turnstile2);
-            await facade.AdminDeleteTurnstileAsync(TestUsersCreator.adminID, added_turnstile3);
+            await facade.AdminDeleteTurnstileAsync(TestUsersCreator.adminID, added_turnstile1.TurnstileID);
+            await facade.AdminDeleteTurnstileAsync(TestUsersCreator.adminID, added_turnstile2.TurnstileID);
+            await facade.AdminDeleteTurnstileAsync(TestUsersCreator.adminID, added_turnstile3.TurnstileID);
         }
     }
 }

@@ -17,7 +17,7 @@ namespace TestsBL
             IKernel ninjectKernel = new StandardKernel();
             ninjectKernel.Bind<IRepositoriesFactory>().To<IoCRepositoriesFactory>();
 
-            // ��� �������� ������� ������������-��������������
+
             IRepositoriesFactory repositoriesFactory = ninjectKernel.Get<IRepositoriesFactory>();
             var tmpUsersRepository = repositoriesFactory.CreateUsersRepository();
             uint adminUserID = await tmpUsersRepository.AddUserAutoIncrementAsync(User.UniversalCardID, "admin_email", "admin_password", PermissionsEnum.ADMIN);
@@ -29,7 +29,7 @@ namespace TestsBL
 
             uint skiPatrolUserID = 2;
             User skiPatrolUser = new(skiPatrolUserID, User.UniversalCardID, "ski_patrol_email", "ski_patrol_password", PermissionsEnum.SKI_PATROL);
-            await facade.AdminAddUserAsync(adminUser.UserID, skiPatrolUser);
+            await facade.AdminAddUserAsync(adminUser.UserID, skiPatrolUser.UserID, skiPatrolUser.CardID, skiPatrolUser.UserEmail, skiPatrolUser.Password, skiPatrolUser.Permissions);
             User skiPatrolUserFromDB = await facade.AdminGetUserByIDAsync(adminUser.UserID, skiPatrolUserID);
             Assert.Equal(skiPatrolUser, skiPatrolUserFromDB);
 
@@ -62,10 +62,10 @@ namespace TestsBL
             Assert.Equal(PermissionsEnum.UNAUTHORIZED, loggedOutUser.Permissions);
 
             User loggedInUser = await facade.LogInAsync(registeredUser.UserID, registeredUser.UserEmail, registeredUser.Password);
-            Assert.Equal(PermissionsEnum.AUTHORIZED, loggedInUser.Permissions);
+            Assert.Equal(PermissionsEnum.UNAUTHORIZED, loggedInUser.Permissions);
 
             User addedByAdminUser = new(User.UniversalUserID, User.UniversalCardID, "qwe", "rty", PermissionsEnum.ADMIN);
-            uint newID = await facade.AdminAddAutoIncrementUserAsync(adminUser.UserID, addedByAdminUser);
+            uint newID = await facade.AdminAddAutoIncrementUserAsync(adminUser.UserID, addedByAdminUser.CardID, addedByAdminUser.UserEmail, addedByAdminUser.Password, addedByAdminUser.Permissions);
             User addedByAdminUserWithNewId = new(newID, addedByAdminUser.CardID, addedByAdminUser.UserEmail, addedByAdminUser.Password, addedByAdminUser.Permissions);
             Assert.Equal(addedByAdminUser.Password, addedByAdminUserWithNewId.Password);
             Assert.NotEqual(addedByAdminUser.UserID, addedByAdminUserWithNewId.UserID);
