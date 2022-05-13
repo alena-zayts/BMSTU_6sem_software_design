@@ -1,28 +1,24 @@
 #!/usr/bin/env tarantool
 
 
---- роли
+-- роли
+-- lsof -i :3301
+
+io_module = require("io")
+io_module.stdout:setvbuf("no")
+
+print('start!')
 
 
-print('here!')
-
+---------------------------------------------------------------------------------------------init tables
 local function init()
-
-
-
 	print('in init!')
 	box.schema.upgrade()
-	print(box.info.version)
-	--
+	
+	--print(box.info.version)
 	--box.schema.user.create('ski_admin', {if_not_exists = true}, {password = 'Tty454r293300'})
 	--box.schema.user.passwd('ski_admin', 'Tty454r293300')
 	--box.schema.user.grant('ski_admin', 'read,write,execute,create,alter,drop', 'universe')
-
-	-- lsof -i :3301
-	-- удаление
-	-- connection.call('box.space.tester:drop', ())
-	-- connection.flush_schema()
-
 
 	box.space.lifts_slopes:drop()
 	box.space.slopes:drop()
@@ -128,21 +124,13 @@ local function init()
 	lifts_slopes:format({
 		{name = 'record_id', type = 'unsigned'},
 		{name = 'lift_id', type = 'unsigned'},
-		{name = 'slope_id', type = 'unsigned', foreign_key={slope_fk={space='slopes', field='slope_id'}}},
+		{name = 'slope_id', type = 'unsigned'},
 	})
 	lifts_slopes:create_index('primary')
 	lifts_slopes:create_index('index_lift_id', {unique = false, parts = {'lift_id'}})
 	lifts_slopes:create_index('index_slope_id', {unique = false, parts = {'slope_id'}})
 	lifts_slopes:create_index('index_lift_slope', {parts = {'lift_id', 'slope_id'}})
-
-	--lifts_slopes:alter{foreign_key={space_fk={space=user_accounts’, field={user_id=’user_id’, account_id=’id’}}}, ..}
-	--lifts_slopes:alter({foreign_key={}})
-	--lifts_slopes:alter({foreign_key={slope_fk={space='slopes', field={slope_id='slope_id'}},      lift_fk={space='lifts', field={lift_id='lift_id'}}}})
 	print('lifts_slopes created!')
-
-
-
-
 end
 
 
@@ -150,48 +138,7 @@ end
 
 
 
-
-
-
-
-
---function lifts_to_slope(slope_id)
---	local result = {}
---   for k,v in box.space.lifts_slopes:pairs() do
---       box.space.users:update(v[1], {{'+', 5, 1}})
---    end
---end
-
-function dump(o)
-   if type(o) == 'table' then
-      local s = '{ '
-      for k,v in pairs(o) do
-         if type(k) ~= 'number' then k = '"'..k..'"' end
-         s = s .. '['..k..'] = ' .. dump(v) .. ','
-      end
-      return s .. '} '
-   else
-      return tostring(o)
-   end
-end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-------------------------------------------------------------------fill tables
+------------------------------------------------------------------------------------------------fill tables
 json=require('json')
 msgpack=require('msgpack')
 json_data_dir = "/usr/local/share/tarantool/json_data/"
@@ -331,7 +278,7 @@ local function load__data()
 	load_card_readings_data()
 end
 
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------functions
 
 
 function count_card_readings(lift_id, date_from)
@@ -355,11 +302,6 @@ function count_card_readings(lift_id, date_from)
 	return counter
 end
 
-
-
-function test()
-	print("ok")
-end
 
 function auto_increment_users(card_id, user_email, password, permissions)
 	return box.space.users:auto_increment{card_id, user_email, password, permissions}
@@ -408,8 +350,92 @@ init()
 --box.space.users:insert{7771, 0, "admin_email20", "admin_password20", 3}
 
 
+
+
+
+
+
+
+
+--print('a')
+--box.space.lifts_slopes:insert{90001, 100000, 100000}
+--print('b')
+--box.space.slopes:insert{100000, 'df', true, 2}
+--print('c')
+--box.space.slopes:delete{100000}
+--print('d')
+--box.space.lifts_slopes:delete{90001}
+--box.space.lifts_slopes:insert{10000, 100000, 100000}
+
+
+
+
+function slopes_before_replace_function(old, new)
+	--delete
+	
+	if (old ~= nil and new == nil) then
+		slope_id_value = old[1]
+		print(slope_id_value)
+		found = box.space.lifts_slopes.index.index_slope_id:select{slope_id}
+		print(found)
+		if (found ~= nil) then
+			print('not nil')
+			return nil
+		end
+	end
+	return
+end
+
+box.space.slopes:on_replace(slopes_before_replace_function)
+
+print(box.space.slopes:insert{1, 'A1', true, 9})
+print(box.space.slopes:get{1})
+print(box.space.slopes:delete{1})
+print(box.space.slopes:get{1})
 print('a')
-box.space.lifts_slopes:insert{10000, 100000, 100000}
+
+print(box.space.slopes:insert{1, 'A1', true, 9})
+print(box.space.lifts_slopes:insert{1, 99, 1})
+print(box.space.slopes:get{1})
+print(box.space.lifts_slopes:get{1})
+print(box.space.slopes:delete{1})
+print(box.space.slopes:get{1})
 print('b')
---box.space.slopes:delete{0}
-print('c')
+
+print(box.space.lifts_slopes:delete{1})
+print(box.space.lifts_slopes:get{1})
+print(box.space.slopes:delete{1})
+print(box.space.slopes:get{1})
+
+--print('a')
+--box.space.lifts_slopes:insert{1, 10, 20}
+--box.space.lifts_slopes:update(1, {{'=', 2, 9}}) -- индексация с 1
+--print(box.space.lifts_slopes:get{1})
+--box.space.lifts_slopes:delete{1}
+
+
+-------------------------------------------------------------------------------------------------temporary
+function dump(o)
+   if type(o) == 'table' then
+      local s = '{ '
+      for k,v in pairs(o) do
+         if type(k) ~= 'number' then k = '"'..k..'"' end
+         s = s .. '['..k..'] = ' .. dump(v) .. ','
+      end
+      return s .. '} '
+   else
+      return tostring(o)
+   end
+end
+
+function temporary_function(old, new)
+	if (old == nil) then
+		print('insert')
+	else 
+		if (new == nil) then
+			print('delete')
+		else
+			print('update')
+		end
+	end
+end
