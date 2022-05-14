@@ -386,7 +386,7 @@ function slopes_before_replace_function(old, new)
 	return
 end
 
-box.space.slopes:on_replace(slopes_before_replace_function)
+box.space.slopes:before_replace(slopes_before_replace_function)
 
 print(box.space.slopes:insert{1, 'A1', true, 9})
 print(box.space.slopes:get{1})
