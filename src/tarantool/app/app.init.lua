@@ -10,24 +10,21 @@ io_module.stdout:setvbuf("no")
 print('start!')
 
 
+
 ---------------------------------------------------------------------------------------------init tables
 local function init()
 	print('in init!')
-	box.schema.upgrade()
 	
 	--print(box.info.version)
 	--box.schema.user.create('ski_admin', {if_not_exists = true}, {password = 'Tty454r293300'})
 	--box.schema.user.passwd('ski_admin', 'Tty454r293300')
 	--box.schema.user.grant('ski_admin', 'read,write,execute,create,alter,drop', 'universe')
 
-	box.space.lifts_slopes:drop()
-	box.space.slopes:drop()
-	box.space.lifts:drop()
-	box.space.turnstiles:drop()
-	box.space.card_readings:drop()
-	box.space.cards:drop()
-	box.space.users:drop()
-	box.space.messages:drop()
+
+
+	
+	
+	
 
 	--- users
 	users = box.schema.space.create('users', {field_count=5})
@@ -280,29 +277,6 @@ end
 
 ----------------------------------------------------------------------------------------------------functions
 
-
-function count_card_readings(lift_id, date_from)
-	-- select turnstiles
-	connected_turnstiles = turnstiles.index.index_lift_id:select({lift_id})
-
-	counter = 0
-
-	for k,v in pairs(connected_turnstiles) do
-		cur_turnstile_id = v["turnstile_id"]
-
-		card_readings_on_turnstile = card_readings.index.index_turnstile:select({cur_turnstile_id})
-
-		for k,v in pairs(card_readings_on_turnstile) do
-			if v["reading_time"] >= date_from then
-				counter = counter + 1
-			end
-		end
-	end
-
-	return counter
-end
-
-
 function auto_increment_users(card_id, user_email, password, permissions)
 	return box.space.users:auto_increment{card_id, user_email, password, permissions}
 end
@@ -336,6 +310,31 @@ function auto_increment_messages(sender_id, checked_by_id, text)
 end
 
 
+function count_card_readings(lift_id, date_from)
+	-- select turnstiles
+	connected_turnstiles = turnstiles.index.index_lift_id:select({lift_id})
+
+	counter = 0
+
+	for k,v in pairs(connected_turnstiles) do
+		cur_turnstile_id = v["turnstile_id"]
+
+		card_readings_on_turnstile = card_readings.index.index_turnstile:select({cur_turnstile_id})
+
+		for k,v in pairs(card_readings_on_turnstile) do
+			if v["reading_time"] >= date_from then
+				counter = counter + 1
+			end
+		end
+	end
+
+	return counter
+end
+
+
+
+
+
 
 box.cfg {
    background = false,
@@ -351,67 +350,53 @@ init()
 
 
 
+-- auto_increment_card_readings(turnstile_id, card_id, reading_time)
+-- auto_increment_lifts(lift_name, is_open, seats_amount, lifting_time, queue_time)
+-- auto_increment_turnstiles(lift_id, is_open)
+auto_increment_lifts('a', true, 10, 100, 0) -- 1
+auto_increment_lifts('b', true, 20, 500, 100)) -- 2
 
 
+auto_increment_turnstiles(1, true) -- 1 (1)
+auto_increment_turnstiles(1, true) -- 2 (1)
+
+auto_increment_turnstiles(2, true) -- 3 (2)
 
 
+--1
+auto_increment_card_readings(1, 0, 10)
+auto_increment_card_readings(1, 0, 20)
+auto_increment_card_readings(2, 0, 10)
+auto_increment_card_readings(2, 0, 20)
+auto_increment_card_readings(2, 0, 30)
+
+--2
+auto_increment_card_readings(3, 0, 10)
+auto_increment_card_readings(3, 0, 20)
+auto_increment_card_readings(3, 0, 30)
 
 
---print('a')
---box.space.lifts_slopes:insert{90001, 100000, 100000}
---print('b')
---box.space.slopes:insert{100000, 'df', true, 2}
---print('c')
---box.space.slopes:delete{100000}
---print('d')
---box.space.lifts_slopes:delete{90001}
---box.space.lifts_slopes:insert{10000, 100000, 100000}
+print('!!count', count_card_readings(2, 0))
+
+-- box.schema.role.create('unauthorized_user')
+-- box.schema.role.grant('unauthorized_user', 'read', 'space', 'lifts', {if_not_exists=true})
+-- box.schema.role.grant('unauthorized_user', 'read', 'space', 'slopes', {if_not_exists=true})
+-- box.schema.role.grant('unauthorized_user', 'read', 'space', 'lifts_slopes', {if_not_exists=true})
 
 
+-- box.schema.role.create('authorized_user')
+-- box.schema.role.grant('authorized_user', 'unauthorized_user')
+-- box.schema.role.grant('authorized_user', 'read,write', 'space', 'messages', {if_not_exists=true})
 
 
-function slopes_before_replace_function(old, new)
-	--delete
-	
-	if (old ~= nil and new == nil) then
-		slope_id_value = old[1]
-		print(slope_id_value)
-		found = box.space.lifts_slopes.index.index_slope_id:select{slope_id}
-		print(found)
-		if (found ~= nil) then
-			print('not nil')
-			return nil
-		end
-	end
-	return
-end
+-- box.schema.role.create('ski_patrol')
+-- box.schema.role.grant('ski_patrol', 'authorized_user')
+-- box.schema.role.grant('unauthorized_user', 'write', 'space', 'lifts', {if_not_exists=true})
+-- box.schema.role.grant('unauthorized_user', 'write', 'space', 'slopes', {if_not_exists=true})
+-- box.schema.role.grant('unauthorized_user', 'write', 'space', 'lifts_slopes', {if_not_exists=true})
 
-box.space.slopes:before_replace(slopes_before_replace_function)
-
-print(box.space.slopes:insert{1, 'A1', true, 9})
-print(box.space.slopes:get{1})
-print(box.space.slopes:delete{1})
-print(box.space.slopes:get{1})
-print('a')
-
-print(box.space.slopes:insert{1, 'A1', true, 9})
-print(box.space.lifts_slopes:insert{1, 99, 1})
-print(box.space.slopes:get{1})
-print(box.space.lifts_slopes:get{1})
-print(box.space.slopes:delete{1})
-print(box.space.slopes:get{1})
-print('b')
-
-print(box.space.lifts_slopes:delete{1})
-print(box.space.lifts_slopes:get{1})
-print(box.space.slopes:delete{1})
-print(box.space.slopes:get{1})
-
---print('a')
---box.space.lifts_slopes:insert{1, 10, 20}
---box.space.lifts_slopes:update(1, {{'=', 2, 9}}) -- индексация с 1
---print(box.space.lifts_slopes:get{1})
---box.space.lifts_slopes:delete{1}
+-- box.schema.role.create('ski_admin')
+-- box.schema.role.grant('ski_admin', 'read,write,execute,create,alter,drop', 'universe')
 
 
 -------------------------------------------------------------------------------------------------temporary

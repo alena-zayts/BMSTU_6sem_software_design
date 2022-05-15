@@ -94,4 +94,48 @@ The Programming Language Lua [Электронный ресурс].
 \newblock Режим доступа: \url{http://www.lua.org/} (дата
   обращения: 01.04.2022).
 
+\bibitem{sharp}
+\selectlanguageifdefined{russian}
+Документация C\# [Электронный ресурс].
+\newblock Режим доступа:
+  \url{https://docs.microsoft.com/ru-ru/dotnet/csharp/} (дата
+  обращения: 03.04.2022).
+
+\bibitem{connector}
+\selectlanguageifdefined{russian}
+Dotnet client for Tarantool NoSql database [Электронный
+  ресурс].
+\newblock Режим доступа:
+  \url{https://github.com/progaudi/progaudi.tarantool} (дата
+  обращения: 03.04.2022).
+
+\bibitem{vs}
+\selectlanguageifdefined{russian}
+Документация по семейству продуктов Visual
+  Studio [Электронный ресурс].
+\newblock Режим доступа:
+  \url{https://docs.microsoft.com/ru-ru/visualstudio/?view=vs-2022} (дата
+  обращения: 03.04.2022).
+
+\bibitem{wf}
+\selectlanguageifdefined{russian}
+Windows Forms [Электронный ресурс].
+\newblock Режим доступа:
+  \url{https://docs.microsoft.com/ru-ru/dotnet/desktop/winforms/?view=netdesktop-5.0}
+  (дата обращения: 03.04.2022).
+
+\bibitem{docker}
+\selectlanguageifdefined{russian}
+Docker: Empowering App Development for Developers [Электронный
+  ресурс].
+\newblock Режим доступа: \url{https://www.docker.com/} (дата
+  обращения: 03.04.2022).
+
+\bibitem{test}
+\selectlanguageifdefined{russian}
+Documentation site for the xUnit.net unit testing framework
+  [Электронный ресурс].
+\newblock Режим доступа: \url{https://xunit.net/} (дата
+  обращения: 03.04.2022).
+
 \end{thebibliography}
