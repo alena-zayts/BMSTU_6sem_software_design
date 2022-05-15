@@ -3,6 +3,8 @@
 
 -- роли
 -- lsof -i :3301
+-- docker-compose -f C:/BMSTU_6sem_software_design/src/tarantool/docker-compose.yml down && docker-compose -f C:/BMSTU_6sem_software_design/src/tarantool/docker-compose.yml up -d
+
 
 io_module = require("io")
 io_module.stdout:setvbuf("no")
@@ -21,8 +23,15 @@ local function init()
 	--box.schema.user.grant('ski_admin', 'read,write,execute,create,alter,drop', 'universe')
 
 
+	box.space.users:drop()
+	box.space.cards:drop()
+	box.space.card_readings:drop()
+	box.space.turnstiles:drop()
+	box.space.messages:drop()
+	box.space.lifts:drop()
+	box.space.slopes:drop()
+	box.space.lifts_slopes:drop()
 
-	
 	
 	
 
@@ -311,7 +320,6 @@ end
 
 
 function count_card_readings(lift_id, date_from)
-	-- select turnstiles
 	connected_turnstiles = turnstiles.index.index_lift_id:select({lift_id})
 
 	counter = 0
@@ -322,7 +330,7 @@ function count_card_readings(lift_id, date_from)
 		card_readings_on_turnstile = card_readings.index.index_turnstile:select({cur_turnstile_id})
 
 		for k,v in pairs(card_readings_on_turnstile) do
-			if v["reading_time"] >= date_from then
+			if v["reading_time"] > date_from then
 				counter = counter + 1
 			end
 		end
@@ -332,6 +340,15 @@ function count_card_readings(lift_id, date_from)
 end
 
 
+function update_queue_time(lift_id, date_from, date_query)
+	card_readings_amount = count_card_readings(lift_id, date_from)
+	lift = lifts:get{lift_id}
+	time_delta = date_query - date_from
+	new_queue_time = lift["queue_time"] - time_delta  + (card_readings_amount * lift["lifting_time"] * 2 / lift["seats_amount"])
+	
+	lifts:update(lift_id, {{'=', "queue_time", new_queue_time}})
+	return new_queue_time
+end
 
 
 
@@ -353,8 +370,9 @@ init()
 -- auto_increment_card_readings(turnstile_id, card_id, reading_time)
 -- auto_increment_lifts(lift_name, is_open, seats_amount, lifting_time, queue_time)
 -- auto_increment_turnstiles(lift_id, is_open)
+
 auto_increment_lifts('a', true, 10, 100, 0) -- 1
-auto_increment_lifts('b', true, 20, 500, 100)) -- 2
+auto_increment_lifts('b', true, 20, 500, 100) -- 2
 
 
 auto_increment_turnstiles(1, true) -- 1 (1)
@@ -376,7 +394,11 @@ auto_increment_card_readings(3, 0, 20)
 auto_increment_card_readings(3, 0, 30)
 
 
+print('!!count', count_card_readings(1, 0))
 print('!!count', count_card_readings(2, 0))
+print()
+print('!!count', count_card_readings(1, 15))
+print('!!count', count_card_readings(2, 10))
 
 -- box.schema.role.create('unauthorized_user')
 -- box.schema.role.grant('unauthorized_user', 'read', 'space', 'lifts', {if_not_exists=true})
