@@ -7,6 +7,21 @@
 \ifx\undefined\BibAnnote\long\def\BibAnnote#1{(#1)}\else\fi
 \ifx\undefined\BibEmph\def\BibEmph#1{\emph{#1}}\else\fi
 
+\bibitem{stat}
+\selectlanguageifdefined{russian}
+Интерес туристов из РФ к горнолыжному
+  отдыху [Электронный ресурс].
+\newblock Режим доступа:
+  \url{https://booking-ru.ru/2020/09/20/interes-turistov-iz-rf-k-gornolyzhnomu-otdyxu-vyros-na-tret/}
+  (дата обращения: 01.04.2022).
+
+\bibitem{api}
+\selectlanguageifdefined{russian}
+What is a REST API? - Red Hat [Электронный ресурс].
+\newblock Режим доступа:
+  \url{https://www.redhat.com/en/topics/api/what-is-a-rest-api} (дата
+  обращения: 01.04.2022).
+
 \bibitem{database}
 \selectlanguageifdefined{russian}
 Что такое база данных | Oracle Россия и СНГ

@@ -92,9 +92,6 @@
             "projectReferences": {
               "C:\\BMSTU_6sem_software_design\\src\\SkiResort\\BL\\BL.csproj": {
                 "projectPath": "C:\\BMSTU_6sem_software_design\\src\\SkiResort\\BL\\BL.csproj"
-              },
-              "C:\\BMSTU_6sem_software_design\\src\\SkiResort\\WorkerService1\\CardReadingsRecivingWorker.csproj": {
-                "projectPath": "C:\\BMSTU_6sem_software_design\\src\\SkiResort\\WorkerService1\\CardReadingsRecivingWorker.csproj"
               }
             }
           }

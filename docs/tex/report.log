@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.6) (preloaded format=pdflatex 2021.9.4)  16 MAY 2022 13:16
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.6) (preloaded format=pdflatex 2021.9.4)  16 MAY 2022 20:33
 entering extended mode
 **./report.tex
 (report.tex
@@ -1484,8 +1484,8 @@ Package: subcaption 2020/10/07 v1.3j Sub-captions (AR)
 \c@subfigure=\count345
 \c@subtable=\count346
 ))
-(report.aux (01-contents.aux) (10-analysis.aux) (20-design.aux) (30-impl.aux)
-(51-biblio.aux))
+(report.aux (01-contents.aux) (02-intro.aux) (10-analysis.aux) (20-design.aux)
+(30-impl.aux) (51-biblio.aux))
 \openout1 = `report.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 5.
@@ -1611,17 +1611,17 @@ LaTeX Info: Redefining \nameref on input line 5.
 \openout2 = `01-contents.aux'.
 
  (01-contents.tex (report.toc<<ot1.cmap>><<oml.cmap>><<oms.cmap>><<omx.cmap>>
-LaTeX Font Info:    Trying to load font information for U+msa on input line 3.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 4.
 
 (C:\Program Files\MiKTeX\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 3.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 4.
 
 (C:\Program Files\MiKTeX\tex/latex/amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-Overfull \hbox (26.9588pt too wide) in paragraph at lines 9--9
+Overfull \hbox (26.9588pt too wide) in paragraph at lines 10--10
  [][] [][]\T2A/cmr/m/n/14.4 ћобильное при-ло-же-ние гор-но-лыж-но-го ку-рор-та 
 <<Courchevel>>[] [][]  
  []
@@ -1638,18 +1638,32 @@ Overfull \hbox (26.9588pt too wide) in paragraph at lines 9--9
 \openout6 = `report.toc'.
 
 ) [2]
+\openout2 = `02-intro.aux'.
+
+
+(02-intro.tex
+Overfull \hbox (17.13693pt too wide) in paragraph at lines 8--9
+[]\T2A/cmr/m/n/14.4 ÷ель кур-со-вой ра-бо-ты -- раз-ра-бо-тать ба-зу дан-ных дл
+€ онлайн-мониторинга
+ []
+
+) [3
+
+
+
+
+]
 \openout2 = `10-analysis.aux'.
 
-
-(10-analysis.tex
+ (10-analysis.tex
 {\cyrillictext \CYRG \cyrl \cyra \cyrv \cyra } 1.
-[3
+[4
 
 
 
 
-] [4]
-<../imgs/er/er_russian.png, id=195, 1064.97874pt x 682.55pt>
+] [5]
+<../imgs/er/er_russian.png, id=208, 1064.97874pt x 682.55pt>
 File: ../imgs/er/er_russian.png Graphic file (type png)
 <use ../imgs/er/er_russian.png>
 Package pdftex.def Info: ../imgs/er/er_russian.png  used on input line 52.
@@ -1665,25 +1679,25 @@ Overfull \hbox (4.37938pt too wide) in paragraph at lines 61--62
 ван-ный (обыч-ный) поль-
  []
 
-[5
+[6
 
  <../imgs/er/er_russian.png>]
-<../imgs/use_case/use-case1.png, id=204, 573.14125pt x 352.31625pt>
+<../imgs/use_case/use-case1.png, id=217, 573.14125pt x 352.31625pt>
 File: ../imgs/use_case/use-case1.png Graphic file (type png)
 <use ../imgs/use_case/use-case1.png>
 Package pdftex.def Info: ../imgs/use_case/use-case1.png  used on input line 77.
 
 (pdftex.def)             Requested size: 401.19614pt x 246.61969pt.
- [6
+ [7
 
  <../imgs/use_case/use-case1.png>]
-<../imgs/use_case/use-case2.png, id=212, 844.15375pt x 261.97874pt>
+<../imgs/use_case/use-case2.png, id=226, 844.15375pt x 261.97874pt>
 File: ../imgs/use_case/use-case2.png Graphic file (type png)
 <use ../imgs/use_case/use-case2.png>
 Package pdftex.def Info: ../imgs/use_case/use-case2.png  used on input line 101
 .
 (pdftex.def)             Requested size: 464.286pt x 144.08875pt.
-<../imgs/use_case/use-case3.png, id=214, 824.07875pt x 261.97874pt>
+<../imgs/use_case/use-case3.png, id=228, 824.07875pt x 261.97874pt>
 File: ../imgs/use_case/use-case3.png Graphic file (type png)
 <use ../imgs/use_case/use-case3.png>
 Package pdftex.def Info: ../imgs/use_case/use-case3.png  used on input line 121
@@ -1694,16 +1708,16 @@ Overfull \hbox (24.98058pt too wide) in paragraph at lines 121--122
  [] 
  []
 
-[7
+[8
 
  <../imgs/use_case/use-case2.png> <../imgs/use_case/use-case3.png>]
-<../imgs/use_case/use-case4.png, id=225, 914.41624pt x 397.485pt>
+<../imgs/use_case/use-case4.png, id=238, 914.41624pt x 397.485pt>
 File: ../imgs/use_case/use-case4.png Graphic file (type png)
 <use ../imgs/use_case/use-case4.png>
 Package pdftex.def Info: ../imgs/use_case/use-case4.png  used on input line 142
 .
 (pdftex.def)             Requested size: 457.207pt x 198.742pt.
- [8
+ [9
 
  <../imgs/use_case/use-case4.png>]
 Overfull \hbox (1.72697pt too wide) in paragraph at lines 164--165
@@ -1711,27 +1725,27 @@ Overfull \hbox (1.72697pt too wide) in paragraph at lines 164--165
 ть воз-мож-ность про-
  []
 
-<../imgs/analogue_apps/gslope.png, id=239, 593.21625pt x 1284.8pt>
+<../imgs/analogue_apps/gslope.png, id=252, 593.21625pt x 1284.8pt>
 File: ../imgs/analogue_apps/gslope.png Graphic file (type png)
 <use ../imgs/analogue_apps/gslope.png>
 Package pdftex.def Info: ../imgs/analogue_apps/gslope.png  used on input line 1
 72.
 (pdftex.def)             Requested size: 147.17934pt x 318.76826pt.
-<../imgs/analogue_apps/glift.png, id=240, 593.21625pt x 1284.8pt>
+<../imgs/analogue_apps/glift.png, id=253, 593.21625pt x 1284.8pt>
 File: ../imgs/analogue_apps/glift.png Graphic file (type png)
 <use ../imgs/analogue_apps/glift.png>
 Package pdftex.def Info: ../imgs/analogue_apps/glift.png  used on input line 17
 9.
 (pdftex.def)             Requested size: 147.17934pt x 318.76826pt.
-<../imgs/analogue_apps/gmap.png, id=241, 593.21625pt x 1284.8pt>
+<../imgs/analogue_apps/gmap.png, id=254, 593.21625pt x 1284.8pt>
 File: ../imgs/analogue_apps/gmap.png Graphic file (type png)
 <use ../imgs/analogue_apps/gmap.png>
 Package pdftex.def Info: ../imgs/analogue_apps/gmap.png  used on input line 186
 .
 (pdftex.def)             Requested size: 147.17934pt x 318.76826pt.
-[9 <../imgs/analogue_apps/gslope.png> <../imgs/analogue_apps/glift.png> <../img
-s/analogue_apps/gmap.png>]
-<../imgs/analogue_apps/Courchevel.png, id=250, 593.21625pt x 1284.8pt>
+[10 <../imgs/analogue_apps/gslope.png> <../imgs/analogue_apps/glift.png> <../im
+gs/analogue_apps/gmap.png>]
+<../imgs/analogue_apps/Courchevel.png, id=263, 593.21625pt x 1284.8pt>
 File: ../imgs/analogue_apps/Courchevel.png Graphic file (type png)
 <use ../imgs/analogue_apps/Courchevel.png>
 Package pdftex.def Info: ../imgs/analogue_apps/Courchevel.png  used on input li
@@ -1743,39 +1757,39 @@ Overfull \hbox (1.72697pt too wide) in paragraph at lines 216--217
 ть воз-мож-ность про-
  []
 
-[10
+[11
 
  <../imgs/analogue_apps/Courchevel.png>]
-<../imgs/analogue_apps/rslope.png, id=259, 593.21625pt x 1284.8pt>
+<../imgs/analogue_apps/rslope.png, id=272, 593.21625pt x 1284.8pt>
 File: ../imgs/analogue_apps/rslope.png Graphic file (type png)
 <use ../imgs/analogue_apps/rslope.png>
 Package pdftex.def Info: ../imgs/analogue_apps/rslope.png  used on input line 2
 25.
 (pdftex.def)             Requested size: 147.17934pt x 318.76826pt.
-<../imgs/analogue_apps/rlift.png, id=260, 593.21625pt x 1284.8pt>
+<../imgs/analogue_apps/rlift.png, id=273, 593.21625pt x 1284.8pt>
 File: ../imgs/analogue_apps/rlift.png Graphic file (type png)
 <use ../imgs/analogue_apps/rlift.png>
 Package pdftex.def Info: ../imgs/analogue_apps/rlift.png  used on input line 23
 2.
 (pdftex.def)             Requested size: 147.17934pt x 318.76826pt.
-<../imgs/analogue_apps/rmap.png, id=261, 593.21625pt x 1284.8pt>
+<../imgs/analogue_apps/rmap.png, id=274, 593.21625pt x 1284.8pt>
 File: ../imgs/analogue_apps/rmap.png Graphic file (type png)
 <use ../imgs/analogue_apps/rmap.png>
 Package pdftex.def Info: ../imgs/analogue_apps/rmap.png  used on input line 239
 .
 (pdftex.def)             Requested size: 147.17934pt x 318.76826pt.
- [11 <../imgs/analogue_apps/rslope.png> <../imgs/analogue_apps/rlift.png> <../i
+ [12 <../imgs/analogue_apps/rslope.png> <../imgs/analogue_apps/rlift.png> <../i
 mgs/analogue_apps/rmap.png>]
-<../imgs/analogue_apps/rcamera1.png, id=268, 593.21625pt x 1284.8pt>
+<../imgs/analogue_apps/rcamera1.png, id=281, 593.21625pt x 1284.8pt>
 File: ../imgs/analogue_apps/rcamera1.png Graphic file (type png)
 <use ../imgs/analogue_apps/rcamera1.png>
 Package pdftex.def Info: ../imgs/analogue_apps/rcamera1.png  used on input line
  257.
 (pdftex.def)             Requested size: 237.28229pt x 513.9109pt.
 
-[12
+[13
 
- <../imgs/analogue_apps/rcamera1.png>] [13] [14
+ <../imgs/analogue_apps/rcamera1.png>] [14] [15
 
 ]
 Overfull \hbox (13.90695pt too wide) in paragraph at lines 320--321
@@ -1783,46 +1797,41 @@ Overfull \hbox (13.90695pt too wide) in paragraph at lines 320--321
 ис-поль-зо-ва-ни€ IMDB.
  []
 
-) [15]
+) [16]
 \openout2 = `20-design.aux'.
 
  (20-design.tex
 {\cyrillictext \CYRG \cyrl \cyra \cyrv \cyra } 2.
-<../imgs/func_model.jpg, id=301, 337.26pt x 216.81pt>
+<../imgs/func_model.jpg, id=314, 337.26pt x 216.81pt>
 File: ../imgs/func_model.jpg Graphic file (type jpg)
 <use ../imgs/func_model.jpg>
 Package pdftex.def Info: ../imgs/func_model.jpg  used on input line 11.
 (pdftex.def)             Requested size: 202.35756pt x 130.08699pt.
-[16
+[17
 
 
 
 
  <../imgs/func_model.jpg>]
-<../imgs/db/db.png, id=309, 852.18375pt x 814.04124pt>
+<../imgs/db/db.png, id=322, 852.18375pt x 814.04124pt>
 File: ../imgs/db/db.png Graphic file (type png)
 <use ../imgs/db/db.png>
 Package pdftex.def Info: ../imgs/db/db.png  used on input line 49.
 (pdftex.def)             Requested size: 340.86745pt x 325.61072pt.
- [17 <../imgs/db/db.png>]
+ [18 <../imgs/db/db.png>]
 Overfull \hbox (3.34315pt too wide) in paragraph at lines 80--81
 []\T2A/cmr/m/n/14.4 slope_id -- иден-ти-фи-ка-тор трас-сы, FK на по-ле slope_id
  таб-ли-цы slopes. 
  []
 
-[18] [19]
-<../imgs/uml/components.png, id=326, 471.7625pt x 546.04pt>
+[19] [20]
+<../imgs/uml/components.png, id=339, 471.7625pt x 546.04pt>
 File: ../imgs/uml/components.png Graphic file (type png)
 <use ../imgs/uml/components.png>
 Package pdftex.def Info: ../imgs/uml/components.png  used on input line 134.
 (pdftex.def)             Requested size: 330.23149pt x 382.22539pt.
- [20 <../imgs/uml/components.png>]
-Overfull \hbox (47.66818pt too wide) in paragraph at lines 149--150
-\T2A/cmr/m/n/14.4 ма функ-ций update_queue_time и вспо-мо-га-тель-ной функ-ции 
-count_card_readings,
- []
-
-<../imgs/function.png, id=334, 865.2325pt x 805.0075pt>
+ [21 <../imgs/uml/components.png>]
+<../imgs/function.png, id=347, 865.2325pt x 805.0075pt>
 File: ../imgs/function.png Graphic file (type png)
 <use ../imgs/function.png>
 Package pdftex.def Info: ../imgs/function.png  used on input line 153.
@@ -1835,7 +1844,9 @@ Overfull \hbox (6.40886pt too wide) in paragraph at lines 153--154
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-) [21] [22 <../imgs/function.png>]
+[22] [23 <../imgs/function.png>]) [24
+
+]
 \openout2 = `30-impl.aux'.
 
  (30-impl.tex
@@ -1846,12 +1857,12 @@ Overfull \hbox (10.45366pt too wide) in paragraph at lines 8--9
 зо-ва-ни-ем баз данных[[]]. 
  []
 
-[23
+[25
 
 
 
 
-] [24] [25]
+] [26] [27]
 Overfull \hbox (15.629pt too wide) in paragraph at lines 77--78
 []\T2A/cmr/m/n/14.4 –ассмотрим несколь-ко тре-бо-ва-ний, ко-то-рым долж-на удо-
 вле-тво-р€ть —”Ѕƒ
@@ -1863,7 +1874,7 @@ Overfull \hbox (3.82256pt too wide) in paragraph at lines 81--82
  пунк-те []1.3[] функ-
  []
 
-[26]
+[28]
 Overfull \hbox (2.87463pt too wide) in paragraph at lines 126--127
 []\T2A/cmr/m/n/14.4 “естирование про-грамм-но-го про-дук-та про-из-во-ди-лось с
  по-мо-щью фрейм-
@@ -1890,7 +1901,7 @@ File: ts1fvm.fd 2004/09/07 scalable font definitions for TS1/fvm.
 )
 LaTeX Font Info:    Font shape `TS1/fvm/m/n' will be
 (Font)              scaled to size 10.79993pt on input line 138.
- [27]
+ [29]
 (C:\Program Files\MiKTeX\tex/latex/listings\lstlang1.sty
 File: lstlang1.sty 2020/03/24 1.8d listings language file
 )
@@ -1898,84 +1909,96 @@ File: lstlang1.sty 2020/03/24 1.8d listings language file
 LaTeX Font Warning: Font shape `T2A/fvm/b/n' undefined
 (Font)              using `T2A/fvm/m/n' instead on input line 169.
 
-[28] [29]
-Overfull \hbox (11.24783pt too wide) in paragraph at lines 216--217
+[30] [31]
+Overfull \hbox (11.24783pt too wide) in paragraph at lines 217--218
 \T2A/fvm/m/n/14.4 ком-по-нен-те бизнес-логики. ќт-но-ше-ние меж-ду таб-ли-ца-ми
  slopes и lifts многие-
  []
 
 (C:\Program Files\MiKTeX\tex/latex/listings\lstlang1.sty
 File: lstlang1.sty 2020/03/24 1.8d listings language file
-) [30] [31]) [32]
+) [32] [33]) [34]
 \openout2 = `51-biblio.aux'.
 
 
 (51-biblio.tex (report.bbl
-Underfull \hbox (badness 5374) in paragraph at lines 12--17
+Underfull \hbox (badness 3302) in paragraph at lines 12--17
+[]\T2A/fvm/m/n/14.4 »нтерес ту-ри-стов из –‘ к гор-но-лыж-но-му от-ды-ху [Ёлек-
+трон-
+ []
+
+
+Underfull \hbox (badness 2253) in paragraph at lines 12--17
+\T2A/fvm/m/n/14.4 ный ре-сурс].  –е-жим до-сту-па: []$https : / / booking-[]ru 
+. ru / 2020 / 09 / 20 /
+ []
+
+
+Underfull \hbox (badness 5374) in paragraph at lines 27--32
 []\T2A/fvm/m/n/14.4 „то та-кое ба-за дан-ных | Oracle –ос-си€ и —Ќ√ [Ёлек-трон-
 
  []
 
 
-Underfull \hbox (badness 1226) in paragraph at lines 20--25
+Underfull \hbox (badness 1226) in paragraph at lines 35--40
 []\T2A/fvm/m/n/14.4 —истемы и тех-но-ло-гии баз дан-ных в па-м€-ти | Microsoft 
 [Ёлек-
  []
 
 
-Underfull \hbox (badness 5431) in paragraph at lines 28--33
+Underfull \hbox (badness 5431) in paragraph at lines 43--48
 []\T2A/fvm/m/n/14.4 In-Memory. Ѕа-за дан-ных в опе-ра-тив-ной па-м€-ти |ECM-Jou
 rnal
  []
 
 
-Underfull \hbox (badness 3503) in paragraph at lines 28--33
+Underfull \hbox (badness 3503) in paragraph at lines 43--48
 \T2A/fvm/m/n/14.4 [Ёлек-трон-ный ре-сурс].  –е-жим до-сту-па: []$https : / / ec
 m-[]journal . ru /
  []
 
 
-Underfull \hbox (badness 1038) in paragraph at lines 28--33
+Underfull \hbox (badness 1038) in paragraph at lines 43--48
 \T2A/fvm/m/n/14.4 material / In-[]Memory-[]Baza-[]dannykh-[]v-[]operativnojj-[]
 pamjati$[] (да-та об-ра-
  []
 
 
-Underfull \hbox (badness 5592) in paragraph at lines 36--40
+Underfull \hbox (badness 5592) in paragraph at lines 51--55
 []\T2A/fvm/m/n/14.4 In-Memory Database [Ёлек-трон-ный ре-сурс].  –е-жим до-сту-
 па:
  []
 
 
-Underfull \hbox (badness 5022) in paragraph at lines 58--62
+Underfull \hbox (badness 5022) in paragraph at lines 73--77
 []\T2A/fvm/m/n/14.4 Memcached | –ас-пре-де-лен-ное хра-ни-ли-ще дан-ных ти-па <
 <ключ-
  []
 
-[33
+[35
 
 
 
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 122--126
+Underfull \hbox (badness 10000) in paragraph at lines 137--141
 \T2A/fvm/m/n/14.4 microsoft . com / ru-[]ru / dotnet / desktop / winforms / ?vi
 ew = netdesktop-[]5 . 0$[]
  []
 
-)) [34] (report.aux (01-contents.aux) (10-analysis.aux) (20-design.aux)
-(30-impl.aux) (51-biblio.aux))
+[36])) [37] (report.aux (01-contents.aux) (02-intro.aux) (10-analysis.aux)
+(20-design.aux) (30-impl.aux) (51-biblio.aux))
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
 Package rerunfilecheck Info: File `report.out' has not changed.
-(rerunfilecheck)             Checksum: 2327F6C60C9F59AF828E8F0AAC38F73F;7635.
+(rerunfilecheck)             Checksum: CE92243ADD520478C280EEE47818B020;7920.
  ) 
 Here is how much of TeX's memory you used:
- 40954 strings out of 478864
- 912671 string characters out of 2858518
- 1719141 words of memory out of 10000000
- 57872 multiletter control sequences out of 15000+600000
+ 40978 strings out of 478864
+ 913068 string characters out of 2858518
+ 1719850 words of memory out of 10000000
+ 57882 multiletter control sequences out of 15000+600000
  416652 words of font info for 53 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  106i,14n,108p,1115b,2079s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1984,16 +2007,16 @@ Here is how much of TeX's memory you used:
 Data\Local\MiKTeX\fonts/pk/ljfour/lh/lh-t2a/dpi600\larm1000.pk> <C:\Users\alena
 \AppData\Local\MiKTeX\fonts/pk/ljfour/lh/lh-t2a/dpi600\larm1200.pk> <C:\Users\a
 lena\AppData\Local\MiKTeX\fonts/pk/ljfour/lh/lh-t2a/dpi600\labx1728.pk> <C:\Use
-rs\alena\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1440.pk> <
-C:\Users\alena\AppData\Local\MiKTeX\fonts/pk/ljfour/lh/lh-t2a/dpi600\labx2074.p
+rs\alena\AppData\Local\MiKTeX\fonts/pk/ljfour/lh/lh-t2a/dpi600\labx2074.pk> <C:
+\Users\alena\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1440.p
 k> <C:\Users\alena\AppData\Local\MiKTeX\fonts/pk/ljfour/lh/lh-t2a/dpi600\larm14
 40.pk> <C:\Users\alena\AppData\Local\MiKTeX\fonts/pk/ljfour/lh/lh-t2a/dpi600\la
 bx1440.pk> <C:\Users\alena\AppData\Local\MiKTeX\fonts/pk/ljfour/lh/lh-t2a/dpi60
 0\labx2488.pk><C:/Users/alena/AppData/Roaming/MiKTeX/fonts/type1/bera/fvmr8a.pf
 b>
-Output written on report.pdf (34 pages, 1286937 bytes).
+Output written on report.pdf (37 pages, 1297452 bytes).
 PDF statistics:
- 1128 PDF objects out of 1200 (max. 8388607)
- 231 named destinations out of 1000 (max. 500000)
- 370 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1167 PDF objects out of 1200 (max. 8388607)
+ 238 named destinations out of 1000 (max. 500000)
+ 378 words of extra memory for PDF output out of 10000 (max. 10000000)
 

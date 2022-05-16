@@ -177,18 +177,19 @@ function count_card_readings(lift_id, date_from, date_query)
 			end
 		end
 	end
-	
 	return counter
 end
  
- 
 function update_queue_time(lift_id, date_from, date_query)
 	card_readings_amount = count_card_readings(lift_id, date_from, date_query)
-	
 	lift = lifts:get{lift_id}
 	time_delta = date_query - date_from
-	new_queue_time = math_module.max(lift["queue_time"] - time_delta  + (card_readings_amount * lift["lifting_time"] * 2 / lift["seats_amount"]), 0)
-	
+	new_queue_time = math_module.max(
+		math_module.ceil(
+			lift["queue_time"] - 
+			time_delta  + 
+			(card_readings_amount * lift["lifting_time"] * 2 / lift["seats_amount"])), 
+		0)
 	lifts:update(lift_id, {{'=', 6, new_queue_time}})
 	return new_queue_time
 end

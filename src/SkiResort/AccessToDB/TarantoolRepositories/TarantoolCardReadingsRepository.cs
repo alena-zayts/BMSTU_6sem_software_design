@@ -41,11 +41,11 @@ namespace AccessToDB.RepositoriesTarantool
             return result;
         }
 
-        public async Task<uint> CountForLiftIdFromDateAsync(uint LiftID, DateTimeOffset dateFrom)
+        public async Task<uint> CountForLiftIdFromDateAsync(uint LiftID, DateTimeOffset dateFrom, DateTimeOffset dateTo)
         {
             try
             {
-                var result = await _box.Call_1_6<ValueTuple<uint, uint>, Int32[]>("count_card_readings", (ValueTuple.Create(LiftID, (uint) dateFrom.ToUnixTimeSeconds())));
+                var result = await _box.Call_1_6<ValueTuple<uint, uint, uint>, Int32[]>("count_card_readings", (ValueTuple.Create(LiftID, (uint) dateFrom.ToUnixTimeSeconds(), (uint)dateTo.ToUnixTimeSeconds())));
                 return (uint) result.Data[0][0];
             }
             catch (Exception ex)
@@ -118,6 +118,19 @@ namespace AccessToDB.RepositoriesTarantool
             if (response.Data.Length != 1)
             {
                 throw new CardReadingUpdateException(recordID, newTurnstileID, newCardID, newReadingTime);
+            }
+        }
+
+        public async Task<uint> UpdateQueueTime(uint liftID, DateTimeOffset dateFrom, DateTimeOffset dateTo)
+        {
+            try
+            {
+                var result = await _box.Call_1_6<ValueTuple<uint, uint, uint>, Int32[]>("update_queue_time", (ValueTuple.Create(liftID, (uint)dateFrom.ToUnixTimeSeconds(), (uint)dateTo.ToUnixTimeSeconds())));
+                return (uint)result.Data[0][0];
+            }
+            catch (Exception ex)
+            {
+                throw new CountCardReadingsException();
             }
         }
     }

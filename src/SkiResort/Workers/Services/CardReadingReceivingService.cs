@@ -31,7 +31,7 @@ namespace Workers
         {
             string data = File.ReadAllText(filename);
             dynamic stuff = JObject.Parse(data);
-            CardReading cardReading = new((uint) stuff.RecordID, (uint) stuff.TurnstileID, (uint) stuff.CardID, (DateTimeOffset) (DateTimeOffset.FromUnixTimeSeconds(stuff.ReadingTime)));
+            CardReading cardReading = new((uint) stuff.RecordID, (uint) stuff.TurnstileID, (uint) stuff.CardID, (DateTimeOffset) (DateTimeOffset.FromUnixTimeSeconds((uint) stuff.ReadingTime)));
             return cardReading;
         }
 
@@ -50,7 +50,7 @@ namespace Workers
                         FileInfo fileInfo = new(filename);
                         fileInfo.Delete();
                         
-                        string message = $"{cardReading.RecordID}";
+                        string message = $"{cardReadingID}";
                         _logger.LogInformation(message);
                     }
                     catch (Exception ex)

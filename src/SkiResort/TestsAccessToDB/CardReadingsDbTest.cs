@@ -95,13 +95,13 @@ namespace Tests
             CardReading added_card_reading5 = new CardReading(5, added_turnstile3.TurnstileID, 9, DateTimeOffset.FromUnixTimeSeconds(exact_time));
             await rep.AddCardReadingAsync(added_card_reading5.RecordID, added_card_reading5.TurnstileID, added_card_reading5.CardID, added_card_reading5.ReadingTime);
 
-            uint card_readings_amount = await rep.CountForLiftIdFromDateAsync(added_lift2.LiftID, DateTimeOffset.FromUnixTimeSeconds(exact_time));
+            uint card_readings_amount = await rep.CountForLiftIdFromDateAsync(added_lift2.LiftID, DateTimeOffset.FromUnixTimeSeconds(exact_time), DateTimeOffset.Now);
             Assert.True(card_readings_amount == 2);
 
-            card_readings_amount = await rep.CountForLiftIdFromDateAsync(added_lift1.LiftID, DateTimeOffset.FromUnixTimeSeconds(exact_time));
+            card_readings_amount = await rep.CountForLiftIdFromDateAsync(added_lift1.LiftID, DateTimeOffset.FromUnixTimeSeconds(exact_time), DateTimeOffset.Now);
             Assert.True(card_readings_amount == 1);
 
-            card_readings_amount = await rep.CountForLiftIdFromDateAsync(added_lift1.LiftID, DateTimeOffset.FromUnixTimeSeconds(exact_time + 2));
+            card_readings_amount = await rep.CountForLiftIdFromDateAsync(added_lift1.LiftID, DateTimeOffset.FromUnixTimeSeconds(exact_time + 2), DateTimeOffset.Now);
             Assert.True(card_readings_amount == 0);
 
             var tmp = await rep.GetCardReadingsAsync();

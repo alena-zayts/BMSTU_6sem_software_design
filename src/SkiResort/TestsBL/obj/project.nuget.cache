@@ -1,7 +1,7 @@
 {
   "version": 2,
-  "dgSpecHash": "qI/Gm3gcjbsrxGfaGgHI8PhVY4gZOsGrl/x1Q7rc3FvXBC9xMkg4ZjAFwg3ZHCE09Ifdo+7PhLFplJ3DK4k5UA==",
-  "success": false,
+  "dgSpecHash": "kqlNGjeVRJMar7oJtxb8m3oN9Lbr6hZCQrZmV18BF6H3/7ScXJ2TdcX5rAD0lQSwyLMTudhtOB5rfVyD304PDg==",
+  "success": true,
   "projectFilePath": "C:\\BMSTU_6sem_software_design\\src\\SkiResort\\TestsBL\\TestsBL.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\alena\\.nuget\\packages\\coverlet.collector\\3.1.0\\coverlet.collector.3.1.0.nupkg.sha512",
@@ -98,15 +98,5 @@
     "C:\\Users\\alena\\.nuget\\packages\\xunit.extensibility.execution\\2.4.1\\xunit.extensibility.execution.2.4.1.nupkg.sha512",
     "C:\\Users\\alena\\.nuget\\packages\\xunit.runner.visualstudio\\2.4.3\\xunit.runner.visualstudio.2.4.3.nupkg.sha512"
   ],
-  "logs": [
-    {
-      "code": "NU1104",
-      "level": "Error",
-      "message": "Не удалось найти проект \"C:\\BMSTU_6sem_software_design\\src\\SkiResort\\WorkerService1\\CardReadingsRecivingWorker.csproj\". Убедитесь, что ссылка на проект действительна и файл проекта существует.",
-      "libraryId": "C:\\BMSTU_6sem_software_design\\src\\SkiResort\\WorkerService1\\CardReadingsRecivingWorker.csproj",
-      "targetGraphs": [
-        "net6.0"
-      ]
-    }
-  ]
+  "logs": []
 }

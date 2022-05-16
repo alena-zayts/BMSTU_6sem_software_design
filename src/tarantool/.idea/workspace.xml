@@ -2,33 +2,94 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="37e3b93f-dec6-4655-8fd4-69c45ec7c196" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../../docs/imgs/uml/ui.drawio" beforeDir="false" afterPath="$PROJECT_DIR$/../../docs/imgs/uml/ui.drawio" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../docs/tex/02-intro.aux" beforeDir="false" afterPath="$PROJECT_DIR$/../../docs/tex/02-intro.aux" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../docs/tex/02-intro.tex" beforeDir="false" afterPath="$PROJECT_DIR$/../../docs/tex/02-intro.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../docs/tex/10-analysis.aux" beforeDir="false" afterPath="$PROJECT_DIR$/../../docs/tex/10-analysis.aux" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../docs/tex/20-design.aux" beforeDir="false" afterPath="$PROJECT_DIR$/../../docs/tex/20-design.aux" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../docs/tex/20-design.tex" beforeDir="false" afterPath="$PROJECT_DIR$/../../docs/tex/20-design.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../docs/tex/30-impl.aux" beforeDir="false" afterPath="$PROJECT_DIR$/../../docs/tex/30-impl.aux" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../docs/tex/30-impl.tex" beforeDir="false" afterPath="$PROJECT_DIR$/../../docs/tex/30-impl.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../docs/tex/51-biblio.aux" beforeDir="false" afterPath="$PROJECT_DIR$/../../docs/tex/51-biblio.aux" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../docs/tex/51-biblio.bib" beforeDir="false" afterPath="$PROJECT_DIR$/../../docs/tex/51-biblio.bib" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../docs/tex/51-biblio.tex" beforeDir="false" afterPath="$PROJECT_DIR$/../../docs/tex/51-biblio.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../docs/tex/report.aux" beforeDir="false" afterPath="$PROJECT_DIR$/../../docs/tex/report.aux" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../docs/tex/report.bbl" beforeDir="false" afterPath="$PROJECT_DIR$/../../docs/tex/report.bbl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../docs/tex/report.blg" beforeDir="false" afterPath="$PROJECT_DIR$/../../docs/tex/report.blg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../docs/tex/report.log" beforeDir="false" afterPath="$PROJECT_DIR$/../../docs/tex/report.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../docs/tex/report.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/../../docs/tex/report.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../docs/tex/report.synctex.gz" beforeDir="false" afterPath="$PROJECT_DIR$/../../docs/tex/report.synctex.gz" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../docs/tex/report.tex" beforeDir="false" afterPath="$PROJECT_DIR$/../../docs/tex/report.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../docs/tex/report.toc" beforeDir="false" afterPath="$PROJECT_DIR$/../../docs/tex/report.toc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SkiResort/.vs/SkiResort/DesignTimeBuild/.dtbcache.v2" beforeDir="false" afterPath="$PROJECT_DIR$/../SkiResort/.vs/SkiResort/DesignTimeBuild/.dtbcache.v2" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../SkiResort/.vs/SkiResort/v17/.suo" beforeDir="false" afterPath="$PROJECT_DIR$/../SkiResort/.vs/SkiResort/v17/.suo" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/.vs/SkiResort/v17/TestStore/0/055.testlog" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/AccessToDB/TarantoolRepositories/TarantoolUsersRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../SkiResort/AccessToDB/TarantoolRepositories/TarantoolUsersRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SkiResort/.vs/SkiResort/v17/TestStore/0/062.testlog" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SkiResort/AccessToDB/TarantoolRepositories/TarantoolCardReadingsRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../SkiResort/AccessToDB/TarantoolRepositories/TarantoolCardReadingsRepository.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../SkiResort/AccessToDB/bin/Debug/net6.0/AccessToDB.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/../SkiResort/AccessToDB/bin/Debug/net6.0/AccessToDB.pdb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../SkiResort/AccessToDB/bin/Debug/net6.0/BL.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/../SkiResort/AccessToDB/bin/Debug/net6.0/BL.pdb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../SkiResort/AccessToDB/obj/Debug/net6.0/AccessToDB.csproj.AssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/../SkiResort/AccessToDB/obj/Debug/net6.0/AccessToDB.csproj.AssemblyReference.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../SkiResort/AccessToDB/obj/Debug/net6.0/AccessToDB.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/../SkiResort/AccessToDB/obj/Debug/net6.0/AccessToDB.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/AuthorizationComponent/IViews/ISlopeView.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../SkiResort/AuthorizationComponent/IViews/ISlopeView.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/AuthorizationComponent/Presenter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../SkiResort/AuthorizationComponent/Presenter.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/AuthorizationComponent/WinFormsViews/SlopeView.Designer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../SkiResort/AuthorizationComponent/WinFormsViews/SlopeView.Designer.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/AuthorizationComponent/WinFormsViews/SlopeView.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../SkiResort/AuthorizationComponent/WinFormsViews/SlopeView.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/AuthorizationComponent/bin/Debug/net6.0-windows/AccessToDB.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/../SkiResort/AuthorizationComponent/bin/Debug/net6.0-windows/AccessToDB.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/AuthorizationComponent/bin/Debug/net6.0-windows/BL.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/../SkiResort/AuthorizationComponent/bin/Debug/net6.0-windows/BL.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/AuthorizationComponent/bin/Debug/net6.0-windows/UI.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/../SkiResort/AuthorizationComponent/bin/Debug/net6.0-windows/UI.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/AuthorizationComponent/obj/Debug/net6.0-windows/UI.csproj.AssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/../SkiResort/AuthorizationComponent/obj/Debug/net6.0-windows/UI.csproj.AssemblyReference.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/AuthorizationComponent/obj/Debug/net6.0-windows/UI.csproj.GenerateResource.cache" beforeDir="false" afterPath="$PROJECT_DIR$/../SkiResort/AuthorizationComponent/obj/Debug/net6.0-windows/UI.csproj.GenerateResource.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/AuthorizationComponent/obj/Debug/net6.0-windows/UI.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/../SkiResort/AuthorizationComponent/obj/Debug/net6.0-windows/UI.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/BL/Facade.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../SkiResort/BL/Facade.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/BL/IRepositories/IUsersRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../SkiResort/BL/IRepositories/IUsersRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SkiResort/BL/IRepositories/ICardReadingsRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../SkiResort/BL/IRepositories/ICardReadingsRepository.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../SkiResort/BL/bin/Debug/net6.0/BL.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/../SkiResort/BL/bin/Debug/net6.0/BL.pdb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../SkiResort/BL/obj/Debug/net6.0/BL.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/../SkiResort/BL/obj/Debug/net6.0/BL.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/TestsBL/IoCRepositories/IoCUsersRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../SkiResort/TestsBL/IoCRepositories/IoCUsersRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SkiResort/SkiResort.sln" beforeDir="false" afterPath="$PROJECT_DIR$/../SkiResort/SkiResort.sln" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SkiResort/TestsAccessToDB/CardReadingsDbTest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../SkiResort/TestsAccessToDB/CardReadingsDbTest.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SkiResort/TestsAccessToDB/obj/Debug/net6.0/TestsAccessToDB.csproj.AssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/../SkiResort/TestsAccessToDB/obj/Debug/net6.0/TestsAccessToDB.csproj.AssemblyReference.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SkiResort/TestsBL/IoCRepositories/IoCCardReadingsRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../SkiResort/TestsBL/IoCRepositories/IoCCardReadingsRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SkiResort/TestsBL/TestsBL.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../SkiResort/TestsBL/TestsBL.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SkiResort/TestsBL/obj/Debug/net6.0/TestsBL.assets.cache" beforeDir="false" afterPath="$PROJECT_DIR$/../SkiResort/TestsBL/obj/Debug/net6.0/TestsBL.assets.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SkiResort/TestsBL/obj/Debug/net6.0/TestsBL.csproj.AssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/../SkiResort/TestsBL/obj/Debug/net6.0/TestsBL.csproj.AssemblyReference.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SkiResort/TestsBL/obj/TestsBL.csproj.nuget.dgspec.json" beforeDir="false" afterPath="$PROJECT_DIR$/../SkiResort/TestsBL/obj/TestsBL.csproj.nuget.dgspec.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SkiResort/TestsBL/obj/TestsBL.csproj.nuget.g.props" beforeDir="false" afterPath="$PROJECT_DIR$/../SkiResort/TestsBL/obj/TestsBL.csproj.nuget.g.props" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SkiResort/TestsBL/obj/project.assets.json" beforeDir="false" afterPath="$PROJECT_DIR$/../SkiResort/TestsBL/obj/project.assets.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SkiResort/TestsBL/obj/project.nuget.cache" beforeDir="false" afterPath="$PROJECT_DIR$/../SkiResort/TestsBL/obj/project.nuget.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SkiResort/UI/bin/Debug/net6.0-windows/AccessToDB.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/../SkiResort/UI/bin/Debug/net6.0-windows/AccessToDB.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SkiResort/UI/bin/Debug/net6.0-windows/BL.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/../SkiResort/UI/bin/Debug/net6.0-windows/BL.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SkiResort/UI/bin/Debug/net6.0-windows/UI.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/../SkiResort/UI/bin/Debug/net6.0-windows/UI.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SkiResort/UI/obj/Debug/net6.0-windows/UI.csproj.AssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/../SkiResort/UI/obj/Debug/net6.0-windows/UI.csproj.AssemblyReference.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SkiResort/UI/obj/Debug/net6.0-windows/UI.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/../SkiResort/UI/obj/Debug/net6.0-windows/UI.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SkiResort/Workers/Handler.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SkiResort/Workers/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../SkiResort/Workers/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SkiResort/Workers/Services/CardReadingReceivingService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../SkiResort/Workers/Services/CardReadingReceivingService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SkiResort/Workers/Services/QueueTimeCountingService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../SkiResort/Workers/Services/QueueTimeCountingService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SkiResort/Workers/Services/TelegramService.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SkiResort/Workers/bin/Debug/net6.0/AccessToDB.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/../SkiResort/Workers/bin/Debug/net6.0/AccessToDB.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SkiResort/Workers/bin/Debug/net6.0/BL.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/../SkiResort/Workers/bin/Debug/net6.0/BL.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SkiResort/Workers/bin/Debug/net6.0/Workers.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/../SkiResort/Workers/bin/Debug/net6.0/Workers.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SkiResort/Workers/obj/Debug/net6.0/Workers.csproj.AssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/../SkiResort/Workers/obj/Debug/net6.0/Workers.csproj.AssemblyReference.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SkiResort/Workers/obj/Debug/net6.0/Workers.csproj.CoreCompileInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/../SkiResort/Workers/obj/Debug/net6.0/Workers.csproj.CoreCompileInputs.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SkiResort/Workers/obj/Debug/net6.0/Workers.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/../SkiResort/Workers/obj/Debug/net6.0/Workers.pdb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/app.init.lua" beforeDir="false" afterPath="$PROJECT_DIR$/app/app.init.lua" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/generate_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/generate_data.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/json_data/card_readings.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/json_data/card_readings.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/json_data/card_readings/card_reading_0.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/json_data/card_readings/card_reading_0.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/json_data/card_readings/card_reading_1.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/json_data/card_readings/card_reading_1.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/json_data/card_readings/card_reading_2.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/json_data/card_readings/card_reading_2.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/json_data/card_readings/card_reading_3.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/json_data/card_readings/card_reading_3.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/json_data/card_readings/card_reading_4.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/json_data/card_readings/card_reading_4.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/json_data/card_readings/card_reading_5.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/json_data/card_readings/card_reading_5.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/json_data/card_readings/card_reading_6.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/json_data/card_readings/card_reading_6.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/json_data/cards.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/json_data/cards.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/json_data/lifts.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/json_data/lifts.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/json_data/lifts_slopes.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/json_data/lifts_slopes.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/json_data/messages.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/json_data/messages.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/json_data/slopes.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/json_data/slopes.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/json_data/turnstiles.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/json_data/turnstiles.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/json_data/users.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/json_data/users.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/00000000000000000158.snap" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/00000000000000000158.xlog" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/00000000000000000257.xlog" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/00000000000000000356.xlog" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/00000000000000000455.xlog" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/00000000000000000554.xlog" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/00000000000000000653.xlog" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/00000000000000000752.xlog" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/00000000000000000851.xlog" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/00000000000000000950.xlog" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/00000000000000001049.xlog" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/00000000000000001149.xlog" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/00000000000000001249.xlog" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/00000000000000001349.xlog" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,6 +98,14 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
   </component>
   <component name="ProjectId" id="26ozk3As1NZvhU6MFzBpaupiIOc" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -116,7 +185,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/app/generate_data.py</url>
-          <line>274</line>
+          <line>275</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>

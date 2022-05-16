@@ -23,7 +23,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\BL\BL.csproj" />
-    <ProjectReference Include="..\WorkerService1\CardReadingsRecivingWorker.csproj" />
   </ItemGroup>
 
 </Project>

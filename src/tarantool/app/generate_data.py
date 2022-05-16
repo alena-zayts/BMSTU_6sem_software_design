@@ -8,6 +8,7 @@ from faker import Faker
 import datetime
 import faker.providers.date_time as fake_dt
 import calendar
+import os
 
 random.seed(0)
 Faker.seed(0)
@@ -55,7 +56,7 @@ class User(Table):
         self.permissions = permissions
 
     @classmethod
-    def generate_data(cls, n_unauthorized=1000, n_authorized=500, n_ski_patrol=10):
+    def generate_data(cls, n_unauthorized=490, n_authorized=500, n_ski_patrol=10):
         data = []
 
         data.append(User(1, 0, 'q', 'q',
@@ -89,7 +90,7 @@ class Slope(Table):
         self.difficulty_level = difficulty_level
 
     @classmethod
-    def generate_data(cls, n_slopes_bunches=10, slopes_per_bunch=(1, 10), difficulty_levels=(1, 10)):
+    def generate_data(cls, n_slopes_bunches=20, slopes_per_bunch=(45, 60), difficulty_levels=(1, 10)):
         data = []
         alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
@@ -116,7 +117,7 @@ class Lift(Table):
         self.queue_time = queue_time  # sec
 
     @classmethod
-    def generate_data(cls, n_lifts_bunches=10, lifts_per_bunch=(1, 10),
+    def generate_data(cls, n_lifts_bunches=20, lifts_per_bunch=(45, 60),
                       lifting_times=(30, 300), seats_amounts=(10, 100)):
         data = []
         alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
@@ -190,7 +191,7 @@ class Turnstile(Table):
         self.is_open = is_open
 
     @classmethod
-    def generate_data(cls, turnstiles_per_lift=(1, 10)):
+    def generate_data(cls, turnstiles_per_lift=(1, 5)):
         with open(Lift.json_filename, 'r') as f:
             lifts = [Lift(*lift_dict.values()) for lift_dict in json.load(f)]
 
@@ -267,7 +268,7 @@ class Message(Table):
         self.text = text
 
     @classmethod
-    def generate_data(cls, n=100):
+    def generate_data(cls, n=1000):
         with open(User.json_filename, 'r') as f:
             users = [User(*(list(user_dict.values()))) for user_dict in json.load(f)]
 
@@ -342,11 +343,36 @@ def infinite_card_readings_generator():
         print(file_name, cur_time)
 
         i += 1
-        time.sleep(sleep_time)
+        # time.sleep(sleep_time)
+
+def generate_one_test(dir_name, n, date_limits=(1652659200, 1652745600)): # 16-17 мая
+    import time
+    import datetime
+    global_dir = "C:/BMSTU_6sem_software_design/src/tarantool/app/json_data/card_readings/"
+    if not os.path.isdir(f"{global_dir}{dir_name}"):
+        os.mkdir(f"{global_dir}{dir_name}")
+
+    for i in range(n):
+        cur_time = time.mktime(datetime.datetime.now().timetuple())
+        obj = CardReading2.generate(date_limits=date_limits)
+
+        file_name = f"{global_dir}{dir_name}card_reading_{i}.json"
+
+        with open(file_name, "w") as write_file:
+            json.dump(obj, write_file)
+        if i % 1000 == 0:
+            print(file_name, cur_time)
+    #print()
+
+def generate_tests():
+    for n in range(1000, 10000, 1000):
+        generate_one_test(f"n_{n}/", n)
+
 
 if __name__ == "__main__":
-    generate_all_data_to_json_file()
-    infinite_card_readings_generator()
+    # generate_all_data_to_json_file()
+    # infinite_card_readings_generator()
+    generate_one_test("", 10000)
 
 
 

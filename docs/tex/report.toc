@@ -1,32 +1,33 @@
 \babel@toc {russian}{}
-\contentsline {chapter}{\numberline {1}Аналитическая часть}{3}{chapter.1}%
-\contentsline {section}{\numberline {1.1}Формализация задачи}{3}{section.1.1}%
-\contentsline {section}{\numberline {1.2}Формализация данных}{3}{section.1.2}%
-\contentsline {section}{\numberline {1.3}Типы пользователей}{5}{section.1.3}%
-\contentsline {section}{\numberline {1.4}Анализ существующих решений}{8}{section.1.4}%
-\contentsline {subsection}{\numberline {1.4.1}Критерии}{8}{subsection.1.4.1}%
-\contentsline {subsection}{\numberline {1.4.2}Мобильное приложение горнолыжного курорта <<Газпром>>}{9}{subsection.1.4.2}%
-\contentsline {subsection}{\numberline {1.4.3}Мобильное приложение горнолыжного курорта <<Courchevel>>}{10}{subsection.1.4.3}%
-\contentsline {subsection}{\numberline {1.4.4}Мобильное приложение горнолыжного курорта <<Роза Хутор>>}{11}{subsection.1.4.4}%
-\contentsline {subsection}{\numberline {1.4.5}Сравнение существующих решений}{13}{subsection.1.4.5}%
-\contentsline {section}{\numberline {1.5}Анализ баз данных}{13}{section.1.5}%
-\contentsline {subsection}{\numberline {1.5.1}Классификация баз данных по месту хранения информации}{14}{subsection.1.5.1}%
-\contentsline {subsection}{\numberline {1.5.2}Выбор БД по месту хранения информации}{14}{subsection.1.5.2}%
-\contentsline {chapter}{\numberline {2}Конструкторская часть}{16}{chapter.2}%
-\contentsline {section}{\numberline {2.1}Функциональная модель}{16}{section.2.1}%
-\contentsline {section}{\numberline {2.2}Проектирование базы данных}{16}{section.2.2}%
-\contentsline {section}{\numberline {2.3}Проектирование архитектуры приложения}{20}{section.2.3}%
-\contentsline {section}{\numberline {2.4}Схема алгоритма?}{21}{section.2.4}%
-\contentsline {chapter}{\numberline {3}Технологическая часть}{23}{chapter.3}%
-\contentsline {section}{\numberline {3.1}Выбор in-memory СУБД}{23}{section.3.1}%
-\contentsline {subsection}{\numberline {3.1.1}Memcached}{23}{subsection.3.1.1}%
-\contentsline {subsection}{\numberline {3.1.2}Redis}{24}{subsection.3.1.2}%
-\contentsline {subsection}{\numberline {3.1.3}Tarantool}{24}{subsection.3.1.3}%
-\contentsline {subsection}{\numberline {3.1.4}Выбор СУБД для решения задачи}{26}{subsection.3.1.4}%
-\contentsline {section}{\numberline {3.2}Выбор инструментов разработки}{26}{section.3.2}%
-\contentsline {section}{\numberline {3.3}Детали реализации}{27}{section.3.3}%
-\contentsline {subsection}{\numberline {3.3.1}Ролевая модель}{27}{subsection.3.3.1}%
-\contentsline {subsection}{\numberline {3.3.2}Реализация функций}{28}{subsection.3.3.2}%
-\contentsline {subsection}{\numberline {3.3.3}Модели хранения данных}{29}{subsection.3.3.3}%
-\contentsline {section}{\numberline {3.4}Интерфейс приложения}{32}{section.3.4}%
-\contentsline {chapter}{Литература}{33}{section.3.4}%
+\contentsline {chapter}{Введение}{3}{chapter*.2}%
+\contentsline {chapter}{\numberline {1}Аналитическая часть}{4}{chapter.1}%
+\contentsline {section}{\numberline {1.1}Формализация задачи}{4}{section.1.1}%
+\contentsline {section}{\numberline {1.2}Формализация данных}{4}{section.1.2}%
+\contentsline {section}{\numberline {1.3}Типы пользователей}{6}{section.1.3}%
+\contentsline {section}{\numberline {1.4}Анализ существующих решений}{9}{section.1.4}%
+\contentsline {subsection}{\numberline {1.4.1}Критерии}{9}{subsection.1.4.1}%
+\contentsline {subsection}{\numberline {1.4.2}Мобильное приложение горнолыжного курорта <<Газпром>>}{10}{subsection.1.4.2}%
+\contentsline {subsection}{\numberline {1.4.3}Мобильное приложение горнолыжного курорта <<Courchevel>>}{11}{subsection.1.4.3}%
+\contentsline {subsection}{\numberline {1.4.4}Мобильное приложение горнолыжного курорта <<Роза Хутор>>}{12}{subsection.1.4.4}%
+\contentsline {subsection}{\numberline {1.4.5}Сравнение существующих решений}{14}{subsection.1.4.5}%
+\contentsline {section}{\numberline {1.5}Анализ баз данных}{14}{section.1.5}%
+\contentsline {subsection}{\numberline {1.5.1}Классификация баз данных по месту хранения информации}{15}{subsection.1.5.1}%
+\contentsline {subsection}{\numberline {1.5.2}Выбор БД по месту хранения информации}{15}{subsection.1.5.2}%
+\contentsline {chapter}{\numberline {2}Конструкторская часть}{17}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Функциональная модель}{17}{section.2.1}%
+\contentsline {section}{\numberline {2.2}Проектирование базы данных}{17}{section.2.2}%
+\contentsline {section}{\numberline {2.3}Проектирование архитектуры приложения}{21}{section.2.3}%
+\contentsline {section}{\numberline {2.4}Схема алгоритма?}{22}{section.2.4}%
+\contentsline {chapter}{\numberline {3}Технологическая часть}{25}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Выбор in-memory СУБД}{25}{section.3.1}%
+\contentsline {subsection}{\numberline {3.1.1}Memcached}{25}{subsection.3.1.1}%
+\contentsline {subsection}{\numberline {3.1.2}Redis}{26}{subsection.3.1.2}%
+\contentsline {subsection}{\numberline {3.1.3}Tarantool}{26}{subsection.3.1.3}%
+\contentsline {subsection}{\numberline {3.1.4}Выбор СУБД для решения задачи}{28}{subsection.3.1.4}%
+\contentsline {section}{\numberline {3.2}Выбор инструментов разработки}{28}{section.3.2}%
+\contentsline {section}{\numberline {3.3}Детали реализации}{29}{section.3.3}%
+\contentsline {subsection}{\numberline {3.3.1}Ролевая модель}{29}{subsection.3.3.1}%
+\contentsline {subsection}{\numberline {3.3.2}Реализация функций}{30}{subsection.3.3.2}%
+\contentsline {subsection}{\numberline {3.3.3}Модели хранения данных}{31}{subsection.3.3.3}%
+\contentsline {section}{\numberline {3.4}Интерфейс приложения}{34}{section.3.4}%
+\contentsline {chapter}{Список использованных источников}{35}{section.3.4}%

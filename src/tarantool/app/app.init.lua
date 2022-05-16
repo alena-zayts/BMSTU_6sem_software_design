@@ -16,6 +16,7 @@ print('start!')
 
 ---------------------------------------------------------------------------------------------init tables
 local function init()
+	chosen_engine = "vinyl" --"memtx" --
 	print('in init!')
 	
 	--print(box.info.version)
@@ -37,7 +38,7 @@ local function init()
 	
 
 	--- users
-	users = box.schema.space.create('users', {field_count=5})
+	users = box.schema.space.create('users', {field_count=5, engine=chosen_engine})
 	users:format({
 		{name = 'user_id', type = 'unsigned'},
 		{name = 'card_id', type = 'unsigned'},
@@ -50,7 +51,7 @@ local function init()
 	print('users created!')
 
 	--- cards
-	cards = box.schema.space.create('cards', {field_count=3})
+	cards = box.schema.space.create('cards', {field_count=3, engine=chosen_engine})
 	cards:format({
 		{name = 'card_id', type = 'unsigned'},
 		{name = 'activation_time', type = 'unsigned'},
@@ -60,7 +61,7 @@ local function init()
 	print('cards created!')
 
 	--- card_readings
-	card_readings = box.schema.space.create('card_readings', {field_count=4})
+	card_readings = box.schema.space.create('card_readings', {field_count=4, engine=chosen_engine})
 	card_readings:format({
 		{name = 'record_id', type = 'unsigned'},
 		{name = 'turnstile_id', type = 'unsigned'},
@@ -73,7 +74,7 @@ local function init()
 	print('card_readings created!')
 
 	--- turnstiles
-	turnstiles = box.schema.space.create('turnstiles', {field_count=3})
+	turnstiles = box.schema.space.create('turnstiles', {field_count=3, engine=chosen_engine})
 	turnstiles:format({
 		{name = 'turnstile_id', type = 'unsigned'},
 		{name = 'lift_id', type = 'unsigned'},
@@ -85,7 +86,7 @@ local function init()
 
 
 	--- messages
-	messages = box.schema.space.create('messages', {field_count=4})
+	messages = box.schema.space.create('messages', {field_count=4, engine=chosen_engine})
 	messages:format({
 		{name = 'message_id', type = 'unsigned'},
 		{name = 'sender_id', type = 'unsigned'},
@@ -99,7 +100,7 @@ local function init()
 
 
 	--- lifts
-	lifts = box.schema.space.create('lifts', {field_count=6})
+	lifts = box.schema.space.create('lifts', {field_count=6, engine=chosen_engine})
 	lifts:format({
 		{name = 'lift_id', type = 'unsigned'},
 		{name = 'lift_name', type = 'string'},
@@ -114,7 +115,7 @@ local function init()
 
 
 	--- slopes
-	slopes = box.schema.space.create('slopes', {field_count=4})
+	slopes = box.schema.space.create('slopes', {field_count=4, engine=chosen_engine})
 	slopes:format({
 		{name = 'slope_id', type = 'unsigned'},
 		{name = 'slope_name', type = 'string'},
@@ -127,7 +128,7 @@ local function init()
 
 
 	--- lifts_slopes
-	lifts_slopes = box.schema.space.create('lifts_slopes', {field_count=3})
+	lifts_slopes = box.schema.space.create('lifts_slopes', {field_count=3, engine=chosen_engine})
 	lifts_slopes:format({
 		{name = 'record_id', type = 'unsigned'},
 		{name = 'lift_id', type = 'unsigned'},
@@ -282,7 +283,7 @@ local function load__data()
 	load_slopes_data()
 	load_lifts_slopes_data()
 	load_messages_data()
-	load_card_readings_data()
+	--load_card_readings_data()
 end
 
 ----------------------------------------------------------------------------------------------------functions
@@ -345,7 +346,13 @@ function update_queue_time(lift_id, date_from, date_query)
 	card_readings_amount = count_card_readings(lift_id, date_from, date_query)
 	lift = lifts:get{lift_id}
 	time_delta = date_query - date_from
-	new_queue_time = math_module.max(lift["queue_time"] - time_delta  + (card_readings_amount * lift["lifting_time"] * 2 / lift["seats_amount"]), 0)
+	new_queue_time = math_module.max(
+		math_module.ceil(
+			lift["queue_time"] - 
+			time_delta  + 
+			(card_readings_amount * lift["lifting_time"] * 2 / lift["seats_amount"])
+			), 
+		0)
 	
 	lifts:update(lift_id, {{'=', 6, new_queue_time}})
 	return new_queue_time
@@ -360,7 +367,7 @@ box.cfg {
 }
 
 init()
---load__data()
+load__data()
 
 
 --box.space.users:insert{7777, 0, "tmp_email10", "tmp_password10", 0}
@@ -386,41 +393,47 @@ end
 -- auto_increment_lifts(lift_name, is_open, seats_amount, lifting_time, queue_time)
 -- auto_increment_turnstiles(lift_id, is_open)
 
-auto_increment_lifts('a', true, 10, 100, 0) -- 1
-auto_increment_lifts('b', true, 20, 500, 100) -- 2
 
 
-auto_increment_turnstiles(1, true) -- 1 (1)
-auto_increment_turnstiles(1, true) -- 2 (1)
-
-auto_increment_turnstiles(2, true) -- 3 (2)
+-- auto_increment_lifts('a', true, 10, 100, 0) -- 1
+-- auto_increment_lifts('b', true, 20, 500, 100) -- 2
 
 
---1
-auto_increment_card_readings(1, 0, 10)
-auto_increment_card_readings(1, 0, 20)
-auto_increment_card_readings(2, 0, 10)
-auto_increment_card_readings(2, 0, 20)
-auto_increment_card_readings(2, 0, 30)
+-- auto_increment_turnstiles(1, true) -- 1 (1)
+-- auto_increment_turnstiles(1, true) -- 2 (1)
 
---2
-auto_increment_card_readings(3, 0, 10)
-auto_increment_card_readings(3, 0, 20)
-auto_increment_card_readings(3, 0, 30)
+-- auto_increment_turnstiles(2, true) -- 3 (2)
 
 
-print('!!count 1', count_card_readings(1, 0, 40)) -- 5
-print('!!count 1', count_card_readings(1, 20, 30)) -- 2
-print('!!count 2', count_card_readings(2, 0, 40)) -- 3
-print('!!count 2', count_card_readings(2, 20, 31)) -- 2
-print()
+-- 1
+-- auto_increment_card_readings(1, 0, 10)
+-- auto_increment_card_readings(1, 0, 20)
+-- auto_increment_card_readings(2, 0, 10)
+-- auto_increment_card_readings(2, 0, 20)
+-- auto_increment_card_readings(2, 0, 30)
 
-print('1')
-print(update_queue_time(1, 0, 40)) -- 60
-print(dump(box.space.lifts:select{1}))
+-- 2
+-- auto_increment_card_readings(3, 0, 10)
+-- auto_increment_card_readings(3, 0, 20)
+-- auto_increment_card_readings(3, 0, 30)
 
-print(update_queue_time(1, 0, 240)) -- 0
-print(dump(box.space.lifts:select{1}))
+
+-- print('!!count 1', count_card_readings(1, 0, 40)) -- 5
+-- print('!!count 1', count_card_readings(1, 20, 30)) -- 2
+-- print('!!count 2', count_card_readings(2, 0, 40)) -- 3
+-- print('!!count 2', count_card_readings(2, 20, 31)) -- 2
+-- print()
+
+-- print('1')
+-- print(update_queue_time(1, 0, 40)) -- 60
+-- print(dump(box.space.lifts:select{1}))
+
+-- print(update_queue_time(1, 0, 240)) -- 0
+-- print(dump(box.space.lifts:select{1}))
+
+
+
+
 
 
 ------------------------------------------------------------------------------------------roles

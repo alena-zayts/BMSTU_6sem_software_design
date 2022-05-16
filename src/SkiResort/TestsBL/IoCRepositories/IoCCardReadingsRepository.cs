@@ -49,7 +49,7 @@ namespace TestsBL.IoCRepositories
             return false;
         }
 
-        public async Task<uint> CountForLiftIdFromDateAsync(uint liftID, DateTimeOffset dateFrom)
+        public async Task<uint> CountForLiftIdFromDateAsync(uint liftID, DateTimeOffset dateFrom, DateTimeOffset dateTo)
         {
             IRepositoriesFactory repositoriesFactory = new IoCRepositoriesFactory();
             ITurnstilesRepository turnstilesRepository = repositoriesFactory.CreateTurnstilesRepository();
@@ -67,7 +67,7 @@ namespace TestsBL.IoCRepositories
 
             foreach (CardReading cardReading in cardReadingList)
             {
-                if (connectedToLiftTurnstilesIDsList.Contains(cardReading.TurnstileID) && cardReading.ReadingTime >= dateFrom)
+                if (connectedToLiftTurnstilesIDsList.Contains(cardReading.TurnstileID) && cardReading.ReadingTime >= dateFrom && cardReading.ReadingTime < dateTo)
                     counter++;
             }
             return counter;
@@ -119,6 +119,12 @@ namespace TestsBL.IoCRepositories
                 }
             }
             throw new Exception();
+        }
+
+        public async Task<uint> UpdateQueueTime(uint liftID, DateTimeOffset dateFrom, DateTimeOffset dateTo)
+        {
+            uint cardReadingsAmout = await CountForLiftIdFromDateAsync(liftID, dateFrom, dateTo);
+            return 0;
         }
     }
 }
