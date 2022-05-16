@@ -28,4 +28,5 @@
 \contentsline {subsection}{\numberline {3.3.1}Ролевая модель}{27}{subsection.3.3.1}%
 \contentsline {subsection}{\numberline {3.3.2}Реализация функций}{28}{subsection.3.3.2}%
 \contentsline {subsection}{\numberline {3.3.3}Модели хранения данных}{29}{subsection.3.3.3}%
-\contentsline {chapter}{Литература}{30}{subsection.3.3.3}%
+\contentsline {section}{\numberline {3.4}Интерфейс приложения}{32}{section.3.4}%
+\contentsline {chapter}{Литература}{33}{section.3.4}%
