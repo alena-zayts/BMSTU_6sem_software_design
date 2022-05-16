@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.6) (preloaded format=pdflatex 2021.9.4)  15 MAY 2022 23:27
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.6) (preloaded format=pdflatex 2021.9.4)  16 MAY 2022 10:39
 entering extended mode
 **./report.tex
 (report.tex
@@ -1803,19 +1803,25 @@ File: ../imgs/uml/components.png Graphic file (type png)
 Package pdftex.def Info: ../imgs/uml/components.png  used on input line 134.
 (pdftex.def)             Requested size: 330.23149pt x 382.22539pt.
  [20 <../imgs/uml/components.png>]
-<../imgs/function.png, id=328, 865.2325pt x 714.67pt>
+Overfull \hbox (47.66818pt too wide) in paragraph at lines 149--150
+\T2A/cmr/m/n/14.4 ма функ-ций update_queue_time и вспо-мо-га-тель-ной функ-ции 
+count_card_readings,
+ []
+
+<../imgs/function.png, id=328, 865.2325pt x 805.0075pt>
 File: ../imgs/function.png Graphic file (type png)
 <use ../imgs/function.png>
 Package pdftex.def Info: ../imgs/function.png  used on input line 153.
-(pdftex.def)             Requested size: 475.87935pt x 393.0697pt.
+(pdftex.def)             Requested size: 475.87935pt x 442.75551pt.
 
 Overfull \hbox (6.40886pt too wide) in paragraph at lines 153--154
  [] 
  []
 
-[21 <../imgs/function.png>]) [22
 
-]
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+) [21] [22 <../imgs/function.png>]
 \openout2 = `30-impl.aux'.
 
  (30-impl.tex
@@ -1863,8 +1869,11 @@ LaTeX Font Info:    Trying to load font information for T2A+cmtt on input line
 
 (C:\Users\alena\AppData\Roaming\MiKTeX\tex/latex/cyrillic\t2acmtt.fd
 File: t2acmtt.fd 2001/08/11 v1.0a Computer Modern Cyrillic font definitions
-) [27])
-[28]
+) [27]
+LaTeX Font Info:    Font shape `T2A/cmtt/bx/n' in size <10> not available
+(Font)              Font shape `T2A/cmtt/m/n' tried instead on input line 170.
+
+[28]) [29]
 \openout2 = `51-biblio.aux'.
 
  (51-biblio.tex (report.bbl
@@ -1921,7 +1930,7 @@ Underfull \hbox (badness 5817) in paragraph at lines 58--62
 A/cmtt/m/n/14.4 https : / /
  []
 
-[29
+[30
 
 
 
@@ -1961,16 +1970,16 @@ Underfull \hbox (badness 10000) in paragraph at lines 122--126
 esktop / winforms /
  []
 
-)) [30] (report.aux (01-contents.aux) (10-analysis.aux) (20-design.aux)
+)) [31] (report.aux (01-contents.aux) (10-analysis.aux) (20-design.aux)
 (30-impl.aux) (51-biblio.aux))
 Package rerunfilecheck Info: File `report.out' has not changed.
-(rerunfilecheck)             Checksum: BCCDD3CA22EF51DCE0021919AC2CE2C7;7425.
+(rerunfilecheck)             Checksum: 689022C67F451310BD8125BE2094F7E1;7425.
  ) 
 Here is how much of TeX's memory you used:
- 40461 strings out of 478864
- 905317 string characters out of 2858518
- 1693363 words of memory out of 10000000
- 57512 multiletter control sequences out of 15000+600000
+ 40524 strings out of 478864
+ 906267 string characters out of 2858518
+ 1775378 words of memory out of 10000000
+ 57543 multiletter control sequences out of 15000+600000
  415093 words of font info for 51 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  106i,14n,108p,1115b,2075s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1985,9 +1994,9 @@ ur/lh/lh-t2a/dpi600\labx2074.pk> <C:\Users\alena\AppData\Local\MiKTeX\fonts/pk/
 ljfour/lh/lh-t2a/dpi600\larm1440.pk> <C:\Users\alena\AppData\Local\MiKTeX\fonts
 /pk/ljfour/lh/lh-t2a/dpi600\labx1440.pk> <C:\Users\alena\AppData\Local\MiKTeX\f
 onts/pk/ljfour/lh/lh-t2a/dpi600\labx2488.pk>
-Output written on report.pdf (30 pages, 1235085 bytes).
+Output written on report.pdf (31 pages, 1249283 bytes).
 PDF statistics:
- 926 PDF objects out of 1000 (max. 8388607)
- 124 named destinations out of 1000 (max. 500000)
+ 983 PDF objects out of 1000 (max. 8388607)
+ 155 named destinations out of 1000 (max. 500000)
  358 words of extra memory for PDF output out of 10000 (max. 10000000)
 

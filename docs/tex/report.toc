@@ -26,6 +26,6 @@
 \contentsline {section}{\numberline {3.2}Выбор инструментов разработки}{26}{section.3.2}%
 \contentsline {section}{\numberline {3.3}Детали реализации}{27}{section.3.3}%
 \contentsline {subsection}{\numberline {3.3.1}Ролевая модель}{27}{subsection.3.3.1}%
-\contentsline {subsection}{\numberline {3.3.2}Реализация функции}{28}{subsection.3.3.2}%
-\contentsline {subsection}{\numberline {3.3.3}Модели хранения данных}{28}{subsection.3.3.3}%
-\contentsline {chapter}{Литература}{29}{subsection.3.3.3}%
+\contentsline {subsection}{\numberline {3.3.2}Реализация функций}{28}{subsection.3.3.2}%
+\contentsline {subsection}{\numberline {3.3.3}Модели хранения данных}{29}{subsection.3.3.3}%
+\contentsline {chapter}{Литература}{30}{subsection.3.3.3}%

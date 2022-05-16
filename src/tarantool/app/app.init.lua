@@ -8,6 +8,7 @@
 
 io_module = require("io")
 io_module.stdout:setvbuf("no")
+math_module = require("math")
 
 print('start!')
 
@@ -319,7 +320,7 @@ function auto_increment_messages(sender_id, checked_by_id, text)
 end
 
 
-function count_card_readings(lift_id, date_from)
+function count_card_readings(lift_id, date_from, date_query)
 	connected_turnstiles = turnstiles.index.index_lift_id:select({lift_id})
 
 	counter = 0
@@ -330,7 +331,7 @@ function count_card_readings(lift_id, date_from)
 		card_readings_on_turnstile = card_readings.index.index_turnstile:select({cur_turnstile_id})
 
 		for k,v in pairs(card_readings_on_turnstile) do
-			if v["reading_time"] > date_from then
+			if (v["reading_time"] >= date_from and v["reading_time"] < date_query) then
 				counter = counter + 1
 			end
 		end
@@ -341,12 +342,12 @@ end
 
 
 function update_queue_time(lift_id, date_from, date_query)
-	card_readings_amount = count_card_readings(lift_id, date_from)
+	card_readings_amount = count_card_readings(lift_id, date_from, date_query)
 	lift = lifts:get{lift_id}
 	time_delta = date_query - date_from
-	new_queue_time = lift["queue_time"] - time_delta  + (card_readings_amount * lift["lifting_time"] * 2 / lift["seats_amount"])
+	new_queue_time = math_module.max(lift["queue_time"] - time_delta  + (card_readings_amount * lift["lifting_time"] * 2 / lift["seats_amount"]), 0)
 	
-	lifts:update(lift_id, {{'=', "queue_time", new_queue_time}})
+	lifts:update(lift_id, {{'=', 6, new_queue_time}})
 	return new_queue_time
 end
 
@@ -360,12 +361,26 @@ box.cfg {
 
 init()
 --load__data()
---print(count_card_readings(2, 0))
---print(dump(count_card_readings(2, 0)))
+
+
 --box.space.users:insert{7777, 0, "tmp_email10", "tmp_password10", 0}
 --box.space.users:insert{7771, 0, "admin_email20", "admin_password20", 3}
 
 
+
+-----------------------------------------------------------------------------------------test
+function dump(o)
+   if type(o) == 'table' then
+      local s = '{ '
+      for k,v in pairs(o) do
+         if type(k) ~= 'number' then k = '"'..k..'"' end
+         s = s .. '['..k..'] = ' .. dump(v) .. ','
+      end
+      return s .. '} '
+   else
+      return tostring(o)
+   end
+end
 
 -- auto_increment_card_readings(turnstile_id, card_id, reading_time)
 -- auto_increment_lifts(lift_name, is_open, seats_amount, lifting_time, queue_time)
@@ -394,11 +409,21 @@ auto_increment_card_readings(3, 0, 20)
 auto_increment_card_readings(3, 0, 30)
 
 
-print('!!count', count_card_readings(1, 0))
-print('!!count', count_card_readings(2, 0))
+print('!!count 1', count_card_readings(1, 0, 40)) -- 5
+print('!!count 1', count_card_readings(1, 20, 30)) -- 2
+print('!!count 2', count_card_readings(2, 0, 40)) -- 3
+print('!!count 2', count_card_readings(2, 20, 31)) -- 2
 print()
-print('!!count', count_card_readings(1, 15))
-print('!!count', count_card_readings(2, 10))
+
+print('1')
+print(update_queue_time(1, 0, 40)) -- 60
+print(dump(box.space.lifts:select{1}))
+
+print(update_queue_time(1, 0, 240)) -- 0
+print(dump(box.space.lifts:select{1}))
+
+
+------------------------------------------------------------------------------------------roles
 
 -- box.schema.role.create('unauthorized_user')
 -- box.schema.role.grant('unauthorized_user', 'read', 'space', 'lifts', {if_not_exists=true})
@@ -422,18 +447,7 @@ print('!!count', count_card_readings(2, 10))
 
 
 -------------------------------------------------------------------------------------------------temporary
-function dump(o)
-   if type(o) == 'table' then
-      local s = '{ '
-      for k,v in pairs(o) do
-         if type(k) ~= 'number' then k = '"'..k..'"' end
-         s = s .. '['..k..'] = ' .. dump(v) .. ','
-      end
-      return s .. '} '
-   else
-      return tostring(o)
-   end
-end
+
 
 function temporary_function(old, new)
 	if (old == nil) then

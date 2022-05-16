@@ -156,14 +156,42 @@ box.schema.role.create('ski_admin')
 box.schema.role.grant('ski_admin', 'read,write,execute,create,alter,drop', 'universe')
 \end{lstlisting}
 
-\subsection{Реализация функции}
+\subsection{Реализация функций}
 
-В листинге \ref{lst:func} представлена реализация функции update\_queue\_time, которая обновляет время в очереди к подъемнику. Алгоритм работы этой функции был описан в пункте \ref{func_label}
+В листинге \ref{lst:func} представлены реализации функций update\_queue\_time и count\_card\_readings, предназначенных для обновленияя время в очереди к подъемнику. Алгоритм работы этих функций был описан в пункте \ref{func_label}.
 
 \captionsetup{justification=centering,singlelinecheck=off}
-\begin{lstlisting}[label=lst:func, caption=Ролевая модель на уровне БД, language=python]
+\begin{lstlisting}[label=lst:func, caption=Функции update\_queue\_time и count\_card\_readings, language=python]
+function count_card_readings(lift_id, date_from, date_query)
+	connected_turnstiles = turnstiles.index.index_lift_id:select({lift_id})
+	
+	counter = 0
+	
+	for k,v in pairs(connected_turnstiles) do
+		cur_turnstile_id = v["turnstile_id"]
+		
+		card_readings_on_turnstile = card_readings.index.index_turnstile:select({cur_turnstile_id})
+		
+		for k,v in pairs(card_readings_on_turnstile) do
+			if (v["reading_time"] >= date_from and v["reading_time"] < date_query) then
+				counter = counter + 1
+			end
+		end
+	end
+	
+	return counter
+end
 
 
+function update_queue_time(lift_id, date_from, date_query)
+	card_readings_amount = count_card_readings(lift_id, date_from, date_query)
+	lift = lifts:get{lift_id}
+	time_delta = date_query - date_from
+	new_queue_time = math_module.max(lift["queue_time"] - time_delta  + (card_readings_amount * lift["lifting_time"] * 2 / lift["seats_amount"]), 0)
+	
+	lifts:update(lift_id, {{'=', 6, new_queue_time}})
+	return new_queue_time
+end
 \end{lstlisting}
 
 \subsection{Модели хранения данных}
