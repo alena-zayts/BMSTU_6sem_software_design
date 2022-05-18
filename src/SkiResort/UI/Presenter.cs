@@ -623,8 +623,15 @@ namespace UI
 
         private async Task GetLiftsInfoAsync(object sender, EventArgs e)
         {
-            List<Lift> lifts = await _facade.GetLiftsInfoAsync(_userID);
-            _liftView.Lifts = lifts;
+            try
+            {
+                List<Lift> lifts = await _facade.GetLiftsInfoAsync(_userID);
+                _liftView.Lifts = lifts;
+            }
+            catch (Exception ex)
+            {
+                _exceptionView.ShowException(ex, "Ошибка");
+            }
         }
 
         private async Task GetLiftInfoAsync(object sender, EventArgs e)

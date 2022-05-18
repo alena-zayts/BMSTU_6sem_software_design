@@ -227,7 +227,15 @@ namespace BL
 
             foreach (Lift lift in lifts)
             {
-                liftsFull.Add(new(lift, await LiftsSlopesRepository.GetSlopesByLiftIdAsync(lift.LiftID)));
+                try
+                {
+                    liftsFull.Add(new(lift, await LiftsSlopesRepository.GetSlopesByLiftIdAsync(lift.LiftID)));
+                }
+                catch (Exception ex)
+                {
+                    continue;
+                }
+                
             }
             return liftsFull;
         }

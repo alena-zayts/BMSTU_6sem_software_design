@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.6) (preloaded format=pdflatex 2021.9.4)  16 MAY 2022 20:33
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.6) (preloaded format=pdflatex 2021.9.4)  16 MAY 2022 22:26
 entering extended mode
 **./report.tex
 (report.tex
@@ -1834,10 +1834,10 @@ Package pdftex.def Info: ../imgs/uml/components.png  used on input line 134.
 <../imgs/function.png, id=347, 865.2325pt x 805.0075pt>
 File: ../imgs/function.png Graphic file (type png)
 <use ../imgs/function.png>
-Package pdftex.def Info: ../imgs/function.png  used on input line 153.
+Package pdftex.def Info: ../imgs/function.png  used on input line 161.
 (pdftex.def)             Requested size: 475.87935pt x 442.75551pt.
 
-Overfull \hbox (6.40886pt too wide) in paragraph at lines 153--154
+Overfull \hbox (6.40886pt too wide) in paragraph at lines 161--162
  [] 
  []
 
@@ -1880,7 +1880,7 @@ Overfull \hbox (2.87463pt too wide) in paragraph at lines 126--127
  по-мо-щью фрейм-
  []
 
-(C:\Program Files\MiKTeX\tex/latex/listings\lstlang1.sty
+[29] (C:\Program Files\MiKTeX\tex/latex/listings\lstlang1.sty
 File: lstlang1.sty 2020/03/24 1.8d listings language file
 )
 (C:\Program Files\MiKTeX\tex/latex/listings\lstlang2.sty
@@ -1901,15 +1901,15 @@ File: ts1fvm.fd 2004/09/07 scalable font definitions for TS1/fvm.
 )
 LaTeX Font Info:    Font shape `TS1/fvm/m/n' will be
 (Font)              scaled to size 10.79993pt on input line 138.
- [29]
+
 (C:\Program Files\MiKTeX\tex/latex/listings\lstlang1.sty
 File: lstlang1.sty 2020/03/24 1.8d listings language file
-)
+) [30]
 
 LaTeX Font Warning: Font shape `T2A/fvm/b/n' undefined
 (Font)              using `T2A/fvm/m/n' instead on input line 169.
 
-[30] [31]
+[31]
 Overfull \hbox (11.24783pt too wide) in paragraph at lines 217--218
 \T2A/fvm/m/n/14.4 ком-по-нен-те бизнес-логики. От-но-ше-ние меж-ду таб-ли-ца-ми
  slopes и lifts многие-
@@ -1918,10 +1918,10 @@ Overfull \hbox (11.24783pt too wide) in paragraph at lines 217--218
 (C:\Program Files\MiKTeX\tex/latex/listings\lstlang1.sty
 File: lstlang1.sty 2020/03/24 1.8d listings language file
 ) [32] [33]) [34]
+[35]
 \openout2 = `51-biblio.aux'.
 
-
-(51-biblio.tex (report.bbl
+ (51-biblio.tex (report.bbl
 Underfull \hbox (badness 3302) in paragraph at lines 12--17
 []\T2A/fvm/m/n/14.4 Интерес ту-ри-стов из РФ к гор-но-лыж-но-му от-ды-ху [Элек-
 трон-
@@ -1975,7 +1975,7 @@ Underfull \hbox (badness 5022) in paragraph at lines 73--77
 <ключ-
  []
 
-[35
+[36
 
 
 
@@ -1986,7 +1986,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 137--141
 ew = netdesktop-[]5 . 0$[]
  []
 
-[36])) [37] (report.aux (01-contents.aux) (02-intro.aux) (10-analysis.aux)
+[37])) [38] (report.aux (01-contents.aux) (02-intro.aux) (10-analysis.aux)
 (20-design.aux) (30-impl.aux) (51-biblio.aux))
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
@@ -1995,13 +1995,13 @@ Package rerunfilecheck Info: File `report.out' has not changed.
 (rerunfilecheck)             Checksum: CE92243ADD520478C280EEE47818B020;7920.
  ) 
 Here is how much of TeX's memory you used:
- 40978 strings out of 478864
- 913068 string characters out of 2858518
- 1719850 words of memory out of 10000000
- 57882 multiletter control sequences out of 15000+600000
+ 40985 strings out of 478864
+ 913156 string characters out of 2858518
+ 1697364 words of memory out of 10000000
+ 57888 multiletter control sequences out of 15000+600000
  416652 words of font info for 53 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 106i,14n,108p,1115b,2079s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 106i,14n,108p,1115b,2055s stack positions out of 5000i,500n,10000p,200000b,80000s
  <C:\Users\alena\AppData\Local\MiKTeX\fonts/pk/ljfour/lh/lh-t2a/dpi600\labx12
 00.pk>{C:/Program Files/MiKTeX/fonts/enc/dvips/base/8r.enc} <C:\Users\alena\App
 Data\Local\MiKTeX\fonts/pk/ljfour/lh/lh-t2a/dpi600\larm1000.pk> <C:\Users\alena
@@ -2014,9 +2014,9 @@ k> <C:\Users\alena\AppData\Local\MiKTeX\fonts/pk/ljfour/lh/lh-t2a/dpi600\larm14
 bx1440.pk> <C:\Users\alena\AppData\Local\MiKTeX\fonts/pk/ljfour/lh/lh-t2a/dpi60
 0\labx2488.pk><C:/Users/alena/AppData/Roaming/MiKTeX/fonts/type1/bera/fvmr8a.pf
 b>
-Output written on report.pdf (37 pages, 1297452 bytes).
+Output written on report.pdf (38 pages, 1299296 bytes).
 PDF statistics:
- 1167 PDF objects out of 1200 (max. 8388607)
- 238 named destinations out of 1000 (max. 500000)
+ 1173 PDF objects out of 1200 (max. 8388607)
+ 239 named destinations out of 1000 (max. 500000)
  378 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -117,7 +117,7 @@ class Lift(Table):
         self.queue_time = queue_time  # sec
 
     @classmethod
-    def generate_data(cls, n_lifts_bunches=20, lifts_per_bunch=(45, 60),
+    def generate_data(cls, n_lifts_bunches=10, lifts_per_bunch=(100, 101),
                       lifting_times=(30, 300), seats_amounts=(10, 100)):
         data = []
         alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
@@ -369,10 +369,42 @@ def generate_tests():
         generate_one_test(f"n_{n}/", n)
 
 
+def generate_lifts(n):
+    with open(Lift.json_filename, 'r') as f:
+        lifts = [Lift(*lift_dict.values()) for lift_dict in json.load(f)]
+
+    lifts = lifts[:n]
+
+
+    global_dir = "C:/BMSTU_6sem_software_design/src/tarantool/app/json_data/lifts/"
+    if not os.path.isdir(f"{global_dir}"):
+        os.mkdir(f"{global_dir}")
+
+    for i in range(n):
+        obj = lifts[i].to_json()
+
+        file_name = f"{global_dir}lift_{i}.json"
+
+        with open(file_name, "w") as write_file:
+            json.dump(obj, write_file)
+        if i % 1000 == 0:
+            print(file_name)
+
+
+
+
+
+
+
+def draw_plots():
+    adding_m = []
+
+
 if __name__ == "__main__":
-    # generate_all_data_to_json_file()
+    #generate_all_data_to_json_file()
     # infinite_card_readings_generator()
-    generate_one_test("", 10000)
+    #generate_one_test("", 10000)
+    generate_lifts(1000)
 
 
 

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta charset='utf-8' />
+<title>benchmarkdotnetdemo.SimpleBenchmark-20220518-161739</title>
+
+<style type="text/css">
+	table { border-collapse: collapse; display: block; width: 100%; overflow: auto; }
+	td, th { padding: 6px 13px; border: 1px solid #ddd; text-align: right; }
+	tr { background-color: #fff; border-top: 1px solid #ccc; }
+	tr:nth-child(even) { background: #f8f8f8; }
+</style>
+</head>
+<body>
+<pre><code>
+BenchmarkDotNet=v0.13.1, OS=Windows 10.0.19043.1706 (21H1/May2021Update)
+Intel Core i5-8259U CPU 2.30GHz (Coffee Lake), 1 CPU, 8 logical and 4 physical cores
+.NET SDK=6.0.201
+  [Host] : .NET 6.0.3 (6.0.322.12309), X64 RyuJIT  [AttachedDebugger]
+</code></pre>
+<pre><code>Job=InProcess  Toolchain=InProcessEmitToolchain  
+</code></pre>
+
+<table>
+<thead><tr><th>Method</th><th>Mean</th><th>Error</th><th>StdDev</th><th>StdErr</th><th>Median</th><th>Min</th><th>Max</th><th> Q1</th><th> Q3</th><th>      Op/s</th><th>Rank</th><th>Allocated</th>
+</tr>
+</thead><tbody><tr><td>NoopTest</td><td>0.0227 ns</td><td>0.0240 ns</td><td>0.0224 ns</td><td>0.0058 ns</td><td>0.0201 ns</td><td>0.0 ns</td><td>0.0760 ns</td><td>0.0015 ns</td><td>0.0342 ns</td><td>44,059,357,820.7</td><td>1</td><td>-</td>
+</tr><tr><td>AddTest</td><td>0.0151 ns</td><td>0.0247 ns</td><td>0.0231 ns</td><td>0.0060 ns</td><td>0.0033 ns</td><td>0.0 ns</td><td>0.0809 ns</td><td>0.0000 ns</td><td>0.0271 ns</td><td>66,199,666,743.7</td><td>1</td><td>-</td>
+</tr><tr><td>MultiplyTest</td><td>0.0000 ns</td><td>0.0000 ns</td><td>0.0000 ns</td><td>0.0000 ns</td><td>0.0000 ns</td><td>0.0 ns</td><td>0.0000 ns</td><td>0.0000 ns</td><td>0.0000 ns</td><td>Infinity</td><td>1</td><td>-</td>
+</tr></tbody></table>
+</body>
+</html>

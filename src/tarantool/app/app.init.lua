@@ -16,13 +16,15 @@ print('start!')
 
 ---------------------------------------------------------------------------------------------init tables
 local function init()
-	chosen_engine = "vinyl" --"memtx" --
+	chosen_engine = "memtx" --"memtx" -- vinyl
 	print('in init!')
 	
-	--print(box.info.version)
-	--box.schema.user.create('ski_admin', {if_not_exists = true}, {password = 'Tty454r293300'})
-	--box.schema.user.passwd('ski_admin', 'Tty454r293300')
-	--box.schema.user.grant('ski_admin', 'read,write,execute,create,alter,drop', 'universe')
+	box.schema.upgrade()
+	
+	-- print(box.info.version)
+	-- box.schema.user.create('ski_admin', {if_not_exists = true}, {password = 'Tty454r293300'})
+	-- box.schema.user.passwd('ski_admin', 'Tty454r293300')
+	-- box.schema.user.grant('ski_admin', 'read,write,execute,create,alter,drop', 'universe')
 
 
 	box.space.users:drop()
@@ -279,11 +281,11 @@ local function load__data()
 	load_users_data()
 	load_cards_data()
 	load_turnstiles_data()
-	load_lifts_data()
+	--load_lifts_data()
 	load_slopes_data()
 	load_lifts_slopes_data()
 	load_messages_data()
-	--load_card_readings_data()
+	load_card_readings_data()
 end
 
 ----------------------------------------------------------------------------------------------------functions
@@ -363,7 +365,10 @@ end
 
 box.cfg {
    background = false,
-   listen = 3301
+   listen = 3301,
+   --vinyl_cache= 128 * 1024, --128 * 1024 * 1024
+   --vinyl_memory = 128 * 1024 * 1024,
+   --vinyl_cache = 512 * 1024
 }
 
 init()

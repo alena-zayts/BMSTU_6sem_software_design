@@ -177,6 +177,10 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "BenchmarkDotNet": {
+              "target": "Package",
+              "version": "[0.13.1, )"
+            },
             "Newtonsoft.Json": {
               "target": "Package",
               "version": "[13.0.1, )"
@@ -184,6 +188,10 @@
             "Ninject": {
               "target": "Package",
               "version": "[3.3.5, )"
+            },
+            "progaudi.tarantool": {
+              "target": "Package",
+              "version": "[0.15.0, )"
             }
           },
           "imports": [
