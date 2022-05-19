@@ -11,19 +11,17 @@ Reallocating 'name_of_file' (item size: 1) to 14 items.
 A level-1 auxiliary file: 20-design.aux
 Reallocating 'name_of_file' (item size: 1) to 12 items.
 A level-1 auxiliary file: 30-impl.aux
+Reallocating 'name_of_file' (item size: 1) to 16 items.
+A level-1 auxiliary file: 40-research.aux
 Reallocating 'name_of_file' (item size: 1) to 14 items.
 A level-1 auxiliary file: 51-biblio.aux
 Reallocating 'name_of_file' (item size: 1) to 13 items.
 The style file: utf8gost705u.bst
 Reallocating 'name_of_file' (item size: 1) to 10 items.
 Database file #1: 51-biblio.bib
-Repeated entry---line 295 of file 51-biblio.bib
- : @misc{acid
- :           ,
-I'm skipping whatever remains of this entry
 You've used 20 entries,
             2958 wiz_defined-function locations,
-            731 strings with 9654 characters,
+            732 strings with 9714 characters,
 and the built_in function-call counts, 2200 in all, are:
 = -- 220
 > -- 20
@@ -62,4 +60,3 @@ warning$ -- 0
 while$ -- 0
 width$ -- 22
 write$ -- 229
-(There was 1 error message)

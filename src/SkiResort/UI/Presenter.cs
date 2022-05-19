@@ -435,7 +435,7 @@ namespace UI
 
         private async Task GetSlopeInfoAsync(object sender, EventArgs e)
         {
-            string name = _slopeView.Name;
+            string name = _slopeView.SlopeName;
             try
             {
                 Slope slope = await _facade.GetSlopeInfoAsync(_userID, name);
@@ -449,7 +449,7 @@ namespace UI
 
         private async Task UpdateSlopeAsync(object sender, EventArgs e)
         {
-            string name = _slopeView.Name;
+            string name = _slopeView.SlopeName;
             bool isOpen;
             try
             {
@@ -483,7 +483,7 @@ namespace UI
         }
         private async Task AddSlopeAsync(object sender, EventArgs e)
         {
-            string name = _slopeView.Name;
+            string name = _slopeView.SlopeName;
             bool isOpen;
             try
             {
@@ -517,7 +517,7 @@ namespace UI
         }
         private async Task DeleteSlopeAsync(object sender, EventArgs e)
         {
-            string name = _slopeView.Name;
+            string name = _slopeView.SlopeName;
             try
             {
 
@@ -531,7 +531,7 @@ namespace UI
         }
         private async Task AddConnectedLiftAsync(object sender, EventArgs e)
         {
-            string slopeName = _slopeView.Name;
+            string slopeName = _slopeView.SlopeName;
             string liftName = _slopeView.LiftName;
 
             try
@@ -555,7 +555,7 @@ namespace UI
 
         private async Task DeleteConnectedLiftAsync(object sender, EventArgs e)
         {
-            string slopeName = _slopeView.Name;
+            string slopeName = _slopeView.SlopeName;
             string liftName = _slopeView.LiftName;
 
             try

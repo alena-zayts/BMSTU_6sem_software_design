@@ -17,17 +17,24 @@
 \contentsline {section}{\numberline {2.1}Функциональная модель}{17}{section.2.1}%
 \contentsline {section}{\numberline {2.2}Проектирование базы данных}{17}{section.2.2}%
 \contentsline {section}{\numberline {2.3}Проектирование архитектуры приложения}{21}{section.2.3}%
-\contentsline {section}{\numberline {2.4}Схема алгоритма?}{22}{section.2.4}%
-\contentsline {chapter}{\numberline {3}Технологическая часть}{25}{chapter.3}%
-\contentsline {section}{\numberline {3.1}Выбор in-memory СУБД}{25}{section.3.1}%
-\contentsline {subsection}{\numberline {3.1.1}Memcached}{25}{subsection.3.1.1}%
-\contentsline {subsection}{\numberline {3.1.2}Redis}{26}{subsection.3.1.2}%
-\contentsline {subsection}{\numberline {3.1.3}Tarantool}{27}{subsection.3.1.3}%
-\contentsline {subsection}{\numberline {3.1.4}Выбор СУБД для решения задачи}{28}{subsection.3.1.4}%
-\contentsline {section}{\numberline {3.2}Выбор инструментов разработки}{29}{section.3.2}%
-\contentsline {section}{\numberline {3.3}Детали реализации}{29}{section.3.3}%
-\contentsline {subsection}{\numberline {3.3.1}Ролевая модель}{29}{subsection.3.3.1}%
-\contentsline {subsection}{\numberline {3.3.2}Реализация функций}{30}{subsection.3.3.2}%
-\contentsline {subsection}{\numberline {3.3.3}Модели хранения данных}{31}{subsection.3.3.3}%
-\contentsline {section}{\numberline {3.4}Интерфейс приложения}{34}{section.3.4}%
-\contentsline {chapter}{Список использованных источников}{36}{section.3.4}%
+\contentsline {section}{\numberline {2.4}Алгоритм расчета времени в очереди на подъемник}{22}{section.2.4}%
+\contentsline {chapter}{\numberline {3}Технологическая часть}{24}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Выбор in-memory СУБД}{24}{section.3.1}%
+\contentsline {subsection}{\numberline {3.1.1}Memcached}{24}{subsection.3.1.1}%
+\contentsline {subsection}{\numberline {3.1.2}Redis}{25}{subsection.3.1.2}%
+\contentsline {subsection}{\numberline {3.1.3}Tarantool}{26}{subsection.3.1.3}%
+\contentsline {subsection}{\numberline {3.1.4}Выбор СУБД для решения задачи}{27}{subsection.3.1.4}%
+\contentsline {section}{\numberline {3.2}Выбор инструментов разработки}{28}{section.3.2}%
+\contentsline {section}{\numberline {3.3}Детали реализации}{28}{section.3.3}%
+\contentsline {subsection}{\numberline {3.3.1}Ролевая модель}{28}{subsection.3.3.1}%
+\contentsline {subsection}{\numberline {3.3.2}Реализация функции для расчета времени в очереди на подъемник}{29}{subsection.3.3.2}%
+\contentsline {subsection}{\numberline {3.3.3}Модели хранения данных}{30}{subsection.3.3.3}%
+\contentsline {section}{\numberline {3.4}Интерфейс приложения}{33}{section.3.4}%
+\contentsline {chapter}{\numberline {4}Исследовательская часть}{36}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Цель эксперимента}{36}{section.4.1}%
+\contentsline {section}{\numberline {4.2}Технические характеристики}{36}{section.4.2}%
+\contentsline {section}{\numberline {4.3}Описание эксперимента}{36}{section.4.3}%
+\contentsline {subsection}{\numberline {4.3.1}Сравниваемые алгоритмы}{37}{subsection.4.3.1}%
+\contentsline {subsection}{\numberline {4.3.2}Используемые данные}{41}{subsection.4.3.2}%
+\contentsline {section}{\numberline {4.4}Результаты эксперимента}{41}{section.4.4}%
+\contentsline {chapter}{Список использованных источников}{44}{figure.caption.23}%

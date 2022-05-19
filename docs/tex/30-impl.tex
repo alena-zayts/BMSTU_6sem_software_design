@@ -156,7 +156,7 @@ box.schema.role.create('ski_admin')
 box.schema.role.grant('ski_admin', 'read,write,execute,create,alter,drop', 'universe')
 \end{lstlisting}
 
-\subsection{Реализация функций}
+\subsection{Реализация функции для расчета времени в очереди на подъемник}
 
 В листинге \ref{lst:func} представлены реализации функций update\_queue\_time и count\_card\_readings, предназначенных для обновленияя время в очереди к подъемнику. Алгоритм работы этих функций был описан в пункте \ref{func_label}.
 
@@ -294,7 +294,46 @@ end
 
 \section{Интерфейс приложения}
 
-TODO
+
+При запуске приложения пользователь считается неавторизованным. Открывается главное окно, продемонстрированное на рисунке \ref{img:main}, в котором размещены кнопки для открытия других окон. 
+
+\clearpage
+\begin{figure}[h!]
+	\begin{center}
+		\includegraphics[scale=0.8]{../imgs/int/main.png}
+	\end{center}
+	\captionsetup{justification=centering}
+	\caption{Главное окно приложения (пользователь не авторизован)}
+	\label{img:main}
+\end{figure}
+
+В любом окне неактивная кнопка означает, что данное действие недоступно данному пользователю. Например, в окне <<Профиль>> неавторизованный пользователь может выполнить вход или зарегистрироваться (рисунок \ref{img:profu}), авторизованный -- выполнить выход (рисунок \ref{img:profa}).
+
+
+\begin{figure}[h!]
+	\begin{center}
+		\includegraphics[scale=1]{../imgs/int/profu.png}
+	\end{center}
+	\captionsetup{justification=centering}
+	\caption{Окно <<Профиль>> (пользователь не авторизован)}
+	\label{img:profu}
+\end{figure}
+
+\clearpage
+\begin{figure}[h!]
+	\begin{center}
+		\includegraphics[scale=1]{../imgs/int/profa.png}
+	\end{center}
+	\captionsetup{justification=centering}
+	\caption{Окно <<Профиль>> (пользователь авторизован)}
+	\label{img:profa}
+\end{figure}
+
+Далее для демонстрации всех функций системы окна будут показаны в том виде, в котором они открываются для пользователя с правами администратора.
+
+На рисунке \ref{img:slopes} показан вид окна <<Спуски>>. 
+
+
 
 \section*{Вывод}
 

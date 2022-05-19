@@ -91,7 +91,7 @@ class Slope(Table):
         self.difficulty_level = difficulty_level
 
     @classmethod
-    def generate_data(cls, n_slopes_bunches=20, slopes_per_bunch=(45, 60), difficulty_levels=(1, 10)):
+    def generate_data(cls, n_slopes_bunches=20, slopes_per_bunch=(10, 20), difficulty_levels=(1, 10)):
         data = []
         alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
@@ -118,7 +118,7 @@ class Lift(Table):
         self.queue_time = queue_time  # sec
 
     @classmethod
-    def generate_data(cls, n_lifts_bunches=10, lifts_per_bunch=(100, 101),
+    def generate_data(cls, n_lifts_bunches=20, lifts_per_bunch=(10, 20),
                       lifting_times=(30, 300), seats_amounts=(10, 100)):
         data = []
         alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
@@ -401,7 +401,7 @@ def generate_lifts(n):
 
 
 
-work = True
+work = False
 
 def generate_test3():
     path = "C:/BMSTU_6sem_software_design/src/settings.txt"
@@ -442,16 +442,12 @@ def generate_test3():
         file_name = f"{global_lift_dir}lift_{i}.json"
         with open(file_name, "w") as write_file:
             json.dump(obj, write_file)
-        if i % 1000 == 0:
-            print(file_name)
 
     for i in range(len(turnstiles)):
         obj = turnstiles[i]
         file_name = f"{global_turnstiles_dir}turnstile_{i}.json"
         with open(file_name, "w") as write_file:
             json.dump(obj, write_file)
-        if i % 1000 == 0:
-            print(file_name)
 
     for i in range(len(turnstiles)):
         for j in range(n_cardreadings_per_turnstile):
@@ -462,8 +458,8 @@ def generate_test3():
             with open(file_name, "w") as write_file:
                 json.dump(obj, write_file)
 
-            if i % 1000 == 0:
-                print(file_name)
+        if i % 100 == 0:
+            print(f"{i} turnstile")
 
 
 
@@ -475,7 +471,7 @@ if __name__ == "__main__":
     # infinite_card_readings_generator()
     #generate_one_test("", 10000)
     # generate_lifts(1000)
-    generate_test3()
+    # generate_test3()
 
 
 

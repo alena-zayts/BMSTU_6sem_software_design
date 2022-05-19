@@ -17,7 +17,7 @@ namespace UI.IViews
         public bool DeleteEnabled { get; set; }
         public bool AddConnectedLiftEnabled { get; set; }
         public bool DeleteConnectedLiftEnabled { get; set; }
-        public string Name { get; set; }
+        public string SlopeName { get; set; }
         public string IsOpen { get; set; }
         public string DifficultyLevel { get; set; }
         public string LiftName { get; set; }
