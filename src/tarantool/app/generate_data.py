@@ -312,7 +312,7 @@ class CardReading2(Table):
         self.ReadingTime = reading_time
 
     @classmethod
-    def generate(cls, date_limits=(1585575897, 1648647930)):
+    def generate(cls, date_limits=(1585575897, 1648647930), turnstile_id=None):
         with open(Turnstile.json_filename, 'r') as f:
             turnstiles = [Turnstile(*(list(turnstile_dict.values()))) for turnstile_dict in json.load(f)]
         turnstile_ids = [turnstile.turnstile_id for turnstile in turnstiles]
@@ -321,7 +321,7 @@ class CardReading2(Table):
             cards = [Card(*(list(card_dict.values()))) for card_dict in json.load(f)]
         card_ids = [card.card_id for card in cards]
 
-        return CardReading2(0, choice(turnstile_ids), choice(card_ids), randint(*date_limits)).to_json()
+        return CardReading2(0, choice(turnstile_ids) if not turnstile_id else turnstile_id, choice(card_ids), randint(*date_limits)).to_json()
 
 
 def infinite_card_readings_generator():
@@ -345,7 +345,7 @@ def infinite_card_readings_generator():
         i += 1
         # time.sleep(sleep_time)
 
-def generate_one_test(dir_name, n, date_limits=(1652659200, 1652745600)): # 16-17 мая
+def generate_card_readings(dir_name, n, date_limits=(1652659200, 1652745600)): # 16-17 мая
     import time
     import datetime
     global_dir = "C:/BMSTU_6sem_software_design/src/tarantool/app/json_data/card_readings/"
@@ -366,7 +366,9 @@ def generate_one_test(dir_name, n, date_limits=(1652659200, 1652745600)): # 16-1
 
 def generate_tests():
     for n in range(1000, 10000, 1000):
-        generate_one_test(f"n_{n}/", n)
+        generate_card_readings(f"n_{n}/", n)
+
+
 
 
 def generate_lifts(n):
@@ -396,15 +398,68 @@ def generate_lifts(n):
 
 
 
-def draw_plots():
-    adding_m = []
+def generate_test3():
+    path = "C:/BMSTU_6sem_software_design/src/settings.txt"
+    with open(path, 'r') as f:
+        date_from = int(f.readline())
+        date_to = int(f.readline())
+        n_lifts = int(f.readline())
+        n_turnstiles_per_lift = int(f.readline())
+        n_cardreadings_per_turnstile = int(f.readline())
+
+    global_lift_dir = "C:/BMSTU_6sem_software_design/src/tarantool/app/json_data/lifts/"
+    global_turnstiles_dir = "C:/BMSTU_6sem_software_design/src/tarantool/app/json_data/turnstiles/"
+    global_card_readings_dir = "C:/BMSTU_6sem_software_design/src/tarantool/app/json_data/card_readings/"
+
+    if not os.path.isdir(f"{global_lift_dir}"):
+        os.mkdir(f"{global_lift_dir}")
+    if not os.path.isdir(f"{global_turnstiles_dir}"):
+        os.mkdir(f"{global_turnstiles_dir}")
+    if not os.path.isdir(f"{global_card_readings_dir}"):
+        os.mkdir(f"{global_card_readings_dir}")
+
+    lifts = Lift.generate_data(n_lifts_bunches=10, lifts_per_bunch=(n_lifts // 10, n_lifts // 10))
+    turnstiles = Turnstile.generate_data(turnstiles_per_lift=(n_turnstiles_per_lift, n_turnstiles_per_lift))
+
+    for i in range(len(lifts)):
+        obj = lifts[i]
+        file_name = f"{global_lift_dir}lift_{i}.json"
+        with open(file_name, "w") as write_file:
+            json.dump(obj, write_file)
+        if i % 1000 == 0:
+            print(file_name)
+
+    for i in range(len(turnstiles)):
+        obj = turnstiles[i]
+        file_name = f"{global_turnstiles_dir}turnstile_{i}.json"
+        with open(file_name, "w") as write_file:
+            json.dump(obj, write_file)
+        if i % 1000 == 0:
+            print(file_name)
+
+    for i in range(len(turnstiles)):
+        for j in range(n_cardreadings_per_turnstile):
+            obj = CardReading2.generate(date_limits=(date_from, date_to), turnstile_id=turnstiles[i]['turnstile_id'])
+
+            file_name = f"{global_card_readings_dir}card_reading_{i * n_cardreadings_per_turnstile + j}.json"
+
+            with open(file_name, "w") as write_file:
+                json.dump(obj, write_file)
+
+            if i % 1000 == 0:
+                print(file_name)
+
+
+
+
 
 
 if __name__ == "__main__":
-    #generate_all_data_to_json_file()
+    generate_all_data_to_json_file()
     # infinite_card_readings_generator()
     #generate_one_test("", 10000)
-    generate_lifts(1000)
+    # generate_lifts(1000)
+    generate_test3()
 
 
 

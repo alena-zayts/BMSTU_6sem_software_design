@@ -280,12 +280,12 @@ end
 local function load__data()
 	load_users_data()
 	load_cards_data()
-	load_turnstiles_data()
+	--load_turnstiles_data()
 	--load_lifts_data()
 	load_slopes_data()
 	load_lifts_slopes_data()
 	load_messages_data()
-	load_card_readings_data()
+	--load_card_readings_data()
 end
 
 ----------------------------------------------------------------------------------------------------functions

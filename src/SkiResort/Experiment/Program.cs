@@ -11,6 +11,8 @@ using CardReadingDB = System.ValueTuple<uint, uint, uint, uint>;
 using CardReadingDBNoIndex = System.ValueTuple<uint, uint, uint>;
 using LiftDB = System.ValueTuple<uint, string, bool, uint, uint, uint>;
 using LiftDBNoIndex = System.ValueTuple<string, bool, uint, uint, uint>;
+using TurnstileDB = System.ValueTuple<uint, uint, bool>;
+using TurnstileDBNoIndex = System.ValueTuple<uint, bool>;
 
 
 var box = await Box.Connect("ski_admin:Tty454r293300@localhost:3301");
@@ -26,15 +28,25 @@ ITurnstilesRepository _turnstilesRepository = repositoriesFactory.CreateTurnstil
 
 string cardReadingsDir = "C:/BMSTU_6sem_software_design/src/tarantool/app/json_data/card_readings/";
 string liftsDir = "C:/BMSTU_6sem_software_design/src/tarantool/app/json_data/lifts/";
-DateTimeOffset dateFrom = DateTimeOffset.FromUnixTimeSeconds(((uint)1652659200 + (uint)1652745600) / 2);
-DateTimeOffset dateTo = DateTimeOffset.FromUnixTimeSeconds((uint)1652745600);
-uint dateFromUint = (uint) dateFrom.ToUnixTimeSeconds();
-uint dateToUint = (uint)dateTo.ToUnixTimeSeconds();
-uint timeDelta = dateToUint - dateFromUint;
+
 
 string AddResultsFilename = "C:/BMSTU_6sem_software_design/src/SkiResort/Experiment/add.txt";
 string UpdateResultsFilename = "C:/BMSTU_6sem_software_design/src/SkiResort/Experiment/update.txt";
 string NFilename = "C:/BMSTU_6sem_software_design/src/SkiResort/Experiment/N.txt";
+
+string settingsFilename = "C:/BMSTU_6sem_software_design/src/settings.txt";
+string[] lines = System.IO.File.ReadAllLines(settingsFilename);
+
+uint dateFromFileUint = UInt32.Parse(lines[0]);
+uint dateToUint = UInt32.Parse(lines[1]);
+uint dateFromUint = (dateFromFileUint + dateToUint) / 2;
+DateTimeOffset dateFrom = DateTimeOffset.FromUnixTimeSeconds(dateFromUint);
+DateTimeOffset dateTo = DateTimeOffset.FromUnixTimeSeconds(dateToUint);
+uint timeDelta = dateToUint - dateFromUint;
+
+
+
+
 
 
 //CardReading GetCardReadingFromJsonFile(string filename)
