@@ -9,6 +9,7 @@ import datetime
 import faker.providers.date_time as fake_dt
 import calendar
 import os
+import shutil
 
 random.seed(0)
 Faker.seed(0)
@@ -191,9 +192,10 @@ class Turnstile(Table):
         self.is_open = is_open
 
     @classmethod
-    def generate_data(cls, turnstiles_per_lift=(1, 5)):
-        with open(Lift.json_filename, 'r') as f:
-            lifts = [Lift(*lift_dict.values()) for lift_dict in json.load(f)]
+    def generate_data(cls, turnstiles_per_lift=(1, 5), lifts=None):
+        if lifts is None:
+            with open(Lift.json_filename, 'r') as f:
+                lifts = [Lift(*lift_dict.values()) for lift_dict in json.load(f)]
 
         data = []
 
@@ -201,7 +203,10 @@ class Turnstile(Table):
         for lift in lifts:
             n_turnstiles = randint(*turnstiles_per_lift)
             for _ in range(n_turnstiles):
-                data.append(Turnstile(i + 1, lift.lift_id, choice([True, False])).to_json())
+                try:
+                    data.append(Turnstile(i + 1, lift.lift_id, choice([True, False])).to_json())
+                except:
+                    data.append(Turnstile(i + 1, lift['lift_id'], choice([True, False])).to_json())
                 i += 1
 
         return data
@@ -396,10 +401,12 @@ def generate_lifts(n):
 
 
 
-
+work = True
 
 def generate_test3():
     path = "C:/BMSTU_6sem_software_design/src/settings.txt"
+    if work:
+        path = "/home/alex/tmp/BMSTU_6sem_software_design/src/settings.txt"
     with open(path, 'r') as f:
         date_from = int(f.readline())
         date_to = int(f.readline())
@@ -408,18 +415,27 @@ def generate_test3():
         n_cardreadings_per_turnstile = int(f.readline())
 
     global_lift_dir = "C:/BMSTU_6sem_software_design/src/tarantool/app/json_data/lifts/"
+    if work:
+        global_lift_dir = "/home/alex/tmp/BMSTU_6sem_software_design/src/tarantool/app/json_data/lifts/"
     global_turnstiles_dir = "C:/BMSTU_6sem_software_design/src/tarantool/app/json_data/turnstiles/"
+    if work:
+        global_turnstiles_dir = "/home/alex/tmp/BMSTU_6sem_software_design/src/tarantool/app/json_data/turnstiles/"
     global_card_readings_dir = "C:/BMSTU_6sem_software_design/src/tarantool/app/json_data/card_readings/"
+    if work:
+        global_card_readings_dir = "/home/alex/tmp/BMSTU_6sem_software_design/src/tarantool/app/json_data/card_readings/"
 
-    if not os.path.isdir(f"{global_lift_dir}"):
-        os.mkdir(f"{global_lift_dir}")
-    if not os.path.isdir(f"{global_turnstiles_dir}"):
-        os.mkdir(f"{global_turnstiles_dir}")
-    if not os.path.isdir(f"{global_card_readings_dir}"):
-        os.mkdir(f"{global_card_readings_dir}")
+    if os.path.isdir(f"{global_lift_dir}"):
+        shutil.rmtree(f"{global_lift_dir}")
+    os.mkdir(f"{global_lift_dir}")
+    if os.path.isdir(f"{global_turnstiles_dir}"):
+        shutil.rmtree(f"{global_turnstiles_dir}")
+    os.mkdir(f"{global_turnstiles_dir}")
+    if os.path.isdir(f"{global_card_readings_dir}"):
+        shutil.rmtree(f"{global_card_readings_dir}")
+    os.mkdir(f"{global_card_readings_dir}")
 
     lifts = Lift.generate_data(n_lifts_bunches=10, lifts_per_bunch=(n_lifts // 10, n_lifts // 10))
-    turnstiles = Turnstile.generate_data(turnstiles_per_lift=(n_turnstiles_per_lift, n_turnstiles_per_lift))
+    turnstiles = Turnstile.generate_data(turnstiles_per_lift=(n_turnstiles_per_lift, n_turnstiles_per_lift), lifts=lifts)
 
     for i in range(len(lifts)):
         obj = lifts[i]

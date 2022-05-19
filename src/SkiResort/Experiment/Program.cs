@@ -44,18 +44,62 @@ DateTimeOffset dateFrom = DateTimeOffset.FromUnixTimeSeconds(dateFromUint);
 DateTimeOffset dateTo = DateTimeOffset.FromUnixTimeSeconds(dateToUint);
 uint timeDelta = dateToUint - dateFromUint;
 
+int n_lifts = Int32.Parse(lines[2]);
+int n_turnstiles_per_lift = Int32.Parse(lines[3]);
+int n_card_readings_per_turnstile = Int32.Parse(lines[4]);
 
 
 
 
 
-//CardReading GetCardReadingFromJsonFile(string filename)
-//{
-//    string data = File.ReadAllText(filename);
-//    dynamic stuff = JObject.Parse(data);
-//    CardReading cardReading = new((uint)stuff.RecordID, (uint)stuff.TurnstileID, (uint)stuff.CardID, (DateTimeOffset)(DateTimeOffset.FromUnixTimeSeconds((uint)stuff.ReadingTime)));
-//    return cardReading;
-//}
+CardReading GetCardReadingFromJsonFile(string filename)
+{
+   string data = File.ReadAllText(filename);
+   dynamic stuff = JObject.Parse(data);
+   CardReading cardReading = new((uint)stuff.RecordID, (uint)stuff.TurnstileID, (uint)stuff.CardID, (DateTimeOffset)(DateTimeOffset.FromUnixTimeSeconds((uint)stuff.ReadingTime)));
+   return cardReading;
+}
+
+List<CardReading> GetCardReadingsFromJsonFiles(int from, int to)
+{
+   var prevCardReadings = _cardReadingsRepository.GetCardReadingsAsync().GetAwaiter().GetResult();
+   var prevAmount = prevCardReadings.Count();
+   Console.WriteLine($"{prevAmount} CardReadings are already in DB:");
+
+   string[] filenames = Directory.GetFiles(cardReadingsDir);
+   List<CardReading> cardReadingList = new List<CardReading>();
+   for (int i = from; i < to; i++)
+   {
+       string filename = filenames[i];
+       CardReading cardReading = GetCardReadingFromJsonFile(filename);
+       cardReadingList.Add(cardReading);
+   }
+   return cardReadingList;
+}
+
+long addCardReadings(List<CardReading> cardReadingList)
+{ 
+   Stopwatch stopWatch = new Stopwatch();
+
+   stopWatch.Start();
+   foreach (CardReading cardReading in cardReadingList)
+   {
+       CardReadingDBNoIndex cardReadingDBNoIndex = new CardReadingDBNoIndex(cardReading.TurnstileID, cardReading.CardID, (uint)cardReading.ReadingTime.ToUnixTimeSeconds());
+       var newID = box.Call_1_6<CardReadingDBNoIndex, CardReadingDB>("auto_increment_card_readings", (cardReadingDBNoIndex)).GetAwaiter().GetResult();
+   }
+   stopWatch.Stop();
+   TimeSpan ts = stopWatch.Elapsed;
+
+
+   string elapsedTime = String.Format("{0:00}.{1:00}.{2:00}.{3:00}",
+       ts.Hours, ts.Minutes, ts.Seconds, ts.Milliseconds / 10);
+   Console.WriteLine($"Adding: " + elapsedTime);
+
+   long timeMS = stopWatch.ElapsedMilliseconds;
+   return timeMS;
+}
+
+
 
 Lift GetLiftFromJsonFile(string filename)
 {
@@ -65,23 +109,6 @@ Lift GetLiftFromJsonFile(string filename)
     Lift lift = new((uint)stuff.lift_id, (string)stuff.lift_name, (bool)stuff.is_open, (uint)stuff.seats_amount, (uint)stuff.lifting_time, (uint)stuff.queue_time);
     return lift;
 }
-
-//List<CardReading> GetCardReadingsFromJsonFiles(int from, int to)
-//{
-//    var prevCardReadings = _cardReadingsRepository.GetCardReadingsAsync().GetAwaiter().GetResult();
-//    var prevAmount = prevCardReadings.Count();
-//    Console.WriteLine($"{prevAmount} CardReadings are already in DB:");
-
-//    string[] filenames = Directory.GetFiles(cardReadingsDir);
-//    List<CardReading> cardReadingList = new List<CardReading>();
-//    for (int i = from; i < to; i++)
-//    {
-//        string filename = filenames[i];
-//        CardReading cardReading = GetCardReadingFromJsonFile(filename);
-//        cardReadingList.Add(cardReading);
-//    }
-//    return cardReadingList;
-//}
 
 List<Lift> GetLiftsFromJsonFiles(int from, int to)
 {
@@ -99,28 +126,6 @@ List<Lift> GetLiftsFromJsonFiles(int from, int to)
     }
     return liftList;
 }
-
-//long addCardReadings(List<CardReading> cardReadingList)
-//{ 
-//    Stopwatch stopWatch = new Stopwatch();
-
-//    stopWatch.Start();
-//    foreach (CardReading cardReading in cardReadingList)
-//    {
-//        CardReadingDBNoIndex cardReadingDBNoIndex = new CardReadingDBNoIndex(cardReading.TurnstileID, cardReading.CardID, (uint)cardReading.ReadingTime.ToUnixTimeSeconds());
-//        var newID = box.Call_1_6<CardReadingDBNoIndex, CardReadingDB>("auto_increment_card_readings", (cardReadingDBNoIndex)).GetAwaiter().GetResult();
-//    }
-//    stopWatch.Stop();
-//    TimeSpan ts = stopWatch.Elapsed;
-
-
-//    string elapsedTime = String.Format("{0:00}.{1:00}.{2:00}.{3:00}",
-//        ts.Hours, ts.Minutes, ts.Seconds, ts.Milliseconds / 10);
-//    Console.WriteLine($"Adding: " + elapsedTime);
-
-//    long timeMS = stopWatch.ElapsedMilliseconds;
-//    return timeMS;
-//}
 
 long addLifts(List<Lift> liftList)
 {
@@ -146,6 +151,59 @@ long addLifts(List<Lift> liftList)
     long timeMS = stopWatch.ElapsedMilliseconds;
     return timeMS;
 }
+
+Turnstile GetTurnstileFromJsonFile(string filename)
+{
+    string data = File.ReadAllText(filename);
+    dynamic stuff = JObject.Parse(data);
+    //{"turnstile_id": 1, "lift_id": 1, "is_open": false}
+    Turnstile turnstile = new((uint)stuff.turnstile_id, (uint)stuff.lift_id, (bool)stuff.is_open);
+    return turnstile;
+}
+
+List<Turnstile> GetTurnstilesFromJsonFiles(int from, int to)
+{
+    var prevTurnstiles = _turnstilesRepository.GetTurnstilesAsync().GetAwaiter().GetResult();
+    var prevAmount = prevTurnstiles.Count();
+    Console.WriteLine($"{prevAmount} Turnstiles are already in DB:");
+
+    string[] filenames = Directory.GetFiles(turnstilesDir);
+    List<Turnstile> turnstileList = new List<Turnstile>();
+    for (int i = from; i < to; i++)
+    {
+        string filename = filenames[i];
+        Turnstile turnstile = GetTurnstileFromJsonFile(filename);
+        turnstileList.Add(turnstile);
+    }
+    return turnstileList;
+}
+
+long addTurnstiles(List<Turnstile> turnstileList)
+{
+    Stopwatch stopWatch = new Stopwatch();
+
+    stopWatch.Start();
+    foreach (Turnstile turnstile in turnstileList)
+    {
+        TurnstileDBNoIndex turnstileDBNoIndex = new TurnstileDBNoIndex(turnstile.LiftID, turnstile.IsOpen);
+        var newID = box.Call_1_6<TurnstileDBNoIndex, TurnstileDB>("auto_increment_turnstiles", (turnstileDBNoIndex)).GetAwaiter().GetResult();
+    }
+    stopWatch.Stop();
+    TimeSpan ts = stopWatch.Elapsed;
+
+
+    string elapsedTime = String.Format("{0:00}.{1:00}.{2:00}.{3:00}",
+        ts.Hours, ts.Minutes, ts.Seconds, ts.Milliseconds / 10);
+    Console.WriteLine($"Adding: " + elapsedTime);
+
+    List<Turnstile> tmp = _turnstilesRepository.GetTurnstilesAsync().GetAwaiter().GetResult();
+    Console.WriteLine($"Current turnstiles amount: {tmp.Count()}");
+
+    long timeMS = stopWatch.ElapsedMilliseconds;
+    return timeMS;
+}
+
+
 
 long updateLifts1()
 {
@@ -305,7 +363,7 @@ long updateLifts4()
 }
 
 
-List<int> ns = new List<int>() {0, 50, 100, 300, 500, 1000};
+List<int> ns = new List<int>() {0, 50, 100, 200};
 
 
 using (StreamWriter Nwriter = new StreamWriter(NFilename, false))
@@ -321,10 +379,24 @@ using (StreamWriter updateWriter = new StreamWriter(UpdateResultsFilename, false
     {
         for (int i = 1; i < ns.Count; i++)
         {
-
             Console.WriteLine($"\n\n[{i}] {ns[i]}");
-            List<Lift> lifts = GetLiftsFromJsonFiles(ns[i - 1], ns[i]);
+
+            int n_lifts_prev = ns[i - 1];
+            int n_lifts_cur = ns[i];
+            List<Lift> lifts = GetLiftsFromJsonFiles(n_lifts_prev, n_lifts_cur);
+
+            int n_turnstiles_prev = n_lifts_prev * n_turnstiles_per_lift;
+            int n_turnstiles_cur = n_lifts_cur * n_turnstiles_per_lift;
+            List<Turnstile> turnstiles = GetTurnstilesFromJsonFiles(n_turnstiles_prev, n_turnstiles_cur);
+
+            int n_card_readings_prev = n_turnstiles_prev * n_card_readings_per_turnstile;
+            int n_card_readings_cur = n_turnstiles_cur * n_card_readings_per_turnstile;
+            List<Turnstile> turnstiles = GetTurnstilesFromJsonFiles(n_card_readings_prev, n_card_readings_cur);
+
+
             long addingTime = addLifts(lifts);
+            addingTime += addTurnstiles(turnstiles);
+            addingTime += addCardReadings(cardReadings);
 
             long updatingTime1mean = 0;
             long updatingTime2mean = 0;
