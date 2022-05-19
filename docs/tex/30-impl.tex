@@ -331,10 +331,82 @@ end
 
 Далее для демонстрации всех функций системы окна будут показаны в том виде, в котором они открываются для пользователя с правами администратора.
 
-На рисунке \ref{img:slopes} показан вид окна <<Спуски>>. 
+На рисунке \ref{img:messages} показан вид окна <<Сообщения>>. Предоставляется возможность получить информацию обо всех сообщениях или об одном из них по ID; добавить (отправить), изменить (в частности, отметить прочитанным) или удалить сообщение.
+
+\clearpage
+\begin{figure}[h!]
+	\begin{center}
+		\includegraphics[scale=0.8]{../imgs/int/messages.png}
+	\end{center}
+	\captionsetup{justification=centering}
+	\caption{Окно <<Сообщения>>}
+	\label{img:messages}
+\end{figure}
 
 
+На рисунке \ref{img:slopes} показан вид окна <<Трассы>>. Предоставляется возможность получить информацию обо всех трассах или об одной из них по названию; добавить, изменить или удалить трассу; добавить или удалить связь с подъемником.
 
+\clearpage
+\begin{figure}[h!]
+	\begin{center}
+		\includegraphics[scale=0.7]{../imgs/int/slopes.png}
+	\end{center}
+	\captionsetup{justification=centering}
+	\caption{Окно <<Трассы>>}
+	\label{img:slopes}
+\end{figure}
+
+На рисунке \ref{img:lifts} показан вид окна <<Подъемники>>. Предоставляется возможность получить информацию обо всех подъемниках или об одном из них по названию; добавить, изменить или удалить подъемник; добавить или удалить связь с трассой.
+
+\clearpage
+\begin{figure}[h!]
+	\begin{center}
+		\includegraphics[scale=0.6]{../imgs/int/lifts.png}
+	\end{center}
+	\captionsetup{justification=centering}
+	\caption{Окно <<Подъемники>>}
+	\label{img:lifts}
+\end{figure}
+
+На рисунках \ref{img:users}, \ref{img:cards}, \ref{img:turnstiles}, \ref{img:readings} показаны виды окон <<Пользователи>>, <<Карты>>, <<Турникеты>> и <<Считывания карт>>, соответственно. В каждом окне можно получить информацию обо всех соответствующих объектах или об одном из них по ID; добавить, изменить или удалить объект.
+
+\begin{figure}[h!]
+	\begin{center}
+		\includegraphics[scale=0.6]{../imgs/int/users.png}
+	\end{center}
+	\captionsetup{justification=centering}
+	\caption{Окно <<Пользователи>>}
+	\label{img:users}
+\end{figure}
+
+\begin{figure}[h!]
+	\begin{center}
+		\includegraphics[scale=0.6]{../imgs/int/cards.png}
+	\end{center}
+	\captionsetup{justification=centering}
+	\caption{Окно <<Карты>>}
+	\label{img:cards}
+\end{figure}
+
+\begin{figure}[h!]
+	\begin{center}
+		\includegraphics[scale=0.6]{../imgs/int/turnstiles.png}
+	\end{center}
+	\captionsetup{justification=centering}
+	\caption{Окно <<Турникеты>>}
+	\label{img:turnstiles}
+\end{figure}
+
+\begin{figure}[h!]
+	\begin{center}
+		\includegraphics[scale=0.6]{../imgs/int/readings.png}
+	\end{center}
+	\captionsetup{justification=centering}
+	\caption{Окно <<Считывания карт>>}
+	\label{img:readings}
+\end{figure}
+
+\clearpage
 \section*{Вывод}
 
 На основе анализа in-memory СУБД был осуществлен выбор наиболее подходящей для решения поставленной задачи. Были выбраны инструменты разработки, приведены детали реализации и интерфейс приложения.

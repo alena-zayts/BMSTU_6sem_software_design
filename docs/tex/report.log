@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.6) (preloaded format=pdflatex 2021.9.4)  19 MAY 2022 23:32
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.6) (preloaded format=pdflatex 2021.9.4)  20 MAY 2022 00:02
 entering extended mode
 **./report.tex
 (report.tex
@@ -1954,11 +1954,11 @@ Overfull \hbox (11.24783pt too wide) in paragraph at lines 217--218
 (C:\Program Files\MiKTeX\tex/latex/listings\lstlang1.sty
 File: lstlang1.sty 2020/03/24 1.8d listings language file
 ) [31] [32] [33]
-<../imgs/int/main.png, id=611, 282.19714pt x 328.22626pt>
+<../imgs/int/main.png, id=611, 217.24017pt x 328.65643pt>
 File: ../imgs/int/main.png Graphic file (type png)
 <use ../imgs/int/main.png>
 Package pdftex.def Info: ../imgs/int/main.png  used on input line 303.
-(pdftex.def)             Requested size: 225.75801pt x 262.58136pt.
+(pdftex.def)             Requested size: 173.79237pt x 262.92549pt.
 <../imgs/int/profu.png, id=614, 347.58429pt x 166.90929pt>
 File: ../imgs/int/profu.png Graphic file (type png)
 <use ../imgs/int/profu.png>
@@ -1973,29 +1973,87 @@ File: ../imgs/int/profa.png Graphic file (type png)
 <use ../imgs/int/profa.png>
 Package pdftex.def Info: ../imgs/int/profa.png  used on input line 325.
 (pdftex.def)             Requested size: 343.28165pt x 165.61833pt.
-
-
-LaTeX Warning: Reference `img:slopes' on page 35 undefined on input line 334.
-
-) [35
+ [35
 
  <../imgs/int/profa.png>]
+<../imgs/int/messages.png, id=631, 489.97339pt x 453.8384pt>
+File: ../imgs/int/messages.png Graphic file (type png)
+<use ../imgs/int/messages.png>
+Package pdftex.def Info: ../imgs/int/messages.png  used on input line 339.
+(pdftex.def)             Requested size: 391.97923pt x 363.0712pt.
+ [36
+
+ <../imgs/int/messages.png>]
+<../imgs/int/slopes.png, id=639, 626.77017pt x 295.53268pt>
+File: ../imgs/int/slopes.png Graphic file (type png)
+<use ../imgs/int/slopes.png>
+Package pdftex.def Info: ../imgs/int/slopes.png  used on input line 352.
+(pdftex.def)             Requested size: 438.73613pt x 206.87146pt.
+ [37
+
+ <../imgs/int/slopes.png>]
+<../imgs/int/lifts.png, id=648, 796.26053pt x 359.62929pt>
+File: ../imgs/int/lifts.png Graphic file (type png)
+<use ../imgs/int/lifts.png>
+Package pdftex.def Info: ../imgs/int/lifts.png  used on input line 364.
+(pdftex.def)             Requested size: 477.76001pt x 215.77924pt.
+
+Overfull \hbox (8.28952pt too wide) in paragraph at lines 364--365
+ [] 
+ []
+
+<../imgs/int/users.png, id=653, 760.12553pt x 260.25804pt>
+File: ../imgs/int/users.png Graphic file (type png)
+<use ../imgs/int/users.png>
+Package pdftex.def Info: ../imgs/int/users.png  used on input line 375.
+(pdftex.def)             Requested size: 456.07884pt x 156.156pt.
+<../imgs/int/cards.png, id=654, 630.64178pt x 254.23553pt>
+File: ../imgs/int/cards.png Graphic file (type png)
+<use ../imgs/int/cards.png>
+Package pdftex.def Info: ../imgs/int/cards.png  used on input line 384.
+(pdftex.def)             Requested size: 378.38799pt x 152.5425pt.
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+<../imgs/int/turnstiles.png, id=655, 464.16267pt x 235.30768pt>
+File: ../imgs/int/turnstiles.png Graphic file (type png)
+<use ../imgs/int/turnstiles.png>
+Package pdftex.def Info: ../imgs/int/turnstiles.png  used on input line 393.
+(pdftex.def)             Requested size: 278.49976pt x 141.18568pt.
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+<../imgs/int/readings.png, id=656, 695.59875pt x 260.25804pt>
+File: ../imgs/int/readings.png Graphic file (type png)
+<use ../imgs/int/readings.png>
+Package pdftex.def Info: ../imgs/int/readings.png  used on input line 402.
+(pdftex.def)             Requested size: 417.36247pt x 156.156pt.
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[38
+
+ <../imgs/int/lifts.png> <../imgs/int/users.png>] [39 <../imgs/int/cards.png> <
+../imgs/int/turnstiles.png> <../imgs/int/readings.png>]) [40
+
+]
 \openout2 = `40-research.aux'.
 
- (40-research.tex
+
+(40-research.tex
 {\cyrillictext \CYRG \cyrl \cyra \cyrv \cyra } 4.
-[36
+[41
 
 
 
 
-] [37] [38] [39]
+] [42] [43] [44]
 Overfull \hbox (0.18599pt too wide) in paragraph at lines 104--105
 \T2A/fvm/m/n/14.4 уровне при-ло-же-ния. Сна-ча-ла про-ис-хо-дит по-лу-че-ние вс
 ех подъ-ем-ни-ков, счи-
  []
 
-[40] [41]
+[45] [46]
 PGFPlots: reading {csv/exp1.csv}
 PGFPlots: reading {csv/exp2.csv}
 PGFPlots: reading {csv/exp3.csv}
@@ -2006,7 +2064,7 @@ Overfull \hbox (7.80496pt too wide) in paragraph at lines 212--213
 ре-а-ли-за-ци-я-ми, близ-
  []
 
-[42]) [43]
+[47]) [48]
 \openout2 = `51-biblio.aux'.
 
  (51-biblio.tex (report.bbl
@@ -2063,7 +2121,7 @@ Underfull \hbox (badness 5022) in paragraph at lines 73--77
 <ключ-
  []
 
-[44
+[49
 
 
 
@@ -2086,22 +2144,19 @@ Underfull \hbox (badness 10000) in paragraph at lines 137--141
 ew = netdesktop-[]5 . 0$[]
  []
 
-[45])) [46] (report.aux (01-contents.aux) (02-intro.aux) (10-analysis.aux)
+[50])) [51] (report.aux (01-contents.aux) (02-intro.aux) (10-analysis.aux)
 (20-design.aux) (30-impl.aux) (40-research.aux) (51-biblio.aux))
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
-
-LaTeX Warning: There were undefined references.
-
 Package rerunfilecheck Info: File `report.out' has not changed.
-(rerunfilecheck)             Checksum: 46CCFD1515445BC66315EE078B66C51B;10117.
+(rerunfilecheck)             Checksum: 2BA89E2814F25C499DDF2F9B6257EDD5;10117.
  ) 
 Here is how much of TeX's memory you used:
- 41974 strings out of 478864
- 934527 string characters out of 2858518
- 1718117 words of memory out of 10000000
- 58731 multiletter control sequences out of 15000+600000
+ 42041 strings out of 478864
+ 936004 string characters out of 2858518
+ 1717583 words of memory out of 10000000
+ 58779 multiletter control sequences out of 15000+600000
  416652 words of font info for 53 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  106i,19n,108p,1198b,2427s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -2120,9 +2175,9 @@ b><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program
  Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Program Files/MiKTeX
 /fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/alena/AppData/Roaming/MiKT
 eX/fonts/type1/bera/fvmr8a.pfb>
-Output written on report.pdf (46 pages, 1413334 bytes).
+Output written on report.pdf (51 pages, 1639240 bytes).
 PDF statistics:
- 1410 PDF objects out of 1440 (max. 8388607)
- 352 named destinations out of 1000 (max. 500000)
- 449 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1461 PDF objects out of 1728 (max. 8388607)
+ 364 named destinations out of 1000 (max. 500000)
+ 484 words of extra memory for PDF output out of 10000 (max. 10000000)
 

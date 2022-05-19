@@ -226,7 +226,7 @@
             this.GetInfosButton.Name = "GetInfosButton";
             this.GetInfosButton.Size = new System.Drawing.Size(292, 42);
             this.GetInfosButton.TabIndex = 15;
-            this.GetInfosButton.Text = "Посмотреть все спуски";
+            this.GetInfosButton.Text = "Посмотреть все трассы";
             this.GetInfosButton.UseVisualStyleBackColor = true;
             this.GetInfosButton.Click += new System.EventHandler(this.GetSlopesInfoButton_Click);
             // 
@@ -259,7 +259,7 @@
             this.Controls.Add(this.SlopesDataGridView);
             this.Controls.Add(this.label1);
             this.Name = "SlopeViewWinForm";
-            this.Text = "Спуски";
+            this.Text = "Трассы";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.SlopeView_FormClosing);
             this.Load += new System.EventHandler(this.SlopeViewWinForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.SlopesDataGridView)).EndInit();
