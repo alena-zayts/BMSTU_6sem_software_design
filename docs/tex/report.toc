@@ -30,11 +30,12 @@
 \contentsline {subsection}{\numberline {3.3.2}Реализация функции для расчета времени в очереди на подъемник}{29}{subsection.3.3.2}%
 \contentsline {subsection}{\numberline {3.3.3}Модели хранения данных}{30}{subsection.3.3.3}%
 \contentsline {section}{\numberline {3.4}Интерфейс приложения}{33}{section.3.4}%
-\contentsline {chapter}{\numberline {4}Исследовательская часть}{41}{chapter.4}%
-\contentsline {section}{\numberline {4.1}Цель эксперимента}{41}{section.4.1}%
-\contentsline {section}{\numberline {4.2}Технические характеристики}{41}{section.4.2}%
-\contentsline {section}{\numberline {4.3}Описание эксперимента}{41}{section.4.3}%
-\contentsline {subsection}{\numberline {4.3.1}Сравниваемые алгоритмы}{42}{subsection.4.3.1}%
-\contentsline {subsection}{\numberline {4.3.2}Используемые данные}{46}{subsection.4.3.2}%
-\contentsline {section}{\numberline {4.4}Результаты эксперимента}{46}{section.4.4}%
-\contentsline {chapter}{Список использованных источников}{49}{figure.caption.30}%
+\contentsline {chapter}{\numberline {4}Исследовательская часть}{40}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Цель эксперимента}{40}{section.4.1}%
+\contentsline {section}{\numberline {4.2}Технические характеристики}{40}{section.4.2}%
+\contentsline {section}{\numberline {4.3}Описание эксперимента}{40}{section.4.3}%
+\contentsline {subsection}{\numberline {4.3.1}Сравниваемые алгоритмы}{41}{subsection.4.3.1}%
+\contentsline {subsection}{\numberline {4.3.2}Используемые данные}{45}{subsection.4.3.2}%
+\contentsline {section}{\numberline {4.4}Результаты эксперимента}{45}{section.4.4}%
+\contentsline {chapter}{Заключение}{48}{chapter*.31}%
+\contentsline {chapter}{Список использованных источников}{49}{chapter*.31}%

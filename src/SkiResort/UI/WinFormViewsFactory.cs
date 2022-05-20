@@ -9,7 +9,7 @@ using UI.WinFormsViews;
 
 namespace UI
 {
-    public class ViewsFactory : IViewsFactory
+    public class WinFormViewsFactory : IViewsFactory
     {
         public ICardReadingView CreateCardReadingView()
         {
