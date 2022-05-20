@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UI.IViews;
-using UI.TechViews;
+using TechUI.TechViews;
+using UI;
 
-namespace UI
+namespace TechUI
 {
     public class TechViewsFactory : IViewsFactory
     {
@@ -22,12 +23,12 @@ namespace UI
 
         public IExceptionView CreateExceptionView()
         {
-            throw new NotImplementedException();
+            return new ExceptionViewTech();
         }
 
         public ILiftView CreateLiftView()
         {
-            throw new NotImplementedException();
+           return new LiftViewTech();
         }
 
         public IMainView CreateMainView()
@@ -37,17 +38,17 @@ namespace UI
 
         public IMessageView CreateMessageView()
         {
-            throw new NotImplementedException();
+            return new MessageViewTech();
         }
 
         public IProfileView CreateProfileView()
         {
-            throw new NotImplementedException();
+            return new ProfileViewTech();
         }
 
         public ISlopeView CreateSlopeView()
         {
-            throw new NotImplementedException();
+            return new SlopeViewTech();
         }
 
         public ITurnstileView CreateTurnstileView()
