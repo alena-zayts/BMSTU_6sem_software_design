@@ -17,8 +17,9 @@ namespace UI
 
 
             IViewsFactory viewsFactory = new ViewsFactory();
+            IViewsFactory viewsFactory2 = new TechViewsFactory();
             Facade  facade = new(new TarantoolRepositoriesFactory());
-            Presenter presenter = new(viewsFactory, facade);
+            Presenter presenter = new(viewsFactory2, facade);
             presenter.RunAsync();
 
             //Application.Run(mainView);
