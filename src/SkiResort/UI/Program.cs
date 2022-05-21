@@ -4,6 +4,18 @@ using System.Configuration;
 using System.ComponentModel.Design;
 using Workers;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+using Serilog;
+using Serilog.Core;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using Microsoft.Extensions.Configuration;
+using System.IO;
+
 
 namespace UI
 {
@@ -12,36 +24,30 @@ namespace UI
         [STAThread]
         static void Main()
         {
-
-            string connectionString = ConfigurationManager.ConnectionStrings["TarantoolConnectionString"].ConnectionString;
-            //ServiceContainer container = new ServiceContainer();
-
-            //CardReadingReceivingService cardReadingReceivingService = new();
-            /*            container.Add<VKGroupHelperWorker>(vk);
-                        container.RegisterInstance<Settings>(Globals.Settings);
-                        container.RegisterInstance<ApplicationContext>(Context);
-                        container.Register<IMainFormView, MainForm>();
-                        container.Register<MainFormPresenter>();
-            */
-
-            IHost host = Host.CreateDefaultBuilder().ConfigureServices(services =>
-    {
-        services.AddHostedService<QueueTimeCountingService>();
-        services.AddHostedService<CardReadingReceivingService>();
-    })
-    .Build();
-
-            await host.RunAsync();
-
             ApplicationConfiguration.Initialize();
 
-
+            IRepositoriesFactory repositoryFactory = new TarantoolRepositoriesFactory();
             IViewsFactory viewsFactory = new WinFormViewsFactory();
-            Facade  facade = new(new TarantoolRepositoriesFactory());
+            Facade facade = new(repositoryFactory);
             Presenter presenter = new(viewsFactory, facade);
-            presenter.RunAsync();
 
-            //Application.Run(mainView);
+            Task.Run(() => presenter.RunAsync());
+
+
+            IHost host = Host.CreateDefaultBuilder().ConfigureServices(services =>
+            {
+                services.AddHostedService<QueueTimeCountingService>();
+                services.AddHostedService<CardReadingReceivingService>();
+            }).Build();
+            host.RunAsync();
+        }
+    }
+    public static class DiExtensions
+    {
+        public static void AddRepositoryExtensions(IServiceCollection services)
+        {
+            services.AddSingleton<IRepositoriesFactory, TarantoolRepositoriesFactory>();
+            services.AddSingleton<IViewsFactory, WinFormViewsFactory>();
         }
     }
 }

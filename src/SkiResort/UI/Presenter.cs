@@ -18,11 +18,37 @@ using AccessToDB.Exceptions.TurnstileExceptions;
 using BL.Exceptions.UserExceptions;
 using BL.Exceptions.MessageExceptions;
 
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Serilog;
+using Microsoft.Extensions.Configuration;
+using System.IO;
+
+
+using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using Microsoft.EntityFrameworkCore;
+using System.IO;
+
+
+
 using UI.IViews;
 
 namespace UI
 {
-    public class Presenter
+    public class Presenter// : BackgroundService
     {
         private uint _userID;
         private PermissionsEnum _permissions;
@@ -32,7 +58,6 @@ namespace UI
 
         private IExceptionView _exceptionView;
         private IMainView _mainView;
-
         private IProfileView? _profileView;
         private ISlopeView? _slopeView;
         private ILiftView? _liftView;
@@ -50,6 +75,23 @@ namespace UI
             _permissions = PermissionsEnum.UNAUTHORIZED;
 
             _exceptionView = _viewsFactory.CreateExceptionView();
+
+            //var builder = new HostBuilder().ConfigureServices((hostContext, services) =>
+            //{
+            //    DiExtensions.AddRepositoryExtensions(services);
+
+            //    var serilogLogger = new LoggerConfiguration()
+            //    .WriteTo.Console()
+            //    .WriteTo.File("log-.txt", rollingInterval: RollingInterval.Day)
+            //    .CreateLogger();
+            //    services.AddLogging(x =>
+            //    {
+            //        x.AddSerilog(logger: serilogLogger, dispose: true);
+            //    });
+            //});
+            //var host = builder.Build();
+
+
         }
 
         public async Task RunAsync()
@@ -1576,6 +1618,11 @@ namespace UI
             }
             await GetTurnstilesAsync(sender, e);
         }
+
+        //protected override Task ExecuteAsync(CancellationToken stoppingToken)
+        //{
+        //    return RunAsync();
+        //}
     }
 
 }

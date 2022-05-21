@@ -125,6 +125,9 @@ namespace AccessToDB.RepositoriesTarantool
         {
             try
             {
+                var from = (uint)dateFrom.ToUnixTimeSeconds();
+                var to = (uint)dateTo.ToUnixTimeSeconds();
+                var ddelta = to - from;
                 var result = await _box.Call_1_6<ValueTuple<uint, uint, uint>, Int32[]>("update_queue_time", (ValueTuple.Create(liftID, (uint)dateFrom.ToUnixTimeSeconds(), (uint)dateTo.ToUnixTimeSeconds())));
                 return (uint)result.Data[0][0];
             }

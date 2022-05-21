@@ -1,8 +1,5 @@
 using BL.IRepositories;
 using BL.Models;
-
-
-using Ninject;
 using BL;
 using AccessToDB;
 
@@ -11,40 +8,36 @@ namespace Workers
     public class QueueTimeCountingService : BackgroundService
     {
         private readonly ILogger<QueueTimeCountingService> _logger;
-        private readonly uint _timeDelta;
+        private readonly uint _sleepTime;
         private readonly ILiftsRepository _liftsRepository;
         private readonly ICardReadingsRepository _cardReadingsRepository;
 
-        public QueueTimeCountingService(ILogger<QueueTimeCountingService> logger)//, ILiftsRepository liftsRepository, ICardReadingsRepository cardReadingsRepository, uint timeDelta)
+        public QueueTimeCountingService(ILogger<QueueTimeCountingService> logger)
         {
-            _logger = logger;
-
-            
-
-            IKernel ninjectKernel = new StandardKernel();
-            ninjectKernel.Bind<IRepositoriesFactory>().To<TarantoolRepositoriesFactory>();
-            IRepositoriesFactory repositoriesFactory = ninjectKernel.Get<IRepositoriesFactory>();
-
-
-            _timeDelta = 1000;
+            IRepositoriesFactory repositoriesFactory = new TarantoolRepositoriesFactory();
             _liftsRepository = repositoriesFactory.CreateLiftsRepository();
             _cardReadingsRepository = repositoriesFactory.CreateCardReadingsRepository();
+            _logger = logger;
+            _sleepTime = 5000; //ms
         }
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
+            DateTimeOffset prevTime = DateTimeOffset.Now;
+            DateTimeOffset currentTime = DateTimeOffset.Now;
             while (!stoppingToken.IsCancellationRequested)
             {
-                DateTimeOffset currentTime = DateTimeOffset.Now;
-
+                prevTime = currentTime;
+                currentTime = DateTimeOffset.Now;
                 List<Lift> lifts = await _liftsRepository.GetLiftsAsync();
+                
                 foreach (Lift lift in lifts)
                 {
-                    await _cardReadingsRepository.UpdateQueueTime(lift.LiftID, DateTimeOffset.FromUnixTimeSeconds(currentTime.ToUnixTimeSeconds() - (long)_timeDelta).DateTime, currentTime);
+                    uint newTime = await _cardReadingsRepository.UpdateQueueTime(lift.LiftID, prevTime, currentTime);
                 }
                 
-                _logger.LogInformation("QueueTimeCountingService running at: {time}", DateTimeOffset.Now);
-                await Task.Delay((int) _timeDelta, stoppingToken);
+                _logger.LogInformation($"QueueTimeCountingService running at: {DateTimeOffset.Now} with delta {(currentTime - prevTime).TotalSeconds}");
+                await Task.Delay((int) _sleepTime, stoppingToken);
             }
         }
     }

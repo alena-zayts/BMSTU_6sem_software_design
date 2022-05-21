@@ -1,26 +1,35 @@
 ﻿using BL;
 using BL.IRepositories;
 using AccessToDB.RepositoriesTarantool;
+using AccessToDB;
+using System.Configuration;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Configuration.Json;
+
+
 
 
 namespace AccessToDB
 {
     public class TarantoolRepositoriesFactory: IRepositoriesFactory
     {
-        private static string connection_string = "ski_admin:Tty454r293300@localhost:3301";
-
         private TarantoolContext _tarantool_context;
 
-        public TarantoolRepositoriesFactory() => (_tarantool_context) = Initialize().GetAwaiter().GetResult();
+        public TarantoolRepositoriesFactory() => 
+            (_tarantool_context) = Initialize().GetAwaiter().GetResult();
 
         private static async Task<TarantoolContext> Initialize()
         {
-            return new TarantoolContext(connection_string);
-
+            var configurationBuilder = new ConfigurationBuilder()
+                .AddJsonFile("appsettings.json")
+                .AddEnvironmentVariables();
+            var config = configurationBuilder.Build();
+            string connectionString = config["Connections:ConnectAsAdmin"];
+            return new TarantoolContext(connectionString);
         }
 
 
-            public IMessagesRepository CreateMessagesRepository()
+        public IMessagesRepository CreateMessagesRepository()
         {
             return new TarantoolMessagesRepository(_tarantool_context);
         }
