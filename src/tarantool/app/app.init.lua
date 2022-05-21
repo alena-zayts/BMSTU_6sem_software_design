@@ -285,7 +285,7 @@ local function load__data()
 	load_slopes_data()
 	load_lifts_slopes_data()
 	load_messages_data()
-	load_card_readings_data()
+	--load_card_readings_data()
 end
 
 ----------------------------------------------------------------------------------------------------functions
@@ -357,7 +357,6 @@ function update_queue_time(lift_id, date_from, date_query)
 		0)
 	
 	lifts:update(lift_id, {{'=', 6, new_queue_time}})
-	print(lift_id, time_delta, card_readings_amount, new_queue_time)
 	return new_queue_time
 end
 

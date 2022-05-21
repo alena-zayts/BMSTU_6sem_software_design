@@ -115,12 +115,12 @@ class Lift(Table):
         self.is_open = is_open
         self.seats_amount = seats_amount
         self.lifting_time = lifting_time  # sec
-        self.queue_time = queue_time  # sec
+        self.queue_time = queue_time if queue_time != 0 else randint(15, 100)  # sec
 
     @classmethod
     def generate_data(cls,
-                      #n_lifts_bunches=10, lifts_per_bunch=(8, 11),
-                      n_lifts_bunches=1, lifts_per_bunch=(1, 1),
+                      n_lifts_bunches=10, lifts_per_bunch=(8, 11),
+                      #n_lifts_bunches=1, lifts_per_bunch=(1, 1),
                       lifting_times=(30, 300), seats_amounts=(10, 100)):
         data = []
         alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
@@ -472,8 +472,8 @@ def infinite_card_readings_generator(sleep_time=1, n_in_time=1):
 
 
 if __name__ == "__main__":
-    # generate_all_data_to_json_file()
-    infinite_card_readings_generator(sleep_time=1, n_in_time=1)  # sec
+    #generate_all_data_to_json_file()
+    infinite_card_readings_generator(sleep_time=1, n_in_time=20)  # sec
     #generate_one_test("", 10000)
     # generate_lifts(1000)
     # generate_test3()
