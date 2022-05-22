@@ -60,5 +60,9 @@ namespace UI
         {
             return new UserViewWinForm();
         }
+        public IInfoView CreateInfoView()
+        {
+            return new InfoViewWinForm();
+        }
     }
 }

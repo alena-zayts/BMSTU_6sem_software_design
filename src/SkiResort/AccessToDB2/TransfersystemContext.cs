@@ -177,8 +177,7 @@ namespace AccessToDB2
             modelBuilder.Entity<AccessToDB2.Models.User>(entity =>
             {
                 entity.HasKey(e => e.UserID)
-                    //.ValueGeneratedNever()
-                    .HasName("user_id");
+                    .HasName("users_pk");
 
                 entity.ToTable("users");
 

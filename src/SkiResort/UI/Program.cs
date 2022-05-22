@@ -25,17 +25,11 @@ namespace UI
         [STAThread]
         static void Main()
         {
-            var configurationBuilder = new ConfigurationBuilder()
-.AddJsonFile("appsettings.json")
-.AddEnvironmentVariables();
-            var config = configurationBuilder.Build();
-            string connectionString = config["Connections:ConnectPostgres"];
-            string connectionString2 = config["Connections:ConnectAsAdmin"];
 
             ApplicationConfiguration.Initialize();
 
-            //IRepositoriesFactory repositoryFactory = new TarantoolRepositoriesFactory();
-            IRepositoriesFactory repositoryFactory = new PostgresRepositoriesFactrory(new TransfersystemContext(Connection.GetConnection()));
+            IRepositoriesFactory repositoryFactory = new TarantoolRepositoriesFactory();
+            //IRepositoriesFactory repositoryFactory = new PostgresRepositoriesFactrory(new TransfersystemContext(Connection.GetConnection()));
 
 
             IViewsFactory viewsFactory = new WinFormViewsFactory();

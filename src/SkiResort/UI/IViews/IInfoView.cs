@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace UI.IViews
 {
-    public interface IExceptionView
+    public interface IInfoView
     {
-        public void ShowException(Exception exception, string message="Призошла ошибка");
+        public void ShowInfo(string message);
+        public void Close();
     }
 }

@@ -9,9 +9,9 @@ namespace UI.WinFormsViews
 {
     public class ExceptionViewWinForm : IExceptionView
     {
-        public void ShowException(Exception exception, string message)
+        public void ShowException(Exception exception, string message = "Призошла ошибка")
         {
-            MessageBox.Show(exception.ToString(), message, MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show(exception.ToString(), message, MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
     }
 }
