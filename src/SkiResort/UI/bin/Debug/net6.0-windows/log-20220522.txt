@@ -1,0 +1,20 @@
+2022-05-22 15:22:58.340 +03:00 [INF] Initialized presenter
+2022-05-22 15:23:49.740 +03:00 [INF] Changing visibility for views
+2022-05-22 15:23:49.741 +03:00 [INF] Opening MainView
+2022-05-22 15:23:56.125 +03:00 [INF] Opening Slope View
+2022-05-22 15:23:56.156 +03:00 [INF] Changing visibility for views
+2022-05-22 16:01:21.329 +03:00 [INF] Initialized presenter
+2022-05-22 16:01:21.546 +03:00 [INF] Changing visibility for views
+2022-05-22 16:01:21.546 +03:00 [INF] Opening MainView
+2022-05-22 16:01:23.506 +03:00 [INF] Opening Slope View
+2022-05-22 16:01:23.603 +03:00 [INF] Changing visibility for views
+2022-05-22 16:03:30.488 +03:00 [INF] Initialized presenter
+2022-05-22 16:03:30.713 +03:00 [INF] Changing visibility for views
+2022-05-22 16:03:30.714 +03:00 [INF] Opening MainView
+2022-05-22 16:03:32.467 +03:00 [INF] Opening Slope View
+2022-05-22 16:03:32.512 +03:00 [INF] Changing visibility for views
+2022-05-22 16:04:46.177 +03:00 [INF] Initialized presenter
+2022-05-22 16:04:46.371 +03:00 [INF] Changing visibility for views
+2022-05-22 16:04:46.372 +03:00 [INF] Opening MainView
+2022-05-22 16:04:54.644 +03:00 [INF] Opening Slope View
+2022-05-22 16:04:54.677 +03:00 [INF] Changing visibility for views

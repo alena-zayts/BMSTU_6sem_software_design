@@ -53,3 +53,9 @@ C:\BMSTU_6sem_software_design\src\SkiResort\TechUI2\obj\Debug\net6.0\ref\TechUI2
 C:\BMSTU_6sem_software_design\src\SkiResort\TechUI2\bin\Debug\net6.0\Microsoft.Extensions.Configuration.dll
 C:\BMSTU_6sem_software_design\src\SkiResort\TechUI2\bin\Debug\net6.0\Microsoft.Extensions.Configuration.Abstractions.dll
 C:\BMSTU_6sem_software_design\src\SkiResort\TechUI2\bin\Debug\net6.0\Microsoft.Extensions.Primitives.dll
+C:\BMSTU_6sem_software_design\src\SkiResort\TechUI2\bin\Debug\net6.0\Microsoft.Extensions.Configuration.EnvironmentVariables.dll
+C:\BMSTU_6sem_software_design\src\SkiResort\TechUI2\bin\Debug\net6.0\Microsoft.Extensions.Configuration.FileExtensions.dll
+C:\BMSTU_6sem_software_design\src\SkiResort\TechUI2\bin\Debug\net6.0\Microsoft.Extensions.Configuration.Json.dll
+C:\BMSTU_6sem_software_design\src\SkiResort\TechUI2\bin\Debug\net6.0\Microsoft.Extensions.FileProviders.Abstractions.dll
+C:\BMSTU_6sem_software_design\src\SkiResort\TechUI2\bin\Debug\net6.0\Microsoft.Extensions.FileProviders.Physical.dll
+C:\BMSTU_6sem_software_design\src\SkiResort\TechUI2\bin\Debug\net6.0\Microsoft.Extensions.FileSystemGlobbing.dll

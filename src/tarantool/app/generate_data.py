@@ -469,7 +469,32 @@ def infinite_card_readings_generator(sleep_time=1, n_in_time=1):
             i += 1
         time.sleep(sleep_time)
 
+import psycopg2
+def main2():
+    # Подключаемся к БД.
+    try:
+        con = psycopg2.connect(
+            database="postgres",
+            user="postgres",
+            password="4541",
+            host="127.0.0.1",  # Адрес сервера базы данных.
+            port="5432"		   # Номер порта.
+        )
+    except:
+        print("Ошибка при подключении к БД")
+        return
 
+    print("База данных успешно открыта")
+
+    # Объект cursor используется для фактического
+    # выполнения наших команд.
+    cur = con.cursor()
+
+
+
+    # Закрываем соединение с БД.
+    cur.close()
+    con.close()
 
 if __name__ == "__main__":
     #generate_all_data_to_json_file()

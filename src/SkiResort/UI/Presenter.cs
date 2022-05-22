@@ -48,13 +48,16 @@ using UI.IViews;
 
 namespace UI
 {
-    public class Presenter// : BackgroundService
+    public class Presenter
     {
+        private Facade _facade;
+        private IViewsFactory _viewsFactory;
+
+        ILogger _log;
+
         private uint _userID;
         private PermissionsEnum _permissions;
-        private Facade _facade;
-
-        private IViewsFactory _viewsFactory;
+        
 
         private IExceptionView _exceptionView;
         private IMainView _mainView;
@@ -70,28 +73,14 @@ namespace UI
         public Presenter(IViewsFactory viewsFactory, Facade facade)
         {
             _facade = facade;
-            _viewsFactory = viewsFactory;
-
+            _viewsFactory = viewsFactory;;
             _permissions = PermissionsEnum.UNAUTHORIZED;
-
             _exceptionView = _viewsFactory.CreateExceptionView();
-
-            //var builder = new HostBuilder().ConfigureServices((hostContext, services) =>
-            //{
-            //    DiExtensions.AddRepositoryExtensions(services);
-
-            //    var serilogLogger = new LoggerConfiguration()
-            //    .WriteTo.Console()
-            //    .WriteTo.File("log-.txt", rollingInterval: RollingInterval.Day)
-            //    .CreateLogger();
-            //    services.AddLogging(x =>
-            //    {
-            //        x.AddSerilog(logger: serilogLogger, dispose: true);
-            //    });
-            //});
-            //var host = builder.Build();
-
-
+            _log = new LoggerConfiguration()
+                .WriteTo.Console()
+                .WriteTo.File("log-.txt", rollingInterval: RollingInterval.Day)
+                .CreateLogger();
+            _log.Information("Initialized presenter");
         }
 
         public async Task RunAsync()
@@ -99,35 +88,23 @@ namespace UI
             //CHANGEIT
 
             //unauthorized
-            //_userID = 7777;
+            //_userID = 2;
             //_permissions = PermissionsEnum.UNAUTHORIZED;
 
             //admin q q
             _userID = 1;
             _permissions = PermissionsEnum.ADMIN;
+
             //skipatrol ski_patrol_email9 ski_patrol_password9
             //_userID = 1511;
             //_permissions = PermissionsEnum.SKI_PATROL;
+
             //authorized authorized_email0 authorized_password0
             //_userID = 1002;
             //_permissions = PermissionsEnum.AUTHORIZED;
 
-            //_userID = await _facade.AddUnauthorizedUserAsync();
-            //try
-            //{
 
-            //}
-            //catch (Exception ex)
-            //{
-            //    _exceptionView.ShowException(ex, "");
-            //}
-            //User tmp = await _facade.AdminGetUserByIDAsync(1, _userID);
             _mainView = _viewsFactory.CreateMainView();
-
-            _mainView.MessageEnabled = false;
-            _mainView.CardReadingEnabled = false;
-            _mainView.TurnstileEnabled = false;
-            _mainView.UserEnabled = false;
 
             _mainView.ProfileClicked += OnProfileClicked;
             _mainView.SlopeClicked += OnSlopeClicked;
@@ -139,19 +116,20 @@ namespace UI
             _mainView.UserClicked += OnUserClicked;
             _mainView.CloseClicked += OnMainCloseClicked;
             _changeVisibilityForViews();
+            _log.Information("Opening MainView");
             _mainView.Open();
+            
         }
 
         //MAIN
         public async Task OnMainCloseClicked(object sender, EventArgs e)
         {
-            if (_permissions != PermissionsEnum.UNAUTHORIZED)
-            {
-                await LogOutAsync(sender, e);
-            }
+            _log.Information("Closing MainView");
         }
+
         private void _changeVisibilityForViews()
         {
+            _log.Information("Changing visibility for views");
             _changeVisibilityForMainView();
             if (_profileView != null)
             {
@@ -340,6 +318,7 @@ namespace UI
             {
                 return;
             }
+            _log.Information("Opening Profile View");
             _profileView = _viewsFactory.CreateProfileView();
             _profileView.RegisterClicked += RegisterAsync;
             _profileView.LogOutClicked += LogOutAsync;
@@ -352,6 +331,7 @@ namespace UI
         private void OnProfileCloseClicked(object sender, EventArgs e)
         {
             _profileView = null;
+            _log.Information("Closed Profile View");
         }
 
         public async Task RegisterAsync(object sender, EventArgs e)
@@ -451,6 +431,7 @@ namespace UI
             {
                 return;
             }
+            _log.Information("Opening Slope View");
             _slopeView = _viewsFactory.CreateSlopeView();
             _slopeView.CloseClicked += OnSlopeCloseClicked;
             _slopeView.GetInfoClicked += GetSlopeInfoAsync;
@@ -467,6 +448,7 @@ namespace UI
         private void OnSlopeCloseClicked(object sender, EventArgs e)
         {
             _slopeView = null;
+            _log.Information("Closed Slope View");
         }
 
         private async Task GetSlopesInfoAsync(object sender, EventArgs e)
@@ -645,6 +627,7 @@ namespace UI
             {
                 return;
             }
+            _log.Information("Opening Slope View");
             _liftView = _viewsFactory.CreateLiftView();
             _liftView.CloseClicked += OnLiftCloseClicked;
             _liftView.GetInfoClicked += GetLiftInfoAsync;
@@ -661,6 +644,7 @@ namespace UI
         private void OnLiftCloseClicked(object sender, EventArgs e)
         {
             _liftView = null;
+            _log.Information("Closed Lift View");
         }
 
         private async Task GetLiftsInfoAsync(object sender, EventArgs e)
@@ -838,8 +822,8 @@ namespace UI
             {
                 return;
             }
+            _log.Information("Opening Message View");
             _messageView = _viewsFactory.CreateMessageView();
-
             _messageView.GetMessageClicked += GetMessageAsync;
             _messageView.GetMessagesClicked += GetMessagesAsync;
             _messageView.MarkCheckedClicked += MarkMessageCheckedAsync;
@@ -856,6 +840,7 @@ namespace UI
         private void OnMessageCloseClicked(object sender, EventArgs e)
         {
             _messageView = null;
+            _log.Information("Closed Message View");
         }
 
         private async Task GetMessagesAsync(object sender, EventArgs e)
@@ -1012,6 +997,7 @@ namespace UI
             {
                 return;
             }
+            _log.Information("Opening CardReading View");
             _cardReadingView = _viewsFactory.CreateCardReadingView();
 
             _cardReadingView.GetCardReadingClicked += GetCardReadingAsync;
@@ -1027,6 +1013,7 @@ namespace UI
         private void OnCardReadingCloseClicked(object sender, EventArgs e)
         {
             _cardReadingView = null;
+            _log.Information("Closed CardReading View");
         }
 
         private async Task GetCardReadingsAsync(object sender, EventArgs e)
@@ -1166,6 +1153,7 @@ namespace UI
             {
                 return;
             }
+            _log.Information("Opening User View");
             _userView = _viewsFactory.CreateUserView();
             _userView.CloseClicked += OnUserCloseClicked;
             _userView.GetUserClicked += GetUserAsync;
@@ -1180,6 +1168,7 @@ namespace UI
         private void OnUserCloseClicked(object sender, EventArgs e)
         {
             _userView = null;
+            _log.Information("Closed User View");
         }
 
         private async Task GetUsersAsync(object sender, EventArgs e)
@@ -1346,6 +1335,7 @@ namespace UI
             {
                 return;
             }
+            _log.Information("Opening Card View");
             _cardView = _viewsFactory.CreateCardView();
             _cardView.CloseClicked += OnCardCloseClicked;
             _cardView.GetCardClicked += GetCardAsync;
@@ -1360,6 +1350,7 @@ namespace UI
         private void OnCardCloseClicked(object sender, EventArgs e)
         {
             _cardView = null;
+            _log.Information("Closed Card View");
         }
 
         private async Task GetCardsAsync(object sender, EventArgs e)
@@ -1475,6 +1466,7 @@ namespace UI
             {
                 return;
             }
+            _log.Information("Opening Turnstile View");
             _turnstileView = _viewsFactory.CreateTurnstileView();
             _turnstileView.CloseClicked += OnTurnstileCloseClicked;
             _turnstileView.GetTurnstileClicked += GetTurnstileAsync;
@@ -1489,6 +1481,7 @@ namespace UI
         private void OnTurnstileCloseClicked(object sender, EventArgs e)
         {
             _turnstileView = null;
+            _log.Information("Closed Turnstile View");
         }
 
         private async Task GetTurnstilesAsync(object sender, EventArgs e)

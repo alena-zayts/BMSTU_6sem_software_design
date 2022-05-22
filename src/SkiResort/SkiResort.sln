@@ -17,7 +17,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UI", "UI\UI.csproj", "{62EA
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Experiment", "Experiment\Experiment.csproj", "{0E5D4B5C-8122-46AA-8A3E-2142F78E5B63}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TechUI2", "TechUI2\TechUI2.csproj", "{9328AA38-D7F5-4895-9CB1-DE8F94335A47}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TechUI2", "TechUI2\TechUI2.csproj", "{9328AA38-D7F5-4895-9CB1-DE8F94335A47}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AccessToDB2", "AccessToDB2\AccessToDB2.csproj", "{6A8D9E54-56B8-4A01-8F2F-00668780DDCD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -57,6 +59,10 @@ Global
 		{9328AA38-D7F5-4895-9CB1-DE8F94335A47}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9328AA38-D7F5-4895-9CB1-DE8F94335A47}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9328AA38-D7F5-4895-9CB1-DE8F94335A47}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6A8D9E54-56B8-4A01-8F2F-00668780DDCD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A8D9E54-56B8-4A01-8F2F-00668780DDCD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A8D9E54-56B8-4A01-8F2F-00668780DDCD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A8D9E54-56B8-4A01-8F2F-00668780DDCD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

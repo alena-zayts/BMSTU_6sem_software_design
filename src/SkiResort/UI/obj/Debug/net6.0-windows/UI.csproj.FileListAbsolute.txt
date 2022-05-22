@@ -103,3 +103,8 @@ C:\BMSTU_6sem_software_design\src\SkiResort\UI\bin\Debug\net6.0-windows\Serilog.
 C:\BMSTU_6sem_software_design\src\SkiResort\UI\bin\Debug\net6.0-windows\runtimes\win\lib\net6.0\System.Diagnostics.EventLog.Messages.dll
 C:\BMSTU_6sem_software_design\src\SkiResort\UI\bin\Debug\net6.0-windows\Workers.dll
 C:\BMSTU_6sem_software_design\src\SkiResort\UI\bin\Debug\net6.0-windows\Workers.pdb
+C:\BMSTU_6sem_software_design\src\SkiResort\UI\bin\Debug\net6.0-windows\Microsoft.EntityFrameworkCore.Relational.dll
+C:\BMSTU_6sem_software_design\src\SkiResort\UI\bin\Debug\net6.0-windows\Npgsql.dll
+C:\BMSTU_6sem_software_design\src\SkiResort\UI\bin\Debug\net6.0-windows\Npgsql.EntityFrameworkCore.PostgreSQL.dll
+C:\BMSTU_6sem_software_design\src\SkiResort\UI\bin\Debug\net6.0-windows\AccessToDB2.dll
+C:\BMSTU_6sem_software_design\src\SkiResort\UI\bin\Debug\net6.0-windows\AccessToDB2.pdb

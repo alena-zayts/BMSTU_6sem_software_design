@@ -9,6 +9,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="C:\Users\alena\.nuget\packages\nlog.config\4.7.15\contentFiles\any\any\NLog.config" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.5" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="6.0.1" />
@@ -21,6 +25,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\AccessToDB2\AccessToDB2.csproj" />
     <ProjectReference Include="..\AccessToDB\AccessToDB.csproj" />
     <ProjectReference Include="..\BL\BL.csproj" />
     <ProjectReference Include="..\Workers\Workers.csproj" />
