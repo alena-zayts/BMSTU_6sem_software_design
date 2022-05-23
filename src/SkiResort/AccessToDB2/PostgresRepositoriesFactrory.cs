@@ -35,7 +35,7 @@ namespace AccessToDB2
 
         public ILiftsSlopesRepository CreateLiftsSlopesRepository()
         {
-            return new PostgresLiftsSlopesRepository(new DBContext(conn));
+            return new PostgresLiftsSlopesRepository(new DBContext(conn), CreateLiftsRepository(), CreateSlopesRepository());
         }
 
         public IMessagesRepository CreateMessagesRepository()

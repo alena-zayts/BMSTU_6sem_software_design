@@ -19,39 +19,81 @@ namespace AccessToDB2.PostgresRepositories
         {
             db = curDb;
         }
-        public Task AddLiftAsync(uint liftID, string liftName, bool isOpen, uint seatsAmount, uint liftingTime, uint queueTime)
+        public async Task AddLiftAsync(uint liftID, string liftName, bool isOpen, uint seatsAmount, uint liftingTime, uint queueTime)
         {
-            throw new NotImplementedException();
+            var lift = new AccessToDB2.Models.Lift((int)liftID, liftName, isOpen, (int)seatsAmount, (int) liftingTime, (int) queueTime);
+            db.Lifts.Add(lift);
+            db.SaveChanges();
         }
 
-        public Task<uint> AddLiftAutoIncrementAsync(string liftName, bool isOpen, uint seatsAmount, uint liftingTime)
+        public async Task<uint> AddLiftAutoIncrementAsync(string liftName, bool isOpen, uint seatsAmount, uint liftingTime)
         {
-            throw new NotImplementedException();
+            var lift = new AccessToDB2.Models.Lift((int)db.Lifts.Count() + 1, liftName, isOpen, (int)seatsAmount, (int)liftingTime, 0);
+            db.Lifts.Add(lift);
+            db.SaveChanges();
+            return (uint)lift.LiftId;
         }
 
-        public Task DeleteLiftByIDAsync(uint liftID)
+        public async Task DeleteLiftByIDAsync(uint id)
         {
-            throw new NotImplementedException();
+            var obj = await GetLiftByIdAsync(id);
+            db.Lifts.Remove(LiftConverter.BLToDB(obj));
+            db.SaveChanges();
         }
 
-        public Task<Lift> GetLiftByIdAsync(uint liftID)
+        public async Task<Lift> GetLiftByIdAsync(uint id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var obj = db.Lifts.Find((int)id);
+                if (obj == null)
+                    throw new Exception();
+
+                return LiftConverter.DBToBL(obj);
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
         }
 
-        public Task<Lift> GetLiftByNameAsync(string name)
+
+
+        public async Task<List<Lift>> GetLiftsAsync(uint offset = 0, uint limit = 0)
         {
-            throw new NotImplementedException();
+            IQueryable<AccessToDB2.Models.Lift> objs;
+            if (limit != 0)
+            {
+                objs = db.Lifts.OrderBy(z => z.LiftId).Where(z => (offset <= z.LiftId) && (z.LiftId) < limit).AsNoTracking();
+            }
+            else
+            {
+                objs = db.Lifts.OrderBy(z => z.LiftId).Where(z => (offset <= z.LiftId)).AsNoTracking();
+            }
+            List<AccessToDB2.Models.Lift> conv = objs.ToList();
+            List<BL.Models.Lift> final = new();
+            foreach (var obj in conv)
+            {
+                final.Add(LiftConverter.DBToBL(obj));
+            }
+            return final;
         }
 
-        public Task<List<Lift>> GetLiftsAsync(uint offset = 0, uint limit = 0)
+
+
+        public async Task UpdateLiftByIDAsync(uint liftID, string liftName, bool newIsOpen, uint newSeatsAmount, uint newLiftingTime)
         {
-            throw new NotImplementedException();
+            var obj = new AccessToDB2.Models.Lift((int)liftID, liftName, newIsOpen, (int)newSeatsAmount, (int)newLiftingTime, 0);
+            db.Lifts.Update(obj);
+            db.SaveChanges();
         }
 
-        public Task UpdateLiftByIDAsync(uint liftID, string liftName, bool newIsOpen, uint newSeatsAmount, uint newLiftingTime)
+
+        public async Task<Lift> GetLiftByNameAsync(string name)
         {
-            throw new NotImplementedException();
+            IQueryable<AccessToDB2.Models.Lift> objs = db.Lifts.Where(needed => needed.LiftName == name).AsNoTracking();
+            var obj = objs.ToList()[0];
+            return LiftConverter.DBToBL(obj);
         }
     }
 }

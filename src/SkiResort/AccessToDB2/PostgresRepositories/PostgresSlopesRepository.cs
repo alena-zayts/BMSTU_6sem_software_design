@@ -18,39 +18,77 @@ namespace AccessToDB2.PostgresRepositories
         {
             db = curDb;
         }
-        public Task AddSlopeAsync(uint slopeID, string slopeName, bool isOpen, uint difficultyLevel)
+        public async Task AddSlopeAsync(uint slopeID, string slopeName, bool isOpen, uint difficultyLevel)
         {
-            throw new NotImplementedException();
+            var slope = new AccessToDB2.Models.Slope((int)slopeID, slopeName, (bool)isOpen, (int)difficultyLevel);
+            db.Slopes.Add(slope);
+            db.SaveChanges();
         }
 
-        public Task<uint> AddSlopeAutoIncrementAsync(string slopeName, bool isOpen, uint difficultyLevel)
+        public async Task<uint> AddSlopeAutoIncrementAsync(string slopeName, bool isOpen, uint difficultyLevel)
         {
-            throw new NotImplementedException();
+            var slope = new AccessToDB2.Models.Slope((int)db.Slopes.Count() + 1, slopeName, (bool)isOpen, (int)difficultyLevel);
+            db.Slopes.Add(slope);
+            db.SaveChanges();
+            return (uint)slope.SlopeId;
         }
 
-        public Task DeleteSlopeByIDAsync(uint slopeID)
+        public async Task DeleteSlopeByIDAsync(uint id)
         {
-            throw new NotImplementedException();
+            var obj = await GetSlopeByIdAsync(id);
+            db.Slopes.Remove(SlopeConverter.BLToDB(obj));
+            db.SaveChanges();
         }
 
-        public Task<Slope> GetSlopeByIdAsync(uint SlopeID)
+        public async Task<Slope> GetSlopeByIdAsync(uint id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var obj = db.Slopes.Find((int)id);
+                if (obj == null)
+                    throw new Exception();
+
+                return SlopeConverter.DBToBL(obj);
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
         }
 
-        public Task<Slope> GetSlopeByNameAsync(string name)
+        public async Task<List<Slope>> GetSlopesAsync(uint offset = 0, uint limit = 0)
         {
-            throw new NotImplementedException();
+            IQueryable<AccessToDB2.Models.Slope> objs;
+            if (limit != 0)
+            {
+                objs = db.Slopes.OrderBy(z => z.SlopeId).Where(z => (offset <= z.SlopeId) && (z.SlopeId) < limit).AsNoTracking();
+            }
+            else
+            {
+                objs = db.Slopes.OrderBy(z => z.SlopeId).Where(z => (offset <= z.SlopeId)).AsNoTracking();
+            }
+            List<AccessToDB2.Models.Slope> conv = objs.ToList();
+            List<BL.Models.Slope> final = new();
+            foreach (var obj in conv)
+            {
+                final.Add(SlopeConverter.DBToBL(obj));
+            }
+            return final;
         }
 
-        public Task<List<Slope>> GetSlopesAsync(uint offset = 0, uint limit = 0)
+        public async Task UpdateSlopeByIDAsync(uint slopeID, string newSlopeName, bool newIsOpen, uint newDifficultyLevel)
         {
-            throw new NotImplementedException();
+            var obj = new AccessToDB2.Models.Slope((int)slopeID, newSlopeName, newIsOpen, (int)newDifficultyLevel);
+            db.Slopes.Update(obj);
+            db.SaveChanges();
         }
 
-        public Task UpdateSlopeByIDAsync(uint slopeID, string newSlopeName, bool newIsOpen, uint newDifficultyLevel)
+
+        public async Task<Slope> GetSlopeByNameAsync(string name)
         {
-            throw new NotImplementedException();
+            IQueryable<AccessToDB2.Models.Slope> objs = db.Slopes.Where(needed => needed.SlopeName == name).AsNoTracking();
+            var obj = objs.ToList()[0];
+            return SlopeConverter.DBToBL(obj);
         }
     }
 }

@@ -20,9 +20,6 @@ namespace AccessToDB2.PostgresRepositories
             db = curDb;
         }
 
-
-
-
         public async Task UpdateCardReadingByIDAsync(uint recordID, uint newTurnstileID, uint newCardID, DateTimeOffset newReadingTime)
         {
             var cardReading = new AccessToDB2.Models.CardReading((int)recordID, (int)newTurnstileID, (int)newCardID, (int) newReadingTime.ToUnixTimeSeconds());
@@ -30,10 +27,7 @@ namespace AccessToDB2.PostgresRepositories
             db.SaveChanges();
         }
 
-        public Task<uint> UpdateQueueTime(uint liftID, DateTimeOffset dateFrom, DateTimeOffset dateTo)
-        {
-            throw new NotImplementedException();
-        }
+
 
         public async Task AddCardReadingAsync(uint recordID, uint turnstileID, uint cardID, DateTimeOffset readingTime)
         {
@@ -86,7 +80,13 @@ namespace AccessToDB2.PostgresRepositories
             }
             return final;
         }
+
+
         public Task<uint> CountForLiftIdFromDateAsync(uint liftID, DateTimeOffset dateFrom, DateTimeOffset dateTo)
+        {
+            throw new NotImplementedException();
+        }
+        public Task<uint> UpdateQueueTime(uint liftID, DateTimeOffset dateFrom, DateTimeOffset dateTo)
         {
             throw new NotImplementedException();
         }

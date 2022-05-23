@@ -18,39 +18,81 @@ namespace AccessToDB2.PostgresRepositories
         {
             db = curDb;
         }
-        public Task AddTurnstileAsync(uint turnstileID, uint liftID, bool isOpen)
+        public async Task AddTurnstileAsync(uint turnstileID, uint liftID, bool isOpen)
         {
-            throw new NotImplementedException();
+            var turnstile = new AccessToDB2.Models.Turnstile((int)turnstileID, (int)liftID, (bool)isOpen);
+            db.Turnstiles.Add(turnstile);
+            db.SaveChanges();
         }
 
-        public Task<uint> AddTurnstileAutoIncrementAsync(uint liftID, bool isOpen)
+        public async Task<uint> AddTurnstileAutoIncrementAsync(uint liftID, bool isOpen)
         {
-            throw new NotImplementedException();
+            var turnstile = new AccessToDB2.Models.Turnstile((int)db.Turnstiles.Count() + 1, (int)liftID, (bool)isOpen);
+            db.Turnstiles.Add(turnstile);
+            db.SaveChanges();
+            return (uint)turnstile.TurnstileId;
         }
 
-        public Task DeleteTurnstileByIDAsync(uint turnstileID)
+        public async Task DeleteTurnstileByIDAsync(uint id)
         {
-            throw new NotImplementedException();
+            var obj = await GetTurnstileByIdAsync(id);
+            db.Turnstiles.Remove(TurnstileConverter.BLToDB(obj));
+            db.SaveChanges();
         }
 
-        public Task<Turnstile> GetTurnstileByIdAsync(uint turnstileID)
+        public async Task<Turnstile> GetTurnstileByIdAsync(uint id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var obj = db.Turnstiles.Find((int)id);
+                if (obj == null)
+                    throw new Exception();
+
+                return TurnstileConverter.DBToBL(obj);
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
         }
 
-        public Task<List<Turnstile>> GetTurnstilesAsync(uint offset = 0, uint limit = 0)
+        public async Task<List<Turnstile>> GetTurnstilesAsync(uint offset = 0, uint limit = 0)
         {
-            throw new NotImplementedException();
+            IQueryable<AccessToDB2.Models.Turnstile> objs;
+            if (limit != 0)
+            {
+                objs = db.Turnstiles.OrderBy(z => z.TurnstileId).Where(z => (offset <= z.TurnstileId) && (z.TurnstileId) < limit).AsNoTracking();
+            }
+            else
+            {
+                objs = db.Turnstiles.OrderBy(z => z.TurnstileId).Where(z => (offset <= z.TurnstileId)).AsNoTracking();
+            }
+            List<AccessToDB2.Models.Turnstile> conv = objs.ToList();
+            List<BL.Models.Turnstile> final = new();
+            foreach (var obj in conv)
+            {
+                final.Add(TurnstileConverter.DBToBL(obj));
+            }
+            return final;
         }
 
-        public Task<List<Turnstile>> GetTurnstilesByLiftIdAsync(uint liftID)
+        public async Task UpdateTurnstileByIDAsync(uint turnstileID, uint newLiftID, bool newIsOpen)
         {
-            throw new NotImplementedException();
+            var obj = new AccessToDB2.Models.Turnstile((int)turnstileID, (int)newLiftID, newIsOpen);
+            db.Turnstiles.Update(obj);
+            db.SaveChanges();
         }
 
-        public Task UpdateTurnstileByIDAsync(uint turnstileID, uint newLiftID, bool newIsOpen)
+
+        public async Task<List<Turnstile>> GetTurnstilesByLiftIdAsync(uint liftID)
         {
-            throw new NotImplementedException();
+            IQueryable<AccessToDB2.Models.Turnstile> objs = db.Turnstiles.Where(needed => needed.LiftId == liftID).AsNoTracking();
+            List<Turnstile> conv = new();
+            foreach (var msg in objs)
+            {
+                conv.Add(TurnstileConverter.DBToBL(msg));
+            }
+            return conv;
         }
     }
 }

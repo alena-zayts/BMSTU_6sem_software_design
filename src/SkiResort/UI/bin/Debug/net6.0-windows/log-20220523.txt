@@ -274,3 +274,68 @@
 2022-05-23 15:16:48.135 +03:00 [INF] Changing visibility for views
 2022-05-23 15:16:48.136 +03:00 [INF] Opening MainView
 2022-05-23 15:16:49.477 +03:00 [INF] Closing MainView
+2022-05-23 16:10:19.393 +03:00 [INF] Initialized presenter
+2022-05-23 16:10:19.512 +03:00 [INF] Changing visibility for views
+2022-05-23 16:10:19.512 +03:00 [INF] Opening MainView
+2022-05-23 16:10:21.203 +03:00 [INF] Opening Slope View
+2022-05-23 16:10:21.228 +03:00 [INF] Changing visibility for views
+2022-05-23 16:10:22.219 +03:00 [INF] Getting slopes
+2022-05-23 16:10:25.838 +03:00 [ERR] Error while getting sopes: System.NotImplementedException: The method or operation is not implemented.
+   at AccessToDB2.PostgresRepositories.PostgresSlopesRepository.GetSlopesAsync(UInt32 offset, UInt32 limit) in C:\BMSTU_6sem_software_design\src\SkiResort\AccessToDB2\PostgresRepositories\PostgresSlopesRepository.cs:line 48
+   at BL.Facade.GetSlopesInfoAsync(UInt32 requesterUserID, UInt32 offset, UInt32 limit) in C:\BMSTU_6sem_software_design\src\SkiResort\BL\Facade.cs:line 314
+   at UI.Presenter.GetSlopesInfoAsync(Object sender, EventArgs e) in C:\BMSTU_6sem_software_design\src\SkiResort\UI\Presenter.cs:line 459
+2022-05-23 16:10:26.939 +03:00 [INF] Closed Slope View
+2022-05-23 16:10:28.129 +03:00 [INF] Opening CardReading View
+2022-05-23 16:10:28.136 +03:00 [INF] Changing visibility for views
+2022-05-23 16:11:03.354 +03:00 [INF] Closed CardReading View
+2022-05-23 16:11:04.437 +03:00 [INF] Closing MainView
+2022-05-23 16:43:16.481 +03:00 [INF] Initialized presenter
+2022-05-23 16:43:16.604 +03:00 [INF] Changing visibility for views
+2022-05-23 16:43:16.604 +03:00 [INF] Opening MainView
+2022-05-23 16:43:19.533 +03:00 [INF] Closing MainView
+2022-05-23 16:46:45.280 +03:00 [INF] Initialized presenter
+2022-05-23 16:46:45.438 +03:00 [INF] Changing visibility for views
+2022-05-23 16:46:45.438 +03:00 [INF] Opening MainView
+2022-05-23 16:46:46.606 +03:00 [INF] Opening Slope View
+2022-05-23 16:46:46.650 +03:00 [INF] Changing visibility for views
+2022-05-23 16:46:47.787 +03:00 [INF] Getting slopes
+2022-05-23 16:46:57.220 +03:00 [ERR] Error while getting sopes: System.NotImplementedException: The method or operation is not implemented.
+   at AccessToDB2.PostgresRepositories.PostgresLiftsSlopesRepository.GetLiftsBySlopeIdAsync(UInt32 slopeID) in C:\BMSTU_6sem_software_design\src\SkiResort\AccessToDB2\PostgresRepositories\PostgresLiftsSlopesRepository.cs:line 88
+   at BL.Facade.GetSlopesInfoAsync(UInt32 requesterUserID, UInt32 offset, UInt32 limit) in C:\BMSTU_6sem_software_design\src\SkiResort\BL\Facade.cs:line 321
+   at UI.Presenter.GetSlopesInfoAsync(Object sender, EventArgs e) in C:\BMSTU_6sem_software_design\src\SkiResort\UI\Presenter.cs:line 459
+2022-05-23 16:46:58.075 +03:00 [INF] Closed Slope View
+2022-05-23 16:46:59.077 +03:00 [INF] Closing MainView
+2022-05-23 17:14:45.746 +03:00 [INF] Initialized presenter
+2022-05-23 17:14:45.858 +03:00 [INF] Changing visibility for views
+2022-05-23 17:14:45.859 +03:00 [INF] Opening MainView
+2022-05-23 17:14:49.060 +03:00 [INF] Opening Slope View
+2022-05-23 17:14:49.085 +03:00 [INF] Changing visibility for views
+2022-05-23 17:14:50.032 +03:00 [INF] Getting slopes
+2022-05-23 17:15:34.033 +03:00 [INF] Closed Slope View
+2022-05-23 17:15:44.396 +03:00 [INF] Opening Slope View
+2022-05-23 17:15:44.409 +03:00 [INF] Changing visibility for views
+2022-05-23 17:15:47.780 +03:00 [INF] Closed Lift View
+2022-05-23 17:15:48.641 +03:00 [INF] Opening User View
+2022-05-23 17:15:48.650 +03:00 [INF] Changing visibility for views
+2022-05-23 17:15:51.227 +03:00 [INF] Closed User View
+2022-05-23 17:15:52.177 +03:00 [INF] Opening Card View
+2022-05-23 17:15:52.185 +03:00 [INF] Changing visibility for views
+2022-05-23 17:15:54.814 +03:00 [INF] Closed Card View
+2022-05-23 17:15:55.601 +03:00 [INF] Opening Turnstile View
+2022-05-23 17:15:55.611 +03:00 [INF] Changing visibility for views
+2022-05-23 17:15:58.472 +03:00 [INF] Closed Turnstile View
+2022-05-23 17:15:59.407 +03:00 [INF] Opening Profile View
+2022-05-23 17:15:59.411 +03:00 [INF] Changing visibility for views
+2022-05-23 17:16:01.389 +03:00 [INF] Changing visibility for views
+2022-05-23 17:16:07.608 +03:00 [ERR] Could't register new user 1002 because such email already exists
+2022-05-23 17:16:08.453 +03:00 [INF] Changing visibility for views
+2022-05-23 17:16:18.989 +03:00 [INF] Opening User View
+2022-05-23 17:16:18.992 +03:00 [INF] Changing visibility for views
+2022-05-23 17:16:33.161 +03:00 [INF] Changing visibility for views
+2022-05-23 17:16:41.072 +03:00 [ERR] BL.Exceptions.PermissionExceptions.PermissionException
+   at BL.Services.CheckPermissionsService.CheckPermissionsAsync(IUsersRepository usersRepository, UInt32 userID, String memberName) in C:\BMSTU_6sem_software_design\src\SkiResort\BL\Services\CheckPermissionsService.cs:line 19
+   at BL.Facade.AdminGetUsersAsync(UInt32 requesterUserID, UInt32 offset, UInt32 limit) in C:\BMSTU_6sem_software_design\src\SkiResort\BL\Facade.cs:line 89
+   at UI.Presenter.GetUsersAsync(Object sender, EventArgs e) in C:\BMSTU_6sem_software_design\src\SkiResort\UI\Presenter.cs:line 1355
+2022-05-23 17:16:42.655 +03:00 [INF] Closed User View
+2022-05-23 17:16:43.378 +03:00 [INF] Closed Profile View
+2022-05-23 17:16:45.255 +03:00 [INF] Closing MainView

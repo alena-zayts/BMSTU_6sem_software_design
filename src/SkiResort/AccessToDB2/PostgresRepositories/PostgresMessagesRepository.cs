@@ -19,44 +19,92 @@ namespace AccessToDB2.PostgresRepositories
         {
             db = curDb;
         }
-        public Task AddMessageAsync(uint messageID, uint senderID, uint checkedByID, string text)
+        public async Task AddMessageAsync(uint messageID, uint senderID, uint checkedByID, string text)
         {
-            throw new NotImplementedException();
+            var message = new AccessToDB2.Models.Message((int)messageID, (int)senderID, (int)checkedByID, text);
+            db.Messages.Add(message);
+            db.SaveChanges();
         }
 
-        public Task<uint> AddMessageAutoIncrementAsync(uint senderID, uint checkedByID, string text)
+        public async Task<uint> AddMessageAutoIncrementAsync(uint senderID, uint checkedByID, string text)
         {
-            throw new NotImplementedException();
+            var message = new AccessToDB2.Models.Message((int)db.Messages.Count() + 1, (int)senderID, (int)checkedByID, text);
+            db.Messages.Add(message);
+            db.SaveChanges();
+            return (uint)message.MessageId;
         }
 
-        public Task DeleteMessageByIDAsync(uint messageID)
+        public async Task DeleteMessageByIDAsync(uint id)
         {
-            throw new NotImplementedException();
+            var obj = await GetMessageByIdAsync(id);
+            db.Messages.Remove(MessageConverter.BLToDB(obj));
+            db.SaveChanges();
         }
 
-        public Task<Message> GetMessageByIdAsync(uint messageID)
+        public async Task<Message> GetMessageByIdAsync(uint id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var obj = db.Messages.Find((int)id);
+                if (obj == null)
+                    throw new Exception();
+
+                return MessageConverter.DBToBL(obj);
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
         }
 
-        public Task<List<Message>> GetMessagesAsync(uint offset = 0, uint limit = 0)
+        public async Task<List<Message>> GetMessagesAsync(uint offset = 0, uint limit = 0)
         {
-            throw new NotImplementedException();
+            IQueryable<AccessToDB2.Models.Message> objs;
+            if (limit != 0)
+            {
+                objs = db.Messages.OrderBy(z => z.MessageId).Where(z => (offset <= z.MessageId) && (z.MessageId) < limit).AsNoTracking();
+            }
+            else
+            {
+                objs = db.Messages.OrderBy(z => z.MessageId).Where(z => (offset <= z.MessageId)).AsNoTracking();
+            }
+            List<AccessToDB2.Models.Message> conv = objs.ToList();
+            List<BL.Models.Message> final = new();
+            foreach (var obj in conv)
+            {
+                final.Add(MessageConverter.DBToBL(obj));
+            }
+            return final;
         }
 
-        public Task<List<Message>> GetMessagesByCheckerIdAsync(uint checkedByID)
+        public async Task UpdateMessageByIDAsync(uint messageID, uint newSenderID, uint newCheckedByID, string newText)
         {
-            throw new NotImplementedException();
+            var obj = new AccessToDB2.Models.Message((int)messageID, (int)newSenderID, (int)newCheckedByID, newText);
+            db.Messages.Update(obj);
+            db.SaveChanges();
         }
 
-        public Task<List<Message>> GetMessagesBySenderIdAsync(uint senderID)
+
+        public async Task<List<Message>> GetMessagesByCheckerIdAsync(uint checkedByID)
         {
-            throw new NotImplementedException();
+            IQueryable<AccessToDB2.Models.Message> objs = db.Messages.Where(needed => needed.CheckedById == checkedByID).AsNoTracking();
+            List<Message> conv = new();
+            foreach (var msg in objs)
+            {
+                conv.Add(MessageConverter.DBToBL(msg));
+            }
+            return conv;
         }
 
-        public Task UpdateMessageByIDAsync(uint messageID, uint newSenderID, uint newCheckedByID, string newText)
+        public async Task<List<Message>> GetMessagesBySenderIdAsync(uint senderID)
         {
-            throw new NotImplementedException();
+            IQueryable<AccessToDB2.Models.Message> objs = db.Messages.Where(needed => needed.SenderId == senderID).AsNoTracking();
+            List<Message> conv = new();
+            foreach (var msg in objs)
+            {
+                conv.Add(MessageConverter.DBToBL(msg));
+            }
+            return conv;
         }
     }
 }

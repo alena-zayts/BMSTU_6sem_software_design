@@ -19,34 +19,70 @@ namespace AccessToDB2.PostgresRepositories
         {
             db = curDb;
         }
-        public Task AddCardAsync(uint cardID, DateTimeOffset activationTime, string type)
+        public async Task AddCardAsync(uint cardID, DateTimeOffset activationTime, string type)
         {
-            throw new NotImplementedException();
+            var card = new AccessToDB2.Models.Card((int)cardID, (int)activationTime.ToUnixTimeSeconds(), type);
+            db.Cards.Add(card);
+            db.SaveChanges();
         }
 
-        public Task<uint> AddCardAutoIncrementAsync(DateTimeOffset activationTime, string type)
+        public async Task<uint> AddCardAutoIncrementAsync(DateTimeOffset activationTime, string type)
         {
-            throw new NotImplementedException();
+            var card = new AccessToDB2.Models.Card((int)db.Cards.Count() + 1, (int)activationTime.ToUnixTimeSeconds(), type);
+            db.Cards.Add(card);
+            db.SaveChanges();
+            return (uint)card.CardId;
         }
 
-        public Task DeleteCarByIDdAsync(uint cardID)
+        public async Task DeleteCarByIDdAsync(uint id)
         {
-            throw new NotImplementedException();
+            var obj = await GetCardByIdAsync(id);
+            db.Cards.Remove(CardConverter.BLToDB(obj));
+            db.SaveChanges();
         }
 
-        public Task<Card> GetCardByIdAsync(uint cardID)
+        public async Task<Card> GetCardByIdAsync(uint id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var obj = db.Cards.Find((int)id);
+                if (obj == null)
+                    throw new Exception();
+
+                return CardConverter.DBToBL(obj);
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
         }
 
-        public Task<List<Card>> GetCardsAsync(uint offset = 0, uint limit = 0)
+        public async Task<List<Card>> GetCardsAsync(uint offset = 0, uint limit = 0)
         {
-            throw new NotImplementedException();
+            IQueryable<AccessToDB2.Models.Card> objs;
+            if (limit != 0)
+            {
+                objs = db.Cards.OrderBy(z => z.CardId).Where(z => (offset <= z.CardId) && (z.CardId) < limit).AsNoTracking();
+            }
+            else
+            {
+                objs = db.Cards.OrderBy(z => z.CardId).Where(z => (offset <= z.CardId)).AsNoTracking();
+            }
+            List<AccessToDB2.Models.Card> conv = objs.ToList();
+            List<BL.Models.Card> final = new();
+            foreach (var obj in conv)
+            {
+                final.Add(CardConverter.DBToBL(obj));
+            }
+            return final;
         }
 
-        public Task UpdateCardByIDAsync(uint cardID, DateTimeOffset newActivationTime, string newType)
+
+        public async Task UpdateCardByIDAsync(uint cardID, DateTimeOffset newActivationTime, string newType)
         {
-            throw new NotImplementedException();
+            var obj = new AccessToDB2.Models.Card((int)cardID, (int)newActivationTime.ToUnixTimeSeconds(), newType);
+            db.Cards.Update(obj);
+            db.SaveChanges();
         }
     }
 }

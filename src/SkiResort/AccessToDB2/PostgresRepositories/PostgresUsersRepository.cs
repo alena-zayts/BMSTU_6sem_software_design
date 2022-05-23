@@ -46,29 +46,22 @@ namespace AccessToDB2.PostgresRepositories
             return users.Any();
         }
 
-        public async Task DeleteUserByIDAsync(uint userID)
+        public async Task DeleteUserByIDAsync(uint id)
         {
-            var user = await GetUserByIdAsync(userID);
-            db.Users.Remove(UserConverter.BLToDB(user));
+            var obj = await GetUserByIdAsync(id);
+            db.Users.Remove(UserConverter.BLToDB(obj));
             db.SaveChanges();
         }
 
-        public async Task<User> GetUserByEmailAsync(string userEmail)
-        {
-            IQueryable<AccessToDB2.Models.User> users = db.Users.Where(needed => needed.UserEmail == userEmail).AsNoTracking();
-            var user = users.ToList()[0];
-            return UserConverter.DBToBL(user);
-        }
-
-        public async Task<User> GetUserByIdAsync(uint userID)
+        public async Task<User> GetUserByIdAsync(uint id)
         {
             try
             {
-                var user = db.Users.Find((int) userID);
-                if (user == null)
+                var obj = db.Users.Find((int)id);
+                if (obj == null)
                     throw new Exception();
 
-                return UserConverter.DBToBL(user);
+                return UserConverter.DBToBL(obj);
             }
             catch (Exception ex)
             {
@@ -78,23 +71,32 @@ namespace AccessToDB2.PostgresRepositories
 
         public async Task<List<User>> GetUsersAsync(uint offset = 0, uint limit = 0)
         {
-            IQueryable<AccessToDB2.Models.User> users;
+            IQueryable<AccessToDB2.Models.User> objs;
             if (limit != 0)
             {
-                users = db.Users.OrderBy(z => z.UserId).Where(z => (offset <= z.UserId) && (z.UserId) < limit).AsNoTracking();
+                objs = db.Users.OrderBy(z => z.UserId).Where(z => (offset <= z.UserId) && (z.UserId) < limit).AsNoTracking();
             }
             else
             {
-                users = db.Users.OrderBy(z => z.UserId).Where(z => (offset <= z.UserId)).AsNoTracking();
+                objs = db.Users.OrderBy(z => z.UserId).Where(z => (offset <= z.UserId)).AsNoTracking();
             }
-            List<AccessToDB2.Models.User> conv = users.ToList();
+            List<AccessToDB2.Models.User> conv = objs.ToList();
             List<BL.Models.User> final = new();
-            foreach (var user in conv)
+            foreach (var obj in conv)
             {
-                final.Add(UserConverter.DBToBL(user));
+                final.Add(UserConverter.DBToBL(obj));
             }
             return final;
         }
+
+        public async Task<User> GetUserByEmailAsync(string userEmail)
+        {
+            IQueryable<AccessToDB2.Models.User> users = db.Users.Where(needed => needed.UserEmail == userEmail).AsNoTracking();
+            var user = users.ToList()[0];
+            return UserConverter.DBToBL(user);
+        }
+
+
 
         public async Task UpdateUserByIDAsync(uint userID, uint newCardID, string newUserEmail, string newPassword, PermissionsEnum newPermissions)
         {
