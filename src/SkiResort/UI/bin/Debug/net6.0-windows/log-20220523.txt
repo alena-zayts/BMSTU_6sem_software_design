@@ -1,0 +1,276 @@
+2022-05-23 12:00:15.405 +03:00 [INF] Initialized presenter
+2022-05-23 12:00:15.816 +03:00 [INF] Changing visibility for views
+2022-05-23 12:00:15.817 +03:00 [INF] Opening MainView
+2022-05-23 12:00:17.484 +03:00 [INF] Opening Profile View
+2022-05-23 12:00:17.500 +03:00 [INF] Changing visibility for views
+2022-05-23 12:00:19.080 +03:00 [INF] Closed Profile View
+2022-05-23 12:00:19.882 +03:00 [INF] Opening Slope View
+2022-05-23 12:00:20.377 +03:00 [INF] Changing visibility for views
+2022-05-23 12:00:21.975 +03:00 [INF] Getting slopes
+2022-05-23 12:04:45.145 +03:00 [INF] Initialized presenter
+2022-05-23 12:04:45.357 +03:00 [INF] Changing visibility for views
+2022-05-23 12:04:45.358 +03:00 [INF] Opening MainView
+2022-05-23 12:04:48.185 +03:00 [INF] Opening Slope View
+2022-05-23 12:04:48.213 +03:00 [INF] Changing visibility for views
+2022-05-23 12:04:49.584 +03:00 [INF] Getting slopes
+2022-05-23 12:27:27.413 +03:00 [INF] Initialized presenter
+2022-05-23 12:27:27.602 +03:00 [INF] Changing visibility for views
+2022-05-23 12:27:27.602 +03:00 [INF] Opening MainView
+2022-05-23 12:27:28.864 +03:00 [INF] Closing MainView
+2022-05-23 13:02:54.210 +03:00 [INF] Initialized presenter
+2022-05-23 13:02:54.553 +03:00 [INF] Changing visibility for views
+2022-05-23 13:02:54.558 +03:00 [INF] Opening MainView
+2022-05-23 13:02:56.018 +03:00 [INF] Opening Slope View
+2022-05-23 13:02:56.057 +03:00 [INF] Changing visibility for views
+2022-05-23 13:02:56.958 +03:00 [INF] Getting slopes
+2022-05-23 13:04:02.299 +03:00 [INF] Initialized presenter
+2022-05-23 13:04:02.558 +03:00 [INF] Changing visibility for views
+2022-05-23 13:04:02.559 +03:00 [INF] Opening MainView
+2022-05-23 13:04:03.868 +03:00 [INF] Opening Slope View
+2022-05-23 13:04:03.895 +03:00 [INF] Changing visibility for views
+2022-05-23 13:04:04.862 +03:00 [INF] Getting slopes
+2022-05-23 13:04:09.972 +03:00 [ERR] Error while getting sopes: System.NotImplementedException: The method or operation is not implemented.
+   at AccessToDB2.PostgresRepositories.PostgresSlopesRepository.GetSlopesAsync(UInt32 offset, UInt32 limit) in C:\BMSTU_6sem_software_design\src\SkiResort\AccessToDB2\PostgresRepositories\PostgresSlopesRepository.cs:line 46
+   at BL.Facade.GetSlopesInfoAsync(UInt32 requesterUserID, UInt32 offset, UInt32 limit) in C:\BMSTU_6sem_software_design\src\SkiResort\BL\Facade.cs:line 314
+   at UI.Presenter.GetSlopesInfoAsync(Object sender, EventArgs e) in C:\BMSTU_6sem_software_design\src\SkiResort\UI\Presenter.cs:line 459
+2022-05-23 13:04:12.915 +03:00 [INF] Closed Slope View
+2022-05-23 13:04:27.742 +03:00 [INF] Opening Slope View
+2022-05-23 13:04:27.743 +03:00 [INF] Changing visibility for views
+2022-05-23 13:04:28.697 +03:00 [INF] Getting slopes
+2022-05-23 13:06:49.516 +03:00 [INF] Initialized presenter
+2022-05-23 13:06:49.772 +03:00 [INF] Changing visibility for views
+2022-05-23 13:06:49.773 +03:00 [INF] Opening MainView
+2022-05-23 13:06:52.165 +03:00 [INF] Opening User View
+2022-05-23 13:06:52.205 +03:00 [INF] Changing visibility for views
+2022-05-23 13:11:12.938 +03:00 [INF] Initialized presenter
+2022-05-23 13:11:13.180 +03:00 [INF] Changing visibility for views
+2022-05-23 13:11:13.180 +03:00 [INF] Opening MainView
+2022-05-23 13:11:14.898 +03:00 [INF] Opening User View
+2022-05-23 13:11:14.937 +03:00 [INF] Changing visibility for views
+2022-05-23 13:12:27.471 +03:00 [ERR] System.InvalidOperationException: The instance of entity type 'User' cannot be tracked because another instance with the same key value for {'UserId'} is already being tracked. When attaching existing entities, ensure that only one entity instance with a given key value is attached. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see the conflicting key values.
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.IdentityMap`1.ThrowIdentityConflict(InternalEntityEntry entry)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.IdentityMap`1.Add(TKey key, InternalEntityEntry entry, Boolean updateDuplicate)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.IdentityMap`1.Add(TKey key, InternalEntityEntry entry)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.IdentityMap`1.Add(InternalEntityEntry entry)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.StartTracking(InternalEntityEntry entry)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.InternalEntityEntry.SetEntityState(EntityState oldState, EntityState newState, Boolean acceptChanges, Boolean modifyProperties)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.InternalEntityEntry.SetEntityState(EntityState entityState, Boolean acceptChanges, Boolean modifyProperties, Nullable`1 forceStateWhenUnknownKey)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.EntityGraphAttacher.PaintAction(EntityEntryGraphNode`1 node)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.EntityEntryGraphIterator.TraverseGraph[TState](EntityEntryGraphNode`1 node, Func`2 handleNode)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.EntityGraphAttacher.AttachGraph(InternalEntityEntry rootEntry, EntityState targetState, EntityState storeGeneratedWithKeySetTargetState, Boolean forceStateWhenUnknownKey)
+   at Microsoft.EntityFrameworkCore.Internal.InternalDbSet`1.SetEntityState(InternalEntityEntry entry, EntityState entityState)
+   at Microsoft.EntityFrameworkCore.Internal.InternalDbSet`1.Update(TEntity entity)
+   at AccessToDB2.PostgresRepositories.PostgresUsersRepository.UpdateUserByIDAsync(UInt32 userID, UInt32 newCardID, String newUserEmail, String newPassword, PermissionsEnum newPermissions) in C:\BMSTU_6sem_software_design\src\SkiResort\AccessToDB2\PostgresRepositories\PostgresUsersRepository.cs:line 101
+   at BL.Facade.AdminUpdateUserAsync(UInt32 requesterUserID, UInt32 userID, UInt32 newCardID, String newUserEmail, String newPassword, PermissionsEnum newPermissions) in C:\BMSTU_6sem_software_design\src\SkiResort\BL\Facade.cs:line 120
+   at UI.Presenter.UpdateUserAsync(Object sender, EventArgs e) in C:\BMSTU_6sem_software_design\src\SkiResort\UI\Presenter.cs:line 1434
+2022-05-23 13:12:34.332 +03:00 [ERR] System.InvalidOperationException: The instance of entity type 'User' cannot be tracked because another instance with the same key value for {'UserId'} is already being tracked. When attaching existing entities, ensure that only one entity instance with a given key value is attached. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see the conflicting key values.
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.IdentityMap`1.ThrowIdentityConflict(InternalEntityEntry entry)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.IdentityMap`1.Add(TKey key, InternalEntityEntry entry, Boolean updateDuplicate)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.IdentityMap`1.Add(TKey key, InternalEntityEntry entry)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.IdentityMap`1.Add(InternalEntityEntry entry)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.StartTracking(InternalEntityEntry entry)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.InternalEntityEntry.SetEntityState(EntityState oldState, EntityState newState, Boolean acceptChanges, Boolean modifyProperties)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.InternalEntityEntry.SetEntityState(EntityState entityState, Boolean acceptChanges, Boolean modifyProperties, Nullable`1 forceStateWhenUnknownKey)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.EntityGraphAttacher.PaintAction(EntityEntryGraphNode`1 node)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.EntityEntryGraphIterator.TraverseGraph[TState](EntityEntryGraphNode`1 node, Func`2 handleNode)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.EntityGraphAttacher.AttachGraph(InternalEntityEntry rootEntry, EntityState targetState, EntityState storeGeneratedWithKeySetTargetState, Boolean forceStateWhenUnknownKey)
+   at Microsoft.EntityFrameworkCore.Internal.InternalDbSet`1.SetEntityState(InternalEntityEntry entry, EntityState entityState)
+   at Microsoft.EntityFrameworkCore.Internal.InternalDbSet`1.Update(TEntity entity)
+   at AccessToDB2.PostgresRepositories.PostgresUsersRepository.UpdateUserByIDAsync(UInt32 userID, UInt32 newCardID, String newUserEmail, String newPassword, PermissionsEnum newPermissions) in C:\BMSTU_6sem_software_design\src\SkiResort\AccessToDB2\PostgresRepositories\PostgresUsersRepository.cs:line 101
+   at BL.Facade.AdminUpdateUserAsync(UInt32 requesterUserID, UInt32 userID, UInt32 newCardID, String newUserEmail, String newPassword, PermissionsEnum newPermissions) in C:\BMSTU_6sem_software_design\src\SkiResort\BL\Facade.cs:line 120
+   at UI.Presenter.UpdateUserAsync(Object sender, EventArgs e) in C:\BMSTU_6sem_software_design\src\SkiResort\UI\Presenter.cs:line 1434
+2022-05-23 13:12:45.380 +03:00 [ERR] System.InvalidOperationException: The instance of entity type 'User' cannot be tracked because another instance with the same key value for {'UserId'} is already being tracked. When attaching existing entities, ensure that only one entity instance with a given key value is attached. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see the conflicting key values.
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.IdentityMap`1.ThrowIdentityConflict(InternalEntityEntry entry)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.IdentityMap`1.Add(TKey key, InternalEntityEntry entry, Boolean updateDuplicate)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.IdentityMap`1.Add(TKey key, InternalEntityEntry entry)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.IdentityMap`1.Add(InternalEntityEntry entry)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.StartTracking(InternalEntityEntry entry)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.InternalEntityEntry.SetEntityState(EntityState oldState, EntityState newState, Boolean acceptChanges, Boolean modifyProperties)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.InternalEntityEntry.SetEntityState(EntityState entityState, Boolean acceptChanges, Boolean modifyProperties, Nullable`1 forceStateWhenUnknownKey)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.EntityGraphAttacher.PaintAction(EntityEntryGraphNode`1 node)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.EntityEntryGraphIterator.TraverseGraph[TState](EntityEntryGraphNode`1 node, Func`2 handleNode)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.EntityGraphAttacher.AttachGraph(InternalEntityEntry rootEntry, EntityState targetState, EntityState storeGeneratedWithKeySetTargetState, Boolean forceStateWhenUnknownKey)
+   at Microsoft.EntityFrameworkCore.Internal.InternalDbSet`1.SetEntityState(InternalEntityEntry entry, EntityState entityState)
+   at Microsoft.EntityFrameworkCore.Internal.InternalDbSet`1.Remove(TEntity entity)
+   at AccessToDB2.PostgresRepositories.PostgresUsersRepository.DeleteUserByIDAsync(UInt32 userID) in C:\BMSTU_6sem_software_design\src\SkiResort\AccessToDB2\PostgresRepositories\PostgresUsersRepository.cs:line 51
+   at BL.Facade.AdminDeleteUserAsync(UInt32 requesterUserID, UInt32 userToDeleteID) in C:\BMSTU_6sem_software_design\src\SkiResort\BL\Facade.cs:line 129
+   at UI.Presenter.DeleteUserAsync(Object sender, EventArgs e) in C:\BMSTU_6sem_software_design\src\SkiResort\UI\Presenter.cs:line 1514
+2022-05-23 13:12:55.414 +03:00 [ERR] System.InvalidOperationException: The instance of entity type 'User' cannot be tracked because another instance with the same key value for {'UserId'} is already being tracked. When attaching existing entities, ensure that only one entity instance with a given key value is attached. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see the conflicting key values.
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.IdentityMap`1.ThrowIdentityConflict(InternalEntityEntry entry)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.IdentityMap`1.Add(TKey key, InternalEntityEntry entry, Boolean updateDuplicate)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.IdentityMap`1.Add(TKey key, InternalEntityEntry entry)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.IdentityMap`1.Add(InternalEntityEntry entry)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.StartTracking(InternalEntityEntry entry)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.InternalEntityEntry.SetEntityState(EntityState oldState, EntityState newState, Boolean acceptChanges, Boolean modifyProperties)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.InternalEntityEntry.SetEntityState(EntityState entityState, Boolean acceptChanges, Boolean modifyProperties, Nullable`1 forceStateWhenUnknownKey)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.EntityGraphAttacher.PaintAction(EntityEntryGraphNode`1 node)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.EntityEntryGraphIterator.TraverseGraph[TState](EntityEntryGraphNode`1 node, Func`2 handleNode)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.EntityGraphAttacher.AttachGraph(InternalEntityEntry rootEntry, EntityState targetState, EntityState storeGeneratedWithKeySetTargetState, Boolean forceStateWhenUnknownKey)
+   at Microsoft.EntityFrameworkCore.Internal.InternalDbSet`1.SetEntityState(InternalEntityEntry entry, EntityState entityState)
+   at Microsoft.EntityFrameworkCore.Internal.InternalDbSet`1.Update(TEntity entity)
+   at AccessToDB2.PostgresRepositories.PostgresUsersRepository.UpdateUserByIDAsync(UInt32 userID, UInt32 newCardID, String newUserEmail, String newPassword, PermissionsEnum newPermissions) in C:\BMSTU_6sem_software_design\src\SkiResort\AccessToDB2\PostgresRepositories\PostgresUsersRepository.cs:line 101
+   at BL.Facade.AdminUpdateUserAsync(UInt32 requesterUserID, UInt32 userID, UInt32 newCardID, String newUserEmail, String newPassword, PermissionsEnum newPermissions) in C:\BMSTU_6sem_software_design\src\SkiResort\BL\Facade.cs:line 120
+   at UI.Presenter.UpdateUserAsync(Object sender, EventArgs e) in C:\BMSTU_6sem_software_design\src\SkiResort\UI\Presenter.cs:line 1434
+2022-05-23 13:12:57.844 +03:00 [ERR] System.InvalidOperationException: The instance of entity type 'User' cannot be tracked because another instance with the same key value for {'UserId'} is already being tracked. When attaching existing entities, ensure that only one entity instance with a given key value is attached. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see the conflicting key values.
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.IdentityMap`1.ThrowIdentityConflict(InternalEntityEntry entry)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.IdentityMap`1.Add(TKey key, InternalEntityEntry entry, Boolean updateDuplicate)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.IdentityMap`1.Add(TKey key, InternalEntityEntry entry)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.IdentityMap`1.Add(InternalEntityEntry entry)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.StartTracking(InternalEntityEntry entry)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.InternalEntityEntry.SetEntityState(EntityState oldState, EntityState newState, Boolean acceptChanges, Boolean modifyProperties)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.InternalEntityEntry.SetEntityState(EntityState entityState, Boolean acceptChanges, Boolean modifyProperties, Nullable`1 forceStateWhenUnknownKey)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.EntityGraphAttacher.PaintAction(EntityEntryGraphNode`1 node)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.EntityEntryGraphIterator.TraverseGraph[TState](EntityEntryGraphNode`1 node, Func`2 handleNode)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.EntityGraphAttacher.AttachGraph(InternalEntityEntry rootEntry, EntityState targetState, EntityState storeGeneratedWithKeySetTargetState, Boolean forceStateWhenUnknownKey)
+   at Microsoft.EntityFrameworkCore.Internal.InternalDbSet`1.SetEntityState(InternalEntityEntry entry, EntityState entityState)
+   at Microsoft.EntityFrameworkCore.Internal.InternalDbSet`1.Remove(TEntity entity)
+   at AccessToDB2.PostgresRepositories.PostgresUsersRepository.DeleteUserByIDAsync(UInt32 userID) in C:\BMSTU_6sem_software_design\src\SkiResort\AccessToDB2\PostgresRepositories\PostgresUsersRepository.cs:line 51
+   at BL.Facade.AdminDeleteUserAsync(UInt32 requesterUserID, UInt32 userToDeleteID) in C:\BMSTU_6sem_software_design\src\SkiResort\BL\Facade.cs:line 129
+   at UI.Presenter.DeleteUserAsync(Object sender, EventArgs e) in C:\BMSTU_6sem_software_design\src\SkiResort\UI\Presenter.cs:line 1514
+2022-05-23 13:13:09.606 +03:00 [ERR] System.InvalidOperationException: The instance of entity type 'User' cannot be tracked because another instance with the same key value for {'UserId'} is already being tracked. When attaching existing entities, ensure that only one entity instance with a given key value is attached. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see the conflicting key values.
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.IdentityMap`1.ThrowIdentityConflict(InternalEntityEntry entry)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.IdentityMap`1.Add(TKey key, InternalEntityEntry entry, Boolean updateDuplicate)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.IdentityMap`1.Add(TKey key, InternalEntityEntry entry)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.IdentityMap`1.Add(InternalEntityEntry entry)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.StartTracking(InternalEntityEntry entry)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.InternalEntityEntry.SetEntityState(EntityState oldState, EntityState newState, Boolean acceptChanges, Boolean modifyProperties)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.InternalEntityEntry.SetEntityState(EntityState entityState, Boolean acceptChanges, Boolean modifyProperties, Nullable`1 forceStateWhenUnknownKey)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.EntityGraphAttacher.PaintAction(EntityEntryGraphNode`1 node)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.EntityEntryGraphIterator.TraverseGraph[TState](EntityEntryGraphNode`1 node, Func`2 handleNode)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.EntityGraphAttacher.AttachGraph(InternalEntityEntry rootEntry, EntityState targetState, EntityState storeGeneratedWithKeySetTargetState, Boolean forceStateWhenUnknownKey)
+   at Microsoft.EntityFrameworkCore.Internal.InternalDbSet`1.SetEntityState(InternalEntityEntry entry, EntityState entityState)
+   at Microsoft.EntityFrameworkCore.Internal.InternalDbSet`1.Update(TEntity entity)
+   at AccessToDB2.PostgresRepositories.PostgresUsersRepository.UpdateUserByIDAsync(UInt32 userID, UInt32 newCardID, String newUserEmail, String newPassword, PermissionsEnum newPermissions) in C:\BMSTU_6sem_software_design\src\SkiResort\AccessToDB2\PostgresRepositories\PostgresUsersRepository.cs:line 101
+   at BL.Facade.AdminUpdateUserAsync(UInt32 requesterUserID, UInt32 userID, UInt32 newCardID, String newUserEmail, String newPassword, PermissionsEnum newPermissions) in C:\BMSTU_6sem_software_design\src\SkiResort\BL\Facade.cs:line 120
+   at UI.Presenter.UpdateUserAsync(Object sender, EventArgs e) in C:\BMSTU_6sem_software_design\src\SkiResort\UI\Presenter.cs:line 1434
+2022-05-23 13:13:14.165 +03:00 [INF] Closed User View
+2022-05-23 13:13:27.506 +03:00 [INF] Opening User View
+2022-05-23 13:13:27.507 +03:00 [INF] Changing visibility for views
+2022-05-23 13:18:46.034 +03:00 [INF] Initialized presenter
+2022-05-23 13:18:46.384 +03:00 [INF] Changing visibility for views
+2022-05-23 13:18:46.385 +03:00 [INF] Opening MainView
+2022-05-23 13:18:47.814 +03:00 [INF] Opening User View
+2022-05-23 13:18:47.844 +03:00 [INF] Changing visibility for views
+2022-05-23 13:19:33.992 +03:00 [ERR] System.InvalidOperationException: The instance of entity type 'User' cannot be tracked because another instance with the same key value for {'UserId'} is already being tracked. When attaching existing entities, ensure that only one entity instance with a given key value is attached. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see the conflicting key values.
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.IdentityMap`1.ThrowIdentityConflict(InternalEntityEntry entry)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.IdentityMap`1.Add(TKey key, InternalEntityEntry entry, Boolean updateDuplicate)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.IdentityMap`1.Add(TKey key, InternalEntityEntry entry)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.IdentityMap`1.Add(InternalEntityEntry entry)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.StartTracking(InternalEntityEntry entry)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.InternalEntityEntry.SetEntityState(EntityState oldState, EntityState newState, Boolean acceptChanges, Boolean modifyProperties)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.InternalEntityEntry.SetEntityState(EntityState entityState, Boolean acceptChanges, Boolean modifyProperties, Nullable`1 forceStateWhenUnknownKey)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.EntityGraphAttacher.PaintAction(EntityEntryGraphNode`1 node)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.EntityEntryGraphIterator.TraverseGraph[TState](EntityEntryGraphNode`1 node, Func`2 handleNode)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.EntityGraphAttacher.AttachGraph(InternalEntityEntry rootEntry, EntityState targetState, EntityState storeGeneratedWithKeySetTargetState, Boolean forceStateWhenUnknownKey)
+   at Microsoft.EntityFrameworkCore.Internal.InternalDbSet`1.SetEntityState(InternalEntityEntry entry, EntityState entityState)
+   at Microsoft.EntityFrameworkCore.Internal.InternalDbSet`1.Remove(TEntity entity)
+   at AccessToDB2.PostgresRepositories.PostgresUsersRepository.DeleteUserByIDAsync(UInt32 userID) in C:\BMSTU_6sem_software_design\src\SkiResort\AccessToDB2\PostgresRepositories\PostgresUsersRepository.cs:line 51
+   at BL.Facade.AdminDeleteUserAsync(UInt32 requesterUserID, UInt32 userToDeleteID) in C:\BMSTU_6sem_software_design\src\SkiResort\BL\Facade.cs:line 129
+   at UI.Presenter.DeleteUserAsync(Object sender, EventArgs e) in C:\BMSTU_6sem_software_design\src\SkiResort\UI\Presenter.cs:line 1514
+2022-05-23 13:19:53.240 +03:00 [ERR] System.InvalidOperationException: The instance of entity type 'User' cannot be tracked because another instance with the same key value for {'UserId'} is already being tracked. When attaching existing entities, ensure that only one entity instance with a given key value is attached. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see the conflicting key values.
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.IdentityMap`1.ThrowIdentityConflict(InternalEntityEntry entry)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.IdentityMap`1.Add(TKey key, InternalEntityEntry entry, Boolean updateDuplicate)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.IdentityMap`1.Add(TKey key, InternalEntityEntry entry)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.IdentityMap`1.Add(InternalEntityEntry entry)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.StartTracking(InternalEntityEntry entry)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.InternalEntityEntry.SetEntityState(EntityState oldState, EntityState newState, Boolean acceptChanges, Boolean modifyProperties)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.InternalEntityEntry.SetEntityState(EntityState entityState, Boolean acceptChanges, Boolean modifyProperties, Nullable`1 forceStateWhenUnknownKey)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.EntityGraphAttacher.PaintAction(EntityEntryGraphNode`1 node)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.EntityEntryGraphIterator.TraverseGraph[TState](EntityEntryGraphNode`1 node, Func`2 handleNode)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.EntityGraphAttacher.AttachGraph(InternalEntityEntry rootEntry, EntityState targetState, EntityState storeGeneratedWithKeySetTargetState, Boolean forceStateWhenUnknownKey)
+   at Microsoft.EntityFrameworkCore.Internal.InternalDbSet`1.SetEntityState(InternalEntityEntry entry, EntityState entityState)
+   at Microsoft.EntityFrameworkCore.Internal.InternalDbSet`1.Remove(TEntity entity)
+   at AccessToDB2.PostgresRepositories.PostgresUsersRepository.DeleteUserByIDAsync(UInt32 userID) in C:\BMSTU_6sem_software_design\src\SkiResort\AccessToDB2\PostgresRepositories\PostgresUsersRepository.cs:line 51
+   at BL.Facade.AdminDeleteUserAsync(UInt32 requesterUserID, UInt32 userToDeleteID) in C:\BMSTU_6sem_software_design\src\SkiResort\BL\Facade.cs:line 129
+   at UI.Presenter.DeleteUserAsync(Object sender, EventArgs e) in C:\BMSTU_6sem_software_design\src\SkiResort\UI\Presenter.cs:line 1514
+2022-05-23 14:16:37.415 +03:00 [INF] Initialized presenter
+2022-05-23 14:17:12.850 +03:00 [INF] Initialized presenter
+2022-05-23 14:17:13.023 +03:00 [INF] Changing visibility for views
+2022-05-23 14:17:13.024 +03:00 [INF] Opening MainView
+2022-05-23 14:17:15.555 +03:00 [INF] Opening User View
+2022-05-23 14:17:15.594 +03:00 [INF] Changing visibility for views
+2022-05-23 14:17:39.643 +03:00 [ERR] System.InvalidOperationException: The instance of entity type 'User' cannot be tracked because another instance with the same key value for {'UserId'} is already being tracked. When attaching existing entities, ensure that only one entity instance with a given key value is attached. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see the conflicting key values.
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.IdentityMap`1.ThrowIdentityConflict(InternalEntityEntry entry)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.IdentityMap`1.Add(TKey key, InternalEntityEntry entry, Boolean updateDuplicate)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.IdentityMap`1.Add(TKey key, InternalEntityEntry entry)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.IdentityMap`1.Add(InternalEntityEntry entry)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.StartTracking(InternalEntityEntry entry)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.InternalEntityEntry.SetEntityState(EntityState oldState, EntityState newState, Boolean acceptChanges, Boolean modifyProperties)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.InternalEntityEntry.SetEntityState(EntityState entityState, Boolean acceptChanges, Boolean modifyProperties, Nullable`1 forceStateWhenUnknownKey)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.EntityGraphAttacher.PaintAction(EntityEntryGraphNode`1 node)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.EntityEntryGraphIterator.TraverseGraph[TState](EntityEntryGraphNode`1 node, Func`2 handleNode)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.EntityGraphAttacher.AttachGraph(InternalEntityEntry rootEntry, EntityState targetState, EntityState storeGeneratedWithKeySetTargetState, Boolean forceStateWhenUnknownKey)
+   at Microsoft.EntityFrameworkCore.Internal.InternalDbSet`1.SetEntityState(InternalEntityEntry entry, EntityState entityState)
+   at Microsoft.EntityFrameworkCore.Internal.InternalDbSet`1.Remove(TEntity entity)
+   at AccessToDB2.PostgresRepositories.PostgresUsersRepository.DeleteUserByIDAsync(UInt32 userID) in C:\BMSTU_6sem_software_design\src\SkiResort\AccessToDB2\PostgresRepositories\PostgresUsersRepository.cs:line 52
+   at BL.Facade.AdminDeleteUserAsync(UInt32 requesterUserID, UInt32 userToDeleteID) in C:\BMSTU_6sem_software_design\src\SkiResort\BL\Facade.cs:line 129
+   at UI.Presenter.DeleteUserAsync(Object sender, EventArgs e) in C:\BMSTU_6sem_software_design\src\SkiResort\UI\Presenter.cs:line 1514
+2022-05-23 14:17:45.306 +03:00 [ERR] System.InvalidOperationException: The instance of entity type 'User' cannot be tracked because another instance with the same key value for {'UserId'} is already being tracked. When attaching existing entities, ensure that only one entity instance with a given key value is attached. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see the conflicting key values.
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.IdentityMap`1.ThrowIdentityConflict(InternalEntityEntry entry)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.IdentityMap`1.Add(TKey key, InternalEntityEntry entry, Boolean updateDuplicate)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.IdentityMap`1.Add(TKey key, InternalEntityEntry entry)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.IdentityMap`1.Add(InternalEntityEntry entry)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.StartTracking(InternalEntityEntry entry)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.InternalEntityEntry.SetEntityState(EntityState oldState, EntityState newState, Boolean acceptChanges, Boolean modifyProperties)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.InternalEntityEntry.SetEntityState(EntityState entityState, Boolean acceptChanges, Boolean modifyProperties, Nullable`1 forceStateWhenUnknownKey)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.EntityGraphAttacher.PaintAction(EntityEntryGraphNode`1 node)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.EntityEntryGraphIterator.TraverseGraph[TState](EntityEntryGraphNode`1 node, Func`2 handleNode)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.EntityGraphAttacher.AttachGraph(InternalEntityEntry rootEntry, EntityState targetState, EntityState storeGeneratedWithKeySetTargetState, Boolean forceStateWhenUnknownKey)
+   at Microsoft.EntityFrameworkCore.Internal.InternalDbSet`1.SetEntityState(InternalEntityEntry entry, EntityState entityState)
+   at Microsoft.EntityFrameworkCore.Internal.InternalDbSet`1.Remove(TEntity entity)
+   at AccessToDB2.PostgresRepositories.PostgresUsersRepository.DeleteUserByIDAsync(UInt32 userID) in C:\BMSTU_6sem_software_design\src\SkiResort\AccessToDB2\PostgresRepositories\PostgresUsersRepository.cs:line 52
+   at BL.Facade.AdminDeleteUserAsync(UInt32 requesterUserID, UInt32 userToDeleteID) in C:\BMSTU_6sem_software_design\src\SkiResort\BL\Facade.cs:line 129
+   at UI.Presenter.DeleteUserAsync(Object sender, EventArgs e) in C:\BMSTU_6sem_software_design\src\SkiResort\UI\Presenter.cs:line 1514
+2022-05-23 14:17:45.893 +03:00 [INF] Closed User View
+2022-05-23 14:17:47.070 +03:00 [INF] Closing MainView
+2022-05-23 14:53:14.212 +03:00 [INF] Initialized presenter
+2022-05-23 14:53:14.359 +03:00 [INF] Changing visibility for views
+2022-05-23 14:53:14.360 +03:00 [INF] Opening MainView
+2022-05-23 14:53:16.511 +03:00 [INF] Opening User View
+2022-05-23 14:53:16.536 +03:00 [INF] Changing visibility for views
+2022-05-23 14:53:21.006 +03:00 [INF] Closed User View
+2022-05-23 14:53:24.873 +03:00 [INF] Opening Slope View
+2022-05-23 14:53:24.878 +03:00 [INF] Changing visibility for views
+2022-05-23 14:53:25.784 +03:00 [INF] Getting slopes
+2022-05-23 14:53:27.859 +03:00 [ERR] Error while getting sopes: System.NotImplementedException: The method or operation is not implemented.
+   at AccessToDB2.PostgresRepositories.PostgresSlopesRepository.GetSlopesAsync(UInt32 offset, UInt32 limit) in C:\BMSTU_6sem_software_design\src\SkiResort\AccessToDB2\PostgresRepositories\PostgresSlopesRepository.cs:line 46
+   at BL.Facade.GetSlopesInfoAsync(UInt32 requesterUserID, UInt32 offset, UInt32 limit) in C:\BMSTU_6sem_software_design\src\SkiResort\BL\Facade.cs:line 314
+   at UI.Presenter.GetSlopesInfoAsync(Object sender, EventArgs e) in C:\BMSTU_6sem_software_design\src\SkiResort\UI\Presenter.cs:line 459
+2022-05-23 14:53:28.850 +03:00 [INF] Closed Slope View
+2022-05-23 14:53:30.309 +03:00 [INF] Opening User View
+2022-05-23 14:53:30.312 +03:00 [INF] Changing visibility for views
+2022-05-23 14:53:34.375 +03:00 [INF] Closed User View
+2022-05-23 14:53:40.500 +03:00 [INF] Initialized presenter
+2022-05-23 14:53:40.623 +03:00 [INF] Changing visibility for views
+2022-05-23 14:53:40.623 +03:00 [INF] Opening MainView
+2022-05-23 14:53:43.433 +03:00 [INF] Opening Slope View
+2022-05-23 14:53:43.457 +03:00 [INF] Changing visibility for views
+2022-05-23 14:53:46.824 +03:00 [INF] Getting slopes
+2022-05-23 14:53:51.607 +03:00 [ERR] Error while getting sopes: System.NotImplementedException: The method or operation is not implemented.
+   at AccessToDB2.PostgresRepositories.PostgresSlopesRepository.GetSlopesAsync(UInt32 offset, UInt32 limit) in C:\BMSTU_6sem_software_design\src\SkiResort\AccessToDB2\PostgresRepositories\PostgresSlopesRepository.cs:line 46
+   at BL.Facade.GetSlopesInfoAsync(UInt32 requesterUserID, UInt32 offset, UInt32 limit) in C:\BMSTU_6sem_software_design\src\SkiResort\BL\Facade.cs:line 314
+   at UI.Presenter.GetSlopesInfoAsync(Object sender, EventArgs e) in C:\BMSTU_6sem_software_design\src\SkiResort\UI\Presenter.cs:line 459
+2022-05-23 14:53:52.734 +03:00 [INF] Getting slopes
+2022-05-23 14:53:57.189 +03:00 [ERR] Error while getting sopes: System.NotImplementedException: The method or operation is not implemented.
+   at AccessToDB2.PostgresRepositories.PostgresSlopesRepository.GetSlopesAsync(UInt32 offset, UInt32 limit) in C:\BMSTU_6sem_software_design\src\SkiResort\AccessToDB2\PostgresRepositories\PostgresSlopesRepository.cs:line 46
+   at BL.Facade.GetSlopesInfoAsync(UInt32 requesterUserID, UInt32 offset, UInt32 limit) in C:\BMSTU_6sem_software_design\src\SkiResort\BL\Facade.cs:line 314
+   at UI.Presenter.GetSlopesInfoAsync(Object sender, EventArgs e) in C:\BMSTU_6sem_software_design\src\SkiResort\UI\Presenter.cs:line 459
+2022-05-23 14:53:58.202 +03:00 [INF] Closed Slope View
+2022-05-23 14:54:01.033 +03:00 [INF] Closing MainView
+2022-05-23 14:56:35.146 +03:00 [INF] Initialized presenter
+2022-05-23 14:56:35.270 +03:00 [INF] Changing visibility for views
+2022-05-23 14:56:35.270 +03:00 [INF] Opening MainView
+2022-05-23 14:56:46.638 +03:00 [INF] Closing MainView
+2022-05-23 15:12:58.240 +03:00 [INF] Initialized presenter
+2022-05-23 15:12:58.357 +03:00 [INF] Changing visibility for views
+2022-05-23 15:12:58.358 +03:00 [INF] Opening MainView
+2022-05-23 15:12:59.914 +03:00 [INF] Opening CardReading View
+2022-05-23 15:12:59.956 +03:00 [INF] Changing visibility for views
+2022-05-23 15:13:05.352 +03:00 [INF] Closed CardReading View
+2022-05-23 15:13:07.513 +03:00 [INF] Opening CardReading View
+2022-05-23 15:13:07.515 +03:00 [INF] Changing visibility for views
+2022-05-23 15:13:26.254 +03:00 [INF] Closed CardReading View
+2022-05-23 15:16:47.924 +03:00 [INF] Initialized presenter
+2022-05-23 15:16:48.135 +03:00 [INF] Changing visibility for views
+2022-05-23 15:16:48.136 +03:00 [INF] Opening MainView
+2022-05-23 15:16:49.477 +03:00 [INF] Closing MainView

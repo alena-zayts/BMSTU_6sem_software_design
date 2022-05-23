@@ -11,51 +11,51 @@ namespace AccessToDB2
 {
     public class PostgresRepositoriesFactrory : IRepositoriesFactory
     {
-        private readonly TransfersystemContext db;
+        private readonly string conn;
 
-        public PostgresRepositoriesFactrory(TransfersystemContext curDb)
+        public PostgresRepositoriesFactrory(string conn)
         {
-            db = curDb;
+            this.conn = conn;
         }
 
         public ICardReadingsRepository CreateCardReadingsRepository()
         {
-            return new PostgresCardReadingsRepository(db);
+            return new PostgresCardReadingsRepository(new DBContext(conn));
         }
 
         public ICardsRepository CreateCardsRepository()
         {
-            return new PostgresCardsRepository(db);
+            return new PostgresCardsRepository(new DBContext(conn));
         }
 
         public ILiftsRepository CreateLiftsRepository()
         {
-            return new PostgresLiftsRepository(db);
+            return new PostgresLiftsRepository(new DBContext(conn));
         }
 
         public ILiftsSlopesRepository CreateLiftsSlopesRepository()
         {
-            return new PostgresLiftsSlopesRepository(db);
+            return new PostgresLiftsSlopesRepository(new DBContext(conn));
         }
 
         public IMessagesRepository CreateMessagesRepository()
         {
-            return new PostgresMessagesRepository(db);
+            return new PostgresMessagesRepository(new DBContext(conn));
         }
 
         public ISlopesRepository CreateSlopesRepository()
         {
-            return new PostgresSlopesRepository(db);
+            return new PostgresSlopesRepository(new DBContext(conn));
         }
 
         public ITurnstilesRepository CreateTurnstilesRepository()
         {
-            return new PostgresTurnstilesRepository(db);
+            return new PostgresTurnstilesRepository(new DBContext(conn));
         }
 
         public IUsersRepository CreateUsersRepository()
         {
-            return new PostgresUsersRepository(db);
+            return new PostgresUsersRepository(new DBContext(conn));
         }
     }
 }

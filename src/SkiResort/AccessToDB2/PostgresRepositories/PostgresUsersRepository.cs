@@ -6,14 +6,15 @@ using System.Threading.Tasks;
 using BL.IRepositories;
 using BL.Models;
 using AccessToDB2.Converters;
+using System.Data.Entity;
 
 namespace AccessToDB2.PostgresRepositories
 {
     public class PostgresUsersRepository : IUsersRepository
     {
-        private readonly TransfersystemContext db;
+        private readonly DBContext db;
 
-        public PostgresUsersRepository(TransfersystemContext curDb)
+        public PostgresUsersRepository(DBContext curDb)
         {
             db = curDb;
         }
@@ -30,18 +31,18 @@ namespace AccessToDB2.PostgresRepositories
             var user = new AccessToDB2.Models.User((int) db.Users.Count() + 1, (int)cardID, UserEmail, password, (int)permissions);
             db.Users.Add(user);
             db.SaveChanges();
-            return (uint)user.UserID;
+            return (uint)user.UserId;
         }
 
         public async Task<bool> CheckUserEmailExistsAsync(string userEmail)
         {
-            IQueryable<AccessToDB2.Models.User> users = db.Users.Where(needed => needed.UserEmail == userEmail);
+            IQueryable<AccessToDB2.Models.User> users = db.Users.Where(needed => needed.UserEmail == userEmail).AsNoTracking();
             return users.Any();
         }
 
         public async Task<bool> CheckUserIdExistsAsync(uint userID)
         {
-            IQueryable<AccessToDB2.Models.User> users = db.Users.Where(needed => needed.UserID == userID);
+            IQueryable<AccessToDB2.Models.User> users = db.Users.Where(needed => needed.UserId == userID).AsNoTracking();
             return users.Any();
         }
 
@@ -54,7 +55,7 @@ namespace AccessToDB2.PostgresRepositories
 
         public async Task<User> GetUserByEmailAsync(string userEmail)
         {
-            IQueryable<AccessToDB2.Models.User> users = db.Users.Where(needed => needed.UserEmail == userEmail);
+            IQueryable<AccessToDB2.Models.User> users = db.Users.Where(needed => needed.UserEmail == userEmail).AsNoTracking();
             var user = users.ToList()[0];
             return UserConverter.DBToBL(user);
         }
@@ -77,7 +78,15 @@ namespace AccessToDB2.PostgresRepositories
 
         public async Task<List<User>> GetUsersAsync(uint offset = 0, uint limit = 0)
         {
-            IQueryable<AccessToDB2.Models.User> users = db.Users.OrderBy(z => z.UserID).Where(z => (offset <= z.UserID) && (z.UserID) < limit);
+            IQueryable<AccessToDB2.Models.User> users;
+            if (limit != 0)
+            {
+                users = db.Users.OrderBy(z => z.UserId).Where(z => (offset <= z.UserId) && (z.UserId) < limit).AsNoTracking();
+            }
+            else
+            {
+                users = db.Users.OrderBy(z => z.UserId).Where(z => (offset <= z.UserId)).AsNoTracking();
+            }
             List<AccessToDB2.Models.User> conv = users.ToList();
             List<BL.Models.User> final = new();
             foreach (var user in conv)

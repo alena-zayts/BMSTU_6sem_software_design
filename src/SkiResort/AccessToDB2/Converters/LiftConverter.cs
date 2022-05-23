@@ -6,7 +6,7 @@ namespace AccessToDB2.Converters
     {
         public static BL.Models.Lift DBToBL(Lift db_model)
         {
-            return new BL.Models.Lift((uint)db_model.LiftID, db_model.LiftName, db_model.IsOpen, (uint)db_model.SeatsAmount, (uint)db_model.LiftingTime, (uint)db_model.QueueTime);
+            return new BL.Models.Lift((uint)db_model.LiftId, db_model.LiftName,(bool) db_model.IsOpen, (uint)db_model.SeatsAmount, (uint)db_model.LiftingTime, (uint)db_model.QueueTime);
         }
 
         public static Lift BLToDB(BL.Models.Lift bl_model)

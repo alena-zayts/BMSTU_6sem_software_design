@@ -5,14 +5,16 @@ using System.Text;
 using System.Threading.Tasks;
 using BL.IRepositories;
 using BL.Models;
+using AccessToDB2.Converters;
+using System.Data.Entity;
 
 namespace AccessToDB2.PostgresRepositories
 {
     public class PostgresTurnstilesRepository : ITurnstilesRepository
     {
-        private readonly TransfersystemContext db;
+        private readonly DBContext db;
 
-        public PostgresTurnstilesRepository(TransfersystemContext curDb)
+        public PostgresTurnstilesRepository(DBContext curDb)
         {
             db = curDb;
         }

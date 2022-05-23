@@ -2,17 +2,17 @@ namespace AccessToDB2.Models
 {
     public class Turnstile
     {
+        public Turnstile() { }
         public Turnstile(int turnstileID, int liftID, bool isOpen)
         {
-            TurnstileID = turnstileID;
-            LiftID = liftID;
+            TurnstileId = turnstileID;
+            LiftId = liftID;
             IsOpen = isOpen;
         }
 
-        public int TurnstileID { get; set; }
-        public int LiftID { get; set; }
-        public bool IsOpen { get; set; }
-        public virtual ICollection<Turnstile> Turnstiles { get; set; }
+        public int TurnstileId { get; set; }
+        public int? LiftId { get; set; }
+        public bool? IsOpen { get; set; }
     }
 }
 

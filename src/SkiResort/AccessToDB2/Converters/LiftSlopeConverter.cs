@@ -4,14 +4,14 @@ namespace AccessToDB2.Converters
 {
     public class LiftSlopeConverter
     {
-        public static BL.Models.LiftSlope DBToBL(LiftSlope db_model)
+        public static BL.Models.LiftSlope DBToBL(LiftsSlope db_model)
         {
-            return new BL.Models.LiftSlope((uint)db_model.RecordID, (uint)db_model.LiftID, (uint)db_model.SlopeID);
+            return new BL.Models.LiftSlope((uint)db_model.RecordId, (uint)db_model.LiftId, (uint)db_model.SlopeId);
         }
 
-        public static LiftSlope BLToDB(BL.Models.LiftSlope bl_model)
+        public static LiftsSlope BLToDB(BL.Models.LiftSlope bl_model)
         {
-            return new LiftSlope((int)bl_model.RecordID, (int)bl_model.LiftID, (int)bl_model.SlopeID);
+            return new LiftsSlope((int)bl_model.RecordID, (int)bl_model.LiftID, (int)bl_model.SlopeID);
         }
     }
 }

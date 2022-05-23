@@ -58,8 +58,13 @@ namespace UI
 
         public async Task RunAsync()
         {
-            _userID = await _facade.AddUnauthorizedUserAsync();
-            _permissions = PermissionsEnum.UNAUTHORIZED;
+            //_userID = await _facade.AddUnauthorizedUserAsync();
+            //_permissions = PermissionsEnum.UNAUTHORIZED;
+
+
+
+
+
             //CHANGEIT
 
             //unauthorized
@@ -67,8 +72,8 @@ namespace UI
             //_permissions = PermissionsEnum.UNAUTHORIZED;
 
             //admin q q
-            //_userID = 1;
-            //_permissions = PermissionsEnum.ADMIN;
+            _userID = 1;
+            _permissions = PermissionsEnum.ADMIN;
 
             //skipatrol ski_patrol_email9 ski_patrol_password9
             //_userID = 1511;

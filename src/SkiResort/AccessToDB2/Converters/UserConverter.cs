@@ -6,7 +6,7 @@ namespace AccessToDB2.Converters
     {
         public static BL.Models.User DBToBL(User user_db)
         {
-            return new BL.Models.User((uint)user_db.UserID, (uint)user_db.CardID, user_db.UserEmail, user_db.Password, (BL.Models.PermissionsEnum)user_db.Permissions);
+            return new BL.Models.User((uint)user_db.UserId, (uint)user_db.CardId, user_db.UserEmail, user_db.Password, (BL.Models.PermissionsEnum)user_db.Permissions);
         }
 
         public static User BLToDB(BL.Models.User user_bl)

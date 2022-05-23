@@ -6,7 +6,7 @@ namespace AccessToDB2.Converters
     {
         public static BL.Models.Slope DBToBL(Slope db_model)
         {
-            return new BL.Models.Slope((uint)db_model.SlopeID, db_model.SlopeName, db_model.IsOpen, (uint)db_model.DifficultyLevel);
+            return new BL.Models.Slope((uint)db_model.SlopeId, db_model.SlopeName, (bool) db_model.IsOpen, (uint)db_model.DifficultyLevel);
         }
 
         public static Slope BLToDB(BL.Models.Slope bl_model)

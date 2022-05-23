@@ -6,7 +6,7 @@ namespace AccessToDB2.Converters
     {
         public static BL.Models.Turnstile DBToBL(Turnstile db_model)
         {
-            return new BL.Models.Turnstile((uint)db_model.TurnstileID, (uint)db_model.LiftID, db_model.IsOpen);
+            return new BL.Models.Turnstile((uint)db_model.TurnstileId, (uint)db_model.LiftId, (bool) db_model.IsOpen);
         }
 
         public static Turnstile BLToDB(BL.Models.Turnstile bl_model)

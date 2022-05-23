@@ -60,7 +60,6 @@ C:\BMSTU_6sem_software_design\src\SkiResort\UI\obj\Debug\net6.0-windows\refint\U
 C:\BMSTU_6sem_software_design\src\SkiResort\UI\obj\Debug\net6.0-windows\UI.pdb
 C:\BMSTU_6sem_software_design\src\SkiResort\UI\obj\Debug\net6.0-windows\UI.genruntimeconfig.cache
 C:\BMSTU_6sem_software_design\src\SkiResort\UI\obj\Debug\net6.0-windows\ref\UI.dll
-C:\BMSTU_6sem_software_design\src\SkiResort\UI\bin\Debug\net6.0-windows\UI.dll.config
 C:\BMSTU_6sem_software_design\src\SkiResort\UI\bin\Debug\net6.0-windows\Workers.deps.json
 C:\BMSTU_6sem_software_design\src\SkiResort\UI\bin\Debug\net6.0-windows\Workers.runtimeconfig.json
 C:\BMSTU_6sem_software_design\src\SkiResort\UI\bin\Debug\net6.0-windows\appsettings.Development.json
@@ -108,3 +107,13 @@ C:\BMSTU_6sem_software_design\src\SkiResort\UI\bin\Debug\net6.0-windows\Npgsql.d
 C:\BMSTU_6sem_software_design\src\SkiResort\UI\bin\Debug\net6.0-windows\Npgsql.EntityFrameworkCore.PostgreSQL.dll
 C:\BMSTU_6sem_software_design\src\SkiResort\UI\bin\Debug\net6.0-windows\AccessToDB2.dll
 C:\BMSTU_6sem_software_design\src\SkiResort\UI\bin\Debug\net6.0-windows\AccessToDB2.pdb
+C:\BMSTU_6sem_software_design\src\SkiResort\UI\bin\Debug\net6.0-windows\Humanizer.dll
+C:\BMSTU_6sem_software_design\src\SkiResort\UI\bin\Debug\net6.0-windows\Microsoft.EntityFrameworkCore.Design.dll
+C:\BMSTU_6sem_software_design\src\SkiResort\UI\bin\Debug\net6.0-windows\EntityFramework.SqlServer.dll
+C:\BMSTU_6sem_software_design\src\SkiResort\UI\bin\Debug\net6.0-windows\EntityFramework.dll
+C:\BMSTU_6sem_software_design\src\SkiResort\UI\bin\Debug\net6.0-windows\System.Data.SqlClient.dll
+C:\BMSTU_6sem_software_design\src\SkiResort\UI\bin\Debug\net6.0-windows\runtimes\win-arm64\native\sni.dll
+C:\BMSTU_6sem_software_design\src\SkiResort\UI\bin\Debug\net6.0-windows\runtimes\win-x64\native\sni.dll
+C:\BMSTU_6sem_software_design\src\SkiResort\UI\bin\Debug\net6.0-windows\runtimes\win-x86\native\sni.dll
+C:\BMSTU_6sem_software_design\src\SkiResort\UI\bin\Debug\net6.0-windows\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\BMSTU_6sem_software_design\src\SkiResort\UI\bin\Debug\net6.0-windows\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll

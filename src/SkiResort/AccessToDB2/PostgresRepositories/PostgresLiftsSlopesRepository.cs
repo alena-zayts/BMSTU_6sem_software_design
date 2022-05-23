@@ -5,14 +5,17 @@ using System.Text;
 using System.Threading.Tasks;
 using BL.IRepositories;
 using BL.Models;
+using AccessToDB2.Converters;
+using System.Data.Entity;
+
 
 namespace AccessToDB2.PostgresRepositories
 {
     public class PostgresLiftsSlopesRepository : ILiftsSlopesRepository
     {
-        private readonly TransfersystemContext db;
+        private readonly DBContext db;
 
-        public PostgresLiftsSlopesRepository(TransfersystemContext curDb)
+        public PostgresLiftsSlopesRepository(DBContext curDb)
         {
             db = curDb;
         }

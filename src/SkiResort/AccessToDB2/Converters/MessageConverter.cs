@@ -6,7 +6,7 @@ namespace AccessToDB2.Converters
     {
         public static BL.Models.Message DBToBL(Message db_model)
         {
-            return new BL.Models.Message((uint)db_model.MessageID, (uint)db_model.SenderID, (uint)db_model.CheckedByID, db_model.Text);
+            return new BL.Models.Message((uint)db_model.MessageId, (uint)db_model.SenderId, (uint)db_model.CheckedById, db_model.Text);
         }
 
         public static Message BLToDB(BL.Models.Message bl_model)
