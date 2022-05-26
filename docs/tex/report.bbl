@@ -90,11 +90,11 @@ Redis is an open source (BSD licensed), in-memory data structure store, used as
 
 \bibitem{acid}
 \selectlanguageifdefined{russian}
-Транзакции, ACID, CAP | GeekBrains [Электронный
+ACID (Atomicity, Consistency, Isolation, Durability) [Электронный
   ресурс].
 \newblock Режим доступа:
-  \url{https://gb.ru/posts/acid_cap_transactions} (дата обращения:
-  07.06.2021).
+  \url{https://ru.bmstu.wiki/ACID\_(Atomicity,\_Consistency,\_Isolation,\_Durability)}
+  (дата обращения: 01.04.2022).
 
 \bibitem{tarantool}
 \selectlanguageifdefined{russian}

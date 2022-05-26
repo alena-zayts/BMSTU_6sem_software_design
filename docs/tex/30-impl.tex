@@ -156,7 +156,7 @@ box.schema.role.create('ski_admin')
 box.schema.role.grant('ski_admin', 'read,write,execute,create,alter,drop', 'universe')
 \end{lstlisting}
 
-\subsection{Реализация функций}
+\subsection{Реализация функции для расчета времени в очереди на подъемник}
 
 В листинге \ref{lst:func} представлены реализации функций update\_queue\_time и count\_card\_readings, предназначенных для обновленияя время в очереди к подъемнику. Алгоритм работы этих функций был описан в пункте \ref{func_label}.
 
@@ -164,11 +164,9 @@ box.schema.role.grant('ski_admin', 'read,write,execute,create,alter,drop', 'univ
 \begin{lstlisting}[label=lst:func, caption=Функции update\_queue\_time и count\_card\_readings, language=python]
 function count_card_readings(lift_id, date_from, date_query)
 	connected_turnstiles = turnstiles.index.index_lift_id:select({lift_id})
-	
 	counter = 0
 	for k,v in pairs(connected_turnstiles) do
 		cur_turnstile_id = v["turnstile_id"]
-		
 		card_readings_on_turnstile = card_readings.index.index_turnstile:select({cur_turnstile_id})
 		
 		for k,v in pairs(card_readings_on_turnstile) do
@@ -184,12 +182,9 @@ function update_queue_time(lift_id, date_from, date_query)
 	card_readings_amount = count_card_readings(lift_id, date_from, date_query)
 	lift = lifts:get{lift_id}
 	time_delta = date_query - date_from
-	new_queue_time = math_module.max(
-		math_module.ceil(
-			lift["queue_time"] - 
-			time_delta  + 
-			(card_readings_amount * lift["lifting_time"] * 2 / lift["seats_amount"])), 
-		0)
+	new_queue_time = math_module.max(math_module.ceil(
+			lift["queue_time"] - time_delta  + 
+			(card_readings_amount * lift["lifting_time"] * 2 / lift["seats_amount"])), 0)
 	lifts:update(lift_id, {{'=', 6, new_queue_time}})
 	return new_queue_time
 end
@@ -208,8 +203,7 @@ slopes:format({
 	{name = 'slope_id', type = 'unsigned'},
 	{name = 'slope_name', type = 'string'},
 	{name = 'is_open', type = 'boolean'},
-	{name = 'difficulty_level', type = 'unsigned'}
-})
+	{name = 'difficulty_level', type = 'unsigned'}})
 slopes:create_index('primary')
 slopes:create_index('index_name', {parts = {'slope_name'}})
 \end{lstlisting}
@@ -229,15 +223,13 @@ public record class Slope {
 		this.SlopeID = slopeID;
 		this.SlopeName = slopeName;
 		this.IsOpen = isOpen;
-		this.DifficultyLevel = difficultyLevel;
-	}
+		this.DifficultyLevel = difficultyLevel;}
 	public Slope(Slope slope, List<Lift> connectedLifts){
 		this.SlopeID = slope.SlopeID;
 		this.SlopeName = slope.SlopeName;
 		this.IsOpen = slope.IsOpen;
 		this.DifficultyLevel = slope.DifficultyLevel;
-		this.ConnectedLifts = connectedLifts;
-	}
+		this.ConnectedLifts = connectedLifts;}
 }
 \end{lstlisting}
 
@@ -294,8 +286,119 @@ end
 
 \section{Интерфейс приложения}
 
-TODO
 
+При запуске приложения пользователь считается неавторизованным. Открывается главное окно, продемонстрированное на рисунке \ref{img:main}, в котором размещены кнопки для открытия других окон. 
+
+\clearpage
+\begin{figure}[h!]
+	\begin{center}
+		\includegraphics[scale=0.8]{../imgs/int/main.png}
+	\end{center}
+	\captionsetup{justification=centering}
+	\caption{Главное окно приложения (пользователь не авторизован)}
+	\label{img:main}
+\end{figure}
+
+В любом окне неактивная кнопка означает, что данное действие недоступно данному пользователю. Например, в окне <<Профиль>> неавторизованный пользователь может только выполнить вход или зарегистрироваться (рисунок \ref{img:profu}), авторизованный -- только выполнить выход (рисунок \ref{img:profa}).
+
+
+\begin{figure}[h!]
+	\begin{center}
+		\includegraphics[scale=1]{../imgs/int/profu.png}
+	\end{center}
+	\captionsetup{justification=centering}
+	\caption{Окно <<Профиль>> (пользователь не авторизован)}
+	\label{img:profu}
+\end{figure}
+
+\clearpage
+\begin{figure}[h!]
+	\begin{center}
+		\includegraphics[scale=1]{../imgs/int/profa.png}
+	\end{center}
+	\captionsetup{justification=centering}
+	\caption{Окно <<Профиль>> (пользователь авторизован)}
+	\label{img:profa}
+\end{figure}
+
+Далее для демонстрации всех функций системы окна будут показаны в том виде, в котором они открываются для пользователя с правами администратора, так как ему доступен наибольший функционал.
+
+На рисунке \ref{img:messages} показан вид окна <<Сообщения>>. Предоставляется возможность получить информацию обо всех сообщениях или об одном из них по ID; добавить (отправить), изменить (в частности, отметить прочитанным) или удалить сообщение.
+
+%\clearpage
+\begin{figure}[h!]
+	\begin{center}
+		\includegraphics[scale=0.65]{../imgs/int/messages.png}
+	\end{center}
+	\captionsetup{justification=centering}
+	\caption{Окно <<Сообщения>>}
+	\label{img:messages}
+\end{figure}
+
+
+На рисунке \ref{img:slopes} показан вид окна <<Трассы>>. Предоставляется возможность получить информацию обо всех трассах или об одной из них по названию; добавить, изменить или удалить трассу; добавить или удалить связь с подъемником.
+
+
+\begin{figure}[h!]
+	\begin{center}
+		\includegraphics[scale=0.7]{../imgs/int/slopes.png}
+	\end{center}
+	\captionsetup{justification=centering}
+	\caption{Окно <<Трассы>>}
+	\label{img:slopes}
+\end{figure}
+
+На рисунке \ref{img:lifts} показан вид окна <<Подъемники>>. Предоставляется возможность получить информацию обо всех подъемниках или об одном из них по названию; добавить, изменить или удалить подъемник; добавить или удалить связь с трассой.
+
+\clearpage
+\begin{figure}[h!]
+	\begin{center}
+		\includegraphics[scale=0.6]{../imgs/int/lifts.png}
+	\end{center}
+	\captionsetup{justification=centering}
+	\caption{Окно <<Подъемники>>}
+	\label{img:lifts}
+\end{figure}
+
+На рисунках \ref{img:users}, \ref{img:cards}, \ref{img:turnstiles}, \ref{img:readings} показаны виды окон <<Пользователи>>, <<Карты>>, <<Турникеты>> и <<Считывания карт>>, соответственно. В каждом окне можно получить информацию обо всех соответствующих объектах или об одном из них по ID; добавить, изменить или удалить объект.
+
+\begin{figure}[h!]
+	\begin{center}
+		\includegraphics[scale=0.6]{../imgs/int/users.png}
+	\end{center}
+	\captionsetup{justification=centering}
+	\caption{Окно <<Пользователи>>}
+	\label{img:users}
+\end{figure}
+
+\begin{figure}[h!]
+	\begin{center}
+		\includegraphics[scale=0.6]{../imgs/int/cards.png}
+	\end{center}
+	\captionsetup{justification=centering}
+	\caption{Окно <<Карты>>}
+	\label{img:cards}
+\end{figure}
+
+\begin{figure}[h!]
+	\begin{center}
+		\includegraphics[scale=0.6]{../imgs/int/turnstiles.png}
+	\end{center}
+	\captionsetup{justification=centering}
+	\caption{Окно <<Турникеты>>}
+	\label{img:turnstiles}
+\end{figure}
+
+\begin{figure}[h!]
+	\begin{center}
+		\includegraphics[scale=0.6]{../imgs/int/readings.png}
+	\end{center}
+	\captionsetup{justification=centering}
+	\caption{Окно <<Считывания карт>>}
+	\label{img:readings}
+\end{figure}
+
+\clearpage
 \section*{Вывод}
 
 На основе анализа in-memory СУБД был осуществлен выбор наиболее подходящей для решения поставленной задачи. Были выбраны инструменты разработки, приведены детали реализации и интерфейс приложения.

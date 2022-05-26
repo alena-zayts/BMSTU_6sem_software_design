@@ -8,6 +8,6 @@ namespace UI.IViews
 {
     public interface IExceptionView
     {
-        public void ShowException(Exception exception, string message);
+        public void ShowException(Exception exception, string message="Призошла ошибка");
     }
 }

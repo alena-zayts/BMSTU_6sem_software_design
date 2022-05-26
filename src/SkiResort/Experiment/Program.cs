@@ -28,6 +28,7 @@ ITurnstilesRepository _turnstilesRepository = repositoriesFactory.CreateTurnstil
 
 string cardReadingsDir = "C:/BMSTU_6sem_software_design/src/tarantool/app/json_data/card_readings/";
 string liftsDir = "C:/BMSTU_6sem_software_design/src/tarantool/app/json_data/lifts/";
+string turnstilesDir = "C:/BMSTU_6sem_software_design/src/tarantool/app/json_data/turnstiles/";
 
 
 string AddResultsFilename = "C:/BMSTU_6sem_software_design/src/SkiResort/Experiment/add.txt";
@@ -37,12 +38,13 @@ string NFilename = "C:/BMSTU_6sem_software_design/src/SkiResort/Experiment/N.txt
 string settingsFilename = "C:/BMSTU_6sem_software_design/src/settings.txt";
 string[] lines = System.IO.File.ReadAllLines(settingsFilename);
 
-uint dateFromFileUint = UInt32.Parse(lines[0]);
+uint dateFromUint = UInt32.Parse(lines[0]);
 uint dateToUint = UInt32.Parse(lines[1]);
-uint dateFromUint = (dateFromFileUint + dateToUint) / 2;
+uint timeDelta = dateToUint - dateFromUint;
+dateToUint = dateFromUint + timeDelta / 2;
 DateTimeOffset dateFrom = DateTimeOffset.FromUnixTimeSeconds(dateFromUint);
 DateTimeOffset dateTo = DateTimeOffset.FromUnixTimeSeconds(dateToUint);
-uint timeDelta = dateToUint - dateFromUint;
+
 
 int n_lifts = Int32.Parse(lines[2]);
 int n_turnstiles_per_lift = Int32.Parse(lines[3]);
@@ -95,7 +97,10 @@ long addCardReadings(List<CardReading> cardReadingList)
        ts.Hours, ts.Minutes, ts.Seconds, ts.Milliseconds / 10);
    Console.WriteLine($"Adding: " + elapsedTime);
 
-   long timeMS = stopWatch.ElapsedMilliseconds;
+    List<CardReading> tmp = _cardReadingsRepository.GetCardReadingsAsync().GetAwaiter().GetResult();
+    Console.WriteLine($"Current CardReading amount: {tmp.Count()}");
+
+    long timeMS = stopWatch.ElapsedMilliseconds;
    return timeMS;
 }
 
@@ -278,11 +283,12 @@ long updateLifts3()
 
     foreach (Lift lift in lifts)
     {
-        List<Turnstile> turnstiles = _turnstilesRepository.GetTurnstilesByLiftIdAsync(lift.LiftID).GetAwaiter().GetResult();
+        List<Turnstile> turnstiles = _turnstilesRepository.GetTurnstilesByLiftIdAsync(lift.LiftID)
+            .GetAwaiter().GetResult();
         List<uint> connectedTurnstileIDs = new List<uint>();
         foreach (Turnstile turnstile in turnstiles)
         {
-            connectedTurnstileIDs.Add(turnstile.LiftID);
+            connectedTurnstileIDs.Add(turnstile.TurnstileID);
         }
 
         uint cardReadingsAmout = 0;
@@ -334,7 +340,7 @@ long updateLifts4()
         foreach (Turnstile turnstile in turnstiles)
         {
             if (turnstile.LiftID == lift.LiftID)
-                connectedTurnstileIDs.Add(turnstile.LiftID);
+                connectedTurnstileIDs.Add(turnstile.TurnstileID);
         }
 
         
@@ -363,7 +369,8 @@ long updateLifts4()
 }
 
 
-List<int> ns = new List<int>() {0, 50, 100, 200};
+List<int> ns = new List<int>() {0, 50, 100, 200, 300, 400};
+//List<int> ns = new List<int>() {0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100};
 
 
 using (StreamWriter Nwriter = new StreamWriter(NFilename, false))
@@ -372,7 +379,7 @@ using (StreamWriter Nwriter = new StreamWriter(NFilename, false))
         Nwriter.WriteLine($"{n}");
 }
 
-int n_repeats = ns.Count;
+int n_repeats = ns.Count + 1;
 using (StreamWriter updateWriter = new StreamWriter(UpdateResultsFilename, false))
 {
     using (StreamWriter addWriter = new StreamWriter(AddResultsFilename, false))
@@ -391,7 +398,7 @@ using (StreamWriter updateWriter = new StreamWriter(UpdateResultsFilename, false
 
             int n_card_readings_prev = n_turnstiles_prev * n_card_readings_per_turnstile;
             int n_card_readings_cur = n_turnstiles_cur * n_card_readings_per_turnstile;
-            List<Turnstile> turnstiles = GetTurnstilesFromJsonFiles(n_card_readings_prev, n_card_readings_cur);
+            List<CardReading> cardReadings = GetCardReadingsFromJsonFiles(n_card_readings_prev, n_card_readings_cur);
 
 
             long addingTime = addLifts(lifts);

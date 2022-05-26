@@ -72,10 +72,10 @@ namespace UI.WinFormsViews
             set { LiftNameTextBox.Text = value; }
         }
 
-        public new string Name
+        public string SlopeName
         {
-            get { return NameTextBox.Text; }
-            set { NameTextBox.Text = value; }
+            get { return SlopeNameTextBox.Text; }
+            set { SlopeNameTextBox.Text = value; }
         }
 
         public List<Slope> Slopes 
@@ -164,6 +164,11 @@ namespace UI.WinFormsViews
         private void GetSlopesInfoButton_Click(object sender, EventArgs e)
         {
             GetInfosClicked?.Invoke(this, new EventArgs());
+        }
+
+        private void SlopeViewWinForm_Load(object sender, EventArgs e)
+        {
+            SlopeName = "";
         }
     }
 }

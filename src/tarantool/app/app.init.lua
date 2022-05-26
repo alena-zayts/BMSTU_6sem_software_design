@@ -16,7 +16,7 @@ print('start!')
 
 ---------------------------------------------------------------------------------------------init tables
 local function init()
-	chosen_engine = "memtx" --"memtx" -- vinyl
+	--chosen_engine = "memtx" --"memtx" -- vinyl
 	print('in init!')
 	
 	box.schema.upgrade()
@@ -280,8 +280,8 @@ end
 local function load__data()
 	load_users_data()
 	load_cards_data()
-	--load_turnstiles_data()
-	--load_lifts_data()
+	load_turnstiles_data()
+	load_lifts_data()
 	load_slopes_data()
 	load_lifts_slopes_data()
 	load_messages_data()
@@ -366,9 +366,6 @@ end
 box.cfg {
    background = false,
    listen = 3301,
-   --vinyl_cache= 128 * 1024, --128 * 1024 * 1024
-   --vinyl_memory = 128 * 1024 * 1024,
-   --vinyl_cache = 512 * 1024
 }
 
 init()

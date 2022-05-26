@@ -54,7 +54,7 @@
             this.slopeButton.Name = "slopeButton";
             this.slopeButton.Size = new System.Drawing.Size(189, 63);
             this.slopeButton.TabIndex = 1;
-            this.slopeButton.Text = "Спуски";
+            this.slopeButton.Text = "Трассы";
             this.slopeButton.UseVisualStyleBackColor = true;
             this.slopeButton.Click += new System.EventHandler(this.slopeButton_Click);
             // 

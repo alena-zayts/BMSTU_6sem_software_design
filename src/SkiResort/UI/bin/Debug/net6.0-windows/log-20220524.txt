@@ -1,0 +1,4 @@
+2022-05-24 09:50:01.185 +03:00 [INF] Initialized presenter
+2022-05-24 09:50:01.381 +03:00 [INF] Changing visibility for views
+2022-05-24 09:50:01.381 +03:00 [INF] Opening MainView
+2022-05-24 09:50:02.576 +03:00 [INF] Closing MainView

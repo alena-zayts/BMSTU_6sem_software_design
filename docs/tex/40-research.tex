@@ -1,152 +1,219 @@
 \chapter{Исследовательская часть}
 
-В данном разделе представлена постановка эксперимента по сравнению занимаемого времени для получения данных из хранилища с использованием и без использования кэширования.
+В данном разделе представлена постановка эксперимента по сравнению времени обновления длительности ожидания в очередях к подъемникам в зависимости от их количества и от того, какой объем вычислений переносится на сторону приложения.
 
-\section{Постановка эксперимента}
 
-В данном подразделе представлены цель, описание и результаты эксперимента.
+\section{Цель эксперимента}
 
-\subsection{Цель эксперимента}
+Целью эксперимента является исследование зависимости времени обновления длительности ожидания в очередях к подъемникам от их количества и от того, где производятся основные шаги вычислений: на стороне БД или на стороне приложения.
 
-Целью эксперимента является сравнение времени, требуемого для получения данных о рабочей программе дисциплины с и без использованием кэширования данных.
+\section{Технические характеристики}
 
-\subsection{Описание эксперимента}
+Технические характеристики устройства, на котором выполнялись измерения:
 
-Сравнить занимаемое время можно при помощи отключения реализованного механизма кэширования. Для этого будет достаточно отключить базу данных, хранящую данные о кэшировании и каждый раз выполнять запрос напрямую к базе данных хранящую информацию о рабочих программах дисциплин.
+\begin{itemize}
+	\item операционная система: Windows 10;
+	\item оперативная память: 16 Гб;
+	\item процессор: Intel Core™ i5-8259U.
+\end{itemize}
 
-Для проведения будут использоваться кэши разных размеров, а так же разное количество запрашиваемых рабочих програм дисциплин. Будут произведены операции, для того чтобы запрашиваемые РПД могли оказаться в кэше.
+Во время тестирования ноутбук был включен в сеть питания и нагружен только встроенными приложениями окружения и системой тестирования.
 
-В поставленном эксперименте одна рабочая дисциплина состоит из 32 единиц (таблиц).
 
-\subsection{Результат эксперимента}
+\section{Описание эксперимента}
 
-В таблицах \ref{tbl:experiment1} - \ref{tbl:experiment3} представлены результаты поставленного эксперимента. 
+В эксперименте сравнивается время обновления длительности ожидания в очередях к подъемникам в зависимости от их количества и от используемого алгоритма. Для каждого количества подъемников и каждой реализации замеры производятся 50 раз, а затем вычисляется среднее арифметическое.
 
+\subsection{Сравниваемые алгоритмы}
+
+В эксперименте сравниваются реализации четырех алгоритмов обновления времени ожидания в очередях к подъемникам (описаны в порядке убывания объема вычислений, производимых на стороне БД).
+
+В первом алгоритме б\'{о}льшая часть вычислений осуществляется на БД. После получения всех подъемников в цикле для каждого из них вызывается функция update\_queue\_time (см. листинг \ref{lst:func}), которая на уровне БД производит все вычисления: поиск связанных с подъемником турникетов, подсчет считываний на этих турникетах в заданный промежуток времени,  расчет нового времени ожидания и обновление соответствующего кортежа в спейсе lifts. В листинге \ref{lst:upd1} приведен участок кода, реализующий данный алгоритм.
+
+\captionsetup{justification=centering,singlelinecheck=off}
+\begin{lstlisting}[label=lst:upd1, caption=Первый алгоритм обновления времени ожидания в очередях к подъемникам, language=csharp]
+List<Lift> lifts = _liftsRepository.GetLiftsAsync().GetAwaiter().GetResult(); 
+foreach (Lift lift in lifts)
+{
+	var result = box.Call_1_6<ValueTuple<uint, uint, uint>, Int32[]>("update_queue_time", (ValueTuple.Create(lift.LiftID, (uint)dateFrom.ToUnixTimeSeconds(), (uint)dateTo.ToUnixTimeSeconds()))).GetAwaiter().GetResult();
+}
+\end{lstlisting}
+
+Во втором алгоритме после получения всех подъемников в цикле для каждого из них: вызывается функция count\_card\_readings, которая на уровне БД подсчитывает количество считываний карт в заданный промежуток времени на турникетах, связанных с данным подъемником (см. листинг \ref{lst:func}); на уровне приложения проводится расчет нового времени ожидания в очереди; осуществляется вызов функции дя обновления соответствующего кортежа в спейсе lifts. В листинге \ref{lst:upd2} приведен участок кода, реализующий данный алгоритм.
+
+\captionsetup{justification=centering,singlelinecheck=off}
+\begin{lstlisting}[label=lst:upd2, caption=Второй алгоритм обновления времени ожидания в очередях к подъемникам, language=csharp]
+List<Lift> lifts = _liftsRepository.GetLiftsAsync().GetAwaiter().GetResult();
+foreach (Lift lift in lifts)
+{
+	var result = box.Call_1_6<ValueTuple<uint, uint, uint>, Int32[]>("count_card_readings", (ValueTuple.Create(lift.LiftID, (uint)dateFrom.ToUnixTimeSeconds(), (uint)dateTo.ToUnixTimeSeconds()))).GetAwaiter().GetResult();
+	uint cardReadingsAmout = (uint)result.Data[0][0];
+	
+	uint plusQueueTime = cardReadingsAmout * (2 * lift.LiftingTime / lift.SeatsAmount);
+	
+	uint newQueueTime = Math.Max(lift.QueueTime - timeDelta + plusQueueTime, 0);
+	
+	Lift updatedLift = new(lift, newQueueTime);
+	_liftsRepository.UpdateLiftByIDAsync(updatedLift.LiftID, updatedLift.LiftName, updatedLift.IsOpen, updatedLift.SeatsAmount, updatedLift.LiftingTime).GetAwaiter().GetResult();
+}
+\end{lstlisting}
+
+
+В третьем алгоритме после получения всех подъемников и считываний карт происходит отбрасывание считываний, которые не попали в указанный промежуток времени, а затем в цикле для каждого подъемника: путем обращения к БД получаются все турникеты, связанные с данным подъемником; на уровне приложения подсчитывается количество считываний карт в заданный промежуток времени на этих турникетах и осуществляется расчет нового времени ожидания в очереди; производится вызов функции дя обновления соответствующего кортежа в спейсе lifts. В листинге \ref{lst:upd3} приведен участок кода, реализующий данный алгоритм.
+
+\clearpage
+\captionsetup{justification=centering,singlelinecheck=off}
+\begin{lstlisting}[label=lst:upd3, caption=Третий алгоритм обновления времени ожидания в очередях к подъемникам, language=csharp]
+    List<Lift> lifts = _liftsRepository.GetLiftsAsync().GetAwaiter().GetResult();
+List<CardReading> allCardReadings = _cardReadingsRepository.GetCardReadingsAsync()
+.GetAwaiter().GetResult();
+List<CardReading> cardReadings = new List<CardReading>();
+foreach (CardReading cardReading in allCardReadings){
+	if ((cardReading.ReadingTime >= dateFrom) &&
+	(cardReading.ReadingTime < dateTo))
+	cardReadings.Add(cardReading);
+}
+
+foreach (Lift lift in lifts){
+	List<Turnstile> turnstiles = _turnstilesRepository.GetTurnstilesByLiftIdAsync(lift.LiftID)
+	.GetAwaiter().GetResult();
+	List<uint> connectedTurnstileIDs = new List<uint>();
+	foreach (Turnstile turnstile in turnstiles){
+		connectedTurnstileIDs.Add(turnstile.TurnstileID);
+	}
+	
+	uint cardReadingsAmout = 0;
+	foreach (CardReading cardReading in cardReadings){
+		if (connectedTurnstileIDs.Contains(cardReading.TurnstileID))
+		cardReadingsAmout++;
+	}
+	uint plusQueueTime = cardReadingsAmout * (2 * lift.LiftingTime / lift.SeatsAmount);
+	uint newQueueTime = Math.Max(lift.QueueTime - timeDelta + plusQueueTime, 0);
+	
+	Lift updatedLift = new(lift, newQueueTime);
+	_liftsRepository.UpdateLiftByIDAsync(updatedLift.LiftID, updatedLift.LiftName, updatedLift.IsOpen, updatedLift.SeatsAmount, updatedLift.LiftingTime).GetAwaiter().GetResult();
+}
+\end{lstlisting}
+
+
+В четвертом алгоритме б\'{о}льшая часть вычислений осуществляется на уровне приложения. Сначала происходит получение всех подъемников, считываний и турникетов из БД. Затем отбрасываются считывания, которые не попали в указанный промежуток времени. Далее в цикле для каждого подъемника: на уровне приложения определяются связанные с ним турникеты; подсчитываются чтения карт на этих турникетах; осуществляется расчет нового времени ожидания в очереди; производится вызов функции дя обновления соответствующего кортежа в спейсе lifts. В листинге \ref{lst:upd4} приведен участок кода, реализующий данный алгоритм.
+
+\captionsetup{justification=centering,singlelinecheck=off}
+\begin{lstlisting}[label=lst:upd4, caption=Четвертый алгоритм обновления времени ожидания в очередях к подъемникам, language=csharp]
+    List<Lift> lifts = _liftsRepository.GetLiftsAsync().GetAwaiter().GetResult();
+List<Turnstile> turnstiles = _turnstilesRepository.GetTurnstilesAsync()
+.GetAwaiter().GetResult();
+List<CardReading> allCardReadings = _cardReadingsRepository.GetCardReadingsAsync()
+.GetAwaiter().GetResult();
+List<CardReading> cardReadings = new List<CardReading>();
+foreach (CardReading cardReading in allCardReadings)
+{
+	if ((cardReading.ReadingTime >= dateFrom) &&
+	(cardReading.ReadingTime < dateTo))
+	cardReadings.Add(cardReading);
+}
+
+foreach (Lift lift in lifts)
+{
+	List<uint> connectedTurnstileIDs = new List<uint>();
+	foreach (Turnstile turnstile in turnstiles)
+	{
+		if (turnstile.LiftID == lift.LiftID)
+		connectedTurnstileIDs.Add(turnstile.TurnstileID);
+	}
+	
+	uint cardReadingsAmout = 0;
+	foreach (CardReading cardReading in cardReadings)
+	{
+		if (connectedTurnstileIDs.Contains(cardReading.TurnstileID))
+		cardReadingsAmout++;
+	}
+	
+	uint plusQueueTime = cardReadingsAmout * (2 * lift.LiftingTime / lift.SeatsAmount);
+	uint newQueueTime = Math.Max(lift.QueueTime - timeDelta + plusQueueTime, 0);
+	
+	Lift updatedLift = new(lift, newQueueTime);
+	_liftsRepository.UpdateLiftByIDAsync(updatedLift.LiftID, updatedLift.LiftName, updatedLift.IsOpen, updatedLift.SeatsAmount, updatedLift.LiftingTime).GetAwaiter().GetResult();
+}
+\end{lstlisting}
+
+\subsection{Используемые данные}
+
+В поставленном эксперименте для реализации каждого алгоритма измеряется время обновления длительности ожидания в очередях ко всем подъемникам при их различном количестве: 50, 100, 200, 400, 600, 800. Для каждого подъемника при этом создаются 5 турникетов,  для каждого турникета -- по 10 считываний, из которых только половина попадает в заданный промежуток времени. Во всех остальных спейсах хранятся 1000 записей в каждом.
+
+
+
+\section{Результаты эксперимента}
+
+В таблице \ref{tbl:experiment1} представлены результаты поставленного эксперимента. 
 
 
 \begin{table}[H]
 	\centering
-	\caption{Результаты сравнения времени, необходимого для получениях данных без кэширования и с кэшированием (размер кэша - 100 единиц)}
+	\caption{Результаты сравнения времени (мс), необходимого для обновления длительности ожидания в очередях ко всем подъемникам в зависимости от их количества и используемого алгоритма}
 	\label{tbl:experiment1}
 	\resizebox{\textwidth}{!}{%
-		\begin{tabular}{|l|l|l|}
+		\begin{tabular}{|l|l|l|l|l|} 
 			\hline
-			\textbf{\begin{tabular}[c]{@{}c@{}}Количество \\ РПД\end{tabular}} & \textbf{Время без кэширования, мс} & \textbf{Время с кэшированием, мс} \\ \hline
-			1 & 62012 & 4554 \\ \hline
-			5 & 366500 & 340250 \\ \hline
-			10 & 751340 & 702250 \\ \hline
-			25 & 2657210 & 2584172 \\ \hline
-			100 & 9750742 & 9209781 \\ \hline
+			\diagbox{Количество подъемников}{Номер алгоритма} & 1     & 2     & 3     & 4      \\ 
+			\hline
+			50                                                & 891   & 908   & 1785  & 950    \\ 
+			\hline
+			100                                               & 1760  & 1797  & 3593  & 1822   \\ 
+			\hline
+			200                                               & 3535  & 3588  & 7099  & 3600   \\ 
+			\hline
+			400                                               & 7088  & 7222  & 14186 & 7152   \\ 
+			\hline
+			600                                               & 10657 & 10754 & 21363 & 10676  \\ 
+			\hline
+			800                                               & 14175 & 14481 & 28503 & 14306  \\
+			\hline
 		\end{tabular}%
 	}
 \end{table}
 
-\begin{table}[H]
-	\centering
-	\caption{Результаты сравнения времени, необходимого для получениях данных без кэширования и с кэшированием (размер кэша - 1000 единиц)}
-	\label{tbl:experiment2}
-	\resizebox{\textwidth}{!}{%
-		\begin{tabular}{|l|l|l|}
-			\hline
-			\textbf{\begin{tabular}[c]{@{}c@{}}Количество \\ РПД\end{tabular}} & \textbf{Время без кэширования, мс} & \textbf{Время с кэшированием, мс} \\ \hline
-			1 & 70233 & 4301 \\ \hline
-			5 & 398213 & 28231 \\ \hline
-			10 & 720304 & 50300  \\ \hline
-			25 & 2011763 & 175680 \\ \hline
-			100 & 9542401 & 7001307 \\ \hline
-		\end{tabular}%
-	}
-\end{table}
 
-\begin{table}[H]
-	\centering
-	\caption{Результаты сравнения времени, необходимого для получениях данных без кэширования и с кэшированием (размер кэша - 5000 единиц)}
-	\label{tbl:experiment3}
-	\resizebox{\textwidth}{!}{%
-		\begin{tabular}{|l|l|l|}
-			\hline
-			\textbf{\begin{tabular}[c]{@{}c@{}}Количество \\ РПД\end{tabular}} & \textbf{Время без кэширования, мс} & \textbf{Время с кэшированием, мс} \\ \hline
-			1 & 90213 & 6521 \\ \hline
-			5 & 360041 & 24664 \\ \hline
-			10 & 519212 & 40227  \\ \hline
-			25 & 1881132 & 109710 \\ \hline
-			100 & 7796774 & 754991 \\ \hline
-		\end{tabular}%
-	}
-\end{table}
 
-На рисунках \ref{plt:experiment1} - \ref{plt:experiment3} представлены графики зависимости количество запрашиваемых РПД от времени, при разных размерах кэша.
+На рисунке \ref{plt:experiment1} представлены графики зависимости времени обновления длительности ожидания в очередях к подъемникам от их количества и от используемого алгоритма.
+
+
 
 \begin{figure}[H]
 	\centering
-	\begin{tikzpicture}
+	\begin{tikzpicture}[scale=1.1]
 	\begin{axis}[
 	axis lines=left,
-	xlabel=Количество запрашиваемых РПД,
+	xlabel=Количество подъемников,
 	ylabel={Время, мс},
 	legend pos=north west,
 	ymajorgrids=true
 	]
-	\addplot table[x=RPD,y=ms,col sep=comma]{csv/cache_01.csv};
-	\addplot table[x=RPD,y=ms,col sep=comma]{csv/storage_01.csv};
-	\legend{С кэшированием, Без кэширования}
+	\addplot table[x=N,y=ms,col sep=comma]{csv/exp1.csv};
+	\addplot table[x=N,y=ms,col sep=comma]{csv/exp2.csv};
+	\addplot table[x=N,y=ms,col sep=comma]{csv/exp3.csv};
+	\addplot table[x=N,y=ms,col sep=comma]{csv/exp4.csv};
+	\legend{Алгоритм 1, Алгоритм 2, Алгоритм 3, Алгоритм 4}
 	\end{axis}
 	\end{tikzpicture}
 	\captionsetup{justification=centering}
-	\caption{Зависимость времени от количества запрашиваемых РПД (размера кэша 100 элементов)}
+	\caption{Зависимость времени обновления длительности ожидания в очередях к подъемникам от их количества и от используемого алгоритма}
 	\label{plt:experiment1}
 \end{figure}
 
-\begin{figure}[H]
-	\centering
-	\begin{tikzpicture}
-	\begin{axis}[
-	axis lines=left,
-	xlabel=Количество запрашиваемых РПД,
-	ylabel={Время, мс},
-	legend pos=north west,
-	ymajorgrids=true
-	]
-	\addplot table[x=RPD,y=ms,col sep=comma]{csv/cache_02.csv};
-	\addplot table[x=RPD,y=ms,col sep=comma]{csv/storage_02.csv};
-	\legend{С кэшированием, Без кэширования}
-	\end{axis}
-	\end{tikzpicture}
-	\captionsetup{justification=centering}
-	\caption{Зависимость времени от количества запрашиваемых РПД (размера кэша 1000 элементов)}
-	\label{plt:experiment2}
-\end{figure}
+По результатам эксперимента видно, что вне зависимости от используемого алгоритма время, затрачиваемое на обновление длительности ожидания в очередях к подъемникам, линейно зависит от их количества. 
 
-\begin{figure}[H]
-	\centering
-	\begin{tikzpicture}
-	\begin{axis}[
-	axis lines=left,
-	xlabel=Количество запрашиваемых РПД,
-	ylabel={Время, мс},
-	legend pos=north west,
-	ymajorgrids=true
-	]
-	\addplot table[x=RPD,y=ms,col sep=comma]{csv/cache_03.csv};
-	\addplot table[x=RPD,y=ms,col sep=comma]{csv/storage_03.csv};
-	\legend{С кэшированием, Без кэширования}
-	\end{axis}
-	\end{tikzpicture}
-	\captionsetup{justification=centering}
-	\caption{Зависимость времени от количества запрашиваемых РПД (размера кэша 5000 элементов)}
-	\label{plt:experiment3}
-\end{figure}
+Времена, затрачиваемые реализациями первого, второго и четвертого алгоритмов, близки между собой, тогда как реализация третьего алгоритма требует сравнительно больше времени.
+
+При этом наименьшее время было затрачено при использовании первого алгоритма, когда б\'{о}льшая часть вычислений осуществляется на БД. В начале к базе данных выполняется одно обращение с получением всех подъемников, а затем для каждого подъемника обращение к ней выполняется только один раз, причем передается небольшой объем информации (3 беззнаковых целых).
+
+Следующая по наименьшему времени обработки -- реализация четвертого алгоритма. В данном случае между БД и приложением передается больше данных, чем в первой реализации: в приложении дополнительно единожды запрашиваются все считывания и турникеты из БД, а также происходит передача обновленных данных из приложения обратно в БД для каждого подъемника.
+
+Еще больше времени было затрачено реализацией второго алгоритма. Объем передаваемых данных между приложением и БД увеличивается по сравнению с предыдущими реализациями: в цикле для каждого подъемника выполняется сразу два обращения к БД. 
+
+Наконец, наибольшее время использовалось в реализации третьего алгоритма. В этом случае в цикле для каждого подъемника так же, как в предыдущей, выполняется два обращения к БД. Однако в реализации второго алгоритма помимо передачи обновленных данных из приложения в БД для каждого подъемника требовалось получить одно число -- количество считываний. В реализации же третьего алгоритма второе обращение к БД выполняется для получения б\'{о}льшего объема данных: все связанные с подъемником турникеты -- это сразу несколько кортежей.
 
 \section*{Вывод}
 
-В результате сравнения времени, необходимого для получения данных о рабочих программах дисциплин, кэширование данных показало неоднозначные результаты: 
+В результате поставленного эксперимента была выявлена линейная зависимость времени обновления длительности ожидания в очередях к подъемникам от их количества. Исследование также показало, что при фиксированном количестве подъемников на время выполнения обновления б\'{о}льшее влияние оказывает не то, где производятся основные шаги вычислений (на стороне БД или на стороне приложения), а объем данных, передаваемых между приложением и БД.
 
-\begin{itemize}
-	\item приложение с кэшированием данных всегда работает быстрее;
-	\item при запросах РПД превышающих максимальный размер кэша, приложение с кэшированием выигрывает по времени у обычного приложения без кэширования в среднем в 1.05 раза (вся эффективность кэширования практически нивелируется);
-	\item если количество РПД в запросе не превышает максимальный размер кэша, выигрыш по времени в среднем составляет 12 раз (при условии, что выборочные данные находятся в кэше).
-\end{itemize}
-
-Эффективность кэширования данных в разработанном приложении полностью зависит от размера хранимых данных. Например, если есть возможность выделить кэш с максимальным размером хотя бы 30-50\% от максимально возможного размера хранимых данных, это обеспечит эффективность по времени максимум в 12 раз -- врядли кто-то будет запрашивать более 30\% данных расположенных в хранилище. 
-
-Такой выигрыш по времени можно обеспечить только при условии что выборочные данные находятся в кэше, что, конечно, нереалистично. Можно сделать предположение, что хотя бы 20\% (для этого нужно выбрать подходящую политику вытеснения из кэша) выборочных данных находятся в кэше -- даже в таком случае доступ к данным будет ускорен в 2.4 раза.

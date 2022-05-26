@@ -1,0 +1,185 @@
+2022-05-22 15:22:58.340 +03:00 [INF] Initialized presenter
+2022-05-22 15:23:49.740 +03:00 [INF] Changing visibility for views
+2022-05-22 15:23:49.741 +03:00 [INF] Opening MainView
+2022-05-22 15:23:56.125 +03:00 [INF] Opening Slope View
+2022-05-22 15:23:56.156 +03:00 [INF] Changing visibility for views
+2022-05-22 16:01:21.329 +03:00 [INF] Initialized presenter
+2022-05-22 16:01:21.546 +03:00 [INF] Changing visibility for views
+2022-05-22 16:01:21.546 +03:00 [INF] Opening MainView
+2022-05-22 16:01:23.506 +03:00 [INF] Opening Slope View
+2022-05-22 16:01:23.603 +03:00 [INF] Changing visibility for views
+2022-05-22 16:03:30.488 +03:00 [INF] Initialized presenter
+2022-05-22 16:03:30.713 +03:00 [INF] Changing visibility for views
+2022-05-22 16:03:30.714 +03:00 [INF] Opening MainView
+2022-05-22 16:03:32.467 +03:00 [INF] Opening Slope View
+2022-05-22 16:03:32.512 +03:00 [INF] Changing visibility for views
+2022-05-22 16:04:46.177 +03:00 [INF] Initialized presenter
+2022-05-22 16:04:46.371 +03:00 [INF] Changing visibility for views
+2022-05-22 16:04:46.372 +03:00 [INF] Opening MainView
+2022-05-22 16:04:54.644 +03:00 [INF] Opening Slope View
+2022-05-22 16:04:54.677 +03:00 [INF] Changing visibility for views
+2022-05-22 20:25:34.227 +03:00 [INF] Initialized presenter
+2022-05-22 20:25:34.718 +03:00 [INF] Changing visibility for views
+2022-05-22 20:25:34.719 +03:00 [INF] Opening MainView
+2022-05-22 20:25:38.016 +03:00 [INF] Opening Slope View
+2022-05-22 20:25:38.052 +03:00 [INF] Changing visibility for views
+2022-05-22 20:31:10.588 +03:00 [INF] Initialized presenter
+2022-05-22 20:31:10.806 +03:00 [INF] Changing visibility for views
+2022-05-22 20:31:10.807 +03:00 [INF] Opening MainView
+2022-05-22 20:31:12.716 +03:00 [INF] Opening Slope View
+2022-05-22 20:31:12.760 +03:00 [INF] Changing visibility for views
+2022-05-22 20:37:08.045 +03:00 [INF] Initialized presenter
+2022-05-22 20:37:08.248 +03:00 [INF] Changing visibility for views
+2022-05-22 20:37:08.249 +03:00 [INF] Opening MainView
+2022-05-22 20:37:28.591 +03:00 [INF] Initialized presenter
+2022-05-22 20:37:28.875 +03:00 [INF] Changing visibility for views
+2022-05-22 20:37:28.876 +03:00 [INF] Opening MainView
+2022-05-22 20:37:30.764 +03:00 [INF] Opening Slope View
+2022-05-22 20:37:30.825 +03:00 [INF] Changing visibility for views
+2022-05-22 20:39:09.347 +03:00 [INF] Initialized presenter
+2022-05-22 20:39:09.594 +03:00 [INF] Changing visibility for views
+2022-05-22 20:39:09.595 +03:00 [INF] Opening MainView
+2022-05-22 20:39:11.533 +03:00 [INF] Opening Slope View
+2022-05-22 20:39:11.583 +03:00 [INF] Changing visibility for views
+2022-05-22 21:57:32.898 +03:00 [INF] Initialized presenter
+2022-05-22 21:57:33.674 +03:00 [INF] Changing visibility for views
+2022-05-22 21:57:33.675 +03:00 [INF] Opening MainView
+2022-05-22 21:57:35.873 +03:00 [INF] Opening Slope View
+2022-05-22 21:57:35.916 +03:00 [INF] Changing visibility for views
+2022-05-22 21:58:12.360 +03:00 [INF] Closed Slope View
+2022-05-22 22:07:40.984 +03:00 [INF] Initialized presenter
+2022-05-22 22:07:41.390 +03:00 [INF] Changing visibility for views
+2022-05-22 22:07:41.391 +03:00 [INF] Opening MainView
+2022-05-22 22:07:43.979 +03:00 [INF] Opening Slope View
+2022-05-22 22:07:44.016 +03:00 [INF] Changing visibility for views
+2022-05-22 22:07:45.106 +03:00 [INF] Getting slopes
+2022-05-22 22:08:01.841 +03:00 [INF] Closed Slope View
+2022-05-22 22:08:02.884 +03:00 [INF] Closing MainView
+2022-05-22 22:21:53.872 +03:00 [INF] Initialized presenter
+2022-05-22 22:21:54.367 +03:00 [INF] Changing visibility for views
+2022-05-22 22:21:54.369 +03:00 [INF] Opening MainView
+2022-05-22 22:21:56.478 +03:00 [INF] Opening Profile View
+2022-05-22 22:21:56.485 +03:00 [INF] Changing visibility for views
+2022-05-22 22:21:57.595 +03:00 [INF] Closed Profile View
+2022-05-22 22:21:58.278 +03:00 [INF] Opening Slope View
+2022-05-22 22:21:58.324 +03:00 [INF] Changing visibility for views
+2022-05-22 22:21:59.351 +03:00 [INF] Closed Slope View
+2022-05-22 22:22:00.394 +03:00 [INF] Opening Slope View
+2022-05-22 22:22:00.400 +03:00 [INF] Changing visibility for views
+2022-05-22 22:22:31.974 +03:00 [INF] Closed Lift View
+2022-05-22 22:22:38.287 +03:00 [INF] Opening Profile View
+2022-05-22 22:22:38.289 +03:00 [INF] Changing visibility for views
+2022-05-22 22:22:40.000 +03:00 [INF] Closed Profile View
+2022-05-22 22:22:40.724 +03:00 [INF] Opening Slope View
+2022-05-22 22:22:40.727 +03:00 [INF] Changing visibility for views
+2022-05-22 22:22:41.914 +03:00 [INF] Getting slope
+2022-05-22 22:22:45.534 +03:00 [ERR] AccessToDB.Exceptions.SlopeExceptions.SlopeNotFoundException: Error: couldn't find slope with name=
+   at AccessToDB.RepositoriesTarantool.TarantoolSlopesRepository.GetSlopeByNameAsync(String name) in C:\BMSTU_6sem_software_design\src\SkiResort\AccessToDB\TarantoolRepositories\TarantoolSlopesRepository.cs:line 69
+   at BL.Facade.GetSlopeInfoAsync(UInt32 requesterUserID, String SlopeName) in C:\BMSTU_6sem_software_design\src\SkiResort\BL\Facade.cs:line 299
+   at UI.Presenter.GetSlopeInfoAsync(Object sender, EventArgs e) in C:\BMSTU_6sem_software_design\src\SkiResort\UI\Presenter.cs:line 478Спуск с таким именем не найден
+2022-05-22 22:23:05.037 +03:00 [INF] Getting slope
+2022-05-22 22:23:12.734 +03:00 [ERR] AccessToDB.Exceptions.SlopeExceptions.SlopeNotFoundException: Error: couldn't find slope with name=
+   at AccessToDB.RepositoriesTarantool.TarantoolSlopesRepository.GetSlopeByNameAsync(String name) in C:\BMSTU_6sem_software_design\src\SkiResort\AccessToDB\TarantoolRepositories\TarantoolSlopesRepository.cs:line 69
+   at BL.Facade.GetSlopeInfoAsync(UInt32 requesterUserID, String SlopeName) in C:\BMSTU_6sem_software_design\src\SkiResort\BL\Facade.cs:line 299
+   at UI.Presenter.GetSlopeInfoAsync(Object sender, EventArgs e) in C:\BMSTU_6sem_software_design\src\SkiResort\UI\Presenter.cs:line 478Спуск с таким именем не найден
+2022-05-22 22:23:14.095 +03:00 [INF] Closed Slope View
+2022-05-22 22:23:16.214 +03:00 [INF] Closing MainView
+2022-05-22 22:25:15.277 +03:00 [INF] Initialized presenter
+2022-05-22 22:25:15.713 +03:00 [INF] Changing visibility for views
+2022-05-22 22:25:15.721 +03:00 [INF] Opening MainView
+2022-05-22 22:25:17.253 +03:00 [INF] Opening Slope View
+2022-05-22 22:25:17.369 +03:00 [INF] Changing visibility for views
+2022-05-22 22:25:25.880 +03:00 [INF] Getting slope
+2022-05-22 22:25:34.498 +03:00 [ERR] AccessToDB.Exceptions.LiftSlopeExceptions.LiftSlopeAddAutoIncrementException: Exception of type 'AccessToDB.Exceptions.LiftSlopeExceptions.LiftSlopeAddAutoIncrementException' was thrown.
+   at AccessToDB.RepositoriesTarantool.TarantoolLiftsSlopesRepository.AddLiftSlopeAutoIncrementAsync(UInt32 liftID, UInt32 slopeID) in C:\BMSTU_6sem_software_design\src\SkiResort\AccessToDB\TarantoolRepositories\TarantoolLiftsSlopesRepository.cs:line 161
+   at BL.Facade.AdminAddAutoIncrementLiftSlopeAsync(UInt32 requesterUserID, String liftName, String slopeName) in C:\BMSTU_6sem_software_design\src\SkiResort\BL\Facade.cs:line 411
+   at UI.Presenter.AddConnectedLiftAsync(Object sender, EventArgs e) in C:\BMSTU_6sem_software_design\src\SkiResort\UI\Presenter.cs:line 606
+2022-05-22 22:25:35.647 +03:00 [INF] Getting slope
+2022-05-22 22:25:39.451 +03:00 [ERR] AccessToDB.Exceptions.LiftSlopeExceptions.LiftSlopeNotFoundException: Exception of type 'AccessToDB.Exceptions.LiftSlopeExceptions.LiftSlopeNotFoundException' was thrown.
+   at AccessToDB.RepositoriesTarantool.TarantoolLiftsSlopesRepository.DeleteLiftSlopesByIDsAsync(UInt32 liftID, UInt32 slopeID) in C:\BMSTU_6sem_software_design\src\SkiResort\AccessToDB\TarantoolRepositories\TarantoolLiftsSlopesRepository.cs:line 202
+   at BL.Facade.AdminDeleteLiftSlopeAsync(UInt32 requesterUserID, String liftName, String slopeName) in C:\BMSTU_6sem_software_design\src\SkiResort\BL\Facade.cs:line 388
+   at UI.Presenter.DeleteConnectedLiftAsync(Object sender, EventArgs e) in C:\BMSTU_6sem_software_design\src\SkiResort\UI\Presenter.cs:line 638
+2022-05-22 22:25:39.451 +03:00 [INF] Getting slope
+2022-05-22 22:25:40.914 +03:00 [INF] Getting slope
+2022-05-22 22:25:47.328 +03:00 [ERR] AccessToDB.Exceptions.LiftExceptions.LiftNotFoundException: Exception of type 'AccessToDB.Exceptions.LiftExceptions.LiftNotFoundException' was thrown.
+   at AccessToDB.RepositoriesTarantool.TarantoolLiftsRepository.GetLiftByNameAsync(String name) in C:\BMSTU_6sem_software_design\src\SkiResort\AccessToDB\TarantoolRepositories\TarantoolLiftsRepository.cs:line 68
+   at BL.Facade.AdminAddAutoIncrementLiftSlopeAsync(UInt32 requesterUserID, String liftName, String slopeName) in C:\BMSTU_6sem_software_design\src\SkiResort\BL\Facade.cs:line 405
+   at UI.Presenter.AddConnectedLiftAsync(Object sender, EventArgs e) in C:\BMSTU_6sem_software_design\src\SkiResort\UI\Presenter.cs:line 606
+2022-05-22 22:25:51.710 +03:00 [ERR] AccessToDB.Exceptions.LiftExceptions.LiftNotFoundException: Exception of type 'AccessToDB.Exceptions.LiftExceptions.LiftNotFoundException' was thrown.
+   at AccessToDB.RepositoriesTarantool.TarantoolLiftsRepository.GetLiftByNameAsync(String name) in C:\BMSTU_6sem_software_design\src\SkiResort\AccessToDB\TarantoolRepositories\TarantoolLiftsRepository.cs:line 68
+   at BL.Facade.AdminAddAutoIncrementLiftSlopeAsync(UInt32 requesterUserID, String liftName, String slopeName) in C:\BMSTU_6sem_software_design\src\SkiResort\BL\Facade.cs:line 405
+   at UI.Presenter.AddConnectedLiftAsync(Object sender, EventArgs e) in C:\BMSTU_6sem_software_design\src\SkiResort\UI\Presenter.cs:line 606
+2022-05-22 22:25:55.821 +03:00 [ERR] AccessToDB.Exceptions.SlopeExceptions.SlopeNotFoundException: Error: couldn't find slope with name=A101
+   at AccessToDB.RepositoriesTarantool.TarantoolSlopesRepository.GetSlopeByNameAsync(String name) in C:\BMSTU_6sem_software_design\src\SkiResort\AccessToDB\TarantoolRepositories\TarantoolSlopesRepository.cs:line 69
+   at BL.Facade.AdminAddAutoIncrementLiftSlopeAsync(UInt32 requesterUserID, String liftName, String slopeName) in C:\BMSTU_6sem_software_design\src\SkiResort\BL\Facade.cs:line 408
+   at UI.Presenter.AddConnectedLiftAsync(Object sender, EventArgs e) in C:\BMSTU_6sem_software_design\src\SkiResort\UI\Presenter.cs:line 606
+2022-05-22 22:25:56.760 +03:00 [INF] Closed Slope View
+2022-05-22 22:25:57.922 +03:00 [INF] Closing MainView
+2022-05-22 22:31:38.192 +03:00 [INF] Initialized presenter
+2022-05-22 22:31:38.450 +03:00 [INF] Changing visibility for views
+2022-05-22 22:31:38.451 +03:00 [INF] Opening MainView
+2022-05-22 23:11:29.114 +03:00 [INF] Initialized presenter
+2022-05-22 23:11:29.503 +03:00 [INF] Changing visibility for views
+2022-05-22 23:11:29.511 +03:00 [INF] Opening MainView
+2022-05-22 23:11:58.705 +03:00 [INF] Opening Slope View
+2022-05-22 23:11:58.751 +03:00 [INF] Changing visibility for views
+2022-05-22 23:11:59.934 +03:00 [INF] Getting slopes
+2022-05-22 23:12:11.092 +03:00 [INF] Closed Slope View
+2022-05-22 23:12:11.998 +03:00 [INF] Closing MainView
+2022-05-22 23:23:31.644 +03:00 [INF] Initialized presenter
+2022-05-22 23:23:31.848 +03:00 [INF] Changing visibility for views
+2022-05-22 23:23:31.855 +03:00 [INF] Opening MainView
+2022-05-22 23:23:33.624 +03:00 [INF] Opening Slope View
+2022-05-22 23:23:33.666 +03:00 [INF] Changing visibility for views
+2022-05-22 23:23:35.155 +03:00 [INF] Getting slopes
+2022-05-22 23:23:45.322 +03:00 [INF] Closed Slope View
+2022-05-22 23:23:46.365 +03:00 [INF] Closing MainView
+2022-05-22 23:39:36.790 +03:00 [INF] Initialized presenter
+2022-05-22 23:39:37.082 +03:00 [INF] Changing visibility for views
+2022-05-22 23:39:37.084 +03:00 [INF] Opening MainView
+2022-05-22 23:39:39.287 +03:00 [INF] Opening Profile View
+2022-05-22 23:39:39.293 +03:00 [INF] Changing visibility for views
+2022-05-22 23:39:44.791 +03:00 [ERR] Could't register new user 1002 because of incorrect password or email
+2022-05-22 23:39:47.570 +03:00 [ERR] AccessToDB.Exceptions.UserExceptions.UserNotFoundException: Exception of type 'AccessToDB.Exceptions.UserExceptions.UserNotFoundException' was thrown.
+   at AccessToDB.RepositoriesTarantool.TarantoolUsersRepository.GetUserByEmailAsync(String userEmail) in C:\BMSTU_6sem_software_design\src\SkiResort\AccessToDB\TarantoolRepositories\TarantoolUsersRepository.cs:line 152
+   at BL.Facade.LogInAsync(UInt32 requesterUserID, String email, String password) in C:\BMSTU_6sem_software_design\src\SkiResort\BL\Facade.cs:line 62
+   at UI.Presenter.LogInAsync(Object sender, EventArgs e) in C:\BMSTU_6sem_software_design\src\SkiResort\UI\Presenter.cs:line 382
+2022-05-22 23:39:53.571 +03:00 [ERR] AccessToDB.Exceptions.UserExceptions.UserNotFoundException: Exception of type 'AccessToDB.Exceptions.UserExceptions.UserNotFoundException' was thrown.
+   at AccessToDB.RepositoriesTarantool.TarantoolUsersRepository.GetUserByEmailAsync(String userEmail) in C:\BMSTU_6sem_software_design\src\SkiResort\AccessToDB\TarantoolRepositories\TarantoolUsersRepository.cs:line 152
+   at BL.Facade.LogInAsync(UInt32 requesterUserID, String email, String password) in C:\BMSTU_6sem_software_design\src\SkiResort\BL\Facade.cs:line 62
+   at UI.Presenter.LogInAsync(Object sender, EventArgs e) in C:\BMSTU_6sem_software_design\src\SkiResort\UI\Presenter.cs:line 382
+2022-05-22 23:39:55.302 +03:00 [INF] Changing visibility for views
+2022-05-22 23:40:00.969 +03:00 [INF] Opening Message View
+2022-05-22 23:40:00.995 +03:00 [INF] Changing visibility for views
+2022-05-22 23:40:18.856 +03:00 [INF] Closed Message View
+2022-05-22 23:40:22.564 +03:00 [INF] Changing visibility for views
+2022-05-22 23:40:36.884 +03:00 [ERR] Could't register new user 1003 because such email already exists
+2022-05-22 23:40:44.454 +03:00 [INF] Changing visibility for views
+2022-05-22 23:40:45.824 +03:00 [INF] Opening User View
+2022-05-22 23:40:45.829 +03:00 [INF] Changing visibility for views
+2022-05-22 23:41:55.983 +03:00 [INF] Changing visibility for views
+2022-05-22 23:42:00.495 +03:00 [INF] Changing visibility for views
+2022-05-22 23:42:10.628 +03:00 [INF] Changing visibility for views
+2022-05-22 23:42:24.235 +03:00 [ERR] BL.Exceptions.PermissionExceptions.PermissionException
+   at BL.Services.CheckPermissionsService.CheckPermissionsAsync(IUsersRepository usersRepository, UInt32 userID, String memberName) in C:\BMSTU_6sem_software_design\src\SkiResort\BL\Services\CheckPermissionsService.cs:line 19
+   at BL.Facade.AdminGetUsersAsync(UInt32 requesterUserID, UInt32 offset, UInt32 limit) in C:\BMSTU_6sem_software_design\src\SkiResort\BL\Facade.cs:line 89
+   at UI.Presenter.GetUsersAsync(Object sender, EventArgs e) in C:\BMSTU_6sem_software_design\src\SkiResort\UI\Presenter.cs:line 1352
+2022-05-22 23:42:26.010 +03:00 [INF] Closed User View
+2022-05-22 23:42:28.190 +03:00 [INF] Closed Profile View
+2022-05-22 23:42:29.193 +03:00 [INF] Closing MainView
+2022-05-22 23:46:20.148 +03:00 [INF] Initialized presenter
+2022-05-22 23:46:20.560 +03:00 [INF] Changing visibility for views
+2022-05-22 23:46:20.561 +03:00 [INF] Opening MainView
+2022-05-22 23:46:21.936 +03:00 [INF] Opening Profile View
+2022-05-22 23:46:21.941 +03:00 [INF] Changing visibility for views
+2022-05-22 23:46:26.952 +03:00 [INF] Changing visibility for views
+2022-05-22 23:46:31.796 +03:00 [INF] Opening CardReading View
+2022-05-22 23:46:31.818 +03:00 [INF] Changing visibility for views
+2022-05-22 23:46:39.125 +03:00 [INF] Changing visibility for views
+2022-05-22 23:46:43.835 +03:00 [ERR] BL.Exceptions.PermissionExceptions.PermissionException
+   at BL.Services.CheckPermissionsService.CheckPermissionsAsync(IUsersRepository usersRepository, UInt32 userID, String memberName) in C:\BMSTU_6sem_software_design\src\SkiResort\BL\Services\CheckPermissionsService.cs:line 19
+   at BL.Facade.AdminGetCardReadingsAsync(UInt32 requesterUserID, UInt32 offset, UInt32 limit) in C:\BMSTU_6sem_software_design\src\SkiResort\BL\Facade.cs:line 523
+   at UI.Presenter.GetCardReadingsAsync(Object sender, EventArgs e) in C:\BMSTU_6sem_software_design\src\SkiResort\UI\Presenter.cs:line 1159
+2022-05-22 23:46:45.283 +03:00 [INF] Closed CardReading View
+2022-05-22 23:46:46.149 +03:00 [INF] Closed Profile View
+2022-05-22 23:46:47.272 +03:00 [INF] Closing MainView

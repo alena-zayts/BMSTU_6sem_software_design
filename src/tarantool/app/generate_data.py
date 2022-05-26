@@ -91,7 +91,7 @@ class Slope(Table):
         self.difficulty_level = difficulty_level
 
     @classmethod
-    def generate_data(cls, n_slopes_bunches=20, slopes_per_bunch=(45, 60), difficulty_levels=(1, 10)):
+    def generate_data(cls, n_slopes_bunches=10, slopes_per_bunch=(8, 11), difficulty_levels=(1, 10)):
         data = []
         alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
@@ -115,10 +115,12 @@ class Lift(Table):
         self.is_open = is_open
         self.seats_amount = seats_amount
         self.lifting_time = lifting_time  # sec
-        self.queue_time = queue_time  # sec
+        self.queue_time = queue_time if queue_time != 0 else randint(15, 100)  # sec
 
     @classmethod
-    def generate_data(cls, n_lifts_bunches=10, lifts_per_bunch=(100, 101),
+    def generate_data(cls,
+                      n_lifts_bunches=10, lifts_per_bunch=(8, 11),
+                      #n_lifts_bunches=1, lifts_per_bunch=(1, 1),
                       lifting_times=(30, 300), seats_amounts=(10, 100)):
         data = []
         alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
@@ -309,46 +311,10 @@ def generate_all_data_to_json_file():
     generate_table_data_to_json_file(Message)
 
 
-class CardReading2(Table):
-    def __init__(self, record_id, turnstile_id, card_id, reading_time):
-        self.RecordID = record_id
-        self.TurnstileID = turnstile_id
-        self.CardID = card_id
-        self.ReadingTime = reading_time
-
-    @classmethod
-    def generate(cls, date_limits=(1585575897, 1648647930), turnstile_id=None):
-        with open(Turnstile.json_filename, 'r') as f:
-            turnstiles = [Turnstile(*(list(turnstile_dict.values()))) for turnstile_dict in json.load(f)]
-        turnstile_ids = [turnstile.turnstile_id for turnstile in turnstiles]
-
-        with open(Card.json_filename, 'r') as f:
-            cards = [Card(*(list(card_dict.values()))) for card_dict in json.load(f)]
-        card_ids = [card.card_id for card in cards]
-
-        return CardReading2(0, choice(turnstile_ids) if not turnstile_id else turnstile_id, choice(card_ids), randint(*date_limits)).to_json()
 
 
-def infinite_card_readings_generator():
-    import time
-    import datetime
 
-    sleep_time = 1
-    i = 0
 
-    while True:
-        cur_time = time.mktime(datetime.datetime.now().timetuple())
-        obj = CardReading2.generate(date_limits=(cur_time - sleep_time, cur_time))
-
-        file_name = "C:/BMSTU_6sem_software_design/src/tarantool/app/json_data/card_readings/card_reading_" + str(i) + ".json"
-
-        with open(file_name, "w") as write_file:
-            json.dump(obj, write_file)
-
-        print(file_name, cur_time)
-
-        i += 1
-        # time.sleep(sleep_time)
 
 def generate_card_readings(dir_name, n, date_limits=(1652659200, 1652745600)): # 16-17 мая
     import time
@@ -401,7 +367,7 @@ def generate_lifts(n):
 
 
 
-work = True
+work = False
 
 def generate_test3():
     path = "C:/BMSTU_6sem_software_design/src/settings.txt"
@@ -442,16 +408,12 @@ def generate_test3():
         file_name = f"{global_lift_dir}lift_{i}.json"
         with open(file_name, "w") as write_file:
             json.dump(obj, write_file)
-        if i % 1000 == 0:
-            print(file_name)
 
     for i in range(len(turnstiles)):
         obj = turnstiles[i]
         file_name = f"{global_turnstiles_dir}turnstile_{i}.json"
         with open(file_name, "w") as write_file:
             json.dump(obj, write_file)
-        if i % 1000 == 0:
-            print(file_name)
 
     for i in range(len(turnstiles)):
         for j in range(n_cardreadings_per_turnstile):
@@ -462,20 +424,84 @@ def generate_test3():
             with open(file_name, "w") as write_file:
                 json.dump(obj, write_file)
 
-            if i % 1000 == 0:
-                print(file_name)
+        if i % 100 == 0:
+            print(f"{i} turnstile")
+
+
+class CardReading2(Table):
+    def __init__(self, record_id, turnstile_id, card_id, reading_time):
+        self.RecordID = record_id
+        self.TurnstileID = turnstile_id
+        self.CardID = card_id
+        self.ReadingTime = reading_time
+
+    @classmethod
+    def generate(cls, date_limits=(1585575897, 1648647930), turnstile_id=None):
+        with open(Turnstile.json_filename, 'r') as f:
+            turnstiles = [Turnstile(*(list(turnstile_dict.values()))) for turnstile_dict in json.load(f)]
+        turnstile_ids = [turnstile.turnstile_id for turnstile in turnstiles]
+
+        with open(Card.json_filename, 'r') as f:
+            cards = [Card(*(list(card_dict.values()))) for card_dict in json.load(f)]
+        card_ids = [card.card_id for card in cards]
+
+        return CardReading2(0, choice(turnstile_ids) if not turnstile_id else turnstile_id, choice(card_ids), randint(*date_limits)).to_json()
+
+
+def infinite_card_readings_generator(sleep_time=1, n_in_time=1):
+    import time
+    import datetime
+
+    i = 0
+
+    while True:
+        for _ in range(n_in_time):
+            cur_time = time.mktime(datetime.datetime.now().timetuple())
+            obj = CardReading2.generate(date_limits=(cur_time - sleep_time, cur_time))
+
+            file_name = "C:/BMSTU_6sem_software_design/src/tarantool/app/json_data/card_readings/card_reading_" + str(i) + ".json"
+
+            with open(file_name, "w") as write_file:
+                json.dump(obj, write_file)
+
+            print(file_name, cur_time)
+
+            i += 1
+        time.sleep(sleep_time)
+
+import psycopg2
+def main2():
+    # Подключаемся к БД.
+    try:
+        con = psycopg2.connect(
+            database="postgres",
+            user="postgres",
+            password="4541",
+            host="127.0.0.1",  # Адрес сервера базы данных.
+            port="5432"		   # Номер порта.
+        )
+    except:
+        print("Ошибка при подключении к БД")
+        return
+
+    print("База данных успешно открыта")
+
+    # Объект cursor используется для фактического
+    # выполнения наших команд.
+    cur = con.cursor()
 
 
 
-
-
+    # Закрываем соединение с БД.
+    cur.close()
+    con.close()
 
 if __name__ == "__main__":
-    generate_all_data_to_json_file()
-    # infinite_card_readings_generator()
+    #generate_all_data_to_json_file()
+    infinite_card_readings_generator(sleep_time=1, n_in_time=20)  # sec
     #generate_one_test("", 10000)
     # generate_lifts(1000)
-    generate_test3()
+    # generate_test3()
 
 
 

@@ -109,7 +109,8 @@ namespace BL
         public async Task<uint> AddUnauthorizedUserAsync()
         {
             IUsersRepository usersRepository = RepositoriesFactory.CreateUsersRepository();
-            return await usersRepository.AddUserAutoIncrementAsync(1, "tmp1", "tmp2", PermissionsEnum.UNAUTHORIZED);
+            var usersAmount = (await usersRepository.GetUsersAsync()).Count();
+            return await usersRepository.AddUserAutoIncrementAsync(User.UniversalCardID, $"unauthorized{usersAmount + 1}", $"unauthorized{usersAmount + 1}", PermissionsEnum.UNAUTHORIZED);
         }
 
         public async Task AdminUpdateUserAsync(uint requesterUserID, uint userID, uint newCardID, string newUserEmail, string newPassword, PermissionsEnum newPermissions)
@@ -227,14 +228,7 @@ namespace BL
 
             foreach (Lift lift in lifts)
             {
-                try
-                {
-                    liftsFull.Add(new(lift, await LiftsSlopesRepository.GetSlopesByLiftIdAsync(lift.LiftID)));
-                }
-                catch (Exception ex)
-                {
-                    continue;
-                }
+                liftsFull.Add(new(lift, await LiftsSlopesRepository.GetSlopesByLiftIdAsync(lift.LiftID)));
                 
             }
             return liftsFull;

@@ -1,8 +1,6 @@
 using BL.IRepositories;
 using BL.Models;
 using Newtonsoft.Json.Linq;
-
-using Ninject;
 using BL;
 using AccessToDB;
 
@@ -14,17 +12,12 @@ namespace Workers
         private readonly ICardReadingsRepository _cardReadingsRepository;
         private readonly string _path;
 
-        public CardReadingReceivingService(ILogger<CardReadingReceivingService> logger)//, ICardReadingsRepository cardReadingsRepository, string path)
+        public CardReadingReceivingService(ILogger<CardReadingReceivingService> logger)
         {
-            _logger = logger;
-
-
-            IKernel ninjectKernel = new StandardKernel();
-            ninjectKernel.Bind<IRepositoriesFactory>().To<TarantoolRepositoriesFactory>();
-            IRepositoriesFactory repositoriesFactory = ninjectKernel.Get<IRepositoriesFactory>();
-
+            IRepositoriesFactory repositoriesFactory = new TarantoolRepositoriesFactory();
             _cardReadingsRepository = repositoriesFactory.CreateCardReadingsRepository();
-            _path = "C:/BMSTU_6sem_software_design/src/tarantool/app/json_data/card_readings/";
+            _logger = logger;
+            _path = "C:/BMSTU_6sem_software_design/src/tarantool/app/json_data/card_readings/";    
         }
 
         public static CardReading LoadCardReadingFromJson(string filename)
@@ -50,12 +43,11 @@ namespace Workers
                         FileInfo fileInfo = new(filename);
                         fileInfo.Delete();
                         
-                        string message = $"{cardReadingID}";
-                        _logger.LogInformation(message);
+                        _logger.LogInformation($"cardReadingID={cardReadingID}, turnstile={cardReading.TurnstileID}, time={cardReading.ReadingTime} (unix={cardReading.ReadingTime.ToUnixTimeSeconds()})");
                     }
                     catch (Exception ex)
                     {
-                        _logger.LogInformation(ex.Message);
+                        _logger.LogError(ex.Message);
                     }
                 }
             }

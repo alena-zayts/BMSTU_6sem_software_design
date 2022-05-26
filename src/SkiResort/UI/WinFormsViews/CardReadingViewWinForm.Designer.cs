@@ -29,10 +29,6 @@
         private void InitializeComponent()
         {
             this.СardReadingsDataGridView = new System.Windows.Forms.DataGridView();
-            this.recordIDColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TurnstileIDColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CardIDColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ReadingTimeColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.GetCardReadingButton = new System.Windows.Forms.Button();
             this.RecordIDTextBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -48,6 +44,10 @@
             this.DeleteButton = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.TimePicker = new System.Windows.Forms.DateTimePicker();
+            this.recordIDColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TurnstileIDColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CardIDColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ReadingTimeColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.СardReadingsDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -66,34 +66,6 @@
             this.СardReadingsDataGridView.RowTemplate.Height = 37;
             this.СardReadingsDataGridView.Size = new System.Drawing.Size(1047, 438);
             this.СardReadingsDataGridView.TabIndex = 19;
-            // 
-            // recordIDColumn
-            // 
-            this.recordIDColumn.HeaderText = "ID записи";
-            this.recordIDColumn.MinimumWidth = 9;
-            this.recordIDColumn.Name = "recordIDColumn";
-            this.recordIDColumn.Width = 175;
-            // 
-            // TurnstileIDColumn
-            // 
-            this.TurnstileIDColumn.HeaderText = "ID подъемника";
-            this.TurnstileIDColumn.MinimumWidth = 9;
-            this.TurnstileIDColumn.Name = "TurnstileIDColumn";
-            this.TurnstileIDColumn.Width = 220;
-            // 
-            // CardIDColumn
-            // 
-            this.CardIDColumn.HeaderText = "ID карты";
-            this.CardIDColumn.MinimumWidth = 9;
-            this.CardIDColumn.Name = "CardIDColumn";
-            this.CardIDColumn.Width = 175;
-            // 
-            // ReadingTimeColumn
-            // 
-            this.ReadingTimeColumn.HeaderText = "Время считывания";
-            this.ReadingTimeColumn.MinimumWidth = 9;
-            this.ReadingTimeColumn.Name = "ReadingTimeColumn";
-            this.ReadingTimeColumn.Width = 400;
             // 
             // GetCardReadingButton
             // 
@@ -226,6 +198,34 @@
             this.TimePicker.Size = new System.Drawing.Size(229, 35);
             this.TimePicker.TabIndex = 33;
             // 
+            // recordIDColumn
+            // 
+            this.recordIDColumn.HeaderText = "ID записи";
+            this.recordIDColumn.MinimumWidth = 9;
+            this.recordIDColumn.Name = "recordIDColumn";
+            this.recordIDColumn.Width = 175;
+            // 
+            // TurnstileIDColumn
+            // 
+            this.TurnstileIDColumn.HeaderText = "ID турникета";
+            this.TurnstileIDColumn.MinimumWidth = 9;
+            this.TurnstileIDColumn.Name = "TurnstileIDColumn";
+            this.TurnstileIDColumn.Width = 220;
+            // 
+            // CardIDColumn
+            // 
+            this.CardIDColumn.HeaderText = "ID карты";
+            this.CardIDColumn.MinimumWidth = 9;
+            this.CardIDColumn.Name = "CardIDColumn";
+            this.CardIDColumn.Width = 175;
+            // 
+            // ReadingTimeColumn
+            // 
+            this.ReadingTimeColumn.HeaderText = "Время считывания";
+            this.ReadingTimeColumn.MinimumWidth = 9;
+            this.ReadingTimeColumn.Name = "ReadingTimeColumn";
+            this.ReadingTimeColumn.Width = 400;
+            // 
             // CardReadingViewWinForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 30F);
@@ -262,10 +262,6 @@
         private Button GetCardReadingButton;
         private TextBox RecordIDTextBox;
         private Label label1;
-        private DataGridViewTextBoxColumn recordIDColumn;
-        private DataGridViewTextBoxColumn TurnstileIDColumn;
-        private DataGridViewTextBoxColumn CardIDColumn;
-        private DataGridViewTextBoxColumn ReadingTimeColumn;
         private DateTimePicker DatePicker;
         private TextBox TurnstileIDTextBox;
         private Label label2;
@@ -278,5 +274,9 @@
         private Button DeleteButton;
         private Label label5;
         private DateTimePicker TimePicker;
+        private DataGridViewTextBoxColumn recordIDColumn;
+        private DataGridViewTextBoxColumn TurnstileIDColumn;
+        private DataGridViewTextBoxColumn CardIDColumn;
+        private DataGridViewTextBoxColumn ReadingTimeColumn;
     }
 }

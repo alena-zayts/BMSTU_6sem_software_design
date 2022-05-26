@@ -70,12 +70,12 @@ namespace UI.WinFormsViews
                 TimePicker.Value = value.DateTime; 
             }
         }
-        public List<CardReading> CardReadings
+        public List<BL.Models.CardReading> CardReadings
         {
             set
             {
                 СardReadingsDataGridView.Rows.Clear();
-                foreach (CardReading cardReading in value)
+                foreach (BL.Models.CardReading cardReading in value)
                 {
                     string[] row = new string[4];
                     row[0] = cardReading.RecordID.ToString();
@@ -134,5 +134,6 @@ namespace UI.WinFormsViews
         {
             Show();
         }
+
     }
 }

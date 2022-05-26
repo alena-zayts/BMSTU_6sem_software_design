@@ -174,5 +174,10 @@ namespace UI.WinFormsViews
         {
             CloseClicked?.Invoke(this, new EventArgs());
         }
+
+        private void LiftViewWinForm_Load(object sender, EventArgs e)
+        {
+            Name = "";
+        }
     }
 }

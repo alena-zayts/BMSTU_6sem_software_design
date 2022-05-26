@@ -1,27 +1,54 @@
 using AccessToDB;
 using BL;
+using System.Configuration;
+using System.ComponentModel.Design;
+using Workers;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+using Serilog;
+using Serilog.Core;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using Microsoft.Extensions.Configuration;
+using System.IO;
+using AccessToDB2;
+using AccessToDB2.Models;
 
+using Microsoft.EntityFrameworkCore;
 namespace UI
 {
+
     internal static class Program
     {
-        /// <summary>
-        ///  The main entry point for the application.
-        /// </summary>
         [STAThread]
         static void Main()
         {
-            // To customize application configuration such as set high DPI settings or default font,
-            // see https://aka.ms/applicationconfiguration.
+
             ApplicationConfiguration.Initialize();
 
 
-            IViewsFactory viewsFactory = new ViewsFactory();
-            Facade  facade = new(new TarantoolRepositoriesFactory());
-            Presenter presenter = new(viewsFactory, facade);
-            presenter.RunAsync();
+            //IRepositoriesFactory repositoryFactory = new TarantoolRepositoriesFactory();
+            IRepositoriesFactory repositoryFactory = new PostgresRepositoriesFactrory(Connection.GetConnection());
 
-            //Application.Run(mainView);
+
+            IViewsFactory viewsFactory = new WinFormViewsFactory();
+            Facade facade = new(repositoryFactory);
+            Presenter presenter = new(viewsFactory, facade);
+            //presenter.RunAsync();
+
+            Task.Run(() => presenter.RunAsync());
+
+
+            IHost host = Host.CreateDefaultBuilder().ConfigureServices(services =>
+            {
+                services.AddHostedService<QueueTimeCountingService>();
+                services.AddHostedService<CardReadingReceivingService>();
+            }).Build();
+            host.RunAsync();
         }
     }
 }

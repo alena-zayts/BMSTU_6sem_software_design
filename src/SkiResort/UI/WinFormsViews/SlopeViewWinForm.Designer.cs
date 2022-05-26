@@ -35,7 +35,6 @@
             this.IsOpenColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DifficultyLevelColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ConnectedLiftsColumns = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NameTextBox = new System.Windows.Forms.TextBox();
             this.GetInfoButton = new System.Windows.Forms.Button();
             this.IsOpenTextBox = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -49,6 +48,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.DeleteConnectedLiftButton = new System.Windows.Forms.Button();
             this.GetInfosButton = new System.Windows.Forms.Button();
+            this.SlopeNameTextBox = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.SlopesDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -111,13 +111,6 @@
             this.ConnectedLiftsColumns.MinimumWidth = 9;
             this.ConnectedLiftsColumns.Name = "ConnectedLiftsColumns";
             this.ConnectedLiftsColumns.Width = 175;
-            // 
-            // NameTextBox
-            // 
-            this.NameTextBox.Location = new System.Drawing.Point(258, 50);
-            this.NameTextBox.Name = "NameTextBox";
-            this.NameTextBox.Size = new System.Drawing.Size(152, 35);
-            this.NameTextBox.TabIndex = 2;
             // 
             // GetInfoButton
             // 
@@ -233,15 +226,23 @@
             this.GetInfosButton.Name = "GetInfosButton";
             this.GetInfosButton.Size = new System.Drawing.Size(292, 42);
             this.GetInfosButton.TabIndex = 15;
-            this.GetInfosButton.Text = "Посмотреть все спуски";
+            this.GetInfosButton.Text = "Посмотреть все трассы";
             this.GetInfosButton.UseVisualStyleBackColor = true;
             this.GetInfosButton.Click += new System.EventHandler(this.GetSlopesInfoButton_Click);
+            // 
+            // SlopeNameTextBox
+            // 
+            this.SlopeNameTextBox.Location = new System.Drawing.Point(258, 45);
+            this.SlopeNameTextBox.Name = "SlopeNameTextBox";
+            this.SlopeNameTextBox.Size = new System.Drawing.Size(152, 35);
+            this.SlopeNameTextBox.TabIndex = 16;
             // 
             // SlopeViewWinForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 30F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1463, 638);
+            this.Controls.Add(this.SlopeNameTextBox);
             this.Controls.Add(this.GetInfosButton);
             this.Controls.Add(this.DeleteConnectedLiftButton);
             this.Controls.Add(this.AddConnectedLiftButton);
@@ -255,12 +256,12 @@
             this.Controls.Add(this.IsOpenTextBox);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.GetInfoButton);
-            this.Controls.Add(this.NameTextBox);
             this.Controls.Add(this.SlopesDataGridView);
             this.Controls.Add(this.label1);
             this.Name = "SlopeViewWinForm";
-            this.Text = "Спуски";
+            this.Text = "Трассы";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.SlopeView_FormClosing);
+            this.Load += new System.EventHandler(this.SlopeViewWinForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.SlopesDataGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -271,7 +272,6 @@
 
         private Label label1;
         private DataGridView SlopesDataGridView;
-        private TextBox NameTextBox;
         private Button GetInfoButton;
         private TextBox IsOpenTextBox;
         private Label label2;
@@ -290,5 +290,6 @@
         private DataGridViewTextBoxColumn IsOpenColumn;
         private DataGridViewTextBoxColumn DifficultyLevelColumn;
         private DataGridViewTextBoxColumn ConnectedLiftsColumns;
+        private TextBox SlopeNameTextBox;
     }
 }

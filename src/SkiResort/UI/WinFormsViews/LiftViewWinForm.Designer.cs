@@ -41,7 +41,6 @@
             this.IsOpenTextBox = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.GetInfoButton = new System.Windows.Forms.Button();
-            this.NameTextBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.QueueTimeTextBox = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -55,6 +54,7 @@
             this.LiftingTimeColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.QueueTimeColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ConnectedSlopesColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NameTextBox = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.LiftsDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -176,13 +176,6 @@
             this.GetInfoButton.UseVisualStyleBackColor = true;
             this.GetInfoButton.Click += new System.EventHandler(this.GetInfoButton_Click);
             // 
-            // NameTextBox
-            // 
-            this.NameTextBox.Location = new System.Drawing.Point(253, 23);
-            this.NameTextBox.Name = "NameTextBox";
-            this.NameTextBox.Size = new System.Drawing.Size(152, 35);
-            this.NameTextBox.TabIndex = 17;
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -292,11 +285,19 @@
             this.ConnectedSlopesColumn.Name = "ConnectedSlopesColumn";
             this.ConnectedSlopesColumn.Width = 175;
             // 
+            // NameTextBox
+            // 
+            this.NameTextBox.Location = new System.Drawing.Point(253, 23);
+            this.NameTextBox.Name = "NameTextBox";
+            this.NameTextBox.Size = new System.Drawing.Size(152, 35);
+            this.NameTextBox.TabIndex = 35;
+            // 
             // LiftViewWinForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 30F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1853, 794);
+            this.Controls.Add(this.NameTextBox);
             this.Controls.Add(this.LiftsDataGridView);
             this.Controls.Add(this.QueueTimeTextBox);
             this.Controls.Add(this.label5);
@@ -315,11 +316,11 @@
             this.Controls.Add(this.IsOpenTextBox);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.GetInfoButton);
-            this.Controls.Add(this.NameTextBox);
             this.Controls.Add(this.label1);
             this.Name = "LiftViewWinForm";
             this.Text = "Подъемники";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.LiftViewWinForm_FormClosing);
+            this.Load += new System.EventHandler(this.LiftViewWinForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.LiftsDataGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -341,7 +342,6 @@
         private TextBox IsOpenTextBox;
         private Label label2;
         private Button GetInfoButton;
-        private TextBox NameTextBox;
         private Label label1;
         private TextBox QueueTimeTextBox;
         private Label label5;
@@ -355,5 +355,6 @@
         private DataGridViewTextBoxColumn LiftingTimeColumn;
         private DataGridViewTextBoxColumn QueueTimeColumn;
         private DataGridViewTextBoxColumn ConnectedSlopesColumn;
+        private TextBox NameTextBox;
     }
 }
