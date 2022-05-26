@@ -42,3 +42,24 @@
 2022-05-26 19:37:14.083 +03:00 [INF] Opening MainView
 2022-05-26 19:37:24.818 +03:00 [INF] Opening Slope View
 2022-05-26 19:37:24.843 +03:00 [INF] Changing visibility for views
+2022-05-26 20:39:34.466 +03:00 [INF] Initialized presenter
+2022-05-26 20:39:34.744 +03:00 [INF] Changing visibility for views
+2022-05-26 20:39:34.745 +03:00 [INF] Opening MainView
+2022-05-26 20:39:43.913 +03:00 [INF] Opening Slope View
+2022-05-26 20:39:43.948 +03:00 [INF] Changing visibility for views
+2022-05-26 20:40:10.821 +03:00 [INF] Closed Lift View
+2022-05-26 20:58:15.898 +03:00 [INF] Initialized presenter
+2022-05-26 20:58:16.174 +03:00 [INF] Changing visibility for views
+2022-05-26 20:58:16.182 +03:00 [INF] Opening MainView
+2022-05-26 20:58:20.288 +03:00 [INF] Closing MainView
+2022-05-26 21:10:07.851 +03:00 [INF] Initialized presenter
+2022-05-26 21:10:08.108 +03:00 [INF] Changing visibility for views
+2022-05-26 21:10:08.109 +03:00 [INF] Opening MainView
+2022-05-26 21:10:12.724 +03:00 [INF] Opening Message View
+2022-05-26 21:10:12.750 +03:00 [INF] Changing visibility for views
+2022-05-26 21:10:43.415 +03:00 [ERR] System.FormatException: Input string was not in a correct format.
+   at System.Number.ThrowOverflowOrFormatException(ParsingStatus status, TypeCode type)
+   at System.Convert.ToUInt32(String value)
+   at UI.Presenter.GetMessageAsync(Object sender, EventArgs e) in C:\BMSTU_6sem_software_design\src\SkiResort\UI\Presenter.cs:line 965
+2022-05-26 21:10:59.641 +03:00 [INF] Closed Message View
+2022-05-26 21:11:00.861 +03:00 [INF] Closing MainView

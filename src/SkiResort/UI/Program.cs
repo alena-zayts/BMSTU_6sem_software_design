@@ -31,8 +31,8 @@ namespace UI
             ApplicationConfiguration.Initialize();
 
 
-            IRepositoriesFactory repositoryFactory = new TarantoolRepositoriesFactory();
-            //IRepositoriesFactory repositoryFactory = new PostgresRepositoriesFactrory(Connection.GetConnection());
+            //IRepositoriesFactory repositoryFactory = new TarantoolRepositoriesFactory();
+            IRepositoriesFactory repositoryFactory = new PostgresRepositoriesFactrory(Connection.GetConnection());
 
 
             IViewsFactory viewsFactory = new WinFormViewsFactory();
