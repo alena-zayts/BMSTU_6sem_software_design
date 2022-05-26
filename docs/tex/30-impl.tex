@@ -1,6 +1,27 @@
 \chapter{Технологическая часть}
 
-В данном разделе проводится анализ in-memory СУБД и выбор наиболее подходящей для решения поставленной задачи, производится выбор инструментов разработки, приводятся детали реализации и интерфейс приложения.
+В данном разделе приводится архитектура приложения, проводится анализ in-memory СУБД и выбор наиболее подходящей для решения поставленной задачи, производится выбор инструментов разработки, приводятся детали реализации и интерфейс приложения.
+
+\section{Проектирование архитектуры приложения}
+
+Интерфейс для работы с базой данных представляет собой  многокомпонентное desktop-приложение. На базовом уровне выделены три компонента: компонент доступа к данным, компонент бизнес-логики и компонент реализации пользовательского интерфейса. На рисунке \ref{img:components} представлена архитектура приложения.
+
+%\clearpage
+\begin{figure}[h!]
+	\begin{center}
+		\includegraphics[scale=0.6]{../imgs/uml/components.png}
+	\end{center}
+	\captionsetup{justification=centering}
+	\caption{Архитектура приложения}
+	\label{img:components}
+\end{figure}
+
+Компонент бизнес-логики спроектирован по схеме MVP (Model-View-Presenter) и является главным (независимым). Он отвечает за логику обработки запросов и данных.
+
+Компонент доступа к данным отвечает за получение данных из БД, их изменение, добавление и удаление. Для его реализации использован паттерн <<репозиторий>>. 
+
+Компонент реализации пользовательского интерфейса предоставляет реализацию UI для выбранного технологического стека.
+
 
 \section{Выбор in-memory СУБД}
 
@@ -145,7 +166,6 @@ box.schema.role.create('authorized_user')
 box.schema.role.grant('authorized_user', 'unauthorized_user')
 box.schema.role.grant('authorized_user', 'read,write', 'space', 'messages', {if_not_exists=true})
 
-
 box.schema.role.create('ski_patrol')
 box.schema.role.grant('ski_patrol', 'authorized_user')
 box.schema.role.grant('unauthorized_user', 'write', 'space', 'lifts', {if_not_exists=true})
@@ -177,7 +197,6 @@ function count_card_readings(lift_id, date_from, date_query)
 	end
 	return counter
 end
- 
 function update_queue_time(lift_id, date_from, date_query)
 	card_readings_amount = count_card_readings(lift_id, date_from, date_query)
 	lift = lifts:get{lift_id}
@@ -401,4 +420,4 @@ end
 \clearpage
 \section*{Вывод}
 
-На основе анализа in-memory СУБД был осуществлен выбор наиболее подходящей для решения поставленной задачи. Были выбраны инструменты разработки, приведены детали реализации и интерфейс приложения.
+На основе анализа in-memory СУБД был осуществлен выбор наиболее подходящей для решения поставленной задачи. Была спроектирована архитектура приложения, выбраны инструменты разработки, приведены детали реализации и интерфейс приложения.

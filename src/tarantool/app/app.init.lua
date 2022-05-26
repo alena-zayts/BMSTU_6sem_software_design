@@ -1,7 +1,6 @@
 #!/usr/bin/env tarantool
 
 
--- роли
 -- lsof -i :3301
 -- docker-compose -f C:/BMSTU_6sem_software_design/src/tarantool/docker-compose.yml down && docker-compose -f C:/BMSTU_6sem_software_design/src/tarantool/docker-compose.yml up -d
 
@@ -16,7 +15,6 @@ print('start!')
 
 ---------------------------------------------------------------------------------------------init tables
 local function init()
-	--chosen_engine = "memtx" --"memtx" -- vinyl
 	print('in init!')
 	
 	box.schema.upgrade()
@@ -361,7 +359,16 @@ function update_queue_time(lift_id, date_from, date_query)
 end
 
 
+-- function get_lifts_by_slope_id(slope_id)
+	-- chosen_lifts_slopes = lifts_slopes.index.index_slope_id:select({slope_id})
+	-- for k,v in pairs(chosen_lifts_slopes) do
+		-- cur_lift_id = v["lift_id"]
+	-- end
+-- end
 
+-- function get_slopes_by_lift_id(lift_id)
+	-- return lifts_slopes.index.index_lift_id:select({lift})
+-- end
 
 box.cfg {
    background = false,
@@ -390,6 +397,10 @@ function dump(o)
       return tostring(o)
    end
 end
+
+print(dump(get_lifts_by_slope_id(1)))
+print(dump(get_lifts_by_slope_id(2)))
+
 
 -- auto_increment_card_readings(turnstile_id, card_id, reading_time)
 -- auto_increment_lifts(lift_name, is_open, seats_amount, lifting_time, queue_time)

@@ -31,15 +31,13 @@ namespace UI
             ApplicationConfiguration.Initialize();
 
 
-            //IRepositoriesFactory repositoryFactory = new TarantoolRepositoriesFactory();
-            IRepositoriesFactory repositoryFactory = new PostgresRepositoriesFactrory(Connection.GetConnection());
+            IRepositoriesFactory repositoryFactory = new TarantoolRepositoriesFactory();
+            //IRepositoriesFactory repositoryFactory = new PostgresRepositoriesFactrory(Connection.GetConnection());
 
 
             IViewsFactory viewsFactory = new WinFormViewsFactory();
             Facade facade = new(repositoryFactory);
             Presenter presenter = new(viewsFactory, facade);
-            //presenter.RunAsync();
-
             Task.Run(() => presenter.RunAsync());
 
 

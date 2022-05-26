@@ -117,3 +117,4 @@ C:\BMSTU_6sem_software_design\src\SkiResort\UI\bin\Debug\net6.0-windows\runtimes
 C:\BMSTU_6sem_software_design\src\SkiResort\UI\bin\Debug\net6.0-windows\runtimes\win-x86\native\sni.dll
 C:\BMSTU_6sem_software_design\src\SkiResort\UI\bin\Debug\net6.0-windows\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
 C:\BMSTU_6sem_software_design\src\SkiResort\UI\bin\Debug\net6.0-windows\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\BMSTU_6sem_software_design\src\SkiResort\UI\bin\Debug\net6.0-windows\UI.dll.config

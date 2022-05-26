@@ -1,0 +1,44 @@
+2022-05-26 19:03:35.504 +03:00 [INF] Initialized presenter
+2022-05-26 19:03:36.999 +03:00 [INF] Changing visibility for views
+2022-05-26 19:03:37.000 +03:00 [INF] Opening MainView
+2022-05-26 19:03:41.176 +03:00 [INF] Opening Slope View
+2022-05-26 19:03:41.316 +03:00 [INF] Changing visibility for views
+2022-05-26 19:03:48.959 +03:00 [INF] Closed Lift View
+2022-05-26 19:03:50.204 +03:00 [INF] Opening Slope View
+2022-05-26 19:03:50.211 +03:00 [INF] Changing visibility for views
+2022-05-26 19:03:51.158 +03:00 [INF] Getting slopes
+2022-05-26 19:03:53.424 +03:00 [INF] Closed Slope View
+2022-05-26 19:03:54.396 +03:00 [INF] Opening Profile View
+2022-05-26 19:03:54.400 +03:00 [INF] Changing visibility for views
+2022-05-26 19:03:55.750 +03:00 [INF] Closed Profile View
+2022-05-26 19:03:56.488 +03:00 [INF] Opening User View
+2022-05-26 19:03:56.494 +03:00 [INF] Changing visibility for views
+2022-05-26 19:03:59.773 +03:00 [INF] Closed User View
+2022-05-26 19:04:00.706 +03:00 [INF] Opening Card View
+2022-05-26 19:04:00.716 +03:00 [INF] Changing visibility for views
+2022-05-26 19:04:05.168 +03:00 [INF] Closed Card View
+2022-05-26 19:04:06.129 +03:00 [INF] Opening Turnstile View
+2022-05-26 19:04:06.136 +03:00 [INF] Changing visibility for views
+2022-05-26 19:04:08.793 +03:00 [INF] Closed Turnstile View
+2022-05-26 19:04:09.932 +03:00 [INF] Opening Slope View
+2022-05-26 19:04:09.934 +03:00 [INF] Changing visibility for views
+2022-05-26 19:04:13.506 +03:00 [INF] Closed Lift View
+2022-05-26 19:04:14.526 +03:00 [INF] Opening Slope View
+2022-05-26 19:04:14.528 +03:00 [INF] Changing visibility for views
+2022-05-26 19:04:15.441 +03:00 [INF] Getting slopes
+2022-05-26 19:04:17.307 +03:00 [INF] Closed Slope View
+2022-05-26 19:06:44.470 +03:00 [INF] Initialized presenter
+2022-05-26 19:06:44.677 +03:00 [INF] Changing visibility for views
+2022-05-26 19:06:44.684 +03:00 [INF] Opening MainView
+2022-05-26 19:06:46.484 +03:00 [INF] Opening Slope View
+2022-05-26 19:06:46.517 +03:00 [INF] Changing visibility for views
+2022-05-26 19:06:59.683 +03:00 [INF] Closed Lift View
+2022-05-26 19:07:00.903 +03:00 [INF] Opening Slope View
+2022-05-26 19:07:00.909 +03:00 [INF] Changing visibility for views
+2022-05-26 19:07:02.813 +03:00 [INF] Getting slopes
+2022-05-26 19:07:06.716 +03:00 [INF] Closed Slope View
+2022-05-26 19:37:13.581 +03:00 [INF] Initialized presenter
+2022-05-26 19:37:14.079 +03:00 [INF] Changing visibility for views
+2022-05-26 19:37:14.083 +03:00 [INF] Opening MainView
+2022-05-26 19:37:24.818 +03:00 [INF] Opening Slope View
+2022-05-26 19:37:24.843 +03:00 [INF] Changing visibility for views
