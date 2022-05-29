@@ -1,0 +1,185 @@
+2022-05-28 10:41:11.223 +03:00 [INF] Initialized presenter
+2022-05-28 10:41:11.936 +03:00 [INF] Changing visibility for views
+2022-05-28 10:41:11.937 +03:00 [INF] Opening MainView
+2022-05-28 10:42:24.579 +03:00 [INF] Initialized presenter
+2022-05-28 10:42:29.092 +03:00 [INF] Changing visibility for views
+2022-05-28 10:42:29.093 +03:00 [INF] Opening MainView
+2022-05-28 10:43:03.784 +03:00 [INF] Opening Profile View
+2022-05-28 10:43:03.798 +03:00 [INF] Changing visibility for views
+2022-05-28 10:43:12.662 +03:00 [INF] Changing visibility for views
+2022-05-28 10:43:15.763 +03:00 [INF] Closed Profile View
+2022-05-28 10:43:18.665 +03:00 [INF] Opening Message View
+2022-05-28 10:43:18.705 +03:00 [INF] Changing visibility for views
+2022-05-28 10:44:19.819 +03:00 [INF] Closed Message View
+2022-05-28 10:44:21.615 +03:00 [INF] Opening Card View
+2022-05-28 10:44:21.621 +03:00 [INF] Changing visibility for views
+2022-05-28 10:44:27.691 +03:00 [ERR] System.FormatException: Input string was not in a correct format.
+   at System.Number.ThrowOverflowOrFormatException(ParsingStatus status, TypeCode type)
+   at System.Convert.ToUInt32(String value)
+   at UI.Presenter.UpdateCardAsync(Object sender, EventArgs e) in C:\BMSTU_6sem_software_design\src\SkiResort\UI\Presenter.cs:line 1624
+2022-05-28 10:45:18.804 +03:00 [INF] Closed Card View
+2022-05-28 10:45:22.370 +03:00 [INF] Opening Turnstile View
+2022-05-28 10:45:22.379 +03:00 [INF] Changing visibility for views
+2022-05-28 10:45:28.274 +03:00 [ERR] System.FormatException: Input string was not in a correct format.
+   at System.Number.ThrowOverflowOrFormatException(ParsingStatus status, TypeCode type)
+   at System.Convert.ToUInt32(String value)
+   at UI.Presenter.GetTurnstileAsync(Object sender, EventArgs e) in C:\BMSTU_6sem_software_design\src\SkiResort\UI\Presenter.cs:line 1758
+2022-05-28 10:45:38.947 +03:00 [ERR] System.FormatException: Input string was not in a correct format.
+   at System.Number.ThrowOverflowOrFormatException(ParsingStatus status, TypeCode type)
+   at System.Convert.ToUInt32(String value)
+   at UI.Presenter.GetTurnstileAsync(Object sender, EventArgs e) in C:\BMSTU_6sem_software_design\src\SkiResort\UI\Presenter.cs:line 1758
+2022-05-28 10:45:51.740 +03:00 [ERR] System.FormatException: Input string was not in a correct format.
+   at System.Number.ThrowOverflowOrFormatException(ParsingStatus status, TypeCode type)
+   at System.Convert.ToUInt32(String value)
+   at UI.Presenter.GetTurnstileAsync(Object sender, EventArgs e) in C:\BMSTU_6sem_software_design\src\SkiResort\UI\Presenter.cs:line 1758
+2022-05-28 10:46:00.748 +03:00 [INF] Closed Turnstile View
+2022-05-28 10:46:03.227 +03:00 [INF] Opening CardReading View
+2022-05-28 10:46:03.234 +03:00 [INF] Changing visibility for views
+2022-05-28 10:46:10.712 +03:00 [INF] Closed CardReading View
+2022-05-28 10:46:12.983 +03:00 [INF] Opening Card View
+2022-05-28 10:46:12.987 +03:00 [INF] Changing visibility for views
+2022-05-28 10:46:16.123 +03:00 [INF] Closed Card View
+2022-05-28 10:46:18.055 +03:00 [INF] Opening Slope View
+2022-05-28 10:46:18.059 +03:00 [INF] Changing visibility for views
+2022-05-28 10:46:20.125 +03:00 [INF] Getting slopes
+2022-05-28 10:46:21.927 +03:00 [INF] Closed Slope View
+2022-05-28 10:46:23.844 +03:00 [INF] Opening CardReading View
+2022-05-28 10:46:23.845 +03:00 [INF] Changing visibility for views
+2022-05-28 10:46:38.555 +03:00 [INF] Closed CardReading View
+2022-05-28 10:46:40.191 +03:00 [INF] Closing MainView
+2022-05-28 10:46:51.834 +03:00 [INF] Initialized presenter
+2022-05-28 10:47:00.342 +03:00 [INF] Initialized presenter
+2022-05-28 10:47:03.873 +03:00 [INF] Changing visibility for views
+2022-05-28 10:47:03.873 +03:00 [INF] Opening MainView
+2022-05-28 10:47:08.187 +03:00 [INF] Opening Profile View
+2022-05-28 10:47:08.192 +03:00 [INF] Changing visibility for views
+2022-05-28 10:47:11.400 +03:00 [INF] Closed Profile View
+2022-05-28 10:47:12.427 +03:00 [INF] Opening Profile View
+2022-05-28 10:47:12.429 +03:00 [INF] Changing visibility for views
+2022-05-28 10:47:17.651 +03:00 [INF] Changing visibility for views
+2022-05-28 10:47:18.735 +03:00 [INF] Closed Profile View
+2022-05-28 10:47:20.373 +03:00 [INF] Opening User View
+2022-05-28 10:47:20.398 +03:00 [INF] Changing visibility for views
+2022-05-28 10:47:24.429 +03:00 [INF] Opening Profile View
+2022-05-28 10:47:24.430 +03:00 [INF] Changing visibility for views
+2022-05-28 10:47:25.807 +03:00 [INF] Changing visibility for views
+2022-05-28 10:47:33.489 +03:00 [ERR] System.FormatException: Input string was not in a correct format.
+   at System.Number.ThrowOverflowOrFormatException(ParsingStatus status, TypeCode type)
+   at System.Convert.ToUInt32(String value)
+   at UI.Presenter.GetUserAsync(Object sender, EventArgs e) in C:\BMSTU_6sem_software_design\src\SkiResort\UI\Presenter.cs:line 1371
+2022-05-28 10:47:36.488 +03:00 [ERR] BL.Exceptions.PermissionExceptions.PermissionException
+   at BL.Services.CheckPermissionsService.CheckPermissionsAsync(IUsersRepository usersRepository, UInt32 userID, String memberName) in C:\BMSTU_6sem_software_design\src\SkiResort\BL\Services\CheckPermissionsService.cs:line 19
+   at BL.Facade.AdminGetUsersAsync(UInt32 requesterUserID, UInt32 offset, UInt32 limit) in C:\BMSTU_6sem_software_design\src\SkiResort\BL\Facade.cs:line 89
+   at UI.Presenter.GetUsersAsync(Object sender, EventArgs e) in C:\BMSTU_6sem_software_design\src\SkiResort\UI\Presenter.cs:line 1355
+2022-05-28 10:47:45.419 +03:00 [INF] Closed User View
+2022-05-28 10:47:52.196 +03:00 [INF] Opening Slope View
+2022-05-28 10:47:52.200 +03:00 [INF] Changing visibility for views
+2022-05-28 10:47:53.985 +03:00 [INF] Getting slopes
+2022-05-28 10:48:01.463 +03:00 [INF] Closed Slope View
+2022-05-28 10:48:02.333 +03:00 [INF] Opening Slope View
+2022-05-28 10:48:02.345 +03:00 [INF] Changing visibility for views
+2022-05-28 10:48:04.086 +03:00 [INF] Closed Lift View
+2022-05-28 10:48:35.151 +03:00 [INF] Changing visibility for views
+2022-05-28 10:48:39.499 +03:00 [INF] Opening Message View
+2022-05-28 10:48:39.504 +03:00 [INF] Changing visibility for views
+2022-05-28 10:48:59.602 +03:00 [INF] Closed Message View
+2022-05-28 10:49:02.571 +03:00 [INF] Changing visibility for views
+2022-05-28 10:49:18.348 +03:00 [ERR] System.ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection. (Parameter 'index')
+   at System.Collections.Generic.List`1.get_Item(Int32 index)
+   at AccessToDB2.PostgresRepositories.PostgresUsersRepository.GetUserByEmailAsync(String userEmail) in C:\BMSTU_6sem_software_design\src\SkiResort\AccessToDB2\PostgresRepositories\PostgresUsersRepository.cs:line 95
+   at BL.Facade.LogInAsync(UInt32 requesterUserID, String email, String password) in C:\BMSTU_6sem_software_design\src\SkiResort\BL\Facade.cs:line 62
+   at UI.Presenter.LogInAsync(Object sender, EventArgs e) in C:\BMSTU_6sem_software_design\src\SkiResort\UI\Presenter.cs:line 385
+2022-05-28 10:49:27.555 +03:00 [ERR] System.ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection. (Parameter 'index')
+   at System.Collections.Generic.List`1.get_Item(Int32 index)
+   at AccessToDB2.PostgresRepositories.PostgresUsersRepository.GetUserByEmailAsync(String userEmail) in C:\BMSTU_6sem_software_design\src\SkiResort\AccessToDB2\PostgresRepositories\PostgresUsersRepository.cs:line 95
+   at BL.Facade.LogInAsync(UInt32 requesterUserID, String email, String password) in C:\BMSTU_6sem_software_design\src\SkiResort\BL\Facade.cs:line 62
+   at UI.Presenter.LogInAsync(Object sender, EventArgs e) in C:\BMSTU_6sem_software_design\src\SkiResort\UI\Presenter.cs:line 385
+2022-05-28 10:50:55.968 +03:00 [ERR] System.ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection. (Parameter 'index')
+   at System.Collections.Generic.List`1.get_Item(Int32 index)
+   at AccessToDB2.PostgresRepositories.PostgresUsersRepository.GetUserByEmailAsync(String userEmail) in C:\BMSTU_6sem_software_design\src\SkiResort\AccessToDB2\PostgresRepositories\PostgresUsersRepository.cs:line 95
+   at BL.Facade.LogInAsync(UInt32 requesterUserID, String email, String password) in C:\BMSTU_6sem_software_design\src\SkiResort\BL\Facade.cs:line 62
+   at UI.Presenter.LogInAsync(Object sender, EventArgs e) in C:\BMSTU_6sem_software_design\src\SkiResort\UI\Presenter.cs:line 385
+2022-05-28 10:50:57.363 +03:00 [INF] Closed Profile View
+2022-05-28 10:51:17.685 +03:00 [INF] Initialized presenter
+2022-05-28 10:51:18.239 +03:00 [INF] Changing visibility for views
+2022-05-28 10:51:18.240 +03:00 [INF] Opening MainView
+2022-05-28 10:51:19.860 +03:00 [INF] Opening Profile View
+2022-05-28 10:51:19.868 +03:00 [INF] Changing visibility for views
+2022-05-28 10:51:45.046 +03:00 [INF] Changing visibility for views
+2022-05-28 10:51:51.387 +03:00 [INF] Changing visibility for views
+2022-05-28 10:52:09.368 +03:00 [ERR] AccessToDB.Exceptions.UserExceptions.UserNotFoundException: Exception of type 'AccessToDB.Exceptions.UserExceptions.UserNotFoundException' was thrown.
+   at AccessToDB.RepositoriesTarantool.TarantoolUsersRepository.GetUserByEmailAsync(String userEmail) in C:\BMSTU_6sem_software_design\src\SkiResort\AccessToDB\TarantoolRepositories\TarantoolUsersRepository.cs:line 152
+   at BL.Facade.LogInAsync(UInt32 requesterUserID, String email, String password) in C:\BMSTU_6sem_software_design\src\SkiResort\BL\Facade.cs:line 62
+   at UI.Presenter.LogInAsync(Object sender, EventArgs e) in C:\BMSTU_6sem_software_design\src\SkiResort\UI\Presenter.cs:line 385
+2022-05-28 10:52:15.489 +03:00 [ERR] AccessToDB.Exceptions.UserExceptions.UserNotFoundException: Exception of type 'AccessToDB.Exceptions.UserExceptions.UserNotFoundException' was thrown.
+   at AccessToDB.RepositoriesTarantool.TarantoolUsersRepository.GetUserByEmailAsync(String userEmail) in C:\BMSTU_6sem_software_design\src\SkiResort\AccessToDB\TarantoolRepositories\TarantoolUsersRepository.cs:line 152
+   at BL.Facade.LogInAsync(UInt32 requesterUserID, String email, String password) in C:\BMSTU_6sem_software_design\src\SkiResort\BL\Facade.cs:line 62
+   at UI.Presenter.LogInAsync(Object sender, EventArgs e) in C:\BMSTU_6sem_software_design\src\SkiResort\UI\Presenter.cs:line 385
+2022-05-28 10:52:21.550 +03:00 [ERR] AccessToDB.Exceptions.UserExceptions.UserNotFoundException: Exception of type 'AccessToDB.Exceptions.UserExceptions.UserNotFoundException' was thrown.
+   at AccessToDB.RepositoriesTarantool.TarantoolUsersRepository.GetUserByEmailAsync(String userEmail) in C:\BMSTU_6sem_software_design\src\SkiResort\AccessToDB\TarantoolRepositories\TarantoolUsersRepository.cs:line 152
+   at BL.Facade.LogInAsync(UInt32 requesterUserID, String email, String password) in C:\BMSTU_6sem_software_design\src\SkiResort\BL\Facade.cs:line 62
+   at UI.Presenter.LogInAsync(Object sender, EventArgs e) in C:\BMSTU_6sem_software_design\src\SkiResort\UI\Presenter.cs:line 385
+2022-05-28 10:52:27.475 +03:00 [ERR] AccessToDB.Exceptions.UserExceptions.UserNotFoundException: Exception of type 'AccessToDB.Exceptions.UserExceptions.UserNotFoundException' was thrown.
+   at AccessToDB.RepositoriesTarantool.TarantoolUsersRepository.GetUserByEmailAsync(String userEmail) in C:\BMSTU_6sem_software_design\src\SkiResort\AccessToDB\TarantoolRepositories\TarantoolUsersRepository.cs:line 152
+   at BL.Facade.LogInAsync(UInt32 requesterUserID, String email, String password) in C:\BMSTU_6sem_software_design\src\SkiResort\BL\Facade.cs:line 62
+   at UI.Presenter.LogInAsync(Object sender, EventArgs e) in C:\BMSTU_6sem_software_design\src\SkiResort\UI\Presenter.cs:line 385
+2022-05-28 10:52:45.305 +03:00 [INF] Changing visibility for views
+2022-05-28 10:52:49.601 +03:00 [INF] Opening Message View
+2022-05-28 10:52:49.626 +03:00 [INF] Changing visibility for views
+2022-05-28 10:52:59.608 +03:00 [ERR] BL.Exceptions.MessageExceptions.MessageCheckingException: Couldn't mark message checked because it is alredy checked
+   at BL.Facade.MarkMessageReadByUserAsync(UInt32 requesterUserID, UInt32 messageID) in C:\BMSTU_6sem_software_design\src\SkiResort\BL\Facade.cs:line 179
+   at UI.Presenter.MarkMessageCheckedAsync(Object sender, EventArgs e) in C:\BMSTU_6sem_software_design\src\SkiResort\UI\Presenter.cs:line 1097
+2022-05-28 10:53:10.265 +03:00 [INF] Closed Message View
+2022-05-28 10:53:11.398 +03:00 [INF] Opening Slope View
+2022-05-28 10:53:11.406 +03:00 [INF] Changing visibility for views
+2022-05-28 10:53:21.316 +03:00 [INF] Closed Lift View
+2022-05-28 10:53:22.585 +03:00 [INF] Opening Slope View
+2022-05-28 10:53:22.592 +03:00 [INF] Changing visibility for views
+2022-05-28 10:53:55.421 +03:00 [ERR] System.NullReferenceException: Object reference not set to an instance of an object.
+   at UI.Presenter.GetLiftsInfoAsync(Object sender, EventArgs e) in C:\BMSTU_6sem_software_design\src\SkiResort\UI\Presenter.cs:line 711
+2022-05-28 10:53:57.177 +03:00 [INF] Getting slopes
+2022-05-28 10:54:17.707 +03:00 [INF] Getting slope
+2022-05-28 10:54:19.771 +03:00 [ERR] AccessToDB.Exceptions.SlopeExceptions.SlopeNotFoundException: Error: couldn't find slope with name=1
+   at AccessToDB.RepositoriesTarantool.TarantoolSlopesRepository.GetSlopeByNameAsync(String name) in C:\BMSTU_6sem_software_design\src\SkiResort\AccessToDB\TarantoolRepositories\TarantoolSlopesRepository.cs:line 69
+   at BL.Facade.GetSlopeInfoAsync(UInt32 requesterUserID, String SlopeName) in C:\BMSTU_6sem_software_design\src\SkiResort\BL\Facade.cs:line 300
+   at UI.Presenter.GetSlopeInfoAsync(Object sender, EventArgs e) in C:\BMSTU_6sem_software_design\src\SkiResort\UI\Presenter.cs:line 475Спуск с таким именем не найден
+2022-05-28 10:54:23.352 +03:00 [INF] Getting slope
+2022-05-28 10:54:31.384 +03:00 [ERR] System.FormatException: Input string was not in a correct format.
+   at System.Number.ThrowOverflowOrFormatException(ParsingStatus status, TypeCode type)
+   at System.Convert.ToUInt32(String value)
+   at UI.Presenter.UpdateSlopeAsync(Object sender, EventArgs e) in C:\BMSTU_6sem_software_design\src\SkiResort\UI\Presenter.cs:line 507
+2022-05-28 10:54:34.369 +03:00 [INF] Getting slope
+2022-05-28 10:54:35.193 +03:00 [INF] Getting slope
+2022-05-28 10:54:53.905 +03:00 [INF] Closed Slope View
+2022-05-28 10:55:04.366 +03:00 [INF] Changing visibility for views
+2022-05-28 10:55:15.183 +03:00 [INF] Changing visibility for views
+2022-05-28 10:55:18.213 +03:00 [INF] Opening Message View
+2022-05-28 10:55:18.215 +03:00 [INF] Changing visibility for views
+2022-05-28 10:55:19.880 +03:00 [INF] Closed Message View
+2022-05-28 10:55:20.852 +03:00 [INF] Opening Slope View
+2022-05-28 10:55:20.853 +03:00 [INF] Changing visibility for views
+2022-05-28 10:55:23.529 +03:00 [INF] Closed Lift View
+2022-05-28 10:55:24.614 +03:00 [INF] Changing visibility for views
+2022-05-28 10:55:30.889 +03:00 [INF] Changing visibility for views
+2022-05-28 10:55:32.330 +03:00 [INF] Changing visibility for views
+2022-05-28 10:55:41.209 +03:00 [INF] Changing visibility for views
+2022-05-28 10:55:44.248 +03:00 [INF] Opening CardReading View
+2022-05-28 10:55:44.258 +03:00 [INF] Changing visibility for views
+2022-05-28 10:56:00.779 +03:00 [INF] Closed CardReading View
+2022-05-28 10:56:01.890 +03:00 [INF] Opening User View
+2022-05-28 10:56:01.894 +03:00 [INF] Changing visibility for views
+2022-05-28 10:56:41.188 +03:00 [INF] Closed User View
+2022-05-28 10:56:44.948 +03:00 [INF] Changing visibility for views
+2022-05-28 10:56:55.799 +03:00 [INF] Changing visibility for views
+2022-05-28 10:56:58.881 +03:00 [INF] Opening Slope View
+2022-05-28 10:56:58.883 +03:00 [INF] Changing visibility for views
+2022-05-28 10:58:12.508 +03:00 [INF] Closed Lift View
+2022-05-28 10:58:14.248 +03:00 [INF] Closed Profile View
+2022-05-28 11:03:15.207 +03:00 [INF] Initialized presenter
+2022-05-28 11:03:15.782 +03:00 [INF] Changing visibility for views
+2022-05-28 11:03:15.783 +03:00 [INF] Opening MainView
+2022-05-28 11:03:23.999 +03:00 [INF] Closing MainView
+2022-05-28 13:27:33.859 +03:00 [INF] Initialized presenter
+2022-05-28 13:27:34.352 +03:00 [INF] Changing visibility for views
+2022-05-28 13:27:34.354 +03:00 [INF] Opening MainView
+2022-05-28 13:27:38.938 +03:00 [INF] Closing MainView

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.6) (preloaded format=pdflatex 2021.9.4)  27 MAY 2022 22:50
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.6) (preloaded format=pdflatex 2021.9.4)  29 MAY 2022 22:59
 entering extended mode
 **./report.tex
 (report.tex
@@ -1483,7 +1483,7 @@ Package: beramono 2004/01/31 (WaS)
 Package: subcaption 2020/10/07 v1.3j Sub-captions (AR)
 \c@subfigure=\count345
 \c@subtable=\count346
-))
+)
 (C:\Users\alena\AppData\Roaming\MiKTeX\tex/latex/diagbox\diagbox.sty
 Package: diagbox 2020/02/09 v2.3 Making table heads with diagonal lines
 
@@ -1528,9 +1528,32 @@ Package: array 2021/04/20 v2.5e Tabular extension package (FMi)
 \diagbox@insepr=\dimen323
 \diagbox@outsepl=\dimen324
 \diagbox@outsepr=\dimen325
-) (report.aux
-(01-contents.aux) (02-intro.aux) (10-analysis.aux) (20-design.aux) (30-impl.aux
-) (40-research.aux) (50-conclusion.aux) (51-biblio.aux))
+))
+(C:\Users\alena\AppData\Roaming\MiKTeX\tex/latex/pdfpages\pdfpages.sty
+Package: pdfpages 2021/03/06 v0.5t Insert pages of external PDF documents (AM)
+
+(C:\Users\alena\AppData\Roaming\MiKTeX\tex/latex/eso-pic\eso-pic.sty
+Package: eso-pic 2020/10/14 v3.0a eso-pic (RN)
+\ESO@tempdima=\dimen326
+\ESO@tempdimb=\dimen327
+)
+\AM@pagewidth=\dimen328
+\AM@pageheight=\dimen329
+\AM@fboxrule=\dimen330
+
+(C:\Users\alena\AppData\Roaming\MiKTeX\tex/latex/pdfpages\pppdftex.def
+File: pppdftex.def 2021/03/06 v0.5t Pdfpages driver for pdfTeX (AM)
+)
+\pdfpages@includegraphics@status=\count347
+\AM@pagebox=\box78
+\AM@global@opts=\toks49
+\AM@pagecnt=\count348
+\AM@toc@title=\toks50
+\c@AM@survey=\count349
+\AM@templatesizebox=\box79
+)
+(report.aux (01-contents.aux) (02-intro.aux) (10-analysis.aux) (20-design.aux)
+(30-impl.aux) (40-research.aux) (50-conclusion.aux) (51-biblio.aux))
 \openout1 = `report.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 5.
@@ -1599,17 +1622,17 @@ LaTeX Info: Redefining \th on input line 5.
 
 (C:\Program Files\MiKTeX\tex/context/base/mkii\supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count347
-\scratchdimen=\dimen326
-\scratchbox=\box78
-\nofMPsegments=\count348
-\nofMParguments=\count349
-\everyMPshowfont=\toks49
-\MPscratchCnt=\count350
-\MPscratchDim=\dimen327
-\MPnumerator=\count351
-\makeMPintoPDFobject=\count352
-\everyMPtoPDFconversion=\toks50
+\scratchcounter=\count350
+\scratchdimen=\dimen331
+\scratchbox=\box80
+\nofMPsegments=\count351
+\nofMParguments=\count352
+\everyMPshowfont=\toks51
+\MPscratchCnt=\count353
+\MPscratchDim=\dimen332
+\MPnumerator=\count354
+\makeMPintoPDFobject=\count355
+\everyMPtoPDFconversion=\toks52
 ) (C:\Program Files\MiKTeX\tex/latex/epstopdf-pkg\epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
@@ -1621,7 +1644,7 @@ File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 Package pgfplots notification 'compat/show suggested version=true': you might b
 enefit from \pgfplotsset{compat=1.18} (current compat level: 1.9).
 
-\c@lstlisting=\count353
+\c@lstlisting=\count356
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: hyperref package is loaded.
 Package caption Info: End \AtBeginDocument code.
@@ -1636,7 +1659,7 @@ Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
 g.sty
 Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
-\c@section@level=\count354
+\c@section@level=\count357
 )
 LaTeX Info: Redefining \ref on input line 5.
 LaTeX Info: Redefining \pageref on input line 5.
@@ -1645,9 +1668,19 @@ LaTeX Info: Redefining \nameref on input line 5.
 \@outlinefile=\write5
 \openout5 = `report.out'.
 
+
+(C:\Users\alena\AppData\Roaming\MiKTeX\tex/latex/pdflscape\pdflscape.sty
+Package: pdflscape 2019/12/05 v0.12 Display of landscape pages in PDF (HO)
+
+(C:\Program Files\MiKTeX\tex/latex/graphics\lscape.sty
+Package: lscape 2020/05/28 v3.02 Landscape Pages (DPC)
+)
+Package pdflscape Info: Auto-detected driver: pdftex on input line 81.
+)
 \openout2 = `01-contents.aux'.
 
- (01-contents.tex (report.toc<<ot1.cmap>><<oml.cmap>><<oms.cmap>><<omx.cmap>>
+ (01-contents.tex
+(report.toc<<ot1.cmap>><<oml.cmap>><<oms.cmap>><<omx.cmap>>
 LaTeX Font Info:    Trying to load font information for U+msa on input line 4.
 
 (C:\Program Files\MiKTeX\tex/latex/amsfonts\umsa.fd
@@ -1657,13 +1690,7 @@ LaTeX Font Info:    Trying to load font information for U+msb on input line 4.
 
 (C:\Program Files\MiKTeX\tex/latex/amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-)
-Overfull \hbox (26.9588pt too wide) in paragraph at lines 10--10
- [][] [][]\T2A/cmr/m/n/14.4 Мобильное при-ло-же-ние гор-но-лыж-но-го ку-рор-та 
-<<Courchevel>>[] [][]  
- []
-
-[1
+) [3
 
 
 
@@ -1674,17 +1701,16 @@ Overfull \hbox (26.9588pt too wide) in paragraph at lines 10--10
 \tf@toc=\write6
 \openout6 = `report.toc'.
 
-) [2]
+) [4]
 \openout2 = `02-intro.aux'.
 
-
-(02-intro.tex
+ (02-intro.tex
 Overfull \hbox (13.71364pt too wide) in paragraph at lines 8--9
 []\T2A/cmr/m/n/14.4 Цель кур-со-вой ра-бо-ты -- раз-ра-бот-ка ба-зы дан-ных для
  онлайн-мониторинга
  []
 
-) [3
+) [5
 
 
 
@@ -1694,29 +1720,24 @@ Overfull \hbox (13.71364pt too wide) in paragraph at lines 8--9
 
  (10-analysis.tex
 {\cyrillictext \CYRG \cyrl \cyra \cyrv \cyra } 1.
-[4
+[6
 
 
 
 
-] [5]
+] [7]
 <../imgs/er/er_russian.png, id=249, 1064.97874pt x 682.55pt>
 File: ../imgs/er/er_russian.png Graphic file (type png)
 <use ../imgs/er/er_russian.png>
 Package pdftex.def Info: ../imgs/er/er_russian.png  used on input line 52.
-(pdftex.def)             Requested size: 479.23601pt x 307.14467pt.
-
-Overfull \hbox (9.76552pt too wide) in paragraph at lines 52--53
- [] 
- []
-
+(pdftex.def)             Requested size: 425.98395pt x 273.01517pt.
 
 Overfull \hbox (4.37938pt too wide) in paragraph at lines 61--62
 \T2A/cmr/m/n/14.4 при-ло-же-ни-ем необ-хо-ди-ма ро-ле-вая мо-дель: ав-то-ри-зо-
 ван-ный (обыч-ный) поль-
  []
 
-[6
+[8
 
  <../imgs/er/er_russian.png>]
 <../imgs/use_case/use-case1.png, id=258, 573.14125pt x 352.31625pt>
@@ -1725,7 +1746,7 @@ File: ../imgs/use_case/use-case1.png Graphic file (type png)
 Package pdftex.def Info: ../imgs/use_case/use-case1.png  used on input line 77.
 
 (pdftex.def)             Requested size: 401.19614pt x 246.61969pt.
- [7
+ [9
 
  <../imgs/use_case/use-case1.png>]
 <../imgs/use_case/use-case2.png, id=267, 844.15375pt x 261.97874pt>
@@ -1733,19 +1754,14 @@ File: ../imgs/use_case/use-case2.png Graphic file (type png)
 <use ../imgs/use_case/use-case2.png>
 Package pdftex.def Info: ../imgs/use_case/use-case2.png  used on input line 101
 .
-(pdftex.def)             Requested size: 464.286pt x 144.08875pt.
+(pdftex.def)             Requested size: 422.07584pt x 130.98904pt.
 <../imgs/use_case/use-case3.png, id=269, 824.07875pt x 261.97874pt>
 File: ../imgs/use_case/use-case3.png Graphic file (type png)
 <use ../imgs/use_case/use-case3.png>
 Package pdftex.def Info: ../imgs/use_case/use-case3.png  used on input line 121
 .
-(pdftex.def)             Requested size: 494.45107pt x 157.18845pt.
-
-Overfull \hbox (24.98058pt too wide) in paragraph at lines 121--122
- [] 
- []
-
-[8
+(pdftex.def)             Requested size: 412.03836pt x 130.98904pt.
+ [10
 
  <../imgs/use_case/use-case2.png> <../imgs/use_case/use-case3.png>]
 <../imgs/use_case/use-case4.png, id=279, 914.41624pt x 397.485pt>
@@ -1753,8 +1769,8 @@ File: ../imgs/use_case/use-case4.png Graphic file (type png)
 <use ../imgs/use_case/use-case4.png>
 Package pdftex.def Info: ../imgs/use_case/use-case4.png  used on input line 142
 .
-(pdftex.def)             Requested size: 457.207pt x 198.742pt.
- [9
+(pdftex.def)             Requested size: 438.91481pt x 190.79062pt.
+ [11
 
  <../imgs/use_case/use-case4.png>]
 Overfull \hbox (1.72697pt too wide) in paragraph at lines 164--165
@@ -1780,7 +1796,7 @@ File: ../imgs/analogue_apps/gmap.png Graphic file (type png)
 Package pdftex.def Info: ../imgs/analogue_apps/gmap.png  used on input line 186
 .
 (pdftex.def)             Requested size: 147.17934pt x 318.76826pt.
-[10 <../imgs/analogue_apps/gslope.png> <../imgs/analogue_apps/glift.png> <../im
+[12 <../imgs/analogue_apps/gslope.png> <../imgs/analogue_apps/glift.png> <../im
 gs/analogue_apps/gmap.png>]
 <../imgs/analogue_apps/Courchevel.png, id=304, 593.21625pt x 1284.8pt>
 File: ../imgs/analogue_apps/Courchevel.png Graphic file (type png)
@@ -1794,7 +1810,7 @@ Overfull \hbox (1.72697pt too wide) in paragraph at lines 216--217
 ть воз-мож-ность про-
  []
 
-[11
+[13
 
  <../imgs/analogue_apps/Courchevel.png>]
 <../imgs/analogue_apps/rslope.png, id=313, 593.21625pt x 1284.8pt>
@@ -1815,7 +1831,7 @@ File: ../imgs/analogue_apps/rmap.png Graphic file (type png)
 Package pdftex.def Info: ../imgs/analogue_apps/rmap.png  used on input line 239
 .
 (pdftex.def)             Requested size: 147.17934pt x 318.76826pt.
- [12 <../imgs/analogue_apps/rslope.png> <../imgs/analogue_apps/rlift.png> <../i
+ [14 <../imgs/analogue_apps/rslope.png> <../imgs/analogue_apps/rlift.png> <../i
 mgs/analogue_apps/rmap.png>]
 <../imgs/analogue_apps/rcamera1.png, id=322, 593.21625pt x 1284.8pt>
 File: ../imgs/analogue_apps/rcamera1.png Graphic file (type png)
@@ -1824,9 +1840,9 @@ Package pdftex.def Info: ../imgs/analogue_apps/rcamera1.png  used on input line
  257.
 (pdftex.def)             Requested size: 237.28229pt x 513.9109pt.
 
-[13
+[15
 
- <../imgs/analogue_apps/rcamera1.png>] [14] [15
+ <../imgs/analogue_apps/rcamera1.png>] [16] [17
 
 ]
 Overfull \hbox (13.90695pt too wide) in paragraph at lines 320--321
@@ -1834,7 +1850,7 @@ Overfull \hbox (13.90695pt too wide) in paragraph at lines 320--321
 ис-поль-зо-ва-ния IMDB.
  []
 
-) [16]
+) [18]
 \openout2 = `20-design.aux'.
 
  (20-design.tex
@@ -1844,7 +1860,7 @@ File: ../imgs/func_model.jpg Graphic file (type jpg)
 <use ../imgs/func_model.jpg>
 Package pdftex.def Info: ../imgs/func_model.jpg  used on input line 11.
 (pdftex.def)             Requested size: 202.35756pt x 130.08699pt.
-[17
+[19
 
 
 
@@ -1855,25 +1871,25 @@ File: ../imgs/db/db.png Graphic file (type png)
 <use ../imgs/db/db.png>
 Package pdftex.def Info: ../imgs/db/db.png  used on input line 49.
 (pdftex.def)             Requested size: 340.86745pt x 325.61072pt.
- [18 <../imgs/db/db.png>]
+ [20 <../imgs/db/db.png>]
 Overfull \hbox (3.34315pt too wide) in paragraph at lines 80--81
 []\T2A/cmr/m/n/14.4 slope_id -- иден-ти-фи-ка-тор трас-сы, FK на по-ле slope_id
  таб-ли-цы slopes,
  []
 
-[19]
+[21]
 Overfull \hbox (9.78027pt too wide) in paragraph at lines 105--106
 []\T2A/cmr/m/n/14.4 reading_time -- да-та и вре-мя счи-ты-ва-ния в фор-ма-те Un
 ix-time, unsigned. 
  []
 
-[20] [21]
+[22] [23]
 <../imgs/function.png, id=385, 865.2325pt x 805.0075pt>
 File: ../imgs/function.png Graphic file (type png)
 <use ../imgs/function.png>
 Package pdftex.def Info: ../imgs/function.png  used on input line 146.
-(pdftex.def)             Requested size: 432.61519pt x 402.50278pt.
-) [22
+(pdftex.def)             Requested size: 389.35103pt x 362.25003pt.
+) [24
 
  <../imgs/function.png>]
 \openout2 = `30-impl.aux'.
@@ -1885,7 +1901,7 @@ File: ../imgs/uml/components.png Graphic file (type png)
 <use ../imgs/uml/components.png>
 Package pdftex.def Info: ../imgs/uml/components.png  used on input line 12.
 (pdftex.def)             Requested size: 283.05968pt x 327.62653pt.
-[23
+[25
 
 
 
@@ -1896,7 +1912,7 @@ Overfull \hbox (10.45366pt too wide) in paragraph at lines 29--30
 зо-ва-ни-ем баз данных[[]]. 
  []
 
-[24] [25] [26]
+[26] [27] [28]
 Overfull \hbox (15.629pt too wide) in paragraph at lines 98--99
 []\T2A/cmr/m/n/14.4 Рассмотрим несколь-ко тре-бо-ва-ний, ко-то-рым долж-на удо-
 вле-тво-рять СУБД
@@ -1908,13 +1924,13 @@ Overfull \hbox (3.82256pt too wide) in paragraph at lines 102--103
  пунк-те []1.3[] функ-
  []
 
-[27]
+[29]
 Overfull \hbox (2.87463pt too wide) in paragraph at lines 147--148
 []\T2A/cmr/m/n/14.4 Тестирование про-грамм-но-го про-дук-та про-из-во-ди-лось с
  по-мо-щью фрейм-
  []
 
-[28] (C:\Program Files\MiKTeX\tex/latex/listings\lstlang1.sty
+[30] (C:\Program Files\MiKTeX\tex/latex/listings\lstlang1.sty
 File: lstlang1.sty 2020/03/24 1.8d listings language file
 )
 (C:\Program Files\MiKTeX\tex/latex/listings\lstlang2.sty
@@ -1938,12 +1954,12 @@ LaTeX Font Info:    Font shape `TS1/fvm/m/n' will be
 
 (C:\Program Files\MiKTeX\tex/latex/listings\lstlang1.sty
 File: lstlang1.sty 2020/03/24 1.8d listings language file
-) [29]
+) [31]
 
 LaTeX Font Warning: Font shape `T2A/fvm/b/n' undefined
 (Font)              using `T2A/fvm/m/n' instead on input line 188.
 
-[30]
+[32]
 Overfull \hbox (11.24783pt too wide) in paragraph at lines 230--231
 \T2A/fvm/m/n/14.4 ком-по-нен-те бизнес-логики. От-но-ше-ние меж-ду таб-ли-ца-ми
  slopes и lifts многие-
@@ -1951,7 +1967,7 @@ Overfull \hbox (11.24783pt too wide) in paragraph at lines 230--231
 
 (C:\Program Files\MiKTeX\tex/latex/listings\lstlang1.sty
 File: lstlang1.sty 2020/03/24 1.8d listings language file
-) [31] [32] [33]
+) [33] [34] [35]
 <../imgs/int/main.png, id=605, 217.24017pt x 328.65643pt>
 File: ../imgs/int/main.png Graphic file (type png)
 <use ../imgs/int/main.png>
@@ -1963,7 +1979,7 @@ File: ../imgs/int/profu.png Graphic file (type png)
 Package pdftex.def Info: ../imgs/int/profu.png  used on input line 326.
 (pdftex.def)             Requested size: 347.58342pt x 166.90887pt.
 
-[34
+[36
 
  <../imgs/int/main.png> <../imgs/int/profu.png>]
 <../imgs/int/profa.png, id=617, 343.2825pt x 165.61874pt>
@@ -1976,7 +1992,7 @@ File: ../imgs/int/messages.png Graphic file (type png)
 <use ../imgs/int/messages.png>
 Package pdftex.def Info: ../imgs/int/messages.png  used on input line 350.
 (pdftex.def)             Requested size: 318.47893pt x 294.99146pt.
- [35
+ [37
 
  <../imgs/int/profa.png> <../imgs/int/messages.png>]
 <../imgs/int/slopes.png, id=628, 626.77017pt x 295.53268pt>
@@ -1984,17 +2000,12 @@ File: ../imgs/int/slopes.png Graphic file (type png)
 <use ../imgs/int/slopes.png>
 Package pdftex.def Info: ../imgs/int/slopes.png  used on input line 363.
 (pdftex.def)             Requested size: 438.73613pt x 206.87146pt.
- [36 <../imgs/int/slopes.png>]
+ [38 <../imgs/int/slopes.png>]
 <../imgs/int/lifts.png, id=637, 796.26053pt x 359.62929pt>
 File: ../imgs/int/lifts.png Graphic file (type png)
 <use ../imgs/int/lifts.png>
 Package pdftex.def Info: ../imgs/int/lifts.png  used on input line 375.
-(pdftex.def)             Requested size: 477.76001pt x 215.77924pt.
-
-Overfull \hbox (8.28952pt too wide) in paragraph at lines 375--376
- [] 
- []
-
+(pdftex.def)             Requested size: 437.94464pt x 197.7967pt.
 <../imgs/int/users.png, id=642, 760.12553pt x 260.25804pt>
 File: ../imgs/int/users.png Graphic file (type png)
 <use ../imgs/int/users.png>
@@ -2005,6 +2016,7 @@ File: ../imgs/int/cards.png Graphic file (type png)
 <use ../imgs/int/cards.png>
 Package pdftex.def Info: ../imgs/int/cards.png  used on input line 395.
 (pdftex.def)             Requested size: 378.38799pt x 152.5425pt.
+
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
@@ -2024,10 +2036,10 @@ Package pdftex.def Info: ../imgs/int/readings.png  used on input line 413.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[37
+[39
 
- <../imgs/int/lifts.png> <../imgs/int/users.png>] [38 <../imgs/int/cards.png> <
-../imgs/int/turnstiles.png> <../imgs/int/readings.png>]) [39
+ <../imgs/int/lifts.png> <../imgs/int/users.png>] [40 <../imgs/int/cards.png> <
+../imgs/int/turnstiles.png> <../imgs/int/readings.png>]) [41
 
 ]
 \openout2 = `40-research.aux'.
@@ -2035,28 +2047,28 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 (40-research.tex
 {\cyrillictext \CYRG \cyrl \cyra \cyrv \cyra } 4.
-[40
+[42
 
 
 
 
-] [41] [42]
+] [43] [44]
 Overfull \hbox (0.18599pt too wide) in paragraph at lines 99--100
 \T2A/fvm/m/n/14.4 уровне при-ло-же-ния. Сна-ча-ла про-ис-хо-дит по-лу-че-ние вс
 ех подъ-ем-ни-ков, счи-
  []
 
-[43
+[45
 
-] [44] [45]
+] [46] [47]
 PGFPlots: reading {csv/exp1.csv}
 PGFPlots: reading {csv/exp2.csv}
 PGFPlots: reading {csv/exp3.csv}
 PGFPlots: reading {csv/exp4.csv}
- [46]) [47]
+ [48]) [49]
 \openout2 = `50-conclusion.aux'.
 
- (50-conclusion.tex) [48
+ (50-conclusion.tex) [50
 
 
 
@@ -2118,7 +2130,7 @@ Underfull \hbox (badness 5022) in paragraph at lines 73--77
 <ключ-
  []
 
-[49
+[51
 
 
 
@@ -2141,23 +2153,23 @@ Underfull \hbox (badness 10000) in paragraph at lines 137--141
 ew = netdesktop-[]5 . 0$[]
  []
 
-[50])) [51] (report.aux (01-contents.aux) (02-intro.aux) (10-analysis.aux)
+[52])) [53] (report.aux (01-contents.aux) (02-intro.aux) (10-analysis.aux)
 (20-design.aux) (30-impl.aux) (40-research.aux) (50-conclusion.aux)
 (51-biblio.aux))
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
 Package rerunfilecheck Info: File `report.out' has not changed.
-(rerunfilecheck)             Checksum: 6B92DD77F70580E4ED3E5DFCB58CA0F3;10237.
+(rerunfilecheck)             Checksum: 7F4F03704B48B5CD806A5B5336054936;10133.
  ) 
 Here is how much of TeX's memory you used:
- 42038 strings out of 478864
- 936103 string characters out of 2858518
- 1710151 words of memory out of 10000000
- 58785 multiletter control sequences out of 15000+600000
+ 42705 strings out of 478864
+ 947233 string characters out of 2858518
+ 1723165 words of memory out of 10000000
+ 59433 multiletter control sequences out of 15000+600000
  416652 words of font info for 53 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 106i,19n,108p,1168b,2427s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 106i,19n,108p,1168b,2428s stack positions out of 5000i,500n,10000p,200000b,80000s
  <C:\Users\alena\AppData\Local\MiKTeX\fonts/pk/ljfour/lh/lh-t2a/dpi600\labx12
 00.pk>{C:/Program Files/MiKTeX/fonts/enc/dvips/base/8r.enc} <C:\Users\alena\App
 Data\Local\MiKTeX\fonts/pk/ljfour/lh/lh-t2a/dpi600\larm1000.pk> <C:\Users\alena
@@ -2173,9 +2185,9 @@ b><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program
  Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Program Files/MiKTeX
 /fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/alena/AppData/Roaming/MiKT
 eX/fonts/type1/bera/fvmr8a.pfb>
-Output written on report.pdf (51 pages, 1640600 bytes).
+Output written on report.pdf (51 pages, 1646794 bytes).
 PDF statistics:
- 1451 PDF objects out of 1728 (max. 8388607)
+ 1467 PDF objects out of 1728 (max. 8388607)
  348 named destinations out of 1000 (max. 500000)
  492 words of extra memory for PDF output out of 10000 (max. 10000000)
 

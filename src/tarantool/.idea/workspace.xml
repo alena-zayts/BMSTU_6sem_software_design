@@ -2,130 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="37e3b93f-dec6-4655-8fd4-69c45ec7c196" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../../docs/tex/20-design.aux" beforeDir="false" afterPath="$PROJECT_DIR$/../../docs/tex/20-design.aux" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../docs/tex/20-design.tex" beforeDir="false" afterPath="$PROJECT_DIR$/../../docs/tex/20-design.tex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../docs/tex/30-impl.aux" beforeDir="false" afterPath="$PROJECT_DIR$/../../docs/tex/30-impl.aux" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../docs/tex/30-impl.tex" beforeDir="false" afterPath="$PROJECT_DIR$/../../docs/tex/30-impl.tex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../docs/tex/40-research.tex" beforeDir="false" afterPath="$PROJECT_DIR$/../../docs/tex/40-research.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../docs/imgs/function.drawio" beforeDir="false" afterPath="$PROJECT_DIR$/../../docs/imgs/function.drawio" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../docs/imgs/function.png" beforeDir="false" afterPath="$PROJECT_DIR$/../../docs/imgs/function.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../docs/tex/report.log" beforeDir="false" afterPath="$PROJECT_DIR$/../../docs/tex/report.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../docs/tex/report.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/../../docs/tex/report.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../docs/tex/report.synctex.gz" beforeDir="false" afterPath="$PROJECT_DIR$/../../docs/tex/report.synctex.gz" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../docs/tex/report.toc" beforeDir="false" afterPath="$PROJECT_DIR$/../../docs/tex/report.toc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/.vs/SkiResort/DesignTimeBuild/.dtbcache.v2" beforeDir="false" afterPath="$PROJECT_DIR$/../SkiResort/.vs/SkiResort/DesignTimeBuild/.dtbcache.v2" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../SkiResort/.vs/SkiResort/v17/.suo" beforeDir="false" afterPath="$PROJECT_DIR$/../SkiResort/.vs/SkiResort/v17/.suo" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/AccessToDB/bin/Release/net6.0/AccessToDB.deps.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/AccessToDB/bin/Release/net6.0/AccessToDB.pdb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/AccessToDB/bin/Release/net6.0/BL.pdb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/AccessToDB/obj/Debug/net6.0/AccessToDB.csproj.AssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/../SkiResort/AccessToDB/obj/Debug/net6.0/AccessToDB.csproj.AssemblyReference.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/AccessToDB/obj/Release/net6.0/.NETCoreApp,Version=v6.0.AssemblyAttributes.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/AccessToDB/obj/Release/net6.0/AccessToDB.AssemblyInfo.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/AccessToDB/obj/Release/net6.0/AccessToDB.AssemblyInfoInputs.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/AccessToDB/obj/Release/net6.0/AccessToDB.GeneratedMSBuildEditorConfig.editorconfig" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/AccessToDB/obj/Release/net6.0/AccessToDB.GlobalUsings.g.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/AccessToDB/obj/Release/net6.0/AccessToDB.assets.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/AccessToDB/obj/Release/net6.0/AccessToDB.csproj.AssemblyReference.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/AccessToDB/obj/Release/net6.0/AccessToDB.csproj.BuildWithSkipAnalyzers" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/AccessToDB/obj/Release/net6.0/AccessToDB.csproj.CopyComplete" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/AccessToDB/obj/Release/net6.0/AccessToDB.csproj.CoreCompileInputs.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/AccessToDB/obj/Release/net6.0/AccessToDB.csproj.FileListAbsolute.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/AccessToDB/obj/Release/net6.0/AccessToDB.pdb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/AccessToDB2/obj/Debug/net6.0/AccessToDB2.csproj.AssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/../SkiResort/AccessToDB2/obj/Debug/net6.0/AccessToDB2.csproj.AssemblyReference.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/AccessToDB2/obj/Debug/net6.0/AccessToDB2.csproj.FileListAbsolute.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../SkiResort/AccessToDB2/obj/Debug/net6.0/AccessToDB2.csproj.FileListAbsolute.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/BL/bin/Release/net6.0/BL.deps.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/BL/bin/Release/net6.0/BL.pdb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/BL/obj/Release/net6.0/.NETCoreApp,Version=v6.0.AssemblyAttributes.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/BL/obj/Release/net6.0/BL.AssemblyInfo.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/BL/obj/Release/net6.0/BL.AssemblyInfoInputs.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/BL/obj/Release/net6.0/BL.GeneratedMSBuildEditorConfig.editorconfig" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/BL/obj/Release/net6.0/BL.GlobalUsings.g.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/BL/obj/Release/net6.0/BL.assets.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/BL/obj/Release/net6.0/BL.csproj.AssemblyReference.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/BL/obj/Release/net6.0/BL.csproj.BuildWithSkipAnalyzers" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/BL/obj/Release/net6.0/BL.csproj.CoreCompileInputs.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/BL/obj/Release/net6.0/BL.csproj.FileListAbsolute.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/BL/obj/Release/net6.0/BL.pdb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/TechUI2/bin/Debug/net6.0/AccessToDB.pdb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/TechUI2/bin/Debug/net6.0/BL.pdb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/TechUI2/bin/Debug/net6.0/TechUI2.deps.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/TechUI2/bin/Debug/net6.0/TechUI2.pdb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/TechUI2/bin/Debug/net6.0/TechUI2.runtimeconfig.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/TechUI2/bin/Release/net6.0/AccessToDB.pdb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/TechUI2/bin/Release/net6.0/BL.pdb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/TechUI2/bin/Release/net6.0/TechUI2.deps.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/TechUI2/bin/Release/net6.0/TechUI2.pdb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/TechUI2/bin/Release/net6.0/TechUI2.runtimeconfig.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/TechUI2/obj/Debug/net6.0/TechUI2.csproj.AssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/../SkiResort/TechUI2/obj/Debug/net6.0/TechUI2.csproj.AssemblyReference.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/TechUI2/obj/Debug/net6.0/TechUI2.csproj.BuildWithSkipAnalyzers" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/TechUI2/obj/Debug/net6.0/TechUI2.csproj.CopyComplete" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/TechUI2/obj/Debug/net6.0/TechUI2.csproj.CoreCompileInputs.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/TechUI2/obj/Debug/net6.0/TechUI2.csproj.FileListAbsolute.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/TechUI2/obj/Debug/net6.0/TechUI2.genruntimeconfig.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/TechUI2/obj/Debug/net6.0/TechUI2.pdb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/TechUI2/obj/Release/net6.0/.NETCoreApp,Version=v6.0.AssemblyAttributes.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/TechUI2/obj/Release/net6.0/TechUI2.AssemblyInfo.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/TechUI2/obj/Release/net6.0/TechUI2.AssemblyInfoInputs.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/TechUI2/obj/Release/net6.0/TechUI2.GeneratedMSBuildEditorConfig.editorconfig" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/TechUI2/obj/Release/net6.0/TechUI2.GlobalUsings.g.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/TechUI2/obj/Release/net6.0/TechUI2.assets.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/TechUI2/obj/Release/net6.0/TechUI2.csproj.AssemblyReference.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/TechUI2/obj/Release/net6.0/TechUI2.csproj.BuildWithSkipAnalyzers" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/TechUI2/obj/Release/net6.0/TechUI2.csproj.CopyComplete" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/TechUI2/obj/Release/net6.0/TechUI2.csproj.CoreCompileInputs.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/TechUI2/obj/Release/net6.0/TechUI2.csproj.FileListAbsolute.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/TechUI2/obj/Release/net6.0/TechUI2.genruntimeconfig.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/TechUI2/obj/Release/net6.0/TechUI2.pdb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/TestsAccessToDB/bin/Debug/net6.0/AccessToDB.pdb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/TestsAccessToDB/bin/Debug/net6.0/BL.pdb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/TestsAccessToDB/bin/Debug/net6.0/TestsAccessToDB.deps.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/TestsAccessToDB/bin/Debug/net6.0/TestsAccessToDB.pdb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/TestsAccessToDB/bin/Debug/net6.0/TestsAccessToDB.runtimeconfig.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/TestsAccessToDB/bin/Release/net6.0/CoverletSourceRootsMapping" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/TestsAccessToDB/obj/Debug/net6.0/TestsAccessToDB.csproj.AssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/../SkiResort/TestsAccessToDB/obj/Debug/net6.0/TestsAccessToDB.csproj.AssemblyReference.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/TestsAccessToDB/obj/Debug/net6.0/TestsAccessToDB.csproj.CopyComplete" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/TestsAccessToDB/obj/Debug/net6.0/TestsAccessToDB.csproj.CoreCompileInputs.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/TestsAccessToDB/obj/Debug/net6.0/TestsAccessToDB.csproj.FileListAbsolute.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/TestsAccessToDB/obj/Debug/net6.0/TestsAccessToDB.genruntimeconfig.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/TestsAccessToDB/obj/Debug/net6.0/TestsAccessToDB.pdb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/TestsAccessToDB/obj/Release/net6.0/.NETCoreApp,Version=v6.0.AssemblyAttributes.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/TestsAccessToDB/obj/Release/net6.0/TestsAccessToDB.AssemblyInfo.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/TestsAccessToDB/obj/Release/net6.0/TestsAccessToDB.AssemblyInfoInputs.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/TestsAccessToDB/obj/Release/net6.0/TestsAccessToDB.GeneratedMSBuildEditorConfig.editorconfig" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/TestsAccessToDB/obj/Release/net6.0/TestsAccessToDB.assets.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/TestsAccessToDB/obj/Release/net6.0/TestsAccessToDB.csproj.AssemblyReference.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/TestsBL/bin/Debug/net6.0/BL.pdb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/TestsBL/bin/Debug/net6.0/TestsBL.deps.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/TestsBL/bin/Debug/net6.0/TestsBL.pdb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/TestsBL/bin/Debug/net6.0/TestsBL.runtimeconfig.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/TestsBL/bin/Release/net6.0/CoverletSourceRootsMapping" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/TestsBL/obj/Debug/net6.0/TestsBL.csproj.AssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/../SkiResort/TestsBL/obj/Debug/net6.0/TestsBL.csproj.AssemblyReference.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/TestsBL/obj/Debug/net6.0/TestsBL.csproj.CopyComplete" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/TestsBL/obj/Debug/net6.0/TestsBL.csproj.CoreCompileInputs.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/TestsBL/obj/Debug/net6.0/TestsBL.csproj.FileListAbsolute.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/TestsBL/obj/Debug/net6.0/TestsBL.genruntimeconfig.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/TestsBL/obj/Debug/net6.0/TestsBL.pdb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/TestsBL/obj/Release/net6.0/.NETCoreApp,Version=v6.0.AssemblyAttributes.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/TestsBL/obj/Release/net6.0/TestsBL.AssemblyInfo.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/TestsBL/obj/Release/net6.0/TestsBL.AssemblyInfoInputs.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/TestsBL/obj/Release/net6.0/TestsBL.GeneratedMSBuildEditorConfig.editorconfig" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/TestsBL/obj/Release/net6.0/TestsBL.assets.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/TestsBL/obj/Release/net6.0/TestsBL.csproj.AssemblyReference.cache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SkiResort/UI/Presenter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../SkiResort/UI/Presenter.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../SkiResort/UI/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../SkiResort/UI/Program.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../SkiResort/UI/bin/Debug/net6.0-windows/UI.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/../SkiResort/UI/bin/Debug/net6.0-windows/UI.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/UI/obj/Debug/net6.0-windows/UI.csproj.AssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/../SkiResort/UI/obj/Debug/net6.0-windows/UI.csproj.AssemblyReference.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/UI/obj/Debug/net6.0-windows/UI.csproj.FileListAbsolute.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../SkiResort/UI/obj/Debug/net6.0-windows/UI.csproj.FileListAbsolute.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../SkiResort/UI/obj/Debug/net6.0-windows/UI.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/../SkiResort/UI/obj/Debug/net6.0-windows/UI.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/Workers/obj/Debug/net6.0/Workers.csproj.AssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/../SkiResort/Workers/obj/Debug/net6.0/Workers.csproj.AssemblyReference.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/Workers/obj/Release/net6.0/.NETCoreApp,Version=v6.0.AssemblyAttributes.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/Workers/obj/Release/net6.0/Workers.AssemblyInfo.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/Workers/obj/Release/net6.0/Workers.AssemblyInfoInputs.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/Workers/obj/Release/net6.0/Workers.GeneratedMSBuildEditorConfig.editorconfig" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/Workers/obj/Release/net6.0/Workers.GlobalUsings.g.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/Workers/obj/Release/net6.0/Workers.assets.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SkiResort/Workers/obj/Release/net6.0/Workers.csproj.AssemblyReference.cache" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/app.init.lua" beforeDir="false" afterPath="$PROJECT_DIR$/app/app.init.lua" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/00000000000001313813.xlog" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/00000000000001327091.xlog" beforeDir="false" afterPath="$PROJECT_DIR$/data/00000000000001327091.xlog" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

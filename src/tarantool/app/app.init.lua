@@ -398,8 +398,8 @@ function dump(o)
    end
 end
 
-print(dump(get_lifts_by_slope_id(1)))
-print(dump(get_lifts_by_slope_id(2)))
+--print(dump(get_lifts_by_slope_id(1)))
+--print(dump(get_lifts_by_slope_id(2)))
 
 
 -- auto_increment_card_readings(turnstile_id, card_id, reading_time)

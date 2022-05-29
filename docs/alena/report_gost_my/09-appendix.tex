@@ -1,0 +1,108 @@
+\begin{appendices}
+	\chapter{}
+\end{appendices}
+
+Диалект грамматики SQL в формате РБНФ.
+
+\begin{lstlisting}[label=lst:dop_a,caption=диалект грамматики SQL в формате
+РБНФ]
+<select> ::= SELECT <select list> <table expression> [ <semicolon> ]
+
+<select list> ::= <asterisk> | <select sublist> [ { <comma> <select sublist> } ]
+
+<select sublist> ::= <qualified asterisk> | <derived column>
+
+<qualified asterisk> ::= <asterisked identifier chain> <asterisk>
+
+<asterisked identifier chain> ::= <IDENTIFIER> <period> [ { <IDENTIFIER> <period> } ]
+
+<derived column> ::= <value expression> [ [ AS ] <IDENTIFIER> ]
+
+<value expression> ::= <numeric value expression> | <boolean value expression> 
+
+<numeric value expression> ::= <term> | <term> <plus sign> <numeric value expression> | <term> <minus sign> <numeric value expression>
+
+<term> ::= <factor> | <factor> <asterisk> <term> | <factor> <solidus> <term>
+
+<factor> ::= [ <sign> ] <numeric primary>
+
+<sign> ::= <minus sign> | <plus sign>
+
+<numeric primary> ::= <value expression primary>
+
+<boolean value expression> ::= <boolean term> | <<boolean term> OR <boolean value expression>
+
+<boolean term> ::= <boolean factor> | <boolean factor> AND <boolean term> 
+
+<boolean factor> ::= [ NOT ] <boolean test>
+
+<boolean test> ::= <boolean primary> [ IS [ NOT ] <truth value> ]
+
+<truth value> ::= TRUE | FALSE | NULL
+
+<boolean primary> ::= <predicate> | <value expression primary>
+
+<predicate> ::= <comparison predicate>
+
+<comparison predicate> ::= <operand comparison> <comp op> <operand comparison>
+
+<operand comparison> ::= <not boolean value expression> | <parenthesized value expression>
+
+<not boolean value expression> ::= <numeric value expression>
+
+<comp op> ::= <equals operator> | <not equals operator> | <less than operator> | <greater than operator> | <less than or equals operator>
+
+<value expression primary> ::= <parenthesized value expression> | <nonparenthesized value expression primary>
+
+<parenthesized value expression> ::= <left paren> <value expression> <right paren>
+
+<nonparenthesized value expression primary> ::= <unsigned value specification> | <column reference>
+
+<unsigned value specification> ::= <unsigned literal>
+
+<unsigned literal> ::= <unsigned numeric literal> | <general literal
+
+<unsigned numeric literal> ::= <INTEGER> | <FLOAT>
+
+<general literal> ::= TRUE | FALSE | NULL
+
+<column reference> ::= <basic identifier chain>
+
+<basic identifier chain> ::= <identifier chain>
+
+<identifier chain> ::= <IDENTIFIER> [ { <period> <IDENTIFIER> } ]
+
+<table expression> ::= <from clause> [ <where clause> ]
+
+<from clause> ::= FROM <table reference list>
+
+<table reference list> ::= <table reference> [ { <comma> <table reference> } ]
+
+<table reference> ::= <join factor> [ { <join type> } ]
+
+<join factor> ::= <table primary> | <left paren> <table reference> <right paren>
+
+<table primary> ::= <table or query name> [ [ AS ] <IDENTIFIER> ]
+
+<table or query name> ::= <table name>
+
+<table name> ::= <basic identifier chain>
+
+<joined table> ::= <cross join> | <qualified join>
+
+<cross join> ::= CROSS JOIN <join factor>
+
+<qualified join> ::= [ <join type> ] JOIN <join factor> <join specification>
+
+<join type> ::= INNER | <outer join type> [ OUTER ] 
+
+<outer join type> ::= LEFT | RIGHT
+
+<join specification> ::= <join condition>
+
+<join condition> ::= ON <search condition>
+
+<search condition> ::= <boolean value expression>
+
+<where clause> ::= WHERE <search condition>
+\end{lstlisting}
