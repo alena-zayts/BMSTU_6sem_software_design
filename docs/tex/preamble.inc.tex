@@ -156,15 +156,15 @@
 \lstdefinelanguage{lua}{
 	language=Lua,
 	keywords={typeof, new, true, false, catch, function, return, null, catch, switch, var, if, in, while, do, else, case, break, box, schema, role, grant},
-	keywordstyle=\color{blue}\bfseries,
+	keywordstyle=\color{black}\bfseries,
 	ndkeywords={class, export, boolean, throw, implements, import, this},
-	ndkeywordstyle=\color{darkgray}\bfseries,
+	ndkeywordstyle=\color{black}\bfseries,
 	identifierstyle=\color{black},
 	sensitive=false,
 	comment=[l]{//},
 	morecomment=[s]{/*}{*/},
-	commentstyle=\color{purple}\ttfamily,
-	stringstyle=\color{red}\ttfamily,
+	commentstyle=\color{black}\ttfamily,
+	stringstyle=\color{black}\ttfamily,
 	morestring=[b]',
 	morestring=[b]"
 }
@@ -185,8 +185,8 @@
 	breakatwhitespace=true,
 	escapeinside={(*@}{@*)},
 	commentstyle=\color{greencomments},
-	keywordstyle=\color{bluekeywords}\bfseries,
-	stringstyle=\color{redstrings},
+	keywordstyle=\color{black}\bfseries,
+	stringstyle=\color{black},
 	basicstyle={\ttfamily\small}
 }
 
@@ -200,6 +200,10 @@
 	showstringspaces = false,
 	upquote          = true,
 	tabsize=4,
+    keywordstyle=\color{black},
+	stringstyle=\ttfamily\color{black}\normalfont,
+	emph={},
+	emphstyle=\color{black},
 }
 \usepackage{diagbox}
 \usepackage{pdfpages}

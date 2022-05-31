@@ -180,8 +180,9 @@ box.schema.role.grant('ski_admin', 'read,write,execute,create,alter,drop', 'univ
 
 В листинге \ref{lst:func} представлены реализации функций update\_queue\_time и count\_card\_readings, предназначенных для обновленияя время в очереди к подъемнику. Алгоритм работы этих функций был описан в пункте \ref{func_label}.
 
+
 \captionsetup{justification=centering,singlelinecheck=off}
-\begin{lstlisting}[label=lst:func, caption=Функции update\_queue\_time и count\_card\_readings, language=python]
+\begin{lstlisting}[label=lst:func, caption=Функции update\_queue\_time и count\_card\_readings, style=myLuastyle]
 function count_card_readings(lift_id, date_from, date_query)
 	connected_turnstiles = turnstiles.index.index_lift_id:select({lift_id})
 	counter = 0
