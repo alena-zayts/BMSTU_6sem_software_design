@@ -13,11 +13,11 @@
 ├───TechUI2 -- Альтернативный компонент пользовательского интерфейса (он же тест для UI)
 │   ├───IViews
 │   └───TechViews
-├───AccessToDB -- Компонент доступа к данным
+├───AccessToDB -- Компонент доступа к данным, использующий Tarantool
 │   ├───Converters
 │   ├───Exceptions
 │   └───TarantoolRepositories
-├───AccessToDB2 -- Альтернативный компонент доступа к данным
+├───AccessToDB2 -- Альтернативный компонент доступа к данным, использующий PostgreSQL
 │   ├───Converters
 │   ├───Models
 │   └───PostgresRepositories
