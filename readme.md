@@ -116,7 +116,7 @@ docker-compose -f (путь)/src/tarantool/docker-compose.yml down
 ## UML диаграммы классов компонентов
 
 
-![](docs/imgs/uml/bl_da.png)
+![](docs/imgs/uml/ui.png)
 
 
 
